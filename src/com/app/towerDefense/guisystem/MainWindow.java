@@ -2,8 +2,14 @@ package com.app.towerDefense.guisystem;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.*;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
+import com.app.towerDefense.staticContent.ApplicationStatics;
 
 public class MainWindow extends JFrame{
 
@@ -20,14 +26,15 @@ public class MainWindow extends JFrame{
 		this.setLocationRelativeTo(null); //center window on the screen
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-//		runGameMenu(width, height);
+		//Creating Top Menu Bar
+		new GameMenu(this);
+		//runGameMenu(width, height);
 	
-		
-		
+				
 		initGUI(width, height);
 		
 		this.setVisible(true);
-//		this.add(game);
+		//this.add(game);
 		
 		
 //		game.start();
@@ -36,11 +43,8 @@ public class MainWindow extends JFrame{
 //
 	public void runGameMenu(int width, int height){
 	//	this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		GameMenu gm = new GameMenu(width, height);
-		this.add(gm);
-		
-		
-		
+		//GameMenu gm = new GameMenu(width, height);
+		//this.add(gm);		
 	}
 	
 
