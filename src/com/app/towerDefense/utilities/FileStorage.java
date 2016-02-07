@@ -2,8 +2,11 @@ package com.app.towerDefense.utilities;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
-import com.app.towerDefence.models.MapModel;
+import com.app.towerDefense.models.MapModel;
 import com.google.gson.Gson;
 
 public class FileStorage {
@@ -13,7 +16,7 @@ public class FileStorage {
 		fileContent = (new MiscellaneousHelper()).EncodeBase64(fileContent);
 		String filePath = file.getPath();
 		if (!filePath.endsWith(".tdm"))
-			filePath += ".tdn";
+			filePath += ".tdm";
 		try {
 			FileWriter fileWriter = new FileWriter(filePath);
 			fileWriter.write(fileContent);
@@ -21,10 +24,22 @@ public class FileStorage {
 			fileWriter.close();
 			return "SUCCESS";
 		} catch (Exception e) {
-			// TODO: handle exception
-			// JOptionPane.showMessageDialog(null, e.getMessage());
+			e.printStackTrace();
 			return "ERROR : " + e.getMessage();
 		}
+	}
+	
+	public MapModel openMapFile(File file) {
+		
+		String fileContent ="";
+		 try {
+			 fileContent = new String(Files.readAllBytes(Paths.get(file.getPath())));
+			 fileContent = (new MiscellaneousHelper()).DecodeBase64(fileContent);
+			 return (MapModel) getObjectFromJson(fileContent, MapModel.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return  null;
+		}		
 	}
 
 	public String getJsonFromObject(Object object) {

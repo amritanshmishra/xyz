@@ -9,8 +9,6 @@ public class ApplicationStatics {
 	public static final int CHILD_POPUP_WINDOW_WIDTH=(int) WINDOW_WIDTH-100;
 	public static final int CHILD_POPUP_WINDOW_HEIGHT=(int) WINDOW_HEIGHT-100;
 	
-	public static int MAP_GRID_WIDTH=12;
-	public static int MAP_GRID_HEIGHT=13;
 	
 	//Window Ttitles
 	public static final String TITLE_MAP_EDITOR="MAP EDITOR";

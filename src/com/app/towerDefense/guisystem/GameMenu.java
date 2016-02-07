@@ -1,29 +1,22 @@
 package com.app.towerDefense.guisystem;
 
-import java.awt.Color;
-import java.awt.Dialog.ModalExclusionType;
-import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.text.ParseException;
+import java.io.File;
 
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFormattedTextField;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.MaskFormatter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
+import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 
 public class GameMenu extends JPanel{
@@ -32,28 +25,7 @@ public class GameMenu extends JPanel{
 	    Create,Open
 	}
 	private static final long serialVersionUID = -307815763272568727L;
-// GAMEMENU Constructor
-	/*
-	public GameMenu(int width, int height){
-		
-		this.setPreferredSize(new Dimension(width, height));
-		this.setMaximumSize(new Dimension(width, height));
-		this.setMinimumSize(new Dimension(width, height));
-		
-		this.setBackground(Color.BLACK);
-		
-		
-		this.setLayout(new GridLayout(3,1));
-		
-		JLabel label = new JLabel();
-		label.setText("CHOOSE MAP from the list");
-		label.setForeground(Color.WHITE);
-		this.add(label);
-		
-		JButton button = new JButton("CREATE MAP");
-		this.add(button);		
-	}
-	*/
+
 	public GameMenu(JFrame _jframe){
 		jframe=_jframe;
 		JMenuBar menuBar = new  JMenuBar();
@@ -134,15 +106,23 @@ public class GameMenu extends JPanel{
 						else if(y.length() == 0 )
 						JOptionPane.showMessageDialog(null, "Size of Y May not Be Empty");
 						
+						else if(Integer.parseInt(x) < 1 ||  Integer.parseInt(x) > 30)
+							JOptionPane.showMessageDialog(null, "Size of X must Lie between 1 - 30");
+						
+						else if(Integer.parseInt(y) < 1 ||  Integer.parseInt(y) > 30)
+							JOptionPane.showMessageDialog(null, "Size of Y must Lie between 1 - 30");
+						
 						else
 						{
-							ApplicationStatics.MAP_GRID_HEIGHT = Integer.parseInt(y);
-							ApplicationStatics.MAP_GRID_WIDTH = Integer.parseInt(x);
-							
+							MapModel mapModel = new MapModel();
+					
+							mapModel.setMapWidth(Integer.parseInt(x));
+							mapModel.setMapHeight(Integer.parseInt(y));
 							MapEditor dlg = new MapEditor(jframe, 
 									ApplicationStatics.TITLE_MAP_EDITOR,
 									ApplicationStatics.CHILD_POPUP_WINDOW_WIDTH, 
 									ApplicationStatics.CHILD_POPUP_WINDOW_HEIGHT , 
+									mapModel,
 									E_MapEditorMode.Create);
 						}
 					} 
@@ -155,11 +135,47 @@ public class GameMenu extends JPanel{
 				else if(e.getSource().equals(menuItemOpenMap))
 				{
 					
-					MapEditor dlg = new MapEditor(jframe, 
+					JFileChooser fileChooser = new JFileChooser();
+					fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+					fileChooser.setDialogTitle("Tower Defense Select .tdm file");
+					fileChooser.setAcceptAllFileFilterUsed(false);
+					fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Tower Defence Map", "tdm"));
+					fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+					
+					int result = fileChooser.showOpenDialog(GameMenu.this);
+					if (result == JFileChooser.APPROVE_OPTION) {
+					    File file = fileChooser.getSelectedFile();
+					    MapModel mapModel 	= (new com.app.towerDefense.utilities.FileStorage()).openMapFile(file);
+					    if(mapModel != null)
+						  {
+					    	if(mapModel.mapSecret.contains("_Team5"))
+					    	{
+					    		MapEditor dlg = new MapEditor(jframe, 
+										ApplicationStatics.TITLE_MAP_EDITOR,
+										ApplicationStatics.CHILD_POPUP_WINDOW_WIDTH, 
+										ApplicationStatics.CHILD_POPUP_WINDOW_HEIGHT , 
+										mapModel,
+										E_MapEditorMode.Open);
+					    	}
+					    	else
+					    	{
+					    		JOptionPane.showMessageDialog(null, "In valid Map File.");
+					    	}
+					    	
+							  
+						  }
+						  else
+							  JOptionPane.showMessageDialog(null, "Unable to .tdm open File");
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "No File Selected");
+					}
+					/*MapEditor dlg = new MapEditor(jframe, 
 							ApplicationStatics.TITLE_MAP_EDITOR,
 							ApplicationStatics.CHILD_POPUP_WINDOW_WIDTH, 
 							ApplicationStatics.CHILD_POPUP_WINDOW_HEIGHT , 
-							E_MapEditorMode.Open);
+							E_MapEditorMode.Open);*/
 					
 					
 				}
@@ -185,3 +201,4 @@ public class GameMenu extends JPanel{
 	
 // END	
 }
+
