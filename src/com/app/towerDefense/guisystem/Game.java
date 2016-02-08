@@ -7,7 +7,7 @@ public class Game{
 // GAME Constructor	
 	public Game(){
 		
-		new MainWindow(WIDTH, HEIGHT, "Tower Defence Game by \"Team 5\".", this);
+		new GameWindow(WIDTH, HEIGHT, "Tower Defence Game by \"Team 5\".", this);
 
 	}
 	

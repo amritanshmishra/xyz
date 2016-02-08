@@ -26,5 +26,12 @@ public class ApplicationStatics {
 	public static final String MENU_ITEM_ABOUT="ABOUT";
 	public static final String MENU_ITEM_SAVE="SAVE";
 	public static final String MENU_ITEM_EXIT="EXIT";
-
+	
+	//-- Images Paths
+	public static final String IMAGE_PATH_GAME_BK="images/gameBk.png";
+	public static final String IMAGE_PATH_MAP_ENTRY="images/mapEntry.png";
+	public static final String IMAGE_PATH_MAP_EXIT="images/mapExit.png";
+	public static final String IMAGE_PATH_MAP_ROUTE="images/mapRouteGreen.png";
+	public static final String IMAGE_PATH_MAP_Scenery="images/mapSceneryGreen.png";
+	
 }

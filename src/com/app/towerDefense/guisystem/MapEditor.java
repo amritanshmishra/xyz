@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 
 import com.app.towerDefense.guiComponents.JMenuBarComponent;
 import com.app.towerDefense.guiComponents.JPanelComponent;
-import com.app.towerDefense.guisystem.GameMenu.E_MapEditorMode;
+import com.app.towerDefense.staticContent.AppilicationEnums.*;
 import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 
@@ -50,7 +50,7 @@ public class MapEditor extends JFrame {
 		//-- Load MenuBar From Components
 		this.setJMenuBar((new JMenuBarComponent()).getMapEditorJMenuBar(_mapModel, this));
 		//-- Load GridEditor Panel From Components
-		this.setContentPane((new JPanelComponent()).getMapGridPanel(mapModel, mapEditorMode));
+		this.setContentPane((new JPanelComponent()).getMapEditorGridPanel(mapModel, mapEditorMode));
 
 	}
 
