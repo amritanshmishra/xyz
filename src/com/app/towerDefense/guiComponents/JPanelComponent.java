@@ -29,12 +29,12 @@ import com.app.towerDefense.models.MapModel;
 public class JPanelComponent {
 
 	//-- Map Window Tower Section
-	public JPanel getGameTowerPanel(int width, int height){
-		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(width, height));
-		panel.setMaximumSize(new Dimension(width, height));
-		panel.setMinimumSize(new Dimension(width, height));			
-		panel.setBackground(Color.CYAN);
+	public JPanel getGameTowerPanel(Dimension parentDimension){
+		BottomGamePanelView panel = new BottomGamePanelView(parentDimension.width, parentDimension.height * 1/4-30);
+		panel.setPreferredSize(new Dimension(parentDimension.width, parentDimension.height * 1/4-30));
+		panel.setMaximumSize(new Dimension(parentDimension.width, parentDimension.height * 1/4-30));
+		panel.setMinimumSize(new Dimension(parentDimension.width, parentDimension.height * 1/4-30));			
+		//panel.setBackground(Color.CYAN);
 		return panel;				
 	}
 	
@@ -199,9 +199,9 @@ public class JPanelComponent {
 					mapModel.getMapWidth(), 0, 0);
 			panel.setLayout(gridLayout);
 			if (parentDimension != null) {
-				panel.setPreferredSize(new Dimension(parentDimension.width, parentDimension.height * 3/4));
-				panel.setMaximumSize(  new Dimension(parentDimension.width, parentDimension.height * 3/4));
-				panel.setMinimumSize(  new Dimension(parentDimension.width, parentDimension.height * 3/4));
+				panel.setPreferredSize(new Dimension(parentDimension.width, parentDimension.height * 3/4-10));
+				panel.setMaximumSize(  new Dimension(parentDimension.width, parentDimension.height * 3/4-10));
+				panel.setMinimumSize(  new Dimension(parentDimension.width, parentDimension.height * 3/4-10));
 			}
 			
 			

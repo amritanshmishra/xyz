@@ -25,7 +25,6 @@ public class GameWindow extends JFrame{
 	private JMenuBar gameJMenuBar;
 	//private JPanel   gameTowerPanel;
 	//private JPanel   gameMapPanel;
-	private static final long serialVersionUID = 5881054831746644916L;
 	
 	/*
 	public GameWindow(JPanel  _gameTowerPanel, JPanel   _gameMapPanel)

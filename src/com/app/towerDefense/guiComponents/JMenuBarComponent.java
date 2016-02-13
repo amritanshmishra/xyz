@@ -36,8 +36,12 @@ public class JMenuBarComponent {
 	public JMenuBar getGameJMenuBar(final JFrame jframe)
 	{
 		
-		final JLabel background=new JLabel(new ImageIcon("images/gameBk.jpg"));
-		jframe.add(background);
+		//final JLabel backGround=new JLabel(new ImageIcon("images/gameBk.jpg"));
+	final JLabel backGround=new JLabel(new ImageIcon(((new ImageIcon(
+			"images/gameBk.png").getImage()
+	            .getScaledInstance(840, 840/12*10,
+	                    java.awt.Image.SCALE_SMOOTH)))));
+		jframe.add(backGround);
 		//gameMapPanel=_gameMapPanel;
 		//gameTowerPanel=_gameTowerPanel;
 		
@@ -83,6 +87,7 @@ public class JMenuBarComponent {
 					    		gameMapPanel= (new JPanelComponent()).getMapPlayGridPanel(mapModel, jframe.getSize(), E_MapEditorMode.Open);
 					    		//jframe.add(gameMapPanel);
 					    		jframe.getContentPane().add(gameMapPanel, BorderLayout.NORTH);
+					    		jframe.getContentPane().add(new JPanelComponent().getGameTowerPanel(jframe.getSize()), BorderLayout.SOUTH);
 					    		jframe.setVisible(true);
 					    	}
 					    	else
@@ -213,7 +218,7 @@ public class JMenuBarComponent {
 				}
 				else if(e.getSource().equals(menuItemAbout))
 				{
-					JOptionPane.showMessageDialog(null, "**** Tower Defense Game **** \r\n Version 1.0 Build 1 \r\n Developed By Team5 \r\n All rights reserved  © Fall 2016");
+					JOptionPane.showMessageDialog(null, "**** Tower Defense Game **** \r\n Version 1.0 Build 1 \r\n Developed By Team5 \r\n All rights reserved  ï¿½ Fall 2016");
 				}
 			}
 			
