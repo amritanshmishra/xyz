@@ -1,8 +1,8 @@
 package com.app.towerDefense.models;
 
 import java.awt.Dimension;
+import java.awt.Image;
 
-import com.sun.prism.Image;
 
 
 /**
