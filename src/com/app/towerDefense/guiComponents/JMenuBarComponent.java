@@ -39,7 +39,7 @@ public class JMenuBarComponent {
 		//final JLabel backGround=new JLabel(new ImageIcon("images/gameBk.jpg"));
 	final JLabel backGround=new JLabel(new ImageIcon(((new ImageIcon(
 			"images/gameBk.png").getImage()
-	            .getScaledInstance(840, 840/12*10,
+	            .getScaledInstance(jframe.getSize().width,(int) ((int) jframe.getSize().height -30),
 	                    java.awt.Image.SCALE_SMOOTH)))));
 		jframe.add(backGround);
 		//gameMapPanel=_gameMapPanel;
