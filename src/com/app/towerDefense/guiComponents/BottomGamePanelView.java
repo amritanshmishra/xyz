@@ -15,43 +15,50 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class BottomGamePanelView extends JPanel implements ActionListener{
+import com.app.towerDefense.models.TowerModel;
+
+/**
+ * 
+ * @author usbaitass
+ *
+ */
+public class BottomGamePanelView extends JPanel implements ActionListener {
 
 	// constructor
 	public BottomGamePanelView(int new_width, int new_height) {
 		this.width = new_width;
 		this.height = new_height;
 
-		// ------MAP---AREA------
-		/*
-		 * JPanel mapPanel = new JPanel(); mapPanel.setMinimumSize(new
-		 * Dimension(width, height*3/4)); mapPanel.setMaximumSize(new
-		 * Dimension(width, height*3/4)); mapPanel.setPreferredSize(new
-		 * Dimension(width, height*3/4)); mapPanel.setBackground(Color.GREEN);
-		 */
-		// -----BOTTOM---MAIN---PANEL---------------
+		// -----CREATING---Five--Towers---for---SHOP---
+		for (int i = 0; i < 5; i++) {
+			towerModelShop[i] = new TowerModel(i);
+		}
 
+		// -----BOTTOM---MAIN---PANEL--That holds 3 major panels below
 		this.setMinimumSize(new Dimension(width, height));
 		this.setMaximumSize(new Dimension(width, height));
 		this.setPreferredSize(new Dimension(width, height));
 		this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		this.setBackground(new Color(205, 183, 158)); // BROWN
-
 		GridLayout gridLayout = new GridLayout(1, 3);
 		this.setLayout(gridLayout);
 
 		// ------THREE----PANELS-----------
+		// --This Panel holds the information of the Player and Critters in the
+		// Game
 		JPanel infoPanel = new JPanel();
 		infoPanel.setMinimumSize(new Dimension(width / 3, height));
 		infoPanel.setMaximumSize(new Dimension(width / 3, height));
 		infoPanel.setPreferredSize(new Dimension(width / 3, height));
 
+		// --The Tower Description Panel, contains info about selected Tower
 		JPanel towerDescrPanel = new JPanel();
 		towerDescrPanel.setMinimumSize(new Dimension(width / 3, height));
 		towerDescrPanel.setMaximumSize(new Dimension(width / 3, height));
 		towerDescrPanel.setPreferredSize(new Dimension(width / 3, height));
 		towerDescrPanel.setBackground(new Color(205, 183, 158)); // BROWN
 
+		// --The Tower Shop Panel that displays the Towers and their prices
 		JPanel towerShopPanel = new JPanel();
 		towerShopPanel.setMinimumSize(new Dimension(width / 3, height));
 		towerShopPanel.setMaximumSize(new Dimension(width / 3, height));
@@ -62,32 +69,32 @@ public class BottomGamePanelView extends JPanel implements ActionListener{
 		this.add(towerDescrPanel);
 		this.add(towerShopPanel);
 
-		// -------TOWER------SHOP----PANEL---------
+		// ----TOWER---SHOP--PANEL-----
 		GridLayout gridLayout2 = new GridLayout(2, 3);
 		towerShopPanel.setLayout(gridLayout2);
 
 		JButton[] towerButton = new JButton[5];
 
 		for (int i = 0; i < 5; i++) {
-			String s = Integer.toString((i + 1) * 50);
-			String ss = "images/tower" + Integer.toString(i + 1) + ".png";
-			towerButton[i] = new JButton(new ImageIcon(ss));
-			towerButton[i].setText(s);
+			towerButton[i] = new JButton(new ImageIcon(towerModelShop[i].getTowerImagePath()));
+			towerButton[i].setText(Integer.toString(towerModelShop[i].getTowerCost()));
+			towerButton[i].setName(Integer.toString(i));
+
 			towerShopPanel.add(towerButton[i]);
 			towerButton[i].addActionListener(this);
 		}
 
-		// ------TOWER----DESCRIPTION----PANEL------
+		// ---TOWER--DESCRIPTION--PANEL---
 		GridLayout gridLayout3 = new GridLayout(2, 2);
 		towerDescrPanel.setLayout(gridLayout3);
 
-		JPanel topPanel = new JPanel();
-		JPanel botPanel = new JPanel();
+		JPanel topTDscrPanel = new JPanel();
+		JPanel botTDscrPanel = new JPanel();
 
 		GridLayout gridLayout4 = new GridLayout(6, 3);
-		topPanel.setLayout(gridLayout4);
+		topTDscrPanel.setLayout(gridLayout4);
 
-		JLabel[] labels = new JLabel[18];
+		labelStatsTower = new JLabel[18];
 
 		for (int i = 0; i < 18; i++) {
 			String s = Integer.toString(i);
@@ -104,13 +111,14 @@ public class BottomGamePanelView extends JPanel implements ActionListener{
 			} else if (i == 15) {
 				s = "Cost";
 			}
-			labels[i] = new JLabel(s, SwingConstants.CENTER);
-			labels[i].setBorder(BorderFactory.createLineBorder(Color.GRAY));
-			topPanel.add(labels[i]);
-		}
+			labelStatsTower[i] = new JLabel(s, SwingConstants.CENTER);
+			labelStatsTower[i].setFont(new Font("Serif", Font.PLAIN, 11));
+			labelStatsTower[i].setBorder(BorderFactory.createLineBorder(Color.GRAY));
+			topTDscrPanel.add(labelStatsTower[i]);
+		}		
 
 		GridLayout gridLayout5 = new GridLayout(1, 3);
-		botPanel.setLayout(gridLayout5);
+		botTDscrPanel.setLayout(gridLayout5);
 
 		JPanel pPanel1 = new JPanel();
 		pPanel1.setBackground(new Color(205, 183, 158)); // BROWN
@@ -122,35 +130,36 @@ public class BottomGamePanelView extends JPanel implements ActionListener{
 		GridLayout gridLayout7 = new GridLayout(2, 1);
 		pPanel2.setLayout(gridLayout7);
 
-		JLabel topLabel1 = new JLabel("Potato", SwingConstants.CENTER);
-		JLabel topLabel2 = new JLabel("Level 1", SwingConstants.CENTER);
+		towerNameLabel = new JLabel(towerModelShop[0].getTowerName(), SwingConstants.CENTER);
+		towerLevelLabel = new JLabel("Level "+ Integer.toString(towerModelShop[0].getTowerlevel()), SwingConstants.CENTER);
 
-		JButton sellTowerButton = new JButton("sell");
+		JButton sellTowerButton = new JButton("buy");
 		JButton upgradeTowerButton = new JButton("upgrade");
+		
+		//-- set initial description to Tower 0
+		updateTowerDscrPanel(0);
 
 		pPanel1.add(sellTowerButton);
-		pPanel1.add(topLabel1);
+		pPanel1.add(towerNameLabel);
 
 		pPanel2.add(upgradeTowerButton);
-		pPanel2.add(topLabel2);
+		pPanel2.add(towerLevelLabel);
 
-		botPanel.add(towerButtonDESCR);
-		botPanel.add(pPanel1);
-		botPanel.add(pPanel2);
+		botTDscrPanel.add(towerButtonDESCR);
+		botTDscrPanel.add(pPanel1);
+		botTDscrPanel.add(pPanel2);
 
-		towerDescrPanel.add(topPanel);
-		towerDescrPanel.add(botPanel);
+		towerDescrPanel.add(topTDscrPanel);
+		towerDescrPanel.add(botTDscrPanel);
 
-		// --------INFO----PANEL----------
+		// ---INFO---PANEL----------
 		GridLayout gridLayout8 = new GridLayout(2, 1);
 		infoPanel.setLayout(gridLayout8);
 
 		JPanel topInfoPanel = new JPanel();
-//		JPanel midInfoPanel = new JPanel();
 		JPanel botInfoPanel = new JPanel();
 
 		topInfoPanel.setBackground(new Color(205, 183, 158)); // BROWN
-//		midInfoPanel.setBackground(new Color(205, 183, 158)); // BROWN
 		botInfoPanel.setBackground(new Color(205, 183, 158)); // BROWN
 
 		GridLayout gridLayout9 = new GridLayout(1, 3);
@@ -174,14 +183,9 @@ public class BottomGamePanelView extends JPanel implements ActionListener{
 		topInfoPanel.add(b2);
 		topInfoPanel.add(b3);
 
-		// ???????????? HERE
-
 		JLabel gameLvlLabel = new JLabel("LEVEL 1", SwingConstants.CENTER);
 		gameLvlLabel.setFont(new Font("Serif", Font.BOLD, 20));
 		gameLvlLabel.setHorizontalAlignment(JLabel.CENTER);
-
-//		midInfoPanel.setLayout(new BorderLayout());
-//		midInfoPanel.add(gameLvlLabel, BorderLayout.CENTER);
 
 		GridLayout gridLayout10 = new GridLayout(1, 2);
 		botInfoPanel.setLayout(gridLayout10);
@@ -190,58 +194,63 @@ public class BottomGamePanelView extends JPanel implements ActionListener{
 
 		JButton critterIconButton = new JButton(new ImageIcon("images/critter1.gif"));
 
-//		JLabel critterInfoLabel = new JLabel("Health: 50", SwingConstants.CENTER);
-
 		botInfoPanel.add(critterLabel);
 		botInfoPanel.add(critterIconButton);
-//		botInfoPanel.add(critterInfoLabel);
 
 		infoPanel.add(topInfoPanel);
-//		infoPanel.add(midInfoPanel);
 		infoPanel.add(botInfoPanel);
 
-		// -----------------------
-		/*
-		 * frame.add(mapPanel, BorderLayout.CENTER); frame.add(this,
-		 * BorderLayout.SOUTH); frame.setVisible(true);
-		 * //--------END------------
-		 * 
-		 */
 	}
 
-	/*
-	 * public static JFrame frame;
-	 * 
-	 * public static void main(String[] args) {
-	 * 
-	 * int WIDTH = 840; int HEIGHT = WIDTH / 12 * 9; frame = new JFrame();
-	 * frame.setTitle("Temp Frame"); frame.setPreferredSize(new Dimension(WIDTH,
-	 * HEIGHT)); frame.setMaximumSize(new Dimension(WIDTH, HEIGHT));
-	 * frame.setMinimumSize(new Dimension(WIDTH, HEIGHT));
-	 * frame.setResizable(false); frame.setLocationRelativeTo(null); //center
-	 * window on the screen
-	 * frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	 * 
-	 * BottomGamePanelView bottomGamePanelView = new BottomGamePanelView(WIDTH,
-	 * HEIGHT/4);
-	 * 
-	 * }
-	 */
-
-	private int width, height;
-	private JButton towerButtonDESCR = new JButton(new ImageIcon("images/tower1.png")); 
+	// -- Method that updates the info on Tower Description Panel
+	// -- if any Tower is clicked
+	public void updateTowerDscrPanel(int new_towerID) {	
+		//-- level
+		labelStatsTower[1].setText(Integer.toString(towerModelShop[new_towerID].getTowerlevel()));
+		labelStatsTower[2].setText(Integer.toString(towerModelShop[new_towerID].getTowerlevel()+1));
+		//-- power
+		labelStatsTower[4].setText(Integer.toString(towerModelShop[new_towerID].getTowerPower()));
+		labelStatsTower[5].setText(Integer.toString(towerModelShop[new_towerID].getTowerPower()*2));
+		//-- range
+		labelStatsTower[7].setText(Integer.toString(towerModelShop[new_towerID].getTowerRange()));
+		labelStatsTower[8].setText(Integer.toString(towerModelShop[new_towerID].getTowerRange()+1));
+		//-- fire rate
+		labelStatsTower[10].setText(Integer.toString(towerModelShop[new_towerID].getTowerFireRate()));
+		labelStatsTower[11].setText(Integer.toString(towerModelShop[new_towerID].getTowerFireRate()+2));
+		//-- special ability
+		labelStatsTower[13].setText(Integer.toString(0));
+		labelStatsTower[14].setText(Integer.toString(0));
+		//-- cost
+		labelStatsTower[16].setText(Integer.toString(towerModelShop[new_towerID].getTowerCost()));
+		labelStatsTower[17].setText(Integer.toString((int)(towerModelShop[new_towerID].getTowerCost()*0.5)));
+		
+		towerNameLabel.setText(towerModelShop[new_towerID].getTowerName());
+		towerLevelLabel.setText("Level "+ Integer.toString(towerModelShop[new_towerID].getTowerlevel()));
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		Object o = e.getSource();
-		JButton button = (JButton)o;
-		
+		JButton button = (JButton) o;
+
 		towerButtonDESCR.setIcon(button.getIcon());
 		
-		System.out.println("Button pressed " + button.getText() + " "+ button.getIcon());
 		
+		
+		System.out.println("Button pressed " + button.getText() + " " + button.getIcon());    
+				
+		updateTowerDscrPanel(Integer.parseInt(button.getName()));
+
 	}
+
+	// -- Class attributes
+	private int width, height;
+	private JButton towerButtonDESCR = new JButton(new ImageIcon("images/tower1.png"));
+	private JLabel[] labelStatsTower;
+	private TowerModel[] towerModelShop = new TowerModel[5];
+	private JLabel towerNameLabel;
+	private JLabel towerLevelLabel;
 
 	// END
 }
