@@ -3,6 +3,9 @@ package com.app.towerDefense.models;
 import java.awt.Dimension;
 import java.awt.Image;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
 /**
  * This class creates a generic class for Towers to make the other Towers.
  * 
@@ -70,7 +73,7 @@ public class TowerModel {
 		}
 		towerImagePath = "images/tower" + Integer.toString(towerID+1) + ".png";
 		towerUpgradeCost = 0.5f;
-
+		
 	}
 
 	/**
