@@ -17,7 +17,7 @@ public class PlayerModel {
 
 	public PlayerModel() {
 		playerName = "defaultName";
-		sunCurrency = 100;
+		sunCurrency = 500;
 		hpPlayer = 10;
 		gameWave = 1;
 		towerModelArray = new ArrayList<TowerModel>();
@@ -60,16 +60,38 @@ public class PlayerModel {
 	}
 	
 	public boolean buyTower(int new_towerID){
-		
-		System.out.println("inside buyTower() in Player Model");
-		
 		TowerModel tempTM = new TowerModel(new_towerID);
 		towerModelArray.add(tempTM);
+		
 		subSunCurrency(tempTM.getTowerCost());
 		
 		System.out.println("Player bought Tower id = "+ Integer.toString(new_towerID));
 		return true;
 	}
+	
+	public boolean sellTower(int new_towerID){
+		System.out.println("inside sellTower()");
+		if(towerModelArray.isEmpty()){
+			return false;
+		}else{
+			addSunCurrency(towerModelArray.get(new_towerID).towerCost);
+			towerModelArray.remove(new_towerID);
+			return true;
+		}
+	}
+	
+	public boolean upgradeTower(int new_towerID){
+		System.out.println("inside upgradeTower()");
+		
+		return true;
+	}
+	
+	public void printAllTowers(){
+		for(int i=0; i<towerModelArray.size() ;i++){
+			System.out.println(towerModelArray.get(i).getTowerName());
+		}
+	}
+	
 
 	// END
 }
