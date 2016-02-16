@@ -45,6 +45,7 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 	private boolean isCurrentTowerInShop;
 	private JButton upgradeTowerButton;
 	private JButton sellBuyTowerButton;
+	private JButton[][] mapButtons;
 
 	// constructor
 	public BottomGamePanelView(int new_width, int new_height) {
@@ -186,6 +187,7 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 					// -- true if BUY is success
 					if (playerModel.buyTower(tempTid)) {
 						updateGameInfoPanel();
+						mapButtons[2][2].setIcon(new ImageIcon("images/tower1.png"));
 //-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 						
 					}
@@ -344,6 +346,10 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 	public void updateGameInfoPanel() {
 		String sb2 = "<html> Sun<br>" + Integer.toString(playerModel.getSunCurrency()) + "</html>";
 		sunCurrencyLabel.setText(sb2);
+	}
+	
+	public void setMapButtons(JButton[][] new_mapButtons){
+		mapButtons = new_mapButtons;
 	}
 
 	@Override

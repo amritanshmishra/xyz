@@ -348,7 +348,19 @@ public class JPanelComponent {
 				}
 			}
 			//this.setContentPane(panel);
+			
+			setButtons(b);
+			
 			return panel;
 		}
+		
+		public JButton[][] buttons;
+		public void setButtons(JButton[][] new_buttons){
+			buttons = new_buttons;
+		}
+		public JButton[][] getButtons(){
+			return buttons;
+		}
+		
 		
 }

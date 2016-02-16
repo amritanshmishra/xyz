@@ -84,10 +84,13 @@ public class JMenuBarComponent {
 					    	{
 					    		jframe.getContentPane().removeAll();
 					    		jframe.setLayout(new BorderLayout());
-					    		gameMapPanel= (new JPanelComponent()).getMapPlayGridPanel(mapModel, jframe.getSize(), E_MapEditorMode.Open);
+					    		JPanelComponent tempPanel1 = new JPanelComponent();
+					    		gameMapPanel= (tempPanel1).getMapPlayGridPanel(mapModel, jframe.getSize(), E_MapEditorMode.Open);
 					    		//jframe.add(gameMapPanel);
 					    		jframe.getContentPane().add(gameMapPanel, BorderLayout.NORTH);
-					    		jframe.getContentPane().add(new JPanelComponent().getGameTowerPanel(jframe.getSize()), BorderLayout.SOUTH);
+					    		BottomGamePanelView tempPanel2 = (BottomGamePanelView)new JPanelComponent().getGameTowerPanel(jframe.getSize());
+					    		tempPanel2.setMapButtons(tempPanel1.getButtons());
+					    		jframe.getContentPane().add(tempPanel2, BorderLayout.SOUTH);
 					    		jframe.setVisible(true);
 					    	}
 					    	else
