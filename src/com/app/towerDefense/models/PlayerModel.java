@@ -60,7 +60,24 @@ public class PlayerModel {
 	}
 	
 	public boolean buyTower(int new_towerID){
-		TowerModel tempTM = new TowerModel(new_towerID);
+		TowerModel tempTM = null;;
+		switch(new_towerID){
+		case 0:
+			tempTM = new TowerModel1();
+			break;
+		case 1:
+			tempTM = new TowerModel2();
+			break;
+		case 2:
+			tempTM = new TowerModel3();
+			break;
+		case 3:
+			tempTM = new TowerModel4();
+			break;
+		case 4:
+			tempTM = new TowerModel5();
+			break;
+		}
 		towerModelArray.add(tempTM);
 		
 		subSunCurrency(tempTM.getTowerCost());
@@ -74,7 +91,7 @@ public class PlayerModel {
 		if(towerModelArray.isEmpty()){
 			return false;
 		}else{
-			addSunCurrency(towerModelArray.get(new_towerID).towerCost);
+			addSunCurrency(towerModelArray.get(new_towerID).getTowerCost());
 			towerModelArray.remove(new_towerID);
 			return true;
 		}
