@@ -19,6 +19,11 @@ import javax.swing.SwingConstants;
 
 import com.app.towerDefense.models.PlayerModel;
 import com.app.towerDefense.models.TowerModel;
+import com.app.towerDefense.models.TowerModel1;
+import com.app.towerDefense.models.TowerModel2;
+import com.app.towerDefense.models.TowerModel3;
+import com.app.towerDefense.models.TowerModel4;
+import com.app.towerDefense.models.TowerModel5;
 
 /**
  * 
@@ -52,9 +57,13 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 		playerModel = new PlayerModel();
 
 		// -----CREATING---Five--Towers---for---SHOP---
-		for (int i = 0; i < 5; i++) {
-			towerModelShop[i] = new TowerModel(i);
-		}
+		//for (int i = 0; i < 5; i++) {
+			towerModelShop[0] = (TowerModel) new TowerModel1();
+			towerModelShop[1] = (TowerModel) new TowerModel2();
+			towerModelShop[2] = (TowerModel) new TowerModel3();
+			towerModelShop[3] = (TowerModel) new TowerModel4();
+			towerModelShop[4] = (TowerModel) new TowerModel5();
+		//}
 
 		// -----BOTTOM---MAIN---PANEL--That holds 3 major panels below
 		this.setMinimumSize(new Dimension(width, height));

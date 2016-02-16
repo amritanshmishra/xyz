@@ -1,10 +1,8 @@
 package com.app.towerDefense.models;
 
-import java.awt.Dimension;
-import java.awt.Image;
+import java.awt.*;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import javax.swing.*;
 
 /**
  * This class creates a generic class for Towers to make the other Towers.
@@ -15,65 +13,57 @@ import javax.swing.JButton;
 public class TowerModel {
 
 	private int towerID;
-	String towerName;
-	int towerRange;
-	int towerPower;
-	int towerFireRate;
-	int towerCost;
-	int towerlevel;
-	Image towerImage;
-	String towerImagePath;
-	Dimension TowerCordinate;
-
-	float towerUpgradeCost;
-	int towerlevelUpgrade;
-	int towerPowerUpgrade;
-	int towerFireRateUpgrade;
+	private String towerName;
+	private int towerRange;
+	private int towerPower;
+	private int towerFireRate;
+	private int towerCost;
+	private int towerlevel;
+	private Icon towerImage;
+	private String towerImagePath;
+	private Dimension TowerCordinate;
+	private float towerUpgradeCost;
+	private int towerlevelUpgrade;
+	private int towerPowerUpgrade;
+	private int towerFireRateUpgrade;
+	private int towerFireRangeUpgrade;
 
 	/**
-	 * Constructor, builds the Tower Object with initial values assigned
+	 * This method gets the name of the tower
+	 * 
+	 * @return the tower name
 	 */
-	public TowerModel(int new_towerID) {
-		towerID = new_towerID;
-		if (towerID == 0) {
-			towerlevel = 1;
-			towerName = "Sunflower";
-			towerPower = 5;
-			towerRange = 1;
-			towerFireRate = 5;
-			towerCost = 50;
-		} else if (towerID == 1) {
-			towerlevel = 1;
-			towerName = "Peashooter";
-			towerPower = 10;
-			towerRange = 1;
-			towerFireRate = 5;
-			towerCost = 100;
-		} else if (towerID == 2) {
-			towerlevel = 1;
-			towerName = "Soldier";
-			towerPower = 7;
-			towerRange = 2;
-			towerFireRate = 5;
-			towerCost = 150;
-		} else if (towerID == 3) {
-			towerlevel = 1;
-			towerName = "Machine Gun";
-			towerPower = 10;
-			towerRange = 5;
-			towerFireRate = 10;
-			towerCost = 200;
-		} else if (towerID == 4) {
-			towerlevel = 1;
-			towerName = "Cabbage";
-			towerPower = 20;
-			towerRange = 1;
-			towerFireRate = 10;
-			towerCost = 250;
-		}
-		towerImagePath = "images/tower" + Integer.toString(towerID+1) + ".png";
-		towerUpgradeCost = 0.5f;
-		
+	public String getTowerName() {
+		return towerName;
+	}
+
+	/**
+	 * This method sets the Tower name
+	 * 
+	 * @param towerName
+	 *            the name of the tower
+	 */
+	public void setTowerName(String towerName) {
+		this.towerName = towerName;
+	}
+
+	/**
+	 * This method gets the value the value for range upgrade
+	 * 
+	 * @return the tower fire range upgrade value
+	 */
+	public int getTowerFireRangeUpgrade() {
+		return towerFireRangeUpgrade;
+	}
+
+	/**
+	 * This method sets the tower fire range upgrade value
+	 * 
+	 * @param towerFireRangeUpgrade
+	 *            is the new upgrade fire range
+	 */
+	public void setTowerFireRangeUpgrade(int towerFireRangeUpgrade) {
+		this.towerFireRangeUpgrade = towerFireRangeUpgrade;
 	}
 
 	/**
@@ -176,18 +166,16 @@ public class TowerModel {
 	 * 
 	 * @return the tower image
 	 */
-	public Image getTowerImage() {
+	public Icon getTowerImage() {
+		this.towerImage = new ImageIcon(getTowerImagePath());
 		return towerImage;
 	}
 
 	/**
 	 * This method sets the image of the tower
-	 * 
-	 * @param newtowerImage
-	 *            is new tower image
 	 */
-	public void setTowerImage(Image newtowerImage) {
-		this.towerImage = newtowerImage;
+	public void setTowerImage() {
+		this.towerImage = new ImageIcon(getTowerImagePath());
 	}
 
 	/**
@@ -223,7 +211,7 @@ public class TowerModel {
 	 * 
 	 * @param newtowerUpgradeCost
 	 */
-	public void setTowerUpgradeCost(float newtowerUpgradeCost) {
+	public void setTowerUpgradeCost(int newtowerUpgradeCost) {
 		this.towerUpgradeCost = newtowerUpgradeCost;
 	}
 
@@ -283,13 +271,24 @@ public class TowerModel {
 	public void setTowerFireRateUpgrade(int newtowerFireRateUpgrade) {
 		this.towerFireRateUpgrade = newtowerFireRateUpgrade;
 	}
-	
-	public String getTowerImagePath(){
+
+	/**
+	 * This method get the tower image icon path
+	 * 
+	 * @return the path to the image
+	 */
+	public String getTowerImagePath() {
 		return towerImagePath;
 	}
-	
-	public String getTowerName(){
-		return towerName;
+
+	/**
+	 * This method sets the image path of the tower
+	 * 
+	 * @param newimagePath
+	 *            image path
+	 */
+	public void setTowerImagePath(String newimagePath) {
+		this.towerImagePath = newimagePath;
 	}
 
 }
