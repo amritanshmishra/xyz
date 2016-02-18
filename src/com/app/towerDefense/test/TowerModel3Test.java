@@ -15,7 +15,7 @@ import com.app.towerDefense.models.TowerModel3;
  *
  *
  * @author Amritansh Mishra
- * @version $Revision: 1.0 $
+ * @version 1.0
  */
 public class TowerModel3Test {
 

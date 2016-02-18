@@ -16,7 +16,7 @@ import com.app.towerDefense.models.MapModel;
  *
  *
  * @author Amritansh Mishra
- * @version $Revision: 1.0 $
+ * @version 1.0 
  */
 public class MapModelTest {
 

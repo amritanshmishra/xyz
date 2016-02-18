@@ -10,7 +10,7 @@ import com.app.towerDefense.models.TowerModel5;
  *
  *
  * @author Amritansh Mishra
- * @version $Revision:
+ * @version 1.0
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ TowerModel1Test.class, TowerModel2Test.class, TowerModel3Test.class, TowerModel4Test.class,
