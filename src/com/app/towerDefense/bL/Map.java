@@ -54,12 +54,11 @@ public class Map {
 	 *            the map
 	 * @return the status of the map verified or not-verified
 	 */
-
-	public String mapPathValidation(MapModel map) {
-		int mapWidth = map.getMapWidth();
-		int mapHeight = map.getMapHeight();
-		Point entryPoint = map.getEntryPoint();
-		Point exitPoint = map.getExitPoint();
+	public String mapPathValidation(MapModel new_map) {
+		int mapWidth = new_map.getMapWidth();
+		int mapHeight = new_map.getMapHeight();
+		Point entryPoint = new_map.getEntryPoint();
+		Point exitPoint = new_map.getExitPoint();
 		int mapPathCellCount = 1;// for Entry Point
 		int mapRoutCount = 0;// map rout count
 		String status = "";
@@ -78,7 +77,7 @@ public class Map {
 				if (i == mapHeight - 1) {
 					dirUpDown = E_MapValidationDirecton.Up;
 				} else {
-					cellValue = map.getMapGridSelection()[i + 1][j];
+					cellValue = new_map.getMapGridSelection()[i + 1][j];
 					if (cellValue == 1) {
 						i++;
 						mapPathCellCount++;
@@ -109,7 +108,7 @@ public class Map {
 				if (i == 0) {
 					dirUpDown = E_MapValidationDirecton.Down;
 				} else {
-					cellValue = map.getMapGridSelection()[i - 1][j];
+					cellValue = new_map.getMapGridSelection()[i - 1][j];
 					if (cellValue == 1) {
 						i--;
 						mapPathCellCount++;
@@ -140,7 +139,7 @@ public class Map {
 				if (j == mapWidth - 1) {
 					dirLeftRight = E_MapValidationDirecton.Right;
 				} else {
-					cellValue = map.getMapGridSelection()[i][j + 1];
+					cellValue = new_map.getMapGridSelection()[i][j + 1];
 					if (cellValue == 1) {
 						j++;
 						mapPathCellCount++;
@@ -172,7 +171,7 @@ public class Map {
 				if (j == 0) {
 					dirLeftRight = E_MapValidationDirecton.Left;
 				} else {
-					cellValue = map.getMapGridSelection()[i][j - 1];
+					cellValue = new_map.getMapGridSelection()[i][j - 1];
 					if (cellValue == 1) {
 						j--;
 						mapPathCellCount++;

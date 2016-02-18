@@ -359,8 +359,8 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 	 * selected
 	 * </p>
 	 * 
-	 * @param new_towerID
-	 *            tower Id
+	 * @param new_towerModel TowerModel object is passed to the Tower description panel
+	 *            
 	 */
 	public void updateTowerDscrPanel(TowerModel new_towerModel) {
 		labelStatsTower[1].setText(Integer.toString(new_towerModel.getTowerlevel()));
@@ -424,7 +424,7 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 	/**
 	 * assigns the pointer to buttons on the map
 	 * 
-	 * @param new_mapButtons
+	 * @param new_mapButtons Creates new Java Button
 	 */
 	public void setMapButtons(JButton[][] new_mapButtons) {
 		mapButtons = new_mapButtons;

@@ -42,14 +42,14 @@ public class JMenuBarComponent {
 
 	// public JMenuBar getGameJMenuBar(final JFrame jframe, final JPanel
 	// _gameMapPanel, final JPanel _gameTowerPanel)
-	public JMenuBar getGameJMenuBar(final JFrame jframe) {
+	public JMenuBar getGameJMenuBar(final JFrame new_jframe) {
 
 		// final JLabel backGround=new JLabel(new
 		// ImageIcon("images/gameBk.jpg"));
 		final JLabel backGround = new JLabel(
-				new ImageIcon(((new ImageIcon("images/gameBk.png").getImage().getScaledInstance(jframe.getSize().width,
-						(int) ((int) jframe.getSize().height - 30), java.awt.Image.SCALE_SMOOTH)))));
-		jframe.add(backGround);
+				new ImageIcon(((new ImageIcon("images/gameBk.png").getImage().getScaledInstance(new_jframe.getSize().width,
+						(int) ((int) new_jframe.getSize().height - 30), java.awt.Image.SCALE_SMOOTH)))));
+		new_jframe.add(backGround);
 		// gameMapPanel=_gameMapPanel;
 		// gameTowerPanel=_gameTowerPanel;
 
@@ -84,24 +84,24 @@ public class JMenuBarComponent {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource().equals(menuItemPlay)) {
 					JFileChooser fileChooser = new JFileChooserComponent().getJFileChooser(E_JFileChooserrMode.Open);
-					int result = fileChooser.showOpenDialog(jframe);
+					int result = fileChooser.showOpenDialog(new_jframe);
 					if (result == JFileChooser.APPROVE_OPTION) {
 						File file = fileChooser.getSelectedFile();
 						MapModel mapModel = (new com.app.towerDefense.utilities.FileStorage()).openMapFile(file);
 						if (mapModel != null) {
 							if (mapModel.mapSecret.contains("_Team5")) {
-								jframe.getContentPane().removeAll();
-								jframe.setLayout(new BorderLayout());
+								new_jframe.getContentPane().removeAll();
+								new_jframe.setLayout(new BorderLayout());
 								panelComponent = new JPanelComponent();
-								gameMapPanel = (panelComponent).getMapPlayGridPanel(mapModel, jframe.getSize(),
+								gameMapPanel = (panelComponent).getMapPlayGridPanel(mapModel, new_jframe.getSize(),
 										E_MapEditorMode.Open);
 								// jframe.add(gameMapPanel);
-								jframe.getContentPane().add(gameMapPanel, BorderLayout.NORTH);
+								new_jframe.getContentPane().add(gameMapPanel, BorderLayout.NORTH);
 								bottomGamePanel = (BottomGamePanelView) new JPanelComponent()
-										.getGameTowerPanel(jframe.getSize());
+										.getGameTowerPanel(new_jframe.getSize());
 								bottomGamePanel.setMapButtons(panelComponent.getButtons());
-								jframe.getContentPane().add(bottomGamePanel, BorderLayout.SOUTH);
-								jframe.setVisible(true);
+								new_jframe.getContentPane().add(bottomGamePanel, BorderLayout.SOUTH);
+								new_jframe.setVisible(true);
 								panelComponent.setBottomGamePanelView(bottomGamePanel);
 							} else {
 								JOptionPane.showMessageDialog(null, "In valid Map File.");
@@ -166,7 +166,7 @@ public class JMenuBarComponent {
 
 							mapModel.setMapWidth(Integer.parseInt(x));
 							mapModel.setMapHeight(Integer.parseInt(y));
-							new MapEditor(jframe, ApplicationStatics.TITLE_MAP_EDITOR,
+							new MapEditor(new_jframe, ApplicationStatics.TITLE_MAP_EDITOR,
 									ApplicationStatics.CHILD_POPUP_WINDOW_WIDTH,
 									ApplicationStatics.CHILD_POPUP_WINDOW_HEIGHT, mapModel, E_MapEditorMode.Create);
 						}
@@ -176,13 +176,13 @@ public class JMenuBarComponent {
 
 				} else if (e.getSource().equals(menuItemOpenMap)) {
 					JFileChooser fileChooser = new JFileChooserComponent().getJFileChooser(E_JFileChooserrMode.Open);
-					int result = fileChooser.showOpenDialog(jframe);
+					int result = fileChooser.showOpenDialog(new_jframe);
 					if (result == JFileChooser.APPROVE_OPTION) {
 						File file = fileChooser.getSelectedFile();
 						MapModel mapModel = (new com.app.towerDefense.utilities.FileStorage()).openMapFile(file);
 						if (mapModel != null) {
 							if (mapModel.mapSecret.contains("_Team5")) {
-								new MapEditor(jframe, ApplicationStatics.TITLE_MAP_EDITOR,
+								new MapEditor(new_jframe, ApplicationStatics.TITLE_MAP_EDITOR,
 										ApplicationStatics.CHILD_POPUP_WINDOW_WIDTH,
 										ApplicationStatics.CHILD_POPUP_WINDOW_HEIGHT, mapModel, E_MapEditorMode.Open);
 							} else {
@@ -214,7 +214,7 @@ public class JMenuBarComponent {
 	/**
 	 * This method gets the Map editor menu bar
 	 * 
-	 * @param new_mapModel
+	 * @param new_mapModel MapModel object is passed to the getMapEditorJmenuBar
 	 * @param new_jframe
 	 *            the frame of the application
 	 * @return the menu bar
