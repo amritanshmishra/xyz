@@ -175,6 +175,8 @@ public class PlayerModel {
 			System.out.println(towerModelArray.get(i).getTowerName() + " x="+towerModelArray.get(i).getX() + " y="+towerModelArray.get(i).getY());
 		}
 	}
+	
+	
 
 	// END
 }

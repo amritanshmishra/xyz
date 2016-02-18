@@ -46,7 +46,7 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 	private TowerModel[] towerModelShop = new TowerModel[5];
 	private JLabel towerNameLabel;
 	private JLabel towerLevelLabel;
-	public PlayerModel playerModel;
+	private PlayerModel playerModel;
 	private String currentSelectedTowerName;
 	private JLabel sunCurrencyLabel;
 	private boolean isCurrentTowerInShop;
@@ -425,6 +425,15 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 		mapButtons = new_mapButtons;
 	}
 
+	/**
+	 * This method is for accessing the Tower model objects
+	 * @return Player Model object
+	 */
+	public PlayerModel getPlayerModel(){
+		return playerModel;
+	}
+	
+	
 	/**
 	 * reimplementation of method action performed for tower buttons in which if
 	 * tower button is clicked, it updates its info on tower description panel
