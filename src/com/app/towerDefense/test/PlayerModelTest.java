@@ -18,7 +18,7 @@ import com.app.towerDefense.models.TowerModel1;
  *
  *
  * @author Amritansh Mishra
- * @version $Revision: 1.0 $
+ * @version Revision: 1.0
  */
 public class PlayerModelTest {
 

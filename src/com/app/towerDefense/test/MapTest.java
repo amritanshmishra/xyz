@@ -18,7 +18,7 @@ import com.app.towerDefense.utilities.FileStorage;
  *
  *
  * @author Amritansh Mishra
- * @version $Revision: 1.0 $
+ * @version 1.0
  */
 public class MapTest {
 
