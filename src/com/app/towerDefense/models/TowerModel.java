@@ -42,11 +42,11 @@ public class TowerModel {
 	/**
 	 * This method sets the Tower name
 	 * 
-	 * @param towerName
+	 * @param new_towerName
 	 *            the name of the tower
 	 */
-	public void setTowerName(String towerName) {
-		this.towerName = towerName;
+	public void setTowerName(String new_towerName) {
+		this.towerName = new_towerName;
 	}
 
 	/**
@@ -61,11 +61,11 @@ public class TowerModel {
 	/**
 	 * This method sets the tower fire range upgrade value
 	 * 
-	 * @param towerFireRangeUpgrade
+	 * @param new_towerFireRangeUpgrade
 	 *            is the new upgrade fire range
 	 */
-	public void setTowerFireRangeUpgrade(int towerFireRangeUpgrade) {
-		this.towerFireRangeUpgrade = towerFireRangeUpgrade;
+	public void setTowerFireRangeUpgrade(int new_towerFireRangeUpgrade) {
+		this.towerFireRangeUpgrade = new_towerFireRangeUpgrade;
 	}
 
 	/**
@@ -80,11 +80,11 @@ public class TowerModel {
 	/**
 	 * This is the method for setting the tower range
 	 * 
-	 * @param newtowerRange
+	 * @param new_towerRange
 	 *            the new tower range
 	 */
-	public void setTowerRange(int newtowerRange) {
-		this.towerRange = newtowerRange;
+	public void setTowerRange(int new_towerRange) {
+		this.towerRange = new_towerRange;
 	}
 
 	/**
@@ -99,11 +99,11 @@ public class TowerModel {
 	/**
 	 * The method sets the <b>power</b> of the tower
 	 * 
-	 * @param newtowerPower
+	 * @param new_towerPower
 	 *            the new power value
 	 */
-	public void setTowerPower(int newtowerPower) {
-		this.towerPower = newtowerPower;
+	public void setTowerPower(int new_towerPower) {
+		this.towerPower = new_towerPower;
 	}
 
 	/**
@@ -118,11 +118,11 @@ public class TowerModel {
 	/**
 	 * This method sets the firing rate of a tower
 	 * 
-	 * @param newtowerFireRate
+	 * @param new_towerFireRate
 	 *            is the new firing rate
 	 */
-	public void setTowerFireRate(int newtowerFireRate) {
-		this.towerFireRate = newtowerFireRate;
+	public void setTowerFireRate(int new_towerFireRate) {
+		this.towerFireRate = new_towerFireRate;
 	}
 
 	/**
@@ -137,11 +137,11 @@ public class TowerModel {
 	/**
 	 * This method sets the cost of the tower
 	 * 
-	 * @param newtowerCost
+	 * @param new_towerCost
 	 *            is the new cost of a tower
 	 */
-	public void setTowerCost(int newtowerCost) {
-		this.towerCost = newtowerCost;
+	public void setTowerCost(int new_towerCost) {
+		this.towerCost = new_towerCost;
 	}
 
 	/**
@@ -156,11 +156,11 @@ public class TowerModel {
 	/**
 	 * This method sets the tower level
 	 * 
-	 * @param newtowerlevel
+	 * @param new_towerlevel
 	 *            is new level of tower
 	 */
-	public void setTowerlevel(int newtowerlevel) {
-		this.towerlevel = newtowerlevel;
+	public void setTowerlevel(int new_towerlevel) {
+		this.towerlevel = new_towerlevel;
 	}
 
 	/**
@@ -192,11 +192,11 @@ public class TowerModel {
 	/**
 	 * This method sets the tower coordinate
 	 * 
-	 * @param newtowerCordinate
+	 * @param new_towerCordinate
 	 *            the new tower coordinates
 	 */
-	public void setTowerCordinate(Dimension newtowerCordinate) {
-		TowerCordinate = newtowerCordinate;
+	public void setTowerCordinate(Dimension new_towerCordinate) {
+		TowerCordinate = new_towerCordinate;
 	}
 
 	/**
@@ -211,10 +211,10 @@ public class TowerModel {
 	/**
 	 * This method sets the tower upgrade cost
 	 * 
-	 * @param newtowerUpgradeCost amount value of next tower upgrade
+	 * @param new_towerUpgradeCost amount value of next tower upgrade
 	 */
-	public void setTowerUpgradeCost(int newtowerUpgradeCost) {
-		this.towerUpgradeCost = newtowerUpgradeCost;
+	public void setTowerUpgradeCost(int new_towerUpgradeCost) {
+		this.towerUpgradeCost = new_towerUpgradeCost;
 	}
 
 	/**
@@ -229,11 +229,11 @@ public class TowerModel {
 	/**
 	 * This method sets level upgrade of a tower
 	 * 
-	 * @param newtowerlevelUpgrade
+	 * @param new_towerlevelUpgrade
 	 *            the new value of upgrade level
 	 */
-	public void setTowerlevelUpgrade(int newtowerlevelUpgrade) {
-		this.towerlevelUpgrade = newtowerlevelUpgrade;
+	public void setTowerlevelUpgrade(int new_towerlevelUpgrade) {
+		this.towerlevelUpgrade = new_towerlevelUpgrade;
 	}
 
 	/**
@@ -248,11 +248,11 @@ public class TowerModel {
 	/**
 	 * This method sets tower power upgrade
 	 * 
-	 * @param newtowerPowerUpgrade
+	 * @param new_towerPowerUpgrade
 	 *            new power power upgrade
 	 */
-	public void setTowerPowerUpgrade(int newtowerPowerUpgrade) {
-		this.towerPowerUpgrade = newtowerPowerUpgrade;
+	public void setTowerPowerUpgrade(int new_towerPowerUpgrade) {
+		this.towerPowerUpgrade = new_towerPowerUpgrade;
 	}
 
 	/**
@@ -267,11 +267,11 @@ public class TowerModel {
 	/**
 	 * This method sets the tower firing rate upgrade
 	 * 
-	 * @param newtowerFireRateUpgrade
+	 * @param new_towerFireRateUpgrade
 	 *            new tower firing rate upgrade
 	 */
-	public void setTowerFireRateUpgrade(int newtowerFireRateUpgrade) {
-		this.towerFireRateUpgrade = newtowerFireRateUpgrade;
+	public void setTowerFireRateUpgrade(int new_towerFireRateUpgrade) {
+		this.towerFireRateUpgrade = new_towerFireRateUpgrade;
 	}
 
 	/**
@@ -286,11 +286,11 @@ public class TowerModel {
 	/**
 	 * This method sets the image path of the tower
 	 * 
-	 * @param newimagePath
+	 * @param new_imagePath
 	 *            image path
 	 */
-	public void setTowerImagePath(String newimagePath) {
-		this.towerImagePath = newimagePath;
+	public void setTowerImagePath(String new_imagePath) {
+		this.towerImagePath = new_imagePath;
 	}
 	
 	/**
