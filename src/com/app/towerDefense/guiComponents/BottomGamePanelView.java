@@ -270,7 +270,7 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("upgrade button was clicked!");
 
-				System.out.println("button coordinates= " + towerButtonDESCR.getName());
+		//		System.out.println("button coordinates= " + towerButtonDESCR.getName());
 
 				String[] tempStr = towerButtonDESCR.getName().split(":");
 				int temp_x = Integer.parseInt(tempStr[0]);
@@ -287,7 +287,7 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 
 							System.out.println("Tower is upgraded successfully.");
 
-							playerModel.addSunCurrency(tempTM.getRefund());
+							playerModel.subSunCurrency(tempTM.getTowerUpgradeCost());
 
 							updateTowerDscrPanel(tempTM);
 							updateGameInfoPanel();
