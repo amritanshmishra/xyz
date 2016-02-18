@@ -2,7 +2,7 @@ package com.app.towerDefense.models;
 
 import com.app.towerDefense.staticContent.ApplicationStatics;
 /**
- * This class creates Machine Gun Tower which extends from TowerModel Class
+ * This class creates <b>Machine Gun<b/> tower which extends from TowerModel Class
  * 
  * @see TowerModel
  * 

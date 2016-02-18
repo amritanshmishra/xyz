@@ -1,7 +1,7 @@
 package com.app.towerDefense.models;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 /**
- * This class creates <b>Sunflower tower</b> which extends <b> TowerModel class <b/>
+ * This class creates <b>Sunflower </b>tower which extends <b> TowerModel class <b/>
  * 
  * @see TowerModel
  * @author IMS
