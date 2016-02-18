@@ -4,7 +4,7 @@ package com.app.towerDefense.staticContent;
  * This class contains all constant variables such as windows width, height of window for main window and child window, 
  * titles, menu items names and image paths
  * 
- * @author IMS
+ * @author George
  *
  */
 public class ApplicationStatics {

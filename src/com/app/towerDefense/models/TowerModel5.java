@@ -4,7 +4,7 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
 /**
  * This class create a Cabbage tower which extends the TowerModel Class.
  * @see TowerModel
- * @author IMS
+ * @author George
  *
  */
 public class TowerModel5 extends TowerModel{

@@ -1,5 +1,10 @@
 package com.app.towerDefense.staticContent;
 
+/**
+ * this class contains enumerators used for map editing and validation
+ * @author Sajjad Ashraf
+ * 
+ */
 public class AppilicationEnums {
 	
 	public enum E_MapEditorMode {
