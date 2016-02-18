@@ -27,6 +27,7 @@ public class TowerModel {
 	private int towerPowerUpgrade;
 	private int towerFireRateUpgrade;
 	private int towerFireRangeUpgrade;
+	private int x, y;
 
 	/**
 	 * This method gets the name of the tower
@@ -209,7 +210,7 @@ public class TowerModel {
 	/**
 	 * This method sets the tower upgrade cost
 	 * 
-	 * @param newtowerUpgradeCost
+	 * @param newtowerUpgradeCost amount value of next tower upgrade
 	 */
 	public void setTowerUpgradeCost(int newtowerUpgradeCost) {
 		this.towerUpgradeCost = newtowerUpgradeCost;
@@ -289,6 +290,35 @@ public class TowerModel {
 	 */
 	public void setTowerImagePath(String newimagePath) {
 		this.towerImagePath = newimagePath;
+	}
+	
+	/**
+	 * This method get the tower model's X coordinate
+	 * 
+	 * @return x coordinate of tower model
+	 */
+	public int getX(){
+		return x;
+	}
+	
+	/**
+	 * This method get the tower model's Y coordinate
+	 * 
+	 * @return y coordinate of tower model
+	 */
+	public int getY(){
+		return y;
+	}
+	
+	/**
+	 * This method sets the X and Y coordinates of the tower model
+	 * 
+	 * @param new_x x coordinate of the tower model
+	 * @param new_y y coordinate of the tower model
+	 */
+	public void setXY(int new_x, int new_y){
+		x = new_x;
+		y = new_y;
 	}
 
 }

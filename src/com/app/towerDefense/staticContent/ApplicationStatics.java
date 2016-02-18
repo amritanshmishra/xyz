@@ -33,5 +33,9 @@ public class ApplicationStatics {
 	public static final String IMAGE_PATH_MAP_EXIT="images/mapExit.png";
 	public static final String IMAGE_PATH_MAP_ROUTE="images/mapRouteGreen.png";
 	public static final String IMAGE_PATH_MAP_Scenery="images/mapSceneryGreen.png";
+	public static final String IMAGE_PATH_MAP_Critter1="images/critter1.gif";
+	public static final String IMAGE_PATH_MAP_Sun="images/sun.png";
+	public static final String IMAGE_PATH_MAP_Tower1="images/tower1.png";
+	
 	
 }

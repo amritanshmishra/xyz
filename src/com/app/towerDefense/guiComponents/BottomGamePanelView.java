@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -24,22 +25,28 @@ import com.app.towerDefense.models.TowerModel2;
 import com.app.towerDefense.models.TowerModel3;
 import com.app.towerDefense.models.TowerModel4;
 import com.app.towerDefense.models.TowerModel5;
+import com.app.towerDefense.staticContent.ApplicationStatics;
 
 /**
  * 
- * @author usbaitass
- *
+ * @author usbaitass Ulan Baitassov
+ *         <p>
+ *         Class description:<br>
+ *         creates the Panel on which the game information is displayed: such as
+ *         tower shop, tower description panel, player's amount of currency and
+ *         health, the wave and critter information
+ *         </p>
  */
 public class BottomGamePanelView extends JPanel implements ActionListener {
 
 	// -- Class attributes
 	private int width, height;
-	private JButton towerButtonDESCR = new JButton(new ImageIcon("images/tower1.png"));
+	public JButton towerButtonDESCR = new JButton(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_Tower1));
 	private JLabel[] labelStatsTower;
 	private TowerModel[] towerModelShop = new TowerModel[5];
 	private JLabel towerNameLabel;
 	private JLabel towerLevelLabel;
-	private PlayerModel playerModel;
+	public PlayerModel playerModel;
 	private String currentSelectedTowerName;
 	private JLabel sunCurrencyLabel;
 	private boolean isCurrentTowerInShop;
@@ -47,7 +54,14 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 	private JButton sellBuyTowerButton;
 	private JButton[][] mapButtons;
 
-	// constructor
+	/**
+	 * The constructor
+	 * 
+	 * @param new_width
+	 *            width of the frame
+	 * @param new_height
+	 *            height of the frame
+	 */
 	public BottomGamePanelView(int new_width, int new_height) {
 		this.width = new_width;
 		this.height = new_height;
@@ -57,16 +71,16 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 		// -- creating new Player
 		playerModel = new PlayerModel();
 
-		// -----CREATING---Five--Towers---for---SHOP---
-		//for (int i = 0; i < 5; i++) {
-			towerModelShop[0] = (TowerModel) new TowerModel1();
-			towerModelShop[1] = (TowerModel) new TowerModel2();
-			towerModelShop[2] = (TowerModel) new TowerModel3();
-			towerModelShop[3] = (TowerModel) new TowerModel4();
-			towerModelShop[4] = (TowerModel) new TowerModel5();
-		//}
+		// -----CREATING---Five--Towers---for---SHOP-------
+		towerModelShop[0] = (TowerModel) new TowerModel1();
+		towerModelShop[1] = (TowerModel) new TowerModel2();
+		towerModelShop[2] = (TowerModel) new TowerModel3();
+		towerModelShop[3] = (TowerModel) new TowerModel4();
+		towerModelShop[4] = (TowerModel) new TowerModel5();
 
-		// -----BOTTOM---MAIN---PANEL--That holds 3 major panels below
+		// ---BOTTOM-GAME-PANEL-VIEW-- setting Dimensions and layout
+		// -- it holds 3 major panel: tower shop, tower description and game
+		// info panel
 		this.setMinimumSize(new Dimension(width, height));
 		this.setMaximumSize(new Dimension(width, height));
 		this.setPreferredSize(new Dimension(width, height));
@@ -75,9 +89,9 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 		GridLayout gridLayout = new GridLayout(1, 3);
 		this.setLayout(gridLayout);
 
-		// ------THREE----PANELS-----------
-		// --This Panel holds the information of the Player and Critters in the
-		// Game
+		// ------THREE----PANELS-------------------------------
+		// --Information Panel holds the info of the Player's sunCurrency, life
+		// and Critters
 		JPanel infoPanel = new JPanel();
 		infoPanel.setMinimumSize(new Dimension(width / 3, height));
 		infoPanel.setMaximumSize(new Dimension(width / 3, height));
@@ -97,18 +111,21 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 		towerShopPanel.setPreferredSize(new Dimension(width / 3, height));
 		towerShopPanel.setBackground(new Color(205, 183, 158)); // BROWN
 
+		// -- Adding these 3 panels on ButtonGamePanelView
 		this.add(infoPanel);
 		this.add(towerDescrPanel);
 		this.add(towerShopPanel);
 
-		// ----TOWER---SHOP--PANEL-----
+		// ----TOWER---SHOP--PANEL------------------
+		// -- setting layout and creating buttons
 		GridLayout gridLayout2 = new GridLayout(2, 3);
 		towerShopPanel.setLayout(gridLayout2);
 
+		// -- creating 5 tower
 		JButton[] towerButton = new JButton[5];
 
 		for (int i = 0; i < 5; i++) {
-			towerButton[i] = new JButton(new ImageIcon(towerModelShop[i].getTowerImagePath()));
+			towerButton[i] = new JButton(towerModelShop[i].getTowerImage());
 			towerButton[i].setText(Integer.toString(towerModelShop[i].getTowerCost()));
 			towerButton[i].setName("tower" + Integer.toString(i));
 
@@ -116,7 +133,8 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 			towerButton[i].addActionListener(this);
 		}
 
-		// ---TOWER--DESCRIPTION--PANEL---
+		// ---TOWER--DESCRIPTION--PANEL--------
+		// -- setting layout
 		GridLayout gridLayout3 = new GridLayout(2, 2);
 		towerDescrPanel.setLayout(gridLayout3);
 
@@ -129,6 +147,8 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 		GridLayout gridLayout4 = new GridLayout(6, 3);
 		topTDscrPanel.setLayout(gridLayout4);
 
+		// -- Adding Labels on Tower Description Panel
+		// -- which displays the tower information
 		labelStatsTower = new JLabel[18];
 
 		for (int i = 0; i < 18; i++) {
@@ -154,6 +174,8 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 			topTDscrPanel.add(labelStatsTower[i]);
 		}
 
+		// --Adding 3 buttons to Tower Description Panel
+		// -- setting layouts and secondary panels
 		GridLayout gridLayout5 = new GridLayout(1, 3);
 		botTDscrPanel.setLayout(gridLayout5);
 
@@ -167,40 +189,62 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 		GridLayout gridLayout7 = new GridLayout(2, 1);
 		pPanel2.setLayout(gridLayout7);
 
+		// -- Labels that show the Name and Level of the tower
 		towerNameLabel = new JLabel(towerModelShop[0].getTowerName(), SwingConstants.CENTER);
 		towerLevelLabel = new JLabel("Level " + Integer.toString(towerModelShop[0].getTowerlevel()),
 				SwingConstants.CENTER);
 
+		// -- initializing the Sell-Buy Tower Button
+		// and implementing functionality
 		sellBuyTowerButton = new JButton("BUY");
 		sellBuyTowerButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				// -- get current selected tower id
-				Character ch = currentSelectedTowerName.charAt(currentSelectedTowerName.length() - 1);
-				int tempTid = ch.charValue() - 48;
+				// -- when Button is clicked
+				// -- checks if tower is selected from the shop or the map
+				if (isCurrentTowerInShop) {
+					// -- get current selected tower id
+					Character ch = currentSelectedTowerName.charAt(currentSelectedTowerName.length() - 1);
+					int tempTid = ch.charValue() - 48;
 
-				int tempTCost = towerModelShop[tempTid].getTowerCost();
-				int currentBalance = playerModel.getSunCurrency();
+					int tempTCost = towerModelShop[tempTid].getTowerCost();
+					int currentBalance = playerModel.getSunCurrency();
 
-				if (currentBalance >= tempTCost) {
-					// -- true if BUY is success
-					if (playerModel.buyTower(tempTid)) {
-						updateGameInfoPanel();
-						mapButtons[2][2].setIcon(new ImageIcon("images/tower1.png"));
-//-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-						
+					if (currentBalance >= tempTCost) {
+						// -- true if BUY is success
+						TowerModel tempTM = playerModel.buyTower(tempTid);
+						if (tempTM != null) {
+							updateGameInfoPanel();
+							Random r = new Random();
+							// --AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+							// -- places the tower on random coordinates on the
+							// map
+							int i = r.nextInt(9);
+							int j = r.nextInt(9);
+							mapButtons[i][j].setIcon(tempTM.getTowerImage());
+
+							String s = mapButtons[i][j].getName();
+							System.out.println(s);
+
+							int x = s.charAt(s.length()-1) - 48;
+							int y = s.charAt(s.length()-3) - 48;
+							System.out.println("x =" + Integer.toString(x) + ", y = " + Integer.toString(y));
+							tempTM.setXY(x, y);
+
+							// --AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+						}
+					} else {
+						JFrame frame = new JFrame();
+						JOptionPane.showMessageDialog(frame, "You don't have enough suns for this tower.");
 					}
-				} else {
-					JFrame frame = new JFrame();
-					JOptionPane.showMessageDialog(frame, "You don't have enough suns for this tower.");
 				}
-
-				// System.out.println("ID = "+ Integer.toString(tempTid));
 			}
 
 		});
 
+		// -- initializing the tower upgrade button
+		// -- and implementing its functionality
 		upgradeTowerButton = new JButton("UPGRADE");
 		upgradeTowerButton.setOpaque(true);
 		upgradeTowerButton.setVisible(false);
@@ -208,13 +252,14 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("upgrade button was clicked!");
-				playerModel.printAllTowers();
+				// ++++++++++++++++++++++++++++?????????????????????????????????????????
 			}
 		});
 
-		// -- set initial description to Tower 0
+		// -- initializing the tower description panel information to default
 		updateTowerDscrPanel(0);
 
+		// -- adding the labels and buttons on Tower Description Panel
 		pPanel1.add(sellBuyTowerButton);
 		pPanel1.add(towerNameLabel);
 
@@ -228,7 +273,8 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 		towerDescrPanel.add(topTDscrPanel);
 		towerDescrPanel.add(botTDscrPanel);
 
-		// ---INFO---PANEL----------
+		// ---INFO---PANEL------------------
+		// -- setting layout and secondary panels
 		GridLayout gridLayout8 = new GridLayout(2, 1);
 		infoPanel.setLayout(gridLayout8);
 
@@ -241,24 +287,34 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 		GridLayout gridLayout9 = new GridLayout(1, 3);
 		topInfoPanel.setLayout(gridLayout9);
 
-		JButton b1 = new JButton(new ImageIcon("images/sun.png"));
+		// creating and setting labels and buttons on Game Info Panel
+		JButton sunButton = new JButton(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_Sun));
+		sunButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("sun button was clicked!");
+				playerModel.printAllTowers();
+			}
+		});
 
 		sunCurrencyLabel = new JLabel("B2");
-		String sb2 = "<html> Sun<br>" + Integer.toString(playerModel.getSunCurrency()) + "</html>";
-		sunCurrencyLabel.setText(sb2);
+		String tempString = "<html> Sun<br>" + Integer.toString(playerModel.getSunCurrency()) + "</html>";
+		sunCurrencyLabel.setText(tempString);
 		sunCurrencyLabel.setFont(new Font("Serif", Font.BOLD, 20));
 
-		JPanel b3 = new JPanel(new BorderLayout());
+		JPanel tempPanel = new JPanel(new BorderLayout());
 
+		// -- Label that show the health status of the player
 		JLabel b33 = new JLabel("HP " + Integer.toString(playerModel.getHpPlayer()), SwingConstants.CENTER);
 		b33.setFont(new Font("Serif", Font.BOLD, 20));
 		b33.setForeground(Color.RED);
-		b3.add(b33, BorderLayout.CENTER);
+		tempPanel.add(b33, BorderLayout.CENTER);
 
-		topInfoPanel.add(b1);
+		topInfoPanel.add(sunButton);
 		topInfoPanel.add(sunCurrencyLabel);
-		topInfoPanel.add(b3);
+		topInfoPanel.add(tempPanel);
 
+		// -- label that shows game wave number
 		JLabel gameLvlLabel = new JLabel("LEVEL " + Integer.toString(playerModel.getGameWave()), SwingConstants.CENTER);
 		gameLvlLabel.setFont(new Font("Serif", Font.BOLD, 20));
 		gameLvlLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -268,7 +324,8 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 		String s = "<html><b><font size='5'>Wave: 1</font></b><br>Critter: Zomby<br>Health: 50</html>";
 		JLabel critterLabel = new JLabel(s, SwingConstants.CENTER);
 
-		JButton critterIconButton = new JButton(new ImageIcon("images/critter1.gif"));
+		// -- button that displays the critter image as background image
+		JButton critterIconButton = new JButton(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_Critter1));
 		critterIconButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -283,6 +340,7 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 			}
 		});
 
+		// -- adding labels and buttons on Game info Panel
 		botInfoPanel.add(critterLabel);
 		botInfoPanel.add(critterIconButton);
 
@@ -291,8 +349,15 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 
 	}
 
-	// -- Method that updates the info on Tower Description Panel
-	// -- if any Tower is clicked
+	/**
+	 * <p>
+	 * updates the Tower Description Panel information when new tower is
+	 * selected
+	 * </p>
+	 * 
+	 * @param new_towerID
+	 *            tower Id
+	 */
 	public void updateTowerDscrPanel(int new_towerID) {
 		labelStatsTower[1].setText(Integer.toString(towerModelShop[new_towerID].getTowerlevel()));
 		labelStatsTower[4].setText(Integer.toString(towerModelShop[new_towerID].getTowerPower()));
@@ -305,7 +370,7 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 		towerLevelLabel.setText("Level " + Integer.toString(towerModelShop[new_towerID].getTowerlevel()));
 
 		currentSelectedTowerName = "tower" + Integer.toString(new_towerID);
-
+		// -- checks if tower is selected from the shop or the map
 		if (!isCurrentTowerInShop) {
 			labelStatsTower[2].setText(Integer.toString(towerModelShop[new_towerID].getTowerlevel() + 1));
 			labelStatsTower[5].setText(Integer.toString(towerModelShop[new_towerID].getTowerPower() * 2));
@@ -343,15 +408,27 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 		}
 	}
 
+	/**
+	 * updates info on sun currency
+	 */
 	public void updateGameInfoPanel() {
 		String sb2 = "<html> Sun<br>" + Integer.toString(playerModel.getSunCurrency()) + "</html>";
 		sunCurrencyLabel.setText(sb2);
 	}
-	
-	public void setMapButtons(JButton[][] new_mapButtons){
+
+	/**
+	 * assigns the pointer to buttons on the map
+	 * 
+	 * @param new_mapButtons
+	 */
+	public void setMapButtons(JButton[][] new_mapButtons) {
 		mapButtons = new_mapButtons;
 	}
 
+	/**
+	 * reimplementation of method action performed for tower buttons in which if
+	 * tower button is clicked, it updates its info on tower description panel
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

@@ -25,17 +25,19 @@ import javax.swing.border.LineBorder;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 import com.app.towerDefense.staticContent.AppilicationEnums.*;
 import com.app.towerDefense.models.MapModel;
+import com.app.towerDefense.models.TowerModel;
 
-public class JPanelComponent {
+public class JPanelComponent{
 
+	BottomGamePanelView bottomGamePanel;
 	//-- Map Window Tower Section
 	public JPanel getGameTowerPanel(Dimension parentDimension){
-		BottomGamePanelView panel = new BottomGamePanelView(parentDimension.width, parentDimension.height * 1/4-30);
-		panel.setPreferredSize(new Dimension(parentDimension.width, parentDimension.height * 1/4-30));
-		panel.setMaximumSize(new Dimension(parentDimension.width, parentDimension.height * 1/4-30));
-		panel.setMinimumSize(new Dimension(parentDimension.width, parentDimension.height * 1/4-30));			
+		bottomGamePanel = new BottomGamePanelView(parentDimension.width, parentDimension.height * 1/4-30);
+		bottomGamePanel.setPreferredSize(new Dimension(parentDimension.width, parentDimension.height * 1/4-30));
+		bottomGamePanel.setMaximumSize(new Dimension(parentDimension.width, parentDimension.height * 1/4-30));
+		bottomGamePanel.setMinimumSize(new Dimension(parentDimension.width, parentDimension.height * 1/4-30));			
 		//panel.setBackground(Color.CYAN);
-		return panel;				
+		return bottomGamePanel;				
 	}
 	
 	//-- Map Window Playing mode
@@ -291,10 +293,29 @@ public class JPanelComponent {
 								btn.setText("");
 								mapModel.isExitDone = false;
 							}
+							
+						//	for(int i=0; i<bottomGamePanel.playerModel.towerModelArray.size(); i++){
+								
+							//	bottomGamePanel.towerButtonDESCR.setIcon(new ImageIcon("images/tower2.png"));
+								
+								if(bottomGamePanel != null){
+									System.out.println("inside YES");
+								}else{
+									System.out.println("inside NOOOO");
+								}
+							
+							//	if(bottomGamePanel.playerModel.towerModelArray.get(0) != null){
+							//		System.out.println("--");
+							//	}
+				//				int tempX = bottomGamePanel.playerModel.towerModelArray.get(i).getX();
+				//				int tempY = bottomGamePanel.playerModel.towerModelArray.get(i).getY();
+				//				if(tempX == _j && tempY == _i){				
+					//				bottomGamePanel.towerButtonDESCR.setIcon(bottomGamePanel.playerModel.towerModelArray.get(i).getTowerImage());
+					//			}		
+					//		}
 
-							System.out.println(" Btn Name : " + btn.getName());
+							System.out.println("while playing Btn Name : " + btn.getName());
 						}
-
 					});
 
 					b[i][j].addMouseListener(new MouseAdapter() {
@@ -355,6 +376,7 @@ public class JPanelComponent {
 		}
 		
 		public JButton[][] buttons;
+		
 		public void setButtons(JButton[][] new_buttons){
 			buttons = new_buttons;
 		}
