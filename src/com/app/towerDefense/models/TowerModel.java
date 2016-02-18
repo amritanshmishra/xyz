@@ -335,8 +335,8 @@ public class TowerModel {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * This method calculates the amount for refund after a sell of a tower
+	 * @return the value of the tower
 	 */
 	 public int getRefund()
 	 {
