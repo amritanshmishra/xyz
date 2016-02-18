@@ -61,5 +61,4 @@ public class GameWindow extends JFrame {
 		this.setJMenuBar(gameJMenuBar);
 	}
 
-	
 }

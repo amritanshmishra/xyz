@@ -22,7 +22,7 @@ public class TowerModel {
 	private Icon towerImage;
 	private String towerImagePath;
 	private Dimension TowerCordinate;
-	private float towerUpgradeCost;
+	private int towerUpgradeCost;
 	private int towerlevelUpgrade;
 	private int towerPowerUpgrade;
 	private int towerFireRateUpgrade;
@@ -204,7 +204,7 @@ public class TowerModel {
 	 * 
 	 * @return the tower upgrade cost
 	 */
-	public float getTowerUpgradeCost() {
+	public int getTowerUpgradeCost() {
 		return towerUpgradeCost;
 	}
 
@@ -321,5 +321,27 @@ public class TowerModel {
 		x = new_x;
 		y = new_y;
 	}
+	/**
+	 * This method upgrades Tower
+	 */
+	public void upgradeTower()
+	{
+		setTowerFireRate(getTowerFireRate() + getTowerFireRateUpgrade());
+		setTowerCost(getTowerCost()+getTowerUpgradeCost());
+		setTowerRange(getTowerRange()+getTowerFireRangeUpgrade());
+		setTowerlevel(getTowerlevel()+getTowerlevelUpgrade());
+		setTowerPower(getTowerPower()+getTowerPowerUpgrade());
+		
+	}
+	
+	/**
+	 * This method calculates the amount for refund after a sell of a tower
+	 * @return the value of the tower
+	 */
+	 public int getRefund()
+	 {
+		 return getTowerCost()/2;
+	 }
+	 
 
 }
