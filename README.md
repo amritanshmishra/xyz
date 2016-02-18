@@ -1,4 +1,4 @@
 # xyz
 
-Run game.java 
+Run /src/com/app/towerDefense/guisystem/game.java 
 
