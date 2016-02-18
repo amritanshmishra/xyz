@@ -59,21 +59,21 @@ public class PlayerModel {
 	/**
 	 * adds value to sun currency
 	 * 
-	 * @param value
+	 * @param new_value
 	 *            amount of increase
 	 */
-	public void addSunCurrency(int value) {
-		sunCurrency += value;
+	public void addSunCurrency(int new_value) {
+		sunCurrency += new_value;
 	}
 
 	/**
 	 * subtracts value from sun currency
 	 * 
-	 * @param value
+	 * @param new_value
 	 *            amount of decrease
 	 */
-	public void subSunCurrency(int value) {
-		sunCurrency -= value;
+	public void subSunCurrency(int new_value) {
+		sunCurrency -= new_value;
 	}
 
 	/**
