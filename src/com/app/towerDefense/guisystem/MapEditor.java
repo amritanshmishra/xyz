@@ -11,44 +11,54 @@ import com.app.towerDefense.staticContent.AppilicationEnums.*;
 import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 
-//public class MapEditor extends JDialog  {
+/**
+ * This is the map editor class
+ * @author Sajjad
+ *
+ */
 public class MapEditor extends JFrame {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	
 	MapModel mapModel;
 	E_MapEditorMode mapEditorMode;
-
-	public MapEditor(JFrame parent, String title, int width, int height,
-			MapModel _mapModel, E_MapEditorMode _mapEditorMode) {
-		if (parent != null) {
-			Dimension parentSize = parent.getSize();
-			Point p = parent.getLocation();
+	
+	/**
+	 * Map editor Constructor
+	 * @param new_parent JFrame 
+	 * @param new_title is the title of the frame
+	 * @param new_width is the width of the  frame
+	 * @param new_height is the height of the frame
+	 * @param new_mapModel is a map
+	 * @param new_mapEditorMode is the map editor mode
+	 */
+	public MapEditor(JFrame new_parent, String new_title, int new_width, int new_height,
+			MapModel new_mapModel, E_MapEditorMode new_mapEditorMode) {
+		if (new_parent != null) {
+			Dimension parentSize = new_parent.getSize();
+			Point p = new_parent.getLocation();
 			setLocation(p.x + parentSize.width / 4, p.y + parentSize.height / 4);
 		}
 		
-		mapModel = _mapModel;
-		mapEditorMode = _mapEditorMode;
+		mapModel = new_mapModel;
+		mapEditorMode = new_mapEditorMode;
 		
 		if (E_MapEditorMode.Create == mapEditorMode) {
-			title += " " + ApplicationStatics.MAP_MODE_CREATE;
+			new_title += " " + ApplicationStatics.MAP_MODE_CREATE;
 		} else {
-			title += " " + ApplicationStatics.MAP_MODE_OPEN;
+			new_title += " " + ApplicationStatics.MAP_MODE_OPEN;
 		}
 		
 		//--- Set Map Editor Windows Properties
-		this.setTitle(title);
-		this.setPreferredSize(new Dimension(width, height));
-		this.setMaximumSize(new Dimension(width, height));
-		this.setMinimumSize(new Dimension(width, height));
+		this.setTitle(new_title);
+		this.setPreferredSize(new Dimension(new_width, new_height));
+		this.setMaximumSize(new Dimension(new_width, new_height));
+		this.setMinimumSize(new Dimension(new_width, new_height));
 		this.setResizable(false);
 		this.setLocationRelativeTo(null); 
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setVisible(true);
 		
 		//-- Load MenuBar From Components
-		this.setJMenuBar((new JMenuBarComponent()).getMapEditorJMenuBar(_mapModel, this));
+		this.setJMenuBar((new JMenuBarComponent()).getMapEditorJMenuBar(new_mapModel, this));
 		//-- Load GridEditor Panel From Components
 		this.setContentPane((new JPanelComponent()).getMapEditorGridPanel(mapModel, mapEditorMode));
 
