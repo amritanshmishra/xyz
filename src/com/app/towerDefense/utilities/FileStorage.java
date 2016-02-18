@@ -9,6 +9,12 @@ import java.nio.file.Paths;
 import com.app.towerDefense.models.MapModel;
 import com.google.gson.Gson;
 
+/**
+ * This class is for saving a map
+ * 
+ * @author Sajjad 
+ *
+ */
 public class FileStorage {
 
 	public String saveMapFile(File file, MapModel mapModel) {

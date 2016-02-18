@@ -1,5 +1,5 @@
 package com.app.towerDefense.guisystem;
-
+import com.app.towerDefense.staticContent.ApplicationStatics;
 /**
  * 
  * @author usbaitass
@@ -9,14 +9,13 @@ package com.app.towerDefense.guisystem;
  */
 public class Game {
 
-	public static final int WIDTH = 840, HEIGHT = WIDTH / 12 * 10; // height =
-																	// 630
+	
 	/**
 	 * Constructor of the Game Class
 	 */
 	public Game() {
 
-		new GameWindow(WIDTH, HEIGHT, "Tower Defence Game by \"Team 5\".", this);
+		new GameWindow(ApplicationStatics.WINDOW_WIDTH, ApplicationStatics.WINDOW_HEIGHT, "Tower Defence Game by \"Team 5\".", this);
 
 	}
 
