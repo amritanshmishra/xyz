@@ -27,10 +27,12 @@ import com.app.towerDefense.staticContent.AppilicationEnums.*;
 import com.app.towerDefense.utilities.MiscellaneousHelper;
 import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.models.TowerModel;
+import com.app.towerDefense.models.TowerModel1;
 
 public class JPanelComponent {
 
 	public BottomGamePanelView bottomGamePanel;
+	public JButton[][] buttons;
 
 	// -- Map Window Tower Section
 	public JPanel getGameTowerPanel(Dimension parentDimension) {
@@ -322,26 +324,52 @@ public class JPanelComponent {
 							mapModel.isExitDone = false;
 						}
 
+						String[] tempStr = btn.getName().split(":");
+						int new_x = Integer.parseInt(tempStr[1]);
+						int new_y = Integer.parseInt(tempStr[2]);
 
-						if (bottomGamePanel.isCurrentlyInTowerShop) {
-							if (bottomGamePanel.hasBoughtTower) {
-								System.out.println("The Button " + btn.getName() + " is clicked");
-								if (!bottomGamePanel.getPlayerModel().towerModelArray.isEmpty()) {
-							
-									// -- sets the tower coordinates
-									String[] tempStr = btn.getName().split(":");
-								    int new_x = Integer.parseInt(tempStr[1]);
-								    int new_y = Integer.parseInt(tempStr[2]);
-									int arrSize = bottomGamePanel.getPlayerModel().towerModelArray.size();
-									bottomGamePanel.getPlayerModel().towerModelArray.get(arrSize - 1).setXY(new_x, new_y);
+						TowerModel tempTM = new TowerModel1();
+						;
 
-									bottomGamePanel.hasBoughtTower = false;
-									bottomGamePanel.setMapButtonsToYellow(b);
-								} else {
-									System.out.println("Dont have towers");
-								}
-							}
+						// bottomGamePanel.setTowerDescrPanelVisible = true;
+						//bottomGamePanel.updateTowerDscrPanel(tempTM);
+						
+						if (bottomGamePanel.currentSelectedTower == 0) {
+							bottomGamePanel.setTowerDescrPanelVisible = false;
 						}
+
+						if (bottomGamePanel.hasBoughtTower) {
+							System.out.println("The Button " + btn.getName() + " is clicked");
+							if (!bottomGamePanel.getPlayerModel().towerModelArray.isEmpty()) {
+
+								// -- sets the tower coordinates
+								int arrSize = bottomGamePanel.getPlayerModel().towerModelArray.size();
+								bottomGamePanel.getPlayerModel().towerModelArray.get(arrSize - 1).setXY(new_x, new_y);
+
+								bottomGamePanel.hasBoughtTower = false;
+								bottomGamePanel.setMapButtonsToYellow(b);
+							} else {
+								System.out.println("Dont have towers");
+							}
+						} else {
+							if (!bottomGamePanel.getPlayerModel().towerModelArray.isEmpty()) {
+
+								for (int i = 0; i < bottomGamePanel.getPlayerModel().towerModelArray.size(); i++) {
+									tempTM = bottomGamePanel.getPlayerModel().towerModelArray.get(i);
+
+									if (new_x == tempTM.getX() && new_y == tempTM.getY()) {
+										System.out.println("HERE x="+ tempTM.getTowerName());
+										bottomGamePanel.setTowerDescrPanelVisible = true;
+										bottomGamePanel.updateTowerDscrPanel(tempTM);	
+										bottomGamePanel.towerButtonDESCR.setName(Integer.toString(new_x) + ":" + Integer.toString(new_y));
+									}
+								}
+								
+								
+							}
+							
+						}
+
 					}
 				});
 
@@ -406,16 +434,31 @@ public class JPanelComponent {
 		return panel;
 	}
 
-	public JButton[][] buttons;
-
+	/**
+	 * This method sets the reference button to map buttons
+	 * 
+	 * @param new_buttons
+	 *            the reference button
+	 */
 	public void setButtons(JButton[][] new_buttons) {
 		buttons = new_buttons;
 	}
 
+	/**
+	 * This method gets the map buttons
+	 * 
+	 * @return map buttons
+	 */
 	public JButton[][] getButtons() {
 		return buttons;
 	}
 
+	/**
+	 * This method sets the reference to bottom game panel
+	 * 
+	 * @param new_panel
+	 *            the reference to object of BottomGamePanelView
+	 */
 	public void setBottomGamePanelView(BottomGamePanelView new_panel) {
 		bottomGamePanel = new_panel;
 	}
