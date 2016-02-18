@@ -50,8 +50,8 @@ public class Map {
 	/**
 	 * This method validates the map path
 	 * 
-	 * @param map
-	 *            the map
+	 * @param new_map the map
+	 *            
 	 * @return the status of the map verified or not-verified
 	 */
 	public String mapPathValidation(MapModel new_map) {
