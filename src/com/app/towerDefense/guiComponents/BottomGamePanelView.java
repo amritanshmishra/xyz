@@ -69,7 +69,7 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 
 		setTowerDescrPanelVisible = false;
 		hasBoughtTower = false;
-		currentSelectedTower = 0;
+		currentSelectedTower = 5;
 
 		// -- creating new Player
 		playerModel = new PlayerModel();
@@ -130,7 +130,7 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 		for (int i = 0; i < 5; i++) {
 			towerButton[i] = new JButton(new_towerModel[i].getTowerImage());
 			towerButton[i].setText(Integer.toString(new_towerModel[i].getTowerCost()));
-			towerButton[i].setName("tower" + Integer.toString(i));
+			towerButton[i].setName("shopTowerButton" + Integer.toString(i));
 
 			towerShopPanel.add(towerButton[i]);
 			towerButton[i].addActionListener(this);
@@ -204,7 +204,7 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				if (sellBuyTowerButton.getText() == "BUY") {
+				if (sellBuyTowerButton.getText() == "BUY" && currentSelectedTower < 5) {
 
 					int tempTCost = new_towerModel[currentSelectedTower].getTowerCost();
 					int currentBalance = playerModel.getSunCurrency();
@@ -226,13 +226,13 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 						JFrame frame = new JFrame();
 						JOptionPane.showMessageDialog(frame, "You don't have enough suns for this tower.");
 					}
-				}else{
-					System.out.println("SELLING"+ towerButtonDESCR.getName());
-					
+				} else {
+					System.out.println("SELLING" + towerButtonDESCR.getName());
+
 					String[] tempStr = towerButtonDESCR.getName().split(":");
 					int temp_x = Integer.parseInt(tempStr[0]);
 					int temp_y = Integer.parseInt(tempStr[1]);
-					
+
 					for (int k = 0; k < playerModel.towerModelArray.size(); k++) {
 						int x = playerModel.towerModelArray.get(k).getX();
 						int y = playerModel.towerModelArray.get(k).getY();
@@ -240,21 +240,21 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 							if (playerModel.sellTower(k)) {
 								int w = mapButtons[x][y].getWidth();
 								int h = mapButtons[x][y].getHeight();
-								
-								mapButtons[x][y].setIcon(new ImageIcon(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_Scenery)
-										.getImage().getScaledInstance(w, h, java.awt.Image.SCALE_SMOOTH)));
+
+								mapButtons[x][y]
+										.setIcon(new ImageIcon(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_Scenery)
+												.getImage().getScaledInstance(w, h, java.awt.Image.SCALE_SMOOTH)));
 								System.out.println("tower deleted successfully.");
-								
+
 								setTowerDescrPanelVisible = false;
 								updateTowerDscrPanel(new TowerModel1());
 								updateGameInfoPanel();
-								
+
 							} else {
 								System.out.println("could not delete tower.");
 							}
 						}
 					}
-					
 				}
 			}
 
@@ -269,7 +269,40 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("upgrade button was clicked!");
-				// ++++++++++++++++++++++++++++?????????????????????????????????????????
+
+				System.out.println("button coordinates= " + towerButtonDESCR.getName());
+
+				String[] tempStr = towerButtonDESCR.getName().split(":");
+				int temp_x = Integer.parseInt(tempStr[0]);
+				int temp_y = Integer.parseInt(tempStr[1]);
+
+				TowerModel tempTM = null;
+
+				for (int k = 0; k < playerModel.towerModelArray.size(); k++) {
+					int x = playerModel.towerModelArray.get(k).getX();
+					int y = playerModel.towerModelArray.get(k).getY();
+					if (temp_x == x && temp_y == y) {
+						tempTM = playerModel.upgradeTower(k);
+						if (tempTM != null) {
+
+							System.out.println("Tower is upgraded successfully.");
+
+							playerModel.addSunCurrency(tempTM.getRefund());
+
+							updateTowerDscrPanel(tempTM);
+							updateGameInfoPanel();
+
+							JFrame frame = new JFrame();
+							JOptionPane.showMessageDialog(frame, "You upgraded the tower successfully.");
+
+							System.out.println("new Cost = " + Integer.toString(tempTM.getTowerCost()));
+
+						} else {
+							System.out.println("could not upgrade tower.");
+						}
+					}
+				}
+
 			}
 		});
 
@@ -451,13 +484,16 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 		JButton button = (JButton) o;
 		String bName = button.getName();
 
-		Character ch = bName.charAt(bName.length() - 1);
-		int tempTid = ch.charValue() - 48;
+		
+		int tempTid = Integer.parseInt(bName.substring(bName.length() - 1));
 		currentSelectedTower = tempTid;
+		
 
-		String tempS = bName.substring(0, 5);
+		String tempS = bName.substring(0, bName.length()-1);
+		
+		System.out.println(tempS);
 
-		if (tempS.compareTo("tower") == 0) {
+		if (tempS.compareTo("shopTowerButton") == 0) {
 			System.out.println("Shop Panel: Tower id = " + tempTid);
 
 			setTowerDescrPanelVisible = false;
@@ -465,14 +501,19 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 			towerButtonDESCR.setIcon(button.getIcon());
 			if (tempTid == 0) {
 				updateTowerDscrPanel(new TowerModel1());
+				currentSelectedTower = 0;
 			} else if (tempTid == 1) {
 				updateTowerDscrPanel(new TowerModel2());
+				currentSelectedTower = 1;
 			} else if (tempTid == 2) {
 				updateTowerDscrPanel(new TowerModel3());
+				currentSelectedTower = 2;
 			} else if (tempTid == 3) {
 				updateTowerDscrPanel(new TowerModel4());
+				currentSelectedTower = 3;
 			} else if (tempTid == 4) {
 				updateTowerDscrPanel(new TowerModel5());
+				currentSelectedTower = 4;
 			}
 
 		}
@@ -541,7 +582,6 @@ public class BottomGamePanelView extends JPanel implements ActionListener {
 			}
 		}
 	}
-	
 
 	// END
 }

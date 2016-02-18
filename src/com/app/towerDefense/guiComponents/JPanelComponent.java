@@ -329,14 +329,16 @@ public class JPanelComponent {
 						int new_y = Integer.parseInt(tempStr[2]);
 
 						TowerModel tempTM = new TowerModel1();
-						;
+						
 
 						// bottomGamePanel.setTowerDescrPanelVisible = true;
-						//bottomGamePanel.updateTowerDscrPanel(tempTM);
-						
-						if (bottomGamePanel.currentSelectedTower == 0) {
+						// bottomGamePanel.updateTowerDscrPanel(tempTM);
+						if (bottomGamePanel.currentSelectedTower == 5) {
 							bottomGamePanel.setTowerDescrPanelVisible = false;
 						}
+						bottomGamePanel.currentSelectedTower = 5;
+						bottomGamePanel.updateTowerDscrPanel(tempTM);
+						
 
 						if (bottomGamePanel.hasBoughtTower) {
 							System.out.println("The Button " + btn.getName() + " is clicked");
@@ -358,16 +360,16 @@ public class JPanelComponent {
 									tempTM = bottomGamePanel.getPlayerModel().towerModelArray.get(i);
 
 									if (new_x == tempTM.getX() && new_y == tempTM.getY()) {
-										System.out.println("HERE x="+ tempTM.getTowerName());
+										System.out.println("HERE x=" + tempTM.getTowerName());
 										bottomGamePanel.setTowerDescrPanelVisible = true;
-										bottomGamePanel.updateTowerDscrPanel(tempTM);	
-										bottomGamePanel.towerButtonDESCR.setName(Integer.toString(new_x) + ":" + Integer.toString(new_y));
+										bottomGamePanel.updateTowerDscrPanel(tempTM);
+										bottomGamePanel.towerButtonDESCR
+												.setName(Integer.toString(new_x) + ":" + Integer.toString(new_y));
 									}
 								}
-								
-								
+
 							}
-							
+
 						}
 
 					}
