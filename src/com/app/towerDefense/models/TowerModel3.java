@@ -1,5 +1,13 @@
 package com.app.towerDefense.models;
 
+import com.app.towerDefense.staticContent.ApplicationStatics;
+/**
+ * This class creates <b>Soldier tower</b> which extends <b> TowerModel class <b/>
+ * 
+ *  @see TowerModel
+ * @author IMS
+ *
+ */
 public class TowerModel3 extends TowerModel{
 
 	public TowerModel3()
@@ -8,7 +16,7 @@ public class TowerModel3 extends TowerModel{
 		setTowerlevel(1);
 		setTowerPower(6);
 		setTowerRange(4);
-		setTowerImagePath("images/tower3.png");
+		setTowerImagePath(ApplicationStatics.IMAGE_PATH_MAP_Tower3);
 		setTowerFireRate(2);
 		setTowerCost(60);
 		setTowerFireRateUpgrade(1);

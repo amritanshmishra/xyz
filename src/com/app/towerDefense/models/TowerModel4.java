@@ -1,4 +1,14 @@
 package com.app.towerDefense.models;
+
+import com.app.towerDefense.staticContent.ApplicationStatics;
+/**
+ * This class creates Machine Gun Tower which extends from TowerModel Class
+ * 
+ * @see TowerModel
+ * 
+ * @author IMS
+ *
+ */
 public class TowerModel4 extends TowerModel{
 
 	public TowerModel4()
@@ -7,7 +17,7 @@ public class TowerModel4 extends TowerModel{
 		setTowerlevel(1);
 		setTowerPower(8);
 		setTowerRange(6);
-		setTowerImagePath("images/tower4.png");
+		setTowerImagePath(ApplicationStatics.IMAGE_PATH_MAP_Tower4);
 		setTowerFireRate(2);
 		setTowerCost(80);
 		setTowerFireRateUpgrade(1);

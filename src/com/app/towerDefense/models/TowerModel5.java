@@ -1,4 +1,12 @@
 package com.app.towerDefense.models;
+
+import com.app.towerDefense.staticContent.ApplicationStatics;
+/**
+ * This class create a cabbage tower which extends the TowerModel Class.
+ * @see TowerModel
+ * @author IMS
+ *
+ */
 public class TowerModel5 extends TowerModel{
 
 	public TowerModel5()
@@ -7,7 +15,7 @@ public class TowerModel5 extends TowerModel{
 		setTowerlevel(1);
 		setTowerPower(8);
 		setTowerRange(6);
-		setTowerImagePath("images/tower5.png");
+		setTowerImagePath(ApplicationStatics.IMAGE_PATH_MAP_Tower5);
 		setTowerFireRate(3);
 		setTowerCost(100);
 		setTowerFireRateUpgrade(2);

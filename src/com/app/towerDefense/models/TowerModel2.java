@@ -1,5 +1,13 @@
 package com.app.towerDefense.models;
 
+import com.app.towerDefense.staticContent.ApplicationStatics;
+/**
+ * This class creates <b>Peashooter tower</b> which extends <b> TowerModel class <b/>
+ * 
+ * @see TowerModel
+ * @author IMS
+ *
+ */
 public class TowerModel2 extends TowerModel
 {
 	
@@ -9,7 +17,7 @@ public class TowerModel2 extends TowerModel
 		setTowerlevel(1);
 		setTowerPower(4);
 		setTowerRange(4);
-		setTowerImagePath("images/tower2.png");
+		setTowerImagePath(ApplicationStatics.IMAGE_PATH_MAP_Tower2);
 		setTowerFireRate(3);
 		setTowerCost(40);
 		setTowerFireRateUpgrade(2);
