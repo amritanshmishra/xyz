@@ -2,6 +2,9 @@ package com.app.towerDefense.models;
 
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 /**
  * 
  * @author usbaitass
@@ -59,21 +62,21 @@ public class PlayerModel {
 	/**
 	 * adds value to sun currency
 	 * 
-	 * @param new_value
+	 * @param value
 	 *            amount of increase
 	 */
-	public void addSunCurrency(int new_value) {
-		sunCurrency += new_value;
+	public void addSunCurrency(int value) {
+		sunCurrency += value;
 	}
 
 	/**
 	 * subtracts value from sun currency
 	 * 
-	 * @param new_value
+	 * @param value
 	 *            amount of decrease
 	 */
-	public void subSunCurrency(int new_value) {
-		sunCurrency -= new_value;
+	public void subSunCurrency(int value) {
+		sunCurrency -= value;
 	}
 
 	/**
@@ -147,8 +150,11 @@ public class PlayerModel {
 		if (towerModelArray.isEmpty()) {
 			return false;
 		} else {
-			addSunCurrency(towerModelArray.get(new_towerID).getTowerCost());
+			int refundTM = towerModelArray.get(new_towerID).getRefund();
+			addSunCurrency(refundTM);
 			towerModelArray.remove(new_towerID);
+			JFrame frame = new JFrame();
+			JOptionPane.showMessageDialog(frame, "You were refunded = " + Integer.toString(refundTM) + " suns.");
 			return true;
 		}
 	}
@@ -161,9 +167,8 @@ public class PlayerModel {
 	 * @return Tower model with upgraded attributes
 	 */
 	public TowerModel upgradeTower(int new_towerID) {
-		TowerModel tempTM = null;
-		System.out.println("inside upgradeTower()");
-
+		TowerModel tempTM = towerModelArray.get(new_towerID); 
+		tempTM.upgradeTower();
 		return tempTM;
 	}
 
