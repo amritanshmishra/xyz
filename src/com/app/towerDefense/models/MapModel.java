@@ -128,7 +128,7 @@ public class MapModel {
 	/**
 	 * this method sets the exit point
 	 * 
-	 * @param new_isExitDone
+	 * @param new_isExitDone checks if exit point is selected
 	 */
 	public void setExitDone(boolean new_isExitDone) {
 		this.isExitDone = new_isExitDone;
