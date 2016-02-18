@@ -6,14 +6,19 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.app.towerDefense.staticContent.AppilicationEnums.*;
-
+/**
+ * This class allows us to select a file from system.
+ * 
+ * @author Sajjad Ashraf 
+ *
+ */
 public class JFileChooserComponent {
 
-	public JFileChooser getJFileChooser(E_JFileChooserrMode fileChooserrMode)
+	public JFileChooser getJFileChooser(E_JFileChooserrMode new_fileChooserrMode)
 	{
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-		if(fileChooserrMode == E_JFileChooserrMode.Open)
+		if(new_fileChooserrMode == E_JFileChooserrMode.Open)
 		{
 			fileChooser.setDialogTitle("Tower Defense Select .tdm file");
 		}
