@@ -37,9 +37,7 @@ public class PlayerModelTest {
 
 	/**
 	 * Run the PlayerModel default constructor test.
-	 *
-	 * @throws Exception
-	 *
+	 *	 
 	 *
 	 */
 	@Test
@@ -64,7 +62,6 @@ public class PlayerModelTest {
 	 * Run the PlayerModel parameterized constructor test. PlayerModel(String ,
 	 * int , int , int )
 	 * 
-	 * @throws Exception
 	 *
 	 *
 	 */
@@ -91,7 +88,6 @@ public class PlayerModelTest {
 	/**
 	 * Test buyTower method.
 	 *
-	 * @throws Exception
 	 *
 	 *
 	 */

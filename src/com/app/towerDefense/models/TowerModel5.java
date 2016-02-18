@@ -2,7 +2,7 @@ package com.app.towerDefense.models;
 
 import com.app.towerDefense.staticContent.ApplicationStatics;
 /**
- * This class create a <b>Cabbage<b/> tower which extends the TowerModel Class.
+ * This class create a Cabbage tower which extends the TowerModel Class.
  * @see TowerModel
  * @author IMS
  *

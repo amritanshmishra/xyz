@@ -2,10 +2,10 @@ package com.app.towerDefense.models;
 
 import com.app.towerDefense.staticContent.ApplicationStatics;
 /**
- * This class creates <b>Peashooter</b> tower which extends <b> TowerModel class <b/>
+ * This class creates Peashooter tower which extends  TowerModel class 
  * 
  * @see TowerModel
- * @author IMS
+ * @author George Ekow-Daniels
  *
  */
 public class TowerModel2 extends TowerModel

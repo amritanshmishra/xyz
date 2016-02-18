@@ -31,8 +31,6 @@ public class MapModelTest {
 
 	/**
 	 * Run the MapModel parameterized constructor test.
-	 * 
-	 * @throws Exception
 	 *
 	 *
 	 */

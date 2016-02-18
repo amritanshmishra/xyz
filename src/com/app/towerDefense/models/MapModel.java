@@ -86,7 +86,7 @@ public class MapModel {
 
 	/**
 	 * This method gets the isEntry done
-	 * @return entryDone 
+	 * @return entryDone Check if entry point is selected
 	 */
 	public boolean isEntryDone() {
 		return isEntryDone;
@@ -94,7 +94,7 @@ public class MapModel {
 
 	/**
 	 * This method sets the isEntryDone
-	 * @param isEntryDone
+	 * @param isEntryDone check if entry point selected
 	 */
 	public void setEntryDone(boolean isEntryDone) {
 		this.isEntryDone = isEntryDone;
