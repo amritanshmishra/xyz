@@ -24,6 +24,7 @@ import javax.swing.border.LineBorder;
 
 import com.app.towerDefense.staticContent.ApplicationStatics;
 import com.app.towerDefense.staticContent.AppilicationEnums.*;
+import com.app.towerDefense.utilities.MiscellaneousHelper;
 import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.models.TowerModel;
 
@@ -191,10 +192,10 @@ public class JPanelComponent{
 	
 	//-- Map Editor window Create and Open map mode
 		public JPanel getMapPlayGridPanel(final MapModel mapModel, Dimension parentDimension, E_MapEditorMode mapEditorMode){
-			if (E_MapEditorMode.Create == mapEditorMode) {
-				mapModel.mapGridSelection = new int[mapModel.getMapHeight()][mapModel
-						.getMapWidth()];
-			}
+//			if (E_MapEditorMode.Create == mapEditorMode) {
+//				mapModel.mapGridSelection = new int[mapModel.getMapHeight()][mapModel
+//						.getMapWidth()];
+//			}
 
 			JPanel panel = new JPanel();
 			GridLayout gridLayout = new GridLayout(mapModel.getMapHeight(),
@@ -227,13 +228,13 @@ public class JPanelComponent{
 
 					b[i][j].setName(value + ":" + i + ":" + j);
 					
-					if (E_MapEditorMode.Create == mapEditorMode) {
-						mapModel.mapGridSelection[i][j] = 0;
-						//b[i][j].setBackground(Color.gray);
-						b[i][j].setIcon( new ImageIcon ( ApplicationStatics.IMAGE_PATH_MAP_Scenery));
-
-					}
-					else
+//					if (E_MapEditorMode.Create == mapEditorMode) {
+//						mapModel.mapGridSelection[i][j] = 0;
+//						//b[i][j].setBackground(Color.gray);
+//						b[i][j].setIcon( new ImageIcon ( ApplicationStatics.IMAGE_PATH_MAP_Scenery));
+//
+//					}
+//					else
 					{
 						if(mapModel.mapGridSelection[i][j]==1)
 						{
@@ -243,6 +244,57 @@ public class JPanelComponent{
 									ApplicationStatics.IMAGE_PATH_MAP_ROUTE).getImage()
 						            .getScaledInstance((int)parentDimension.getWidth()/ mapModel.getMapWidth(), (int) parentDimension.getHeight() / mapModel.getMapHeight(),
 						                    java.awt.Image.SCALE_SMOOTH)))));
+							
+							
+							if((i >= 0 && i < mapModel.getMapHeight()) || (j >= 0 && j < mapModel.getMapWidth()))
+							{
+								String name="";
+								//Select Down button
+								if(i != mapModel.getMapHeight() - 1)
+								{
+									if(mapModel.mapGridSelection[i+1][j]!=1 && mapModel.mapGridSelection[i+1][j]!=2 && mapModel.mapGridSelection[i+1][j]!=3 )
+									{
+										name=""+(i+1)+":"+j;
+										if(!ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME.contains(name))
+											ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME+=name+",";
+									}
+								}
+								
+								//Select up button
+								if(i > 0)
+								{
+									if(mapModel.mapGridSelection[i-1][j]!=1 && mapModel.mapGridSelection[i-1][j]!=2 && mapModel.mapGridSelection[i-1][j]!=3 )
+									{
+										name=""+(i-1)+":"+j;
+										if(!ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME.contains(name))
+											ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME+=name+",";
+									}
+								}
+								
+								//Checking for Left cell
+								if (j != mapModel.getMapWidth() -1)
+								{
+									if(mapModel.mapGridSelection[i][j+1]!=1 && mapModel.mapGridSelection[i][j+1]!=2 && mapModel.mapGridSelection[i][j+1]!=3 )
+									{
+										name=""+(i)+":"+(j+1);
+										if(!ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME.contains(name))
+											ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME+=name+",";
+									}
+								}
+								
+								// Checking For Right Cell
+								if(j > 0)
+								{
+									if(mapModel.mapGridSelection[i][j-1]!=1 && mapModel.mapGridSelection[i][j-1]!=2 && mapModel.mapGridSelection[i][j-1]!=3 )
+									{
+										name=""+(i)+":"+(j-1);
+										if(!ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME.contains(name))
+											ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME+=name+",";
+									}
+								}
+									
+							}
+							
 							
 						}
 						else if(mapModel.mapGridSelection[i][j]==2)
@@ -373,8 +425,14 @@ public class JPanelComponent{
 					panel.add(b[i][j]);
 				}
 			}
-			//this.setContentPane(panel);
 			
+			//this.setContentPane(panel);
+			if(ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME.length() > 1)
+			{
+				ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME = 
+						(new MiscellaneousHelper()).RemoveCharacterFromEndorRight(ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME, ",");
+			}
+			System.out.print(ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME);
 			setButtons(b);
 			
 			return panel;

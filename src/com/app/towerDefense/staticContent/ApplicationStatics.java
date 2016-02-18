@@ -45,4 +45,6 @@ public class ApplicationStatics {
 	public static final String IMAGE_PATH_MAP_Tower4 = "images/tower4.png";
 	public static final String IMAGE_PATH_MAP_Tower5 = "images/tower5.png";
 
+	//
+	public static  String MAP_PATH_BOUNDARY_BUTTONS_NAME = "";
 }
