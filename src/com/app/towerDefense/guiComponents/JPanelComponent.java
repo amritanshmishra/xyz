@@ -197,7 +197,7 @@ public class JPanelComponent {
 			panel.setMinimumSize(new Dimension(parentDimension.width, parentDimension.height * 3 / 4 - 10));
 		}
 
-		JButton b[][] = new JButton[mapModel.getMapHeight()][mapModel.getMapWidth()];
+		final JButton b[][] = new JButton[mapModel.getMapHeight()][mapModel.getMapWidth()];
 
 		for (int i = 0; i < mapModel.getMapHeight(); i++) {
 			for (int j = 0; j < mapModel.getMapWidth(); j++) {

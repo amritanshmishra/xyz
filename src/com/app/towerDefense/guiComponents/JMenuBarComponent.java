@@ -42,7 +42,7 @@ public class JMenuBarComponent {
 
 	// public JMenuBar getGameJMenuBar(final JFrame jframe, final JPanel
 	// _gameMapPanel, final JPanel _gameTowerPanel)
-	public JMenuBar getGameJMenuBar(JFrame jframe) {
+	public JMenuBar getGameJMenuBar(final JFrame jframe) {
 
 		// final JLabel backGround=new JLabel(new
 		// ImageIcon("images/gameBk.jpg"));
@@ -219,7 +219,7 @@ public class JMenuBarComponent {
 	 *            the frame of the application
 	 * @return the menu bar
 	 */
-	public JMenuBar getMapEditorJMenuBar(MapModel new_mapModel, JFrame new_jframe) {
+	public JMenuBar getMapEditorJMenuBar(final MapModel new_mapModel, final JFrame new_jframe) {
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menuFile = new JMenu(ApplicationStatics.MENU_FILE);
 		final JMenuItem menuItemSave = new JMenuItem(ApplicationStatics.MENU_ITEM_SAVE);
