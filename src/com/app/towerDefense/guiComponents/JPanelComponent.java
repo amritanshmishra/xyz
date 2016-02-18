@@ -29,7 +29,7 @@ import com.app.towerDefense.models.TowerModel;
 
 public class JPanelComponent{
 
-	BottomGamePanelView bottomGamePanel;
+	public BottomGamePanelView bottomGamePanel;
 	//-- Map Window Tower Section
 	public JPanel getGameTowerPanel(Dimension parentDimension){
 		bottomGamePanel = new BottomGamePanelView(parentDimension.width, parentDimension.height * 1/4-30);
@@ -297,11 +297,16 @@ public class JPanelComponent{
 						//	for(int i=0; i<bottomGamePanel.playerModel.towerModelArray.size(); i++){
 								
 							//	bottomGamePanel.towerButtonDESCR.setIcon(new ImageIcon("images/tower2.png"));
-								
-								if(bottomGamePanel != null){
-									System.out.println("inside YES");
+								//-- cheack if player has any tower
+								if(!bottomGamePanel.getPlayerModel().towerModelArray.isEmpty()){
+									System.out.println("inside Has towers");
+									int new_x = 0;
+									int new_y = 0;
+									bottomGamePanel.getPlayerModel().towerModelArray.get(0).setXY(new_x, new_y);
+									
+									
 								}else{
-									System.out.println("inside NOOOO");
+									System.out.println("inside Dont have towers");
 								}
 							
 							//	if(bottomGamePanel.playerModel.towerModelArray.get(0) != null){
@@ -382,6 +387,10 @@ public class JPanelComponent{
 		}
 		public JButton[][] getButtons(){
 			return buttons;
+		}
+		
+		public void setBottomGamePanelView(BottomGamePanelView new_panel){
+			bottomGamePanel = new_panel;
 		}
 		
 		
