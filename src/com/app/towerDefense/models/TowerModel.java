@@ -28,6 +28,7 @@ public class TowerModel {
 	private int towerFireRateUpgrade;
 	private int towerFireRangeUpgrade;
 	private int x, y;
+	
 
 	/**
 	 * This method gets the name of the tower

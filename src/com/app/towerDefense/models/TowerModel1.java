@@ -17,6 +17,7 @@ public class TowerModel1 extends TowerModel {
 		setTowerPower(2);
 		setTowerRange(2);
 		setTowerImagePath(ApplicationStatics.IMAGE_PATH_MAP_Tower1);
+		setTowerImage();
 		setTowerFireRate(2);
 		setTowerCost(20);
 		setTowerFireRateUpgrade(1);

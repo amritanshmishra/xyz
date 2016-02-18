@@ -176,6 +176,14 @@ public class PlayerModel {
 		}
 	}
 	
+	/**
+	 * This method gets the tower array
+	 * @return the tower model array list
+	 */
+	public ArrayList<TowerModel> getTowerModelArray(){
+		return towerModelArray;
+	} 
+	
 	
 
 	// END
