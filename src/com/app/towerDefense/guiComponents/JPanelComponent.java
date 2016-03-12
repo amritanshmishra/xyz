@@ -31,9 +31,8 @@ import com.app.towerDefense.models.TowerModel1;
 
 public class JPanelComponent {
 
-	public BottomGamePanelView bottomGamePanel;
-	public JButton[][] buttons;
-
+	private BottomGamePanelView bottomGamePanel;
+	
 	// -- Map Window Tower Section
 	public JPanel getGameTowerPanel(Dimension parentDimension) {
 		bottomGamePanel = new BottomGamePanelView(parentDimension.width, parentDimension.height * 1 / 4 - 30);
@@ -333,7 +332,7 @@ public class JPanelComponent {
 
 						// bottomGamePanel.setTowerDescrPanelVisible = true;
 						// bottomGamePanel.updateTowerDscrPanel(tempTM);
-						if (bottomGamePanel.currentSelectedTower == 5) {
+		/*				if (bottomGamePanel.currentSelectedTower == 5) {
 							bottomGamePanel.setTowerDescrPanelVisible = false;
 						}
 						bottomGamePanel.currentSelectedTower = 5;
@@ -371,7 +370,7 @@ public class JPanelComponent {
 							}
 
 						}
-
+*/
 					}
 				});
 
@@ -431,30 +430,21 @@ public class JPanelComponent {
 					.RemoveCharacterFromEndorRight(ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME, ",");
 		}
 		System.out.print(ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME);
-		setButtons(b);
+		ApplicationStatics.MAP_BUTTONS= b;
 
 		return panel;
 	}
 
-	/**
-	 * This method sets the reference button to map buttons
-	 * 
-	 * @param new_buttons
-	 *            the reference button
-	 */
-	public void setButtons(JButton[][] new_buttons) {
-		buttons = new_buttons;
-	}
 
 	/**
 	 * This method gets the map buttons
 	 * 
 	 * @return map buttons
-	 */
+	 *//*
 	public JButton[][] getButtons() {
-		return buttons;
+		//return mapButtons;
 	}
-
+*/
 	/**
 	 * This method sets the reference to bottom game panel
 	 * 

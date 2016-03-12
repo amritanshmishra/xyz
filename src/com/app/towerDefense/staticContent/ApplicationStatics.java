@@ -1,5 +1,7 @@
 package com.app.towerDefense.staticContent;
 
+import javax.swing.JButton;
+
 /**
  * This class contains all constant variables such as windows width, height of window for main window and child window, 
  * titles, menu items names and image paths
@@ -15,6 +17,9 @@ public class ApplicationStatics {
 
 	public static final int CHILD_POPUP_WINDOW_WIDTH = (int) WINDOW_WIDTH - 100;
 	public static final int CHILD_POPUP_WINDOW_HEIGHT = (int) WINDOW_HEIGHT - 100;
+
+	// Game variables
+	public static JButton[][] MAP_BUTTONS;
 
 	// Window Titles
 	public static final String TITLE_MAP_EDITOR = "MAP EDITOR";

@@ -17,7 +17,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.app.towerDefense.bL.Map;
 import com.app.towerDefense.guisystem.MapEditor;
@@ -34,11 +33,10 @@ import com.app.towerDefense.utilities.FileStorage;
  *
  */
 public class JMenuBarComponent {
-	JPanel gameMapPanel;
-	JPanel gameTowerPanel;
+	private JPanel gameMapPanel;
 
-	BottomGamePanelView bottomGamePanel;
-	JPanelComponent panelComponent;
+	private BottomGamePanelView bottomGamePanel;
+	private JPanelComponent panelComponent;
 
 	// public JMenuBar getGameJMenuBar(final JFrame jframe, final JPanel
 	// _gameMapPanel, final JPanel _gameTowerPanel)
@@ -99,7 +97,7 @@ public class JMenuBarComponent {
 								new_jframe.getContentPane().add(gameMapPanel, BorderLayout.NORTH);
 								bottomGamePanel = (BottomGamePanelView) new JPanelComponent()
 										.getGameTowerPanel(new_jframe.getSize());
-								bottomGamePanel.setMapButtons(panelComponent.getButtons());
+		//						bottomGamePanel.setMapButtons(panelComponent.getButtons());
 								new_jframe.getContentPane().add(bottomGamePanel, BorderLayout.SOUTH);
 								new_jframe.setVisible(true);
 								panelComponent.setBottomGamePanelView(bottomGamePanel);
@@ -274,6 +272,22 @@ public class JMenuBarComponent {
 	 */
 	public void closeFrame(JFrame new_jframe) {
 		new_jframe.dispose();
+	}
+	
+	/**
+	 * This method returns the bottom panel
+	 * @return bottom game panel object
+	 */
+	public BottomGamePanelView getBottomPanel(){
+		return bottomGamePanel;
+	}
+	
+	/**
+	 * This method returns the top map panel
+	 * @return game map panel object
+	 */
+	public JPanelComponent getPanelComponent(){
+		return panelComponent;
 	}
 
 }
