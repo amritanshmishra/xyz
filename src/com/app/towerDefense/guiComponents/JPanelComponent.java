@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,6 +18,8 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import com.app.towerDefense.models.MapModel;
+import com.app.towerDefense.models.TowerModel;
+import com.app.towerDefense.models.TowerModel1;
 import com.app.towerDefense.staticContent.AppilicationEnums.E_MapEditorMode;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 import com.app.towerDefense.utilities.MiscellaneousHelper;
@@ -27,7 +31,7 @@ import com.app.towerDefense.utilities.MiscellaneousHelper;
  * @author Sajjad Ashraf
  * 
  */
-public class JPanelComponent {
+public class JPanelComponent implements Observer{
 
 	private BottomGamePanelView bottomGamePanel;
 
@@ -377,6 +381,49 @@ public class JPanelComponent {
 				System.out.println("Button Click Event Btn Name : "
 						+ btn.getName());
 
+				//-- ulan's code here
+				String[] tempStr = btn.getName().split(":");
+				int new_x = Integer.parseInt(tempStr[1]);
+				int new_y = Integer.parseInt(tempStr[2]);
+
+				TowerModel tempTM = new TowerModel1();
+				
+				System.out.println("x : "+new_x + " , y : "+ new_y);
+
+				ApplicationStatics.SET_TOWER_DESCR_VISIBLE = false;
+				bottomGamePanel.towerDescrPanel.updateTowerDscrPanel(tempTM);
+				
+				ApplicationStatics.CURRENT_SELECTED_TOWER = 4;
+				
+
+				if (ApplicationStatics.HAS_BOUGHT_TOWER) {
+					System.out.println("The Button " + btn.getName() + " is clicked");
+					if (!ApplicationStatics.PLAYERMODEL.towerModelArray.isEmpty()) {
+
+						// -- sets the tower coordinates
+						int arrSize = ApplicationStatics.PLAYERMODEL.towerModelArray.size();
+						ApplicationStatics.PLAYERMODEL.towerModelArray.get(arrSize - 1).setXY(new_x, new_y);
+						ApplicationStatics.HAS_BOUGHT_TOWER = false;
+						setMapButtonsToYellow();
+					} else {
+						System.out.println("Dont have towers");
+					}
+				} else {
+					if (!ApplicationStatics.PLAYERMODEL.towerModelArray.isEmpty()) {
+
+						for (int i = 0; i < ApplicationStatics.PLAYERMODEL.towerModelArray.size(); i++) {
+							tempTM = ApplicationStatics.PLAYERMODEL.towerModelArray.get(i);
+
+							if (new_x == tempTM.getX() && new_y == tempTM.getY()) {
+								System.out.println("HERE x=" + tempTM.getTowerName());
+								ApplicationStatics.SET_TOWER_DESCR_VISIBLE = true;
+								bottomGamePanel.towerDescrPanel.updateTowerDscrPanel(tempTM);
+							}
+						}
+					}
+				}
+				
+				
 			}
 		});
 	}
@@ -517,6 +564,82 @@ public class JPanelComponent {
 	 */
 	public E_MapEditorMode getMapEditorMode() {
 		return mapEditorMode;
+	}
+
+	/**
+	 * update method from observable PlayerModel class
+	 */
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		setMapButtonsToYellow();
+	}
+	
+	/**
+	 * This method sets the Buttons to Yellow on the map that are eligible for
+	 * tower placement
+	 * 
+	 * @param new_mapButtons
+	 *            the reference to our map buttons
+	 */
+	public void setMapButtonsToYellow() {
+
+		String stringMapCoord = "";
+		System.out.println("inside setMapButtonsToYellow "+ ApplicationStatics.HAS_BOUGHT_TOWER);
+
+		for (int i = 0; i < ApplicationStatics.MAP_BUTTONS.length; i++) {
+
+			for (int j = 0; j < ApplicationStatics.MAP_BUTTONS[i].length; j++) {
+				stringMapCoord = "" + (i) + ":" + j;
+				if (ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME.contains(stringMapCoord)) {
+
+					ApplicationStatics.MAP_BUTTONS[i][j].setEnabled(true);
+					if (ApplicationStatics.HAS_BOUGHT_TOWER) {
+						ApplicationStatics.MAP_BUTTONS[i][j].setIcon(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_ButtonYellow));
+						setTowersOnMap(i, j);
+					} else {
+						// -- sets all button icons to green scenery and later
+						int x = ApplicationStatics.MAP_BUTTONS[i][j].getWidth();
+						int y = ApplicationStatics.MAP_BUTTONS[i][j].getHeight();
+						ApplicationStatics.MAP_BUTTONS[i][j]
+								.setIcon(new ImageIcon(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_Scenery)
+										.getImage().getScaledInstance(x, y, java.awt.Image.SCALE_SMOOTH)));
+
+						setTowersOnMap(i, j);
+					}
+				} else { // -- disable buttons boundaries
+					ApplicationStatics.MAP_BUTTONS[i][j].setEnabled(!ApplicationStatics.HAS_BOUGHT_TOWER);
+		//			ApplicationStatics.MAP_BUTTONS[i][j].setDisabledIcon(new ImageIcon());
+				}
+			}
+		}
+	}
+	
+	
+	/**
+	 * This method sets icons on the map buttons where they have been placed by
+	 * player
+	 * 
+	 * @param new_mapButtons
+	 *            reference to our map button
+	 * @param new_i
+	 *            x coordinate of the button
+	 * @param new_j
+	 *            y coordinate of the button
+	 */
+	public void setTowersOnMap(int new_i, int new_j) {
+		for (int k = 0; k < ApplicationStatics.PLAYERMODEL.towerModelArray.size(); k++) {
+			int x = ApplicationStatics.PLAYERMODEL.towerModelArray.get(k).getX();
+			int y = ApplicationStatics.PLAYERMODEL.towerModelArray.get(k).getY();
+			if (new_i == x && new_j == y) {
+				if (ApplicationStatics.HAS_BOUGHT_TOWER) {
+					ApplicationStatics.MAP_BUTTONS[new_i][new_j].setEnabled(false);
+				} else {
+					ApplicationStatics.MAP_BUTTONS[new_i][new_j].setEnabled(true);
+				}
+				ApplicationStatics.MAP_BUTTONS[new_i][new_j].setIcon(ApplicationStatics.PLAYERMODEL.towerModelArray.get(k).getTowerImage());
+			}
+		}
 	}
 
 }

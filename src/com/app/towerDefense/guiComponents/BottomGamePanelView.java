@@ -5,8 +5,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import com.app.towerDefense.staticContent.ApplicationStatics;
 
 /**
  * 
@@ -26,8 +27,6 @@ public class BottomGamePanelView extends JPanel{
 	TowerShopPanel towerShopPanel;
 	GameInfoPanel infoPanel;
 	TowerDescriptionPanel towerDescrPanel;
-	private JButton[][] mapButtons;
-	public boolean hasBoughtTower;
 
 	/**
 	 * The constructor
@@ -38,10 +37,9 @@ public class BottomGamePanelView extends JPanel{
 	 *             height of the frame
 	 */
 	public BottomGamePanelView(int new_width, int new_height) {
+		
 		this.width = new_width;
 		this.height = new_height;
-
-		hasBoughtTower = false;
 		
 		// ---BOTTOM-GAME-PANEL-VIEW-- setting Dimensions and layout
 		this.setMinimumSize(new Dimension(width, height));
@@ -60,8 +58,11 @@ public class BottomGamePanelView extends JPanel{
 		
 		this.add(infoPanel, BorderLayout.WEST);
 		this.add(towerDescrPanel, BorderLayout.CENTER);
-		this.add(towerShopPanel, BorderLayout.EAST);
-
+		this.add(towerShopPanel.getPanel(), BorderLayout.EAST);
+		
+		// Link observers and observable objects
+		towerShopPanel.addObserver(towerDescrPanel);
+		ApplicationStatics.PLAYERMODEL.addObserver(infoPanel);
 	}
 // END
 }

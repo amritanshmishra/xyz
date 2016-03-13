@@ -107,6 +107,7 @@ public class JMenuBarComponent {
 								new_jframe.getContentPane().add(bottomGamePanel, BorderLayout.SOUTH);
 								new_jframe.setVisible(true);
 								panelComponent.setBottomGamePanelView(bottomGamePanel);
+								ApplicationStatics.PLAYERMODEL.addObserver(panelComponent);
 							} else {
 								JOptionPane.showMessageDialog(null, "In valid Map File.");
 							}

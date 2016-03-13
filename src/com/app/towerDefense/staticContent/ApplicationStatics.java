@@ -2,6 +2,9 @@ package com.app.towerDefense.staticContent;
 
 import javax.swing.JButton;
 
+import com.app.towerDefense.models.PlayerModel;
+import com.app.towerDefense.models.TowerModel;
+
 /**
  * This class contains all constant, Final and Static variables such as windows width, height of window for main window and child window, 
  * titles, menu items names and image paths
@@ -20,6 +23,11 @@ public class ApplicationStatics {
 
 	// Map variables	
 	public static JButton[][] MAP_BUTTONS;
+	public static boolean SET_TOWER_DESCR_VISIBLE = false;
+	public static int CURRENT_SELECTED_TOWER = 0;
+	public static TowerModel[] TOWER_MODELS = new TowerModel[4];
+	public static PlayerModel PLAYERMODEL;
+	public static boolean HAS_BOUGHT_TOWER = false;
 	/*
 	public static final int MAP_ENTRY_POINT=1;
 	public static final int MAP_EXIT_POINT=900;

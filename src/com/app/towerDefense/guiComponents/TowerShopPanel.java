@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -14,17 +15,15 @@ import com.app.towerDefense.models.TowerModel1;
 import com.app.towerDefense.models.TowerModel2;
 import com.app.towerDefense.models.TowerModel3;
 import com.app.towerDefense.models.TowerModel4;
+import com.app.towerDefense.staticContent.ApplicationStatics;
 /**
  * This class creates the view of the game shop panel
  * @author usbaitass
  *
  */
-public class TowerShopPanel extends JPanel implements ActionListener {
+public class TowerShopPanel extends Observable implements ActionListener {
 
-	private static final long serialVersionUID = -8703494596050702843L;
-
-	private TowerModel[] new_towerModel = new TowerModel[4];
-	private static int currentSelectedTower = 0;
+	JPanel panel;
 /**
  * Constructor
  * @param new_width recieves given width parameter
@@ -33,30 +32,32 @@ public class TowerShopPanel extends JPanel implements ActionListener {
 	public TowerShopPanel(int new_width, int new_height) {
 
 		// -----CREATING---Five--Towers---for---SHOP-------
-		new_towerModel[0] = (TowerModel) new TowerModel1();
-		new_towerModel[1] = (TowerModel) new TowerModel2();
-		new_towerModel[2] = (TowerModel) new TowerModel3();
-		new_towerModel[3] = (TowerModel) new TowerModel4();
+		ApplicationStatics.TOWER_MODELS[0] = (TowerModel) new TowerModel1();
+		ApplicationStatics.TOWER_MODELS[1] = (TowerModel) new TowerModel2();
+		ApplicationStatics.TOWER_MODELS[2] = (TowerModel) new TowerModel3();
+		ApplicationStatics.TOWER_MODELS[3] = (TowerModel) new TowerModel4();
+		
+		panel = new JPanel();
 
-		this.setMinimumSize(new Dimension(new_width, new_height));
-		this.setMaximumSize(new Dimension(new_width, new_height));
-		this.setPreferredSize(new Dimension(new_width, new_height));
-		this.setBackground(new Color(205, 183, 158)); // BROWN
+		panel.setMinimumSize(new Dimension(new_width, new_height));
+		panel.setMaximumSize(new Dimension(new_width, new_height));
+		panel.setPreferredSize(new Dimension(new_width, new_height));
+		panel.setBackground(new Color(205, 183, 158)); // BROWN
 
 		// ----TOWER---SHOP--PANEL------------------
 		// -- setting layout and creating buttons
 		GridLayout gridLayout = new GridLayout(2, 2);
-		this.setLayout(gridLayout);
+		panel.setLayout(gridLayout);
 
 		// -- creating 5 tower
 		JButton[] towerButton = new JButton[4];
 
 		for (int i = 0; i < 4; i++) {
-			towerButton[i] = new JButton(new_towerModel[i].getTowerImage());
-			towerButton[i].setText(Integer.toString(new_towerModel[i].getTowerCost()));
+			towerButton[i] = new JButton(ApplicationStatics.TOWER_MODELS[i].getTowerImage());
+			towerButton[i].setText(Integer.toString(ApplicationStatics.TOWER_MODELS[i].getTowerCost()));
 			towerButton[i].setName("tower" + Integer.toString(i));
 
-			this.add(towerButton[i]);
+			panel.add(towerButton[i]);
 			towerButton[i].addActionListener(this);
 		}
 
@@ -75,34 +76,25 @@ public class TowerShopPanel extends JPanel implements ActionListener {
 		String bName = button.getName();
 
 		int tempTid = Integer.parseInt(bName.substring(bName.length() - 1));
-		// currentSelectedTower = tempTid;
-
+	
 		String tempS = bName.substring(0, bName.length() - 1);
-
-	//	System.out.println(tempS);
 
 		if (tempS.compareTo("tower") == 0) {
 			System.out.println("Shop Panel: Tower id = " + tempTid);
 
-			TowerDescriptionPanel.setTowerDescrPanelVisible = false;
-
-			TowerDescriptionPanel.towerLabelDESCR.setIcon(button.getIcon());
-			
-			if (tempTid == 0) {
-				//updateTowerDscrPanel(new TowerModel1());
-				currentSelectedTower = 0;
-			} else if (tempTid == 1) {
-				//updateTowerDscrPanel(new TowerModel2());
-				currentSelectedTower = 1;
-			} else if (tempTid == 2) {
-				//updateTowerDscrPanel(new TowerModel3());
-				currentSelectedTower = 2;
-			} else if (tempTid == 3) {
-				//updateTowerDscrPanel(new TowerModel4());
-				currentSelectedTower = 3;
-			}
-	
+			ApplicationStatics.SET_TOWER_DESCR_VISIBLE = false;
+			ApplicationStatics.CURRENT_SELECTED_TOWER = tempTid;
+			setChanged();
+			notifyObservers();
 		}
+	}
+	
+	/**
+	 * This method returns the Tower shop panel
+	 * @return panel object
+	 */
+	public JPanel getPanel(){
+		return panel;
 	}
 	
 //END	

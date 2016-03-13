@@ -34,8 +34,6 @@ public class Game extends Object {
 	private JPanelComponent panelComponent;
 	private JFrame frame;
 	
-	private PlayerModel playerModel;
-	
 
 	/**
 	 * Constructor of the Game Class
@@ -45,6 +43,9 @@ public class Game extends Object {
 		width = ApplicationStatics.WINDOW_WIDTH;
 		height = ApplicationStatics.WINDOW_HEIGHT;
 		title = "Tower Defence Game by \"Team 5\".";
+		
+		ApplicationStatics.PLAYERMODEL = new PlayerModel();
+		
 		frame = new JFrame();
 		frame.setTitle(title);
 		frame.setPreferredSize(new Dimension(width, height));
@@ -61,8 +62,7 @@ public class Game extends Object {
 		frame.setVisible(true);
 
 		// -- creating new Player
-		playerModel = new PlayerModel();
-
+	
 		panelComponent = jMenuBarComponent.getPanelComponent();
 		bottomGamePanel = jMenuBarComponent.getBottomPanel();
 		
@@ -90,107 +90,6 @@ public class Game extends Object {
 	public void start() {
 		
 	}
-
-	/**
-	 * This method is for accessing the Tower model objects
-	 * 
-	 * @return Player Model object
-	 */
-	public PlayerModel getPlayerModel() {
-		return playerModel;
-	}
-	
-	
-	
-	//*******************--------------------------*********************************
-	
-	
-	
-	
-	
-	/**
-	 * This method sets the Buttons to Yellow on the map that are eligible for
-	 * tower placement
-	 * 
-	 * @param new_mapButtons
-	 *            the reference to our map buttons
-	 */
-	/*public void setMapButtonsToYellow(JButton[][] new_mapButtons) {
-
-		String stringMapCoord = "";
-
-		for (int i = 0; i < new_mapButtons.length; i++) {
-
-			for (int j = 0; j < new_mapButtons[i].length; j++) {
-				stringMapCoord = "" + (i) + ":" + j;
-				if (ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME.contains(stringMapCoord)) {
-
-					new_mapButtons[i][j].setEnabled(true);
-					if (hasBoughtTower) {
-						new_mapButtons[i][j].setIcon(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_ButtonYellow));
-						setTowersOnMap(mapButtons, i, j);
-					} else {
-						// -- sets all button icons to green scenery and later
-						int x = new_mapButtons[i][j].getWidth();
-						int y = new_mapButtons[i][j].getHeight();
-						new_mapButtons[i][j]
-								.setIcon(new ImageIcon(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_Scenery)
-										.getImage().getScaledInstance(x, y, java.awt.Image.SCALE_SMOOTH)));
-
-						setTowersOnMap(mapButtons, i, j);
-					}
-				} else { // -- disable buttons boundaries
-					new_mapButtons[i][j].setEnabled(!hasBoughtTower);
-				}
-			}
-		}
-	}*/
-
-	/**
-	 * This method sets icons on the map buttons where they have been placed by
-	 * player
-	 * 
-	 * @param new_mapButtons
-	 *            reference to our map button
-	 * @param new_i
-	 *            x coordinate of the button
-	 * @param new_j
-	 *            y coordinate of the button
-	 */
-	/*public void setTowersOnMap(JButton[][] new_mapButtons, int new_i, int new_j) {
-		for (int k = 0; k < playerModel.towerModelArray.size(); k++) {
-			int x = playerModel.towerModelArray.get(k).getX();
-			int y = playerModel.towerModelArray.get(k).getY();
-			if (new_i == x && new_j == y) {
-				if (hasBoughtTower) {
-					new_mapButtons[new_i][new_j].setEnabled(false);
-				} else {
-					new_mapButtons[new_i][new_j].setEnabled(true);
-				}
-				new_mapButtons[new_i][new_j].setIcon(playerModel.towerModelArray.get(k).getTowerImage());
-			}
-		}
-	}*/
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//************=================================================***********
 	
 
 	/**

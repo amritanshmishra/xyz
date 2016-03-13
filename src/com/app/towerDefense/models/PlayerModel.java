@@ -1,9 +1,12 @@
 package com.app.towerDefense.models;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import com.app.towerDefense.staticContent.ApplicationStatics;
 
 /**
  * 
@@ -13,7 +16,7 @@ import javax.swing.JOptionPane;
  *         hp, gameWave, player name and his Towers.
  * 
  */
-public class PlayerModel {
+public class PlayerModel extends Observable{
 
 	private int sunCurrency;
 	private int hpPlayer;
@@ -50,6 +53,7 @@ public class PlayerModel {
 		hpPlayer = new_hpPlayer;
 		gameWave = new_gameWave;
 		towerModelArray = new ArrayList<TowerModel>();
+		
 	}
 
 	/**
@@ -67,6 +71,8 @@ public class PlayerModel {
 	 */
 	public void addSunCurrency(int value) {
 		sunCurrency += value;
+		setChanged();
+		notifyObservers();
 	}
 
 	/**
@@ -77,6 +83,8 @@ public class PlayerModel {
 	 */
 	public void subSunCurrency(int value) {
 		sunCurrency -= value;
+		setChanged();
+		notifyObservers();
 	}
 
 	/**
@@ -112,7 +120,7 @@ public class PlayerModel {
 	 */
 	public TowerModel buyTower(int new_towerID) {
 		TowerModel tempTM = null;
-		;
+		
 		switch (new_towerID) {
 		case 0:
 			tempTM = new TowerModel1();
@@ -132,9 +140,11 @@ public class PlayerModel {
 		}
 		towerModelArray.add(tempTM);
 
+		ApplicationStatics.HAS_BOUGHT_TOWER = true;
 		subSunCurrency(tempTM.getTowerCost());
-
+		
 		System.out.println("Player bought Tower id = " + Integer.toString(new_towerID));
+
 		return tempTM;
 	}
 
