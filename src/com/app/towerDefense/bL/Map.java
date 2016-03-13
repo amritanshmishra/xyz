@@ -67,12 +67,10 @@ public class Map {
 		int j = entryPoint.y;
 		E_MapValidationDirecton dirUpDown = E_MapValidationDirecton.Initial;
 		E_MapValidationDirecton dirLeftRight = E_MapValidationDirecton.Initial;
-		boolean alternat = false;
 		int predictiveConnectedCellCount;
 		String routTrack=""+i+","+j+";";
 		while ((i >= 0 && i < mapHeight) || (j >= 0 && j < mapWidth)) {
-			predictiveConnectedCellCount=0;
-			alternat = false;			
+			predictiveConnectedCellCount=0;		
 			int cellValue = 0;
 			int connectedCellFound = 0;
 
@@ -83,19 +81,19 @@ public class Map {
 					dirUpDown = E_MapValidationDirecton.Up;
 				} else {
 					cellValue = new_map.getMapGridSelection()[i + 1][j];
-					if (cellValue == 1) {
+					if (cellValue == ApplicationStatics.MAP_PATH_POINT) {
 						i++;
 						mapPathCellCount++;
 						connectedCellFound++;
 						dirUpDown = E_MapValidationDirecton.Down;
 						
 						//Alternate Route Check						
-						if(i < mapHeight && 
+						if(i < mapHeight -1 && 
 						   new_map.getMapGridSelection()[i + 1][j]!= ApplicationStatics.MAP_Scenery_POINT)
 						{
 							predictiveConnectedCellCount++;
 						}
-						if(j < mapWidth && 
+						if(j < mapWidth -1 && 
 								   new_map.getMapGridSelection()[i][j+1]!= ApplicationStatics.MAP_Scenery_POINT)
 						{
 							predictiveConnectedCellCount++;
@@ -119,10 +117,9 @@ public class Map {
 						}
 						routTrack+=""+i+","+j+";";
 						
-					} else if (cellValue == 3) // Check if it is Exit point
+					} else if (cellValue == ApplicationStatics.MAP_EXIT_POINT) // Check if it is Exit point
 					{
 						dirUpDown = E_MapValidationDirecton.Down;
-						//routTrack+=""+i+","+j+";";
 						if (mapPathCellCount <= 2) {
 							mapPathCellCount++;
 							connectedCellFound++;
@@ -150,7 +147,7 @@ public class Map {
 					dirUpDown = E_MapValidationDirecton.Down;
 				} else {
 					cellValue = new_map.getMapGridSelection()[i - 1][j];
-					if (cellValue == 1) {
+					if (cellValue == ApplicationStatics.MAP_PATH_POINT) {
 						i--;
 						mapPathCellCount++;
 						connectedCellFound++;
@@ -162,7 +159,7 @@ public class Map {
 						{
 							predictiveConnectedCellCount++;
 						}
-						if(j < mapWidth && 
+						if(j < mapWidth -1 && 
 								   new_map.getMapGridSelection()[i][j+1]!= ApplicationStatics.MAP_Scenery_POINT)
 						{
 							predictiveConnectedCellCount++;
@@ -185,8 +182,7 @@ public class Map {
 							predictiveConnectedCellCount=0;
 						}
 						routTrack+=""+i+","+j+";";
-					} else if (cellValue == 3) {
-						//routTrack+=""+i+","+j+";";						
+					} else if (cellValue == ApplicationStatics.MAP_EXIT_POINT) {		
 						dirUpDown = E_MapValidationDirecton.Up;
 						if (mapPathCellCount <= 2) {
 							mapPathCellCount++;
@@ -216,19 +212,19 @@ public class Map {
 					dirLeftRight = E_MapValidationDirecton.Right;
 				} else {
 					cellValue = new_map.getMapGridSelection()[i][j + 1];
-					if (cellValue == 1) {
+					if (cellValue == ApplicationStatics.MAP_PATH_POINT) {
 						j++;
 						mapPathCellCount++;
 						connectedCellFound++;
 						dirLeftRight = E_MapValidationDirecton.Left;
 						
 						//Alternate Route Check	
-						if(j < mapWidth && 
+						if(j < mapWidth -1 && 
 								   new_map.getMapGridSelection()[i][j+1]!= ApplicationStatics.MAP_Scenery_POINT)
 						{
 							predictiveConnectedCellCount++;
 						}
-						if(i < mapHeight&& 
+						if(i < mapHeight -1 && 
 								   new_map.getMapGridSelection()[i+1][j]!= ApplicationStatics.MAP_Scenery_POINT)
 						
 						{
@@ -251,9 +247,8 @@ public class Map {
 						}
 						routTrack+=""+i+","+j+";";
 						
-					} else if (cellValue == 3) // Check if it is Exit point
+					} else if (cellValue == ApplicationStatics.MAP_EXIT_POINT) // Check if it is Exit point
 					{
-						//routTrack+=""+i+","+j+";";
 						dirLeftRight = E_MapValidationDirecton.Left;
 						if (mapPathCellCount <= 2) {
 							mapPathCellCount++;
@@ -283,7 +278,7 @@ public class Map {
 					dirLeftRight = E_MapValidationDirecton.Left;
 				} else {
 					cellValue = new_map.getMapGridSelection()[i][j - 1];
-					if (cellValue == 1) {
+					if (cellValue == ApplicationStatics.MAP_PATH_POINT) {
 						j--;
 						mapPathCellCount++;
 						connectedCellFound++;
@@ -295,7 +290,7 @@ public class Map {
 						{
 							predictiveConnectedCellCount++;
 						}
-						if(i < mapHeight&& 
+						if(i < mapHeight -1 && 
 								   new_map.getMapGridSelection()[i+1][j]!= ApplicationStatics.MAP_Scenery_POINT)
 						
 						{
@@ -317,8 +312,7 @@ public class Map {
 							predictiveConnectedCellCount=0;
 						}
 						routTrack+=""+i+","+j+";";
-					} else if (cellValue == 3) {
-						//routTrack+=""+i+","+j+";";
+					} else if (cellValue == ApplicationStatics.MAP_EXIT_POINT) {
 						dirLeftRight = E_MapValidationDirecton.Right;
 						if (mapPathCellCount <= 2) {
 							mapPathCellCount++;
@@ -363,7 +357,7 @@ public class Map {
 		for (int i = 0; i < mapHeight; i++) {
 			for (int j = 0; j < mapWidth; j++) {
 				value = new_map.getMapGridSelection()[i][j];
-				if( value== 1)
+				if( value== ApplicationStatics.MAP_PATH_POINT)
 				{
 					if(!routTrack.contains(""+i+","+j+";")){
 						return false; 
