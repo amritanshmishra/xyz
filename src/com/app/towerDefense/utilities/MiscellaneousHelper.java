@@ -3,7 +3,8 @@ package com.app.towerDefense.utilities;
 import org.apache.commons.codec.binary.Base64;
 
 /**
- * this class is a miscellaneous helper class
+ * this class is a miscellaneous helper class. It contains some extra
+ * frequently used Function which is mostly used indepentently
  * 
  * @author Sajjad Ashraf
  *

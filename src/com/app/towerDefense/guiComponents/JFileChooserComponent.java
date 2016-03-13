@@ -19,13 +19,15 @@ public class JFileChooserComponent {
 	 * The Constructor
 	 * 
 	 * @param new_fileChooserMode
-	 *            the mode of a file open
+	 *            the mode of a file open and on the base of this argument it behave accordingly.
 	 * @return a file
 	 */
-	public JFileChooser getJFileChooser(E_JFileChooserrMode new_fileChooserMode) {
-		JFileChooser fileChooser = new JFileChooser();
+	private JFileChooser fileChooser;
+	
+	public JFileChooser getJFileChooser(E_JFileChooserMode new_fileChooserMode) {
+		fileChooser = new JFileChooser();
 		fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-		if (new_fileChooserMode == E_JFileChooserrMode.Open) {
+		if (new_fileChooserMode == E_JFileChooserMode.Open) {
 			fileChooser.setDialogTitle("Tower Defense Select .tdm file");
 		} else {
 			fileChooser.setDialogTitle("Tower Defence Map Save");
@@ -36,4 +38,13 @@ public class JFileChooserComponent {
 
 		return fileChooser;
 	}
+
+	/**
+	 * @return the fileChooser
+	 */
+	public JFileChooser getFileChooser() {
+		return fileChooser;
+	}
+	
+	
 }

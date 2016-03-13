@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 import com.app.towerDefense.bL.Map;
 import com.app.towerDefense.guisystem.MapEditor;
 import com.app.towerDefense.models.MapModel;
-import com.app.towerDefense.staticContent.AppilicationEnums.E_JFileChooserrMode;
+import com.app.towerDefense.staticContent.AppilicationEnums.E_JFileChooserMode;
 import com.app.towerDefense.staticContent.AppilicationEnums.E_MapEditorMode;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 import com.app.towerDefense.utilities.FileStorage;
@@ -29,7 +29,7 @@ import com.app.towerDefense.utilities.FileStorage;
 /**
  * This class handles all menu bar component of the application
  * 
- * @author Sajjad
+ * @author Sajjad Ashraf
  *
  */
 public class JMenuBarComponent {
@@ -38,18 +38,19 @@ public class JMenuBarComponent {
 	private BottomGamePanelView bottomGamePanel;
 	private JPanelComponent panelComponent;
 
-	// public JMenuBar getGameJMenuBar(final JFrame jframe, final JPanel
-	// _gameMapPanel, final JPanel _gameTowerPanel)
+	/**
+	 * this Function Implement the Menu bar for Gmae Main Window
+	 * 
+	 * @param new_jframe as JFrame
+	 * @return JMenuBar
+	 */
 	public JMenuBar getGameJMenuBar(final JFrame new_jframe) {
 
-		// final JLabel backGround=new JLabel(new
-		// ImageIcon("images/gameBk.jpg"));
+		//Set Background Image
 		final JLabel backGround = new JLabel(
 				new ImageIcon(((new ImageIcon("images/gameBk.png").getImage().getScaledInstance(new_jframe.getSize().width,
 						(int) ((int) new_jframe.getSize().height - 30), java.awt.Image.SCALE_SMOOTH)))));
 		new_jframe.add(backGround);
-		// gameMapPanel=_gameMapPanel;
-		// gameTowerPanel=_gameTowerPanel;
 
 		JMenuBar menuBar = new JMenuBar();
 
@@ -71,7 +72,7 @@ public class JMenuBarComponent {
 		menuHelp.add(menuItemAbout);
 
 		/**
-		 * This class handle the menu Item action
+		 * This class handle the menu Item action on click action
 		 * 
 		 * @author Sajjad
 		 *
@@ -81,7 +82,7 @@ public class JMenuBarComponent {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource().equals(menuItemPlay)) {
-					JFileChooser fileChooser = new JFileChooserComponent().getJFileChooser(E_JFileChooserrMode.Open);
+					JFileChooser fileChooser = new JFileChooserComponent().getJFileChooser(E_JFileChooserMode.Open);
 					int result = fileChooser.showOpenDialog(new_jframe);
 					if (result == JFileChooser.APPROVE_OPTION) {
 						File file = fileChooser.getSelectedFile();
@@ -178,7 +179,7 @@ public class JMenuBarComponent {
 					}
 
 				} else if (e.getSource().equals(menuItemOpenMap)) {
-					JFileChooser fileChooser = new JFileChooserComponent().getJFileChooser(E_JFileChooserrMode.Open);
+					JFileChooser fileChooser = new JFileChooserComponent().getJFileChooser(E_JFileChooserMode.Open);
 					int result = fileChooser.showOpenDialog(new_jframe);
 					if (result == JFileChooser.APPROVE_OPTION) {
 						File file = fileChooser.getSelectedFile();
@@ -217,10 +218,10 @@ public class JMenuBarComponent {
 	/**
 	 * This method gets the Map editor menu bar
 	 * 
-	 * @param new_mapModel MapModel object is passed to the getMapEditorJmenuBar
+	 * @param new_mapModel type MapModel object is passed to the getMapEditorJmenuBar
 	 * @param new_jframe
-	 *            the frame of the application
-	 * @return the menu bar
+	 *            type JFrame the frame of the application
+	 * @return the menu bar type JMenuBar
 	 */
 	public JMenuBar getMapEditorJMenuBar(final MapModel new_mapModel, final JFrame new_jframe) {
 		JMenuBar menuBar = new JMenuBar();
@@ -241,7 +242,7 @@ public class JMenuBarComponent {
 						JOptionPane.showMessageDialog(null, MapValidationStatus);
 					else {
 						JFileChooser fileChooser = new JFileChooserComponent()
-								.getJFileChooser(E_JFileChooserrMode.Save);
+								.getJFileChooser(E_JFileChooserMode.Save);
 						int result = fileChooser.showSaveDialog(null);
 						if (result == JFileChooser.APPROVE_OPTION) {
 							File file = fileChooser.getSelectedFile();

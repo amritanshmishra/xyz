@@ -3,10 +3,10 @@ package com.app.towerDefense.staticContent;
 import javax.swing.JButton;
 
 /**
- * This class contains all constant variables such as windows width, height of window for main window and child window, 
+ * This class contains all constant, Final and Static variables such as windows width, height of window for main window and child window, 
  * titles, menu items names and image paths
  * 
- * @author George
+ * @author Sajjad Ashraf
  *
  */
 public class ApplicationStatics {

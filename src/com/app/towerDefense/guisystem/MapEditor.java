@@ -14,7 +14,7 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
 /**
  * This is the map editor class
  * 
- * @author Sajjad
+* @author Sajjad Ashraf
  *
  */
 public class MapEditor extends JFrame {
