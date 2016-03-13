@@ -3,6 +3,7 @@ package com.app.towerDefense.bL;
 import java.awt.Point;
 
 import com.app.towerDefense.models.MapModel;
+import com.app.towerDefense.staticContent.ApplicationStatics;
 import com.app.towerDefense.staticContent.AppilicationEnums.*;
 
 /**
@@ -66,8 +67,12 @@ public class Map {
 		int j = entryPoint.y;
 		E_MapValidationDirecton dirUpDown = E_MapValidationDirecton.Initial;
 		E_MapValidationDirecton dirLeftRight = E_MapValidationDirecton.Initial;
+		boolean alternat = false;
+		int predictiveConnectedCellCount;
+		String routTrack=""+i+","+j+";";
 		while ((i >= 0 && i < mapHeight) || (j >= 0 && j < mapWidth)) {
-
+			predictiveConnectedCellCount=0;
+			alternat = false;			
 			int cellValue = 0;
 			int connectedCellFound = 0;
 
@@ -83,9 +88,41 @@ public class Map {
 						mapPathCellCount++;
 						connectedCellFound++;
 						dirUpDown = E_MapValidationDirecton.Down;
+						
+						//Alternate Route Check						
+						if(i < mapHeight && 
+						   new_map.getMapGridSelection()[i + 1][j]!= ApplicationStatics.MAP_Scenery_POINT)
+						{
+							predictiveConnectedCellCount++;
+						}
+						if(j < mapWidth && 
+								   new_map.getMapGridSelection()[i][j+1]!= ApplicationStatics.MAP_Scenery_POINT)
+						{
+							predictiveConnectedCellCount++;
+						}
+						if(j > 0&& 
+								   new_map.getMapGridSelection()[i][j-1]!= ApplicationStatics.MAP_Scenery_POINT)
+						
+						{
+							predictiveConnectedCellCount++;
+						}
+						
+						if(predictiveConnectedCellCount > 1)
+						{
+							status = "Error:Cells:" + mapPathCellCount
+									+ ":Map has Alternate Path.";
+							break;
+						}
+						else
+						{
+							predictiveConnectedCellCount=0;
+						}
+						routTrack+=""+i+","+j+";";
+						
 					} else if (cellValue == 3) // Check if it is Exit point
 					{
 						dirUpDown = E_MapValidationDirecton.Down;
+						//routTrack+=""+i+","+j+";";
 						if (mapPathCellCount <= 2) {
 							mapPathCellCount++;
 							connectedCellFound++;
@@ -97,7 +134,11 @@ public class Map {
 							connectedCellFound++;
 							status = "Success:Cells:" + mapPathCellCount + "";
 							break;
-						}
+						}						
+					}
+					else
+					{
+						dirUpDown = E_MapValidationDirecton.Initial;
 					}
 				}
 
@@ -114,7 +155,38 @@ public class Map {
 						mapPathCellCount++;
 						connectedCellFound++;
 						dirUpDown = E_MapValidationDirecton.Up;
+						
+						//Alternate Route Check						
+						if(i > 0 && 
+						   new_map.getMapGridSelection()[i - 1][j]!= ApplicationStatics.MAP_Scenery_POINT)
+						{
+							predictiveConnectedCellCount++;
+						}
+						if(j < mapWidth && 
+								   new_map.getMapGridSelection()[i][j+1]!= ApplicationStatics.MAP_Scenery_POINT)
+						{
+							predictiveConnectedCellCount++;
+						}
+						if(j > 0&& 
+								   new_map.getMapGridSelection()[i][j-1]!= ApplicationStatics.MAP_Scenery_POINT)
+						
+						{
+							predictiveConnectedCellCount++;
+						}
+						
+						if(predictiveConnectedCellCount > 1)
+						{
+							status = "Error:Cells:" + mapPathCellCount
+									+ ":Map has Alternate Path.";
+							break;
+						}
+						else
+						{
+							predictiveConnectedCellCount=0;
+						}
+						routTrack+=""+i+","+j+";";
 					} else if (cellValue == 3) {
+						//routTrack+=""+i+","+j+";";						
 						dirUpDown = E_MapValidationDirecton.Up;
 						if (mapPathCellCount <= 2) {
 							mapPathCellCount++;
@@ -128,6 +200,10 @@ public class Map {
 							status = "Success:Cells:" + mapPathCellCount + "";
 							break;
 						}
+					}
+					else
+					{
+						dirUpDown = E_MapValidationDirecton.Initial;
 					}
 				}
 
@@ -145,8 +221,39 @@ public class Map {
 						mapPathCellCount++;
 						connectedCellFound++;
 						dirLeftRight = E_MapValidationDirecton.Left;
+						
+						//Alternate Route Check	
+						if(j < mapWidth && 
+								   new_map.getMapGridSelection()[i][j+1]!= ApplicationStatics.MAP_Scenery_POINT)
+						{
+							predictiveConnectedCellCount++;
+						}
+						if(i < mapHeight&& 
+								   new_map.getMapGridSelection()[i+1][j]!= ApplicationStatics.MAP_Scenery_POINT)
+						
+						{
+							predictiveConnectedCellCount++;
+						}
+						if(i > 0 && 
+						   new_map.getMapGridSelection()[i - 1][j]!= ApplicationStatics.MAP_Scenery_POINT)
+						{
+							predictiveConnectedCellCount++;
+						}	
+						if(predictiveConnectedCellCount > 1)
+						{
+							status = "Error:Cells:" + mapPathCellCount
+									+ ":Map has Alternate Path.";
+							break;
+						}
+						else
+						{
+							predictiveConnectedCellCount=0;
+						}
+						routTrack+=""+i+","+j+";";
+						
 					} else if (cellValue == 3) // Check if it is Exit point
 					{
+						//routTrack+=""+i+","+j+";";
 						dirLeftRight = E_MapValidationDirecton.Left;
 						if (mapPathCellCount <= 2) {
 							mapPathCellCount++;
@@ -160,6 +267,10 @@ public class Map {
 							status = "Success:Cells:" + mapPathCellCount + "";
 							break;
 						}
+					}
+					else
+					{
+						dirLeftRight = E_MapValidationDirecton.Initial;
 					}
 				}
 
@@ -177,7 +288,37 @@ public class Map {
 						mapPathCellCount++;
 						connectedCellFound++;
 						dirLeftRight = E_MapValidationDirecton.Right;
+						
+						//Alternate Route Check	
+						if(j >= 0 && 
+								   new_map.getMapGridSelection()[i][j-1]!= ApplicationStatics.MAP_Scenery_POINT)
+						{
+							predictiveConnectedCellCount++;
+						}
+						if(i < mapHeight&& 
+								   new_map.getMapGridSelection()[i+1][j]!= ApplicationStatics.MAP_Scenery_POINT)
+						
+						{
+							predictiveConnectedCellCount++;
+						}
+						if(i > 0 && 
+						   new_map.getMapGridSelection()[i - 1][j]!= ApplicationStatics.MAP_Scenery_POINT)
+						{
+							predictiveConnectedCellCount++;
+						}	
+						if(predictiveConnectedCellCount > 1)
+						{
+							status = "Error:Cells:" + mapPathCellCount
+									+ ":Map has Alternate Path.";
+							break;
+						}
+						else
+						{
+							predictiveConnectedCellCount=0;
+						}
+						routTrack+=""+i+","+j+";";
 					} else if (cellValue == 3) {
+						//routTrack+=""+i+","+j+";";
 						dirLeftRight = E_MapValidationDirecton.Right;
 						if (mapPathCellCount <= 2) {
 							mapPathCellCount++;
@@ -192,6 +333,10 @@ public class Map {
 							break;
 						}
 					}
+					else
+					{
+						dirLeftRight = E_MapValidationDirecton.Initial;
+					}
 				}
 			}
 			if (connectedCellFound == 0) {
@@ -200,7 +345,32 @@ public class Map {
 			}
 
 		}
-
+		if(status.contains("Success")){
+			if(!checkIndependentSelectedCells(new_map,routTrack))
+			{
+				status="Error:Cells" + mapPathCellCount + ":Map has some Independant or non connected cells";
+			}
+		}
 		return status;
+	}
+	
+	private boolean checkIndependentSelectedCells(MapModel new_map, String routTrack)
+	{
+		boolean result=true;
+		int mapWidth = new_map.getMapWidth();
+		int mapHeight = new_map.getMapHeight();
+		int value;
+		for (int i = 0; i < mapHeight; i++) {
+			for (int j = 0; j < mapWidth; j++) {
+				value = new_map.getMapGridSelection()[i][j];
+				if( value== 1)
+				{
+					if(!routTrack.contains(""+i+","+j+";")){
+						return false; 
+					}
+				}
+			}
+		}		
+		return result;
 	}
 }

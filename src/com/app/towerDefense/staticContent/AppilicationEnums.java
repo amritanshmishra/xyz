@@ -8,7 +8,7 @@ package com.app.towerDefense.staticContent;
 public class AppilicationEnums {
 	
 	public enum E_MapEditorMode {
-	    Create,Open
+	    Create,Open,Play
 	}
 	
 	public enum E_MapValidationDirecton {

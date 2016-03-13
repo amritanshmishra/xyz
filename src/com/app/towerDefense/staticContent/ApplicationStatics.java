@@ -18,9 +18,21 @@ public class ApplicationStatics {
 	public static final int CHILD_POPUP_WINDOW_WIDTH = (int) WINDOW_WIDTH - 100;
 	public static final int CHILD_POPUP_WINDOW_HEIGHT = (int) WINDOW_HEIGHT - 100;
 
-	// Game variables
+	// Map variables	
 	public static JButton[][] MAP_BUTTONS;
-
+	/*
+	public static final int MAP_ENTRY_POINT=1;
+	public static final int MAP_EXIT_POINT=900;
+	public static final int MAP_PATH_POINT=1;
+	public static final int MAP_Scenery_POINT=0;
+	*/
+	
+	public static final int MAP_ENTRY_POINT=2;
+	public static final int MAP_EXIT_POINT=3;
+	public static final int MAP_PATH_POINT=1;
+	public static final int MAP_Scenery_POINT=0;
+	
+	
 	// Window Titles
 	public static final String TITLE_MAP_EDITOR = "MAP EDITOR";
 	public static final String MAP_MODE_CREATE = "(CREATE)";

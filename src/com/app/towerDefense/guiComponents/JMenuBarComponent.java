@@ -91,8 +91,13 @@ public class JMenuBarComponent {
 								new_jframe.getContentPane().removeAll();
 								new_jframe.setLayout(new BorderLayout());
 								panelComponent = new JPanelComponent();
+								/*
 								gameMapPanel = (panelComponent).getMapPlayGridPanel(mapModel, new_jframe.getSize(),
 										E_MapEditorMode.Open);
+								*/
+								gameMapPanel = (panelComponent).getMapEditorGridPanel(mapModel, new_jframe.getSize(),
+										E_MapEditorMode.Play);
+								
 								// jframe.add(gameMapPanel);
 								new_jframe.getContentPane().add(gameMapPanel, BorderLayout.NORTH);
 								bottomGamePanel = (BottomGamePanelView) new JPanelComponent()
