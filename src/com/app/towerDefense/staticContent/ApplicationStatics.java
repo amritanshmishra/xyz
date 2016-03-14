@@ -18,7 +18,7 @@ public class ApplicationStatics {
 	// Game Statistics
 	public static final int WINDOW_WIDTH = 840;
 	public static final int WINDOW_HEIGHT = (int) WINDOW_WIDTH / 12 * 9;
-
+	
 	public static final int CHILD_POPUP_WINDOW_WIDTH = (int) WINDOW_WIDTH - 100;
 	public static final int CHILD_POPUP_WINDOW_HEIGHT = (int) WINDOW_HEIGHT - 100;
 

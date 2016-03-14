@@ -109,31 +109,31 @@ public class Game extends Canvas implements Runnable { // change 1
 	public void run() {
 		// TODO Auto-generated method stub
 		long lastTime = System.nanoTime();
-		double amountOfTicks = 60.0;
+		double amountOfTicks = 20.0; // Game speed
 		double ns = 1000000000 / amountOfTicks;
 		double delta = 0;
 		long timer = System.currentTimeMillis();
 		int frames = 0;
-		while (running) {
+		while(running){
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 			lastTime = now;
-			while (delta >= 1) {
-	//			tick();
+			while(delta >= 1){
+				tick();
 				delta--;
 			}
-			if (running) {
+			if(running){
 				render();
 			}
 			frames++;
-
-			if (System.currentTimeMillis() - timer > 1000) {
+				
+			if(System.currentTimeMillis() - timer > 1000){
 				timer += 1000;
-			//	System.out.println("FPS: " + frames);
+	//			System.out.println("FPS: " + frames);
 				frames = 0;
 			}
 		}
-		stop();
+		stop();	
 	}
 
 	/**
@@ -158,12 +158,22 @@ public class Game extends Canvas implements Runnable { // change 1
 		}
 	}
 
+	int count = 0;
 	/**
-	 * 
+	 * Drawing on map panel
 	 */
-	/*private void tick() {// change 1
-		System.out.println("inside tick()");
-	}*/
+	private void tick() {// change 1
+		//
+		try{
+		if((panelComponent = jMenuBarComponent.getPanelComponent()) != null){
+			panelComponent.mapPanel.incY();
+			panelComponent.mapPanel.revalidate();
+			panelComponent.mapPanel.repaint();
+	
+		}
+		}catch(Exception e){}
+		
+	}
 
 	/**
 	 *  DRAW function

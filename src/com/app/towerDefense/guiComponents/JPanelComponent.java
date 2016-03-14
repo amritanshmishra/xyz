@@ -42,6 +42,7 @@ public class JPanelComponent implements Observer{
 	private JButton jButtonEntry;
 	private JButton jButtonExit;
 	public JButton jButtonTower;
+	public MapPanel mapPanel; //CHANGE Ulan
 
 	private E_MapEditorMode mapEditorMode;
 
@@ -119,6 +120,8 @@ public class JPanelComponent implements Observer{
 					mapModel.getMapWidth(), 0, 0);
 			panel.setLayout(gridLayout);
 
+			mapPanel = (MapPanel)panel; //CHANGE Ulan
+			
 			if (parentDimension != null) {
 				panel.setPreferredSize(new Dimension(parentDimension.width,
 						parentDimension.height * 3 / 4 - 10));

@@ -9,13 +9,26 @@ public class MapPanel extends JPanel{
 
 	private static final long serialVersionUID = -9082005090002375868L;
 	
+	int x = 0;
+	int y = 0;
+	Graphics g;
+	public MapPanel(){
+//		this.setBackground(new Color(205, 183, 158));
+	}
 	@Override
 	protected void paintComponent(Graphics g){
 		
-		System.out.println("inside paintComponent in MapPanel Class");
+		System.out.println("inside paintComponent in MapPanel Class x : "+x+" , y : "+y);
+		this.g = g;
 		super.paintComponent(g);
 		g.setColor(Color.RED);  
-        g.fillRect(0,10,40,40);
+        g.fillRect(x,y,40,40);
+    //  g.dispose();
 		
 	}
+	
+	public void incY(){
+		y++;
+	}
+	
 }
