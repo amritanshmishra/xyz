@@ -114,7 +114,7 @@ public class JPanelComponent implements Observer{
 		// In case 'Play' Increase Panel size According to the Play Game Window
 		if (E_MapEditorMode.Play == mapEditorMode) {
 
-			panel = new JPanel();
+			panel = new MapPanel();
 			gridLayout = new GridLayout(mapModel.getMapHeight(),
 					mapModel.getMapWidth(), 0, 0);
 			panel.setLayout(gridLayout);
@@ -193,7 +193,7 @@ public class JPanelComponent implements Observer{
 					if (mapModel.mapGridSelection[i][j] == ApplicationStatics.MAP_PATH_POINT) {
 						// b[i][j].setBackground(Color.green);
 
-						mapButtonsGrid2DArray[i][j]
+				/*		mapButtonsGrid2DArray[i][j]
 								.setIcon(new ImageIcon(
 										((new ImageIcon(
 												ApplicationStatics.IMAGE_PATH_MAP_ROUTE)
@@ -207,7 +207,10 @@ public class JPanelComponent implements Observer{
 														/ mapModel
 																.getMapHeight(),
 												java.awt.Image.SCALE_SMOOTH)))));
-
+		*/
+						mapButtonsGrid2DArray[i][j].setVisible(false);
+						
+						
 						// Click event
 						addButtonClickEvents(mapButtonsGrid2DArray[i][j],
 								mapModel);
@@ -331,7 +334,8 @@ public class JPanelComponent implements Observer{
 					+ ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME);
 			ApplicationStatics.MAP_BUTTONS = mapButtonsGrid2DArray;
 		}
-
+		
+		
 		return panel;
 	}
 
