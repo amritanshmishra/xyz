@@ -189,7 +189,8 @@ public class TowerDescriptionPanel extends JPanel implements Observer, ActionLis
 					System.out.println("Tower is upgraded successfully.");
 					ApplicationStatics.PLAYERMODEL.subSunCurrency(tempTM.getTowerUpgradeCost());
 					JFrame frame = new JFrame();
-					JOptionPane.showMessageDialog(frame, "You upgraded the tower successfully -"+ tempTM.getTowerUpgradeCost()+" suns.");
+					JOptionPane.showMessageDialog(frame,
+							"You upgraded the tower successfully -" + tempTM.getTowerUpgradeCost() + " suns.");
 
 				} else {
 					JFrame frame = new JFrame();
@@ -291,6 +292,10 @@ public class TowerDescriptionPanel extends JPanel implements Observer, ActionLis
 
 	}
 
+	/**
+	 * updates the tower description panel when notified from observable
+	 * Playermodel or towerShopPanel
+	 */
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
@@ -299,13 +304,15 @@ public class TowerDescriptionPanel extends JPanel implements Observer, ActionLis
 
 		if (a < 4) {
 			updateTowerDscrPanel(ApplicationStatics.TOWER_MODELS[a]);
-		}else{
+		} else {
 			System.out.println("inside else of update() TOWER DESCR PANEL");
 			updateTowerDscrPanel(tempTM);
 		}
 
 	}
-
+/**
+ * override functions of Observer Class
+ */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

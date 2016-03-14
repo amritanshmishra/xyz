@@ -2,6 +2,7 @@ package com.app.towerDefense.guiComponents;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -615,6 +616,7 @@ public class JPanelComponent implements Observer{
 				}
 			}
 		}
+		
 	}
 	
 	
@@ -642,6 +644,9 @@ public class JPanelComponent implements Observer{
 				ApplicationStatics.MAP_BUTTONS[new_i][new_j].setIcon(ApplicationStatics.PLAYERMODEL.towerModelArray.get(k).getTowerImage());
 			}
 		}
+		
+		
+		
 	}
 
 }
