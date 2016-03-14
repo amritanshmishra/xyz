@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import com.app.towerDefense.models.Tower;
 import com.app.towerDefense.models.TowerModel;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 
@@ -38,7 +39,7 @@ public class TowerDescriptionPanel extends JPanel implements Observer, ActionLis
 	private JButton upgradeTowerButton;
 	private JButton sellBuyTowerButton;
 	private JButton strategyTowerButton;
-	private TowerModel tempTM;
+	private Tower tempTM;
 
 	/**
 	 * Constructor
@@ -124,7 +125,7 @@ public class TowerDescriptionPanel extends JPanel implements Observer, ActionLis
 
 					if (currentBalance >= tempTCost) { // -- true if BUY is
 														// success
-						TowerModel tempTM = ApplicationStatics.PLAYERMODEL
+						Tower tempTM = ApplicationStatics.PLAYERMODEL
 								.buyTower(ApplicationStatics.CURRENT_SELECTED_TOWER);
 						if (tempTM != null) {
 
@@ -233,30 +234,30 @@ public class TowerDescriptionPanel extends JPanel implements Observer, ActionLis
 	 * @param new_towerID
 	 *            tower Id
 	 */
-	public void updateTowerDscrPanel(TowerModel new_towerModel) {
+	public void updateTowerDscrPanel(Tower tOWER_MODELS) {
 
-		tempTM = new_towerModel;
+		tempTM = tOWER_MODELS;
 
-		labelStatsTower[1].setText(Integer.toString(new_towerModel.getTowerlevel()));
-		labelStatsTower[4].setText(Integer.toString(new_towerModel.getTowerPower()));
-		labelStatsTower[7].setText(Integer.toString(new_towerModel.getTowerRange()));
-		labelStatsTower[10].setText(Integer.toString(new_towerModel.getTowerFireRate()));
+		labelStatsTower[1].setText(Integer.toString(tOWER_MODELS.getTowerlevel()));
+		labelStatsTower[4].setText(Integer.toString(tOWER_MODELS.getTowerPower()));
+		labelStatsTower[7].setText(Integer.toString(tOWER_MODELS.getTowerRange()));
+		labelStatsTower[10].setText(Integer.toString(tOWER_MODELS.getTowerFireRate()));
 		labelStatsTower[13].setText(Integer.toString(0));
-		labelStatsTower[16].setText(Integer.toString(new_towerModel.getTowerCost()));
+		labelStatsTower[16].setText(Integer.toString(tOWER_MODELS.getTowerCost()));
 
-		towerNameLabel.setText(new_towerModel.getTowerName());
-		towerLabelDESCR.setIcon(new_towerModel.getTowerImage());
+		towerNameLabel.setText(tOWER_MODELS.getTowerName());
+		towerLabelDESCR.setIcon(tOWER_MODELS.getTowerImage());
 
 		// currentSelectedTowerName = "tower" + Integer.toString(new_towerID);
 		// -- checks if tower is selected from the shop or the map
 
 		if (ApplicationStatics.SET_TOWER_DESCR_VISIBLE) {
-			labelStatsTower[2].setText(Integer.toString(new_towerModel.getTowerlevel() + 1));
-			labelStatsTower[5].setText(Integer.toString(new_towerModel.getTowerPower() * 2));
-			labelStatsTower[8].setText(Integer.toString(new_towerModel.getTowerRange() + 1));
-			labelStatsTower[11].setText(Integer.toString(new_towerModel.getTowerFireRate() + 2));
+			labelStatsTower[2].setText(Integer.toString(tOWER_MODELS.getTowerlevel() + 1));
+			labelStatsTower[5].setText(Integer.toString(tOWER_MODELS.getTowerPower() * 2));
+			labelStatsTower[8].setText(Integer.toString(tOWER_MODELS.getTowerRange() + 1));
+			labelStatsTower[11].setText(Integer.toString(tOWER_MODELS.getTowerFireRate() + 2));
 			labelStatsTower[14].setText(Integer.toString(0));
-			labelStatsTower[17].setText(Integer.toString((int) (new_towerModel.getTowerCost() * 0.5)));
+			labelStatsTower[17].setText(Integer.toString((int) (tOWER_MODELS.getTowerCost() * 0.5)));
 			sellBuyTowerButton.setText("SELL");
 			upgradeTowerButton.setText("UPGRADE");
 

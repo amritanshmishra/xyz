@@ -18,6 +18,8 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import com.app.towerDefense.models.MapModel;
+import com.app.towerDefense.models.Tower;
+import com.app.towerDefense.models.TowerFactory;
 import com.app.towerDefense.models.TowerModel;
 import com.app.towerDefense.models.TowerModel1;
 import com.app.towerDefense.staticContent.AppilicationEnums.E_MapEditorMode;
@@ -386,7 +388,7 @@ public class JPanelComponent implements Observer{
 				int new_x = Integer.parseInt(tempStr[1]);
 				int new_y = Integer.parseInt(tempStr[2]);
 
-				TowerModel tempTM = new TowerModel1();
+				Tower tempTM = TowerFactory.getTower("Shooter");
 				
 				System.out.println("x : "+new_x + " , y : "+ new_y);
 

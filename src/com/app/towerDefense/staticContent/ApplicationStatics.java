@@ -3,6 +3,7 @@ package com.app.towerDefense.staticContent;
 import javax.swing.JButton;
 
 import com.app.towerDefense.models.PlayerModel;
+import com.app.towerDefense.models.Tower;
 import com.app.towerDefense.models.TowerModel;
 
 /**
@@ -25,7 +26,7 @@ public class ApplicationStatics {
 	public static JButton[][] MAP_BUTTONS;
 	public static boolean SET_TOWER_DESCR_VISIBLE = false;
 	public static int CURRENT_SELECTED_TOWER = 0;
-	public static TowerModel[] TOWER_MODELS = new TowerModel[4];
+	public static Tower[] TOWER_MODELS = new Tower[4];
 	public static PlayerModel PLAYERMODEL;
 	public static boolean HAS_BOUGHT_TOWER = false;
 	/*

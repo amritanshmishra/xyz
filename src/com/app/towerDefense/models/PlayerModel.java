@@ -22,7 +22,7 @@ public class PlayerModel extends Observable{
 	private int hpPlayer;
 	private int gameWave;
 	private String playerName;
-	public ArrayList<TowerModel> towerModelArray;
+	public ArrayList<Tower> towerModelArray;
 
 	/**
 	 * Constructor that initializes default values
@@ -32,7 +32,7 @@ public class PlayerModel extends Observable{
 		sunCurrency = 500;
 		hpPlayer = 10;
 		gameWave = 1;
-		towerModelArray = new ArrayList<TowerModel>();
+		towerModelArray = new ArrayList<Tower>();
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class PlayerModel extends Observable{
 		sunCurrency = new_sunCurrency;
 		hpPlayer = new_hpPlayer;
 		gameWave = new_gameWave;
-		towerModelArray = new ArrayList<TowerModel>();
+		towerModelArray = new ArrayList<Tower>();
 		
 	}
 
@@ -118,25 +118,23 @@ public class PlayerModel extends Observable{
 	 *            Tower id
 	 * @return bought tower model
 	 */
-	public TowerModel buyTower(int new_towerID) {
-		TowerModel tempTM = null;
+	public Tower buyTower(int new_towerID) {
+		Tower tempTM = null;
 		
 		switch (new_towerID) {
 		case 0:
-			tempTM = new TowerModel1();
+			tempTM = TowerFactory.getTower("Shooter");
 			break;
 		case 1:
-			tempTM = new TowerModel2();
+			tempTM = TowerFactory.getTower("Freezer");
 			break;
 		case 2:
-			tempTM = new TowerModel3();
+			tempTM = TowerFactory.getTower("Burner");
 			break;
 		case 3:
-			tempTM = new TowerModel4();
+			tempTM = TowerFactory.getTower("Splasher");
 			break;
-		case 4:
-			tempTM = new TowerModel5();
-			break;
+		
 		}
 		towerModelArray.add(tempTM);
 
@@ -176,8 +174,8 @@ public class PlayerModel extends Observable{
 	 *            Tower id
 	 * @return Tower model with upgraded attributes
 	 */
-	public TowerModel upgradeTower(int new_towerID) {
-		TowerModel tempTM = towerModelArray.get(new_towerID); 
+	public Tower upgradeTower(int new_towerID) {
+		Tower tempTM = towerModelArray.get(new_towerID); 
 		tempTM.upgradeTower();
 		return tempTM;
 	}
@@ -195,7 +193,7 @@ public class PlayerModel extends Observable{
 	 * This method gets the tower array
 	 * @return the tower model array list
 	 */
-	public ArrayList<TowerModel> getTowerModelArray(){
+	public ArrayList<Tower> getTowerModelArray(){
 		return towerModelArray;
 	} 
 	

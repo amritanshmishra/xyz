@@ -191,18 +191,19 @@ public class Burner extends Tower{
 	@Override
 	public int getX() {
 		// TODO Auto-generated method stub
-		return 0;
+		return super.x;
 	}
 
 	@Override
 	public int getY() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return super.y;
 	}
 
 	@Override
-	public void setXY() {
-		// TODO Auto-generated method stub
+	public void setXY(int new_x, int new_y) {
+		super.x=new_x;
+		super.y = new_y;
 		
 	}
 

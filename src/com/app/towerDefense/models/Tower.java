@@ -39,169 +39,169 @@ public abstract class Tower {
 	 * 
 	 * @return the tower name
 	 */
-	abstract String getTowerName();
+	public abstract String getTowerName();
 
 	/**
 	 * This method sets the Tower name
 	 * 
 	 */
-	abstract void setTowerName();
+	public abstract void setTowerName();
 
 	/**
 	 * This method gets the value the value for range upgrade
 	 * 
 	 * @return the tower fire range upgrade value
 	 */
-	abstract int getTowerFireRangeUpgrade();
+	public abstract int getTowerFireRangeUpgrade();
 	
 
 	/**
 	 * This method sets the tower fire range upgrade value
 	 * 
 	 */
-	abstract void setTowerFireRangeUpgrade();
+	public abstract void setTowerFireRangeUpgrade();
 
 	/**
 	 * This method gets the
 	 * 
 	 * @return the tower range
 	 */
-	abstract int getTowerRange();
+	public abstract int getTowerRange();
 
 	/**
 	 * This is the method for setting the tower range
 	 * 
 	 */
-	abstract void setTowerRange();
+	public abstract void setTowerRange();
 
 	/**
 	 * This method gets tower power
 	 * 
 	 * @return the tower power
 	 */
-	abstract int getTowerPower();
+	public abstract int getTowerPower();
 
 	/**
 	 * The method sets the <b>power</b> of the tower
 	 * 
 	 */
-	abstract void setTowerPower();
+	public abstract void setTowerPower();
 
 	/**
 	 * This set the firing rate of a tower
 	 * 
 	 * @return the fire rate of a tower
 	 */
-	abstract int getTowerFireRate();
+	public abstract int getTowerFireRate();
 
 	/**
 	 * This method sets the firing rate of a tower
 	 * 
 	 */
-	abstract void setTowerFireRate();
+	public abstract void setTowerFireRate();
 
 	/**
 	 * This method gets the current cost of towers
 	 * 
 	 * @return the cost of tower
 	 */
-	abstract int getTowerCost();
+	public abstract int getTowerCost();
 
 	/**
 	 * This method sets the cost of the tower
 	 * 
 	 */
-	abstract void setTowerCost();
+	public abstract void setTowerCost();
 
 	/**
 	 * This method gets the tower level
 	 * 
 	 * @return the current tower level
 	 */
-	abstract int getTowerlevel();
+	public abstract int getTowerlevel();
 
 	/**
 	 * This method sets the tower level
 	 *
 	 */
-	abstract void setTowerlevel();
+	public abstract void setTowerlevel();
 
 	/**
 	 * This method sets the tower image
 	 * 
 	 * @return the tower image
 	 */
-	abstract Icon getTowerImage();
+	public abstract Icon getTowerImage();
 
 	/**
 	 * This method sets the image of the tower
 	 */
-	abstract void setTowerImage();
+	public abstract void setTowerImage();
 
 	/**
 	 * This method gets the tower coordinates
 	 * 
 	 * @return the tower coordinate
 	 */
-	abstract Dimension getTowerCordinate();
+	public abstract Dimension getTowerCordinate();
 
 	/**
 	 * This method sets the tower coordinate
 	 *
 	 */
-	abstract void setTowerCordinate();
+	public abstract void setTowerCordinate();
 
 	/**
 	 * This method gets upgrade cost of a tower
 	 * 
 	 * @return the tower upgrade cost
 	 */
-	abstract int getTowerUpgradeCost();
+	public abstract int getTowerUpgradeCost();
 
 	/**
 	 * This method sets the tower upgrade cost
 	 * 
 	 */
-	abstract void setTowerUpgradeCost();
+	public abstract void setTowerUpgradeCost();
 
 	/**
 	 * This method gets tower upgrade level
 	 * 
 	 * @return the tower level upgrade
 	 */
-	abstract int getTowerlevelUpgrade();
+	public abstract int getTowerlevelUpgrade();
 
 	/**
 	 * This method sets level upgrade of a tower
 	 *
 	 */
-	abstract void setTowerlevelUpgrade();
+	public abstract void setTowerlevelUpgrade();
 
 	/**
 	 * This method gets power upgrade of a tower
 	 * 
 	 * @return the tower power upgrade
 	 */
-	abstract int getTowerPowerUpgrade();
+	public abstract int getTowerPowerUpgrade();
 
 	/**
 	 * This method sets tower power upgrade
 	 * 
 	 */
-	abstract void setTowerPowerUpgrade();
+	public abstract void setTowerPowerUpgrade();
 
 	/**
 	 * This method gets the fire rate update of a tower
 	 * 
 	 * @return the tower fire rate update
 	 */
-	abstract int getTowerFireRateUpgrade() ;
+	public abstract int getTowerFireRateUpgrade() ;
 
 	/**
 	 * This method sets the tower firing rate upgrade
 	 * 
 	 */
-	abstract void setTowerFireRateUpgrade();
+	public abstract void setTowerFireRateUpgrade();
 
 	
 	/**
@@ -209,31 +209,31 @@ public abstract class Tower {
 	 * 
 	 * @return x coordinate of tower model
 	 */
-	abstract int getX();
+	public abstract int getX();
 	
 	/**
 	 * This method get the tower model's Y coordinate
 	 * 
 	 * @return y coordinate of tower model
 	 */
-	abstract int getY();
+	public abstract int getY();
 	
 	/**
 	 * This method sets the X and Y coordinates of the tower model
 	 * 
 	 */
-	abstract void setXY();
+	public abstract void setXY(int new_x,int new_y);
 	
 	/**
 	 * This method upgrades Tower
 	 */
-	abstract void upgradeTower();
+	public abstract void upgradeTower();
 	
 	/**
 	 * This method calculates the amount for refund after a sell of a tower
 	 * @return the value of the tower
 	 */
-	abstract int getRefund();
+	public abstract int getRefund();
 	 
 
 }

@@ -201,10 +201,11 @@ public class Shooter extends Tower{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	
 	@Override
-	public void setXY() {
-		// TODO Auto-generated method stub
+	public void setXY(int new_x, int new_y) {
+		super.x=new_x;
+		super.y = new_y;
 		
 	}
 

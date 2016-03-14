@@ -10,6 +10,7 @@ import java.util.Observable;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import com.app.towerDefense.models.TowerFactory;
 import com.app.towerDefense.models.TowerModel;
 import com.app.towerDefense.models.TowerModel1;
 import com.app.towerDefense.models.TowerModel2;
@@ -32,10 +33,10 @@ public class TowerShopPanel extends Observable implements ActionListener {
 	public TowerShopPanel(int new_width, int new_height) {
 
 		// -----CREATING---Five--Towers---for---SHOP-------
-		ApplicationStatics.TOWER_MODELS[0] = (TowerModel) new TowerModel1();
-		ApplicationStatics.TOWER_MODELS[1] = (TowerModel) new TowerModel2();
-		ApplicationStatics.TOWER_MODELS[2] = (TowerModel) new TowerModel3();
-		ApplicationStatics.TOWER_MODELS[3] = (TowerModel) new TowerModel4();
+		ApplicationStatics.TOWER_MODELS[0] = TowerFactory.getTower("Shooter");
+		ApplicationStatics.TOWER_MODELS[1] = TowerFactory.getTower("Freezer");;
+		ApplicationStatics.TOWER_MODELS[2] = TowerFactory.getTower("Burner");
+		ApplicationStatics.TOWER_MODELS[3] = TowerFactory.getTower("Splasher");;
 		
 		panel = new JPanel();
 

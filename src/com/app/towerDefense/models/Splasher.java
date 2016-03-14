@@ -101,7 +101,7 @@ public class Splasher extends Tower{
 
 	@Override
 	public void setTowerCost() {
-		super.towerCost=60;
+		super.towerCost=80;
 		
 	}
 
@@ -201,8 +201,9 @@ public class Splasher extends Tower{
 	}
 
 	@Override
-	public void setXY() {
-		// TODO Auto-generated method stub
+	public void setXY(int new_x, int new_y) {
+		super.x=new_x;
+		super.y = new_y;
 		
 	}
 
