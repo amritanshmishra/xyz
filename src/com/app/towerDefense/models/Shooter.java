@@ -192,13 +192,13 @@ public class Shooter extends Tower{
 
 	@Override
 	public int getX() {
-		// TODO Auto-generated method stub
+		
 		return super.x;
 	}
 
 	@Override
 	public int getY() {
-		// TODO Auto-generated method stub
+		
 		return super.y;
 	}
 	
