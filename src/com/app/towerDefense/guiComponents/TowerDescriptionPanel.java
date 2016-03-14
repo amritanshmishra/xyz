@@ -299,6 +299,9 @@ public class TowerDescriptionPanel extends JPanel implements Observer, ActionLis
 
 		if (a < 4) {
 			updateTowerDscrPanel(ApplicationStatics.TOWER_MODELS[a]);
+		}else{
+			System.out.println("inside else of update() TOWER DESCR PANEL");
+			updateTowerDscrPanel(tempTM);
 		}
 
 	}

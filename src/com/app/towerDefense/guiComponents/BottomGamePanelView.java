@@ -63,6 +63,7 @@ public class BottomGamePanelView extends JPanel{
 		// Link observers and observable objects
 		towerShopPanel.addObserver(towerDescrPanel);
 		ApplicationStatics.PLAYERMODEL.addObserver(infoPanel);
+		ApplicationStatics.PLAYERMODEL.addObserver(towerDescrPanel);
 	}
 // END
 }
