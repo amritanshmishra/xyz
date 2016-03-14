@@ -191,13 +191,13 @@ public class Splasher extends Tower{
 	@Override
 	public int getX() {
 		// TODO Auto-generated method stub
-		return 0;
+		return super.x;
 	}
 
 	@Override
 	public int getY() {
 		// TODO Auto-generated method stub
-		return 0;
+		return super.y;
 	}
 
 	@Override
