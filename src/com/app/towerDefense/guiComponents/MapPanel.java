@@ -33,30 +33,6 @@ public class MapPanel extends JPanel {
 
 		i = 0;
 
-		array[0][0] = 0;
-		array[0][1] = 0;
-
-		array[1][0] = 0;
-		array[1][1] = 1;
-
-		array[2][0] = 0;
-		array[2][1] = 2;
-
-		array[3][0] = 0;
-		array[3][1] = 3;
-
-		array[4][0] = 1;
-		array[4][1] = 3;
-
-		array[5][0] = 2;
-		array[5][1] = 3;
-
-		array[6][0] = 3;
-		array[6][1] = 3;
-
-		array[7][0] = 4;
-		array[7][1] = 3;
-
 		// this.setBackground(new Color(205, 183, 158));
 	}
 
@@ -80,9 +56,13 @@ public class MapPanel extends JPanel {
 
 				firstTime = false;
 
+				for(int k = 0; k<6; k++){
+					System.out.println(k+" : x="+ApplicationStatics.PATH_ARRAY[k][0]+" , y="+ApplicationStatics.PATH_ARRAY[k][1] );
+				}
+				
 			}
 
-			calculatePath(array);
+			calculatePath(ApplicationStatics.PATH_ARRAY);
 
 			super.paintComponent(g);
 			g.setColor(Color.RED);
@@ -95,21 +75,25 @@ public class MapPanel extends JPanel {
 
 	public void calculatePath(int[][] array) {
 
-		directionX = array[i + 1][0] - array[i][0];
-		directionY = array[i + 1][1] - array[i][1];
-
-		x += directionY;
-		y += directionX;
-
 		if (i < array.length) {
-			if (y > array[i + 1][1] * blockH) {
+			if (y > (array[i + 1][1]+1) * blockH) {
+				System.out.println("here y i++");
 				i++;
-			}else if (x > array[i + 1][0] * blockW) {
+			}else if (x > (array[i + 1][0]+1) * blockW) {
 				i++;
+				System.out.println("here x i++");
+				
 			}
-			System.out.println("x : " + x + " , y : " + y + " , blockW : " + array[i + 1][0] * blockW + " , blockH : "
-					+ array[i + 1][1] * blockH);
+			System.out.println("x : " + x + " , y : " + y + " , blockW : " + ((array[i + 1][0]+1) * blockW) + " , blockH : "+ ((array[i + 1][1]+1) * blockH));
 		}
+		
+		directionY = array[i + 1][0] - array[i][0];
+		directionX = array[i + 1][1] - array[i][1];
+
+		x += directionX;
+		y += directionY;
+
+		
 
 	}
 

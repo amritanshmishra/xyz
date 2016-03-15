@@ -41,6 +41,7 @@ public class JPanelComponent implements Observer{
 	private JButton jButtonExit;
 	public JButton jButtonTower;
 	public MapPanel mapPanel; //CHANGE Ulan
+	public int counterP = 0; //CHANGE Ulan
 
 	private E_MapEditorMode mapEditorMode;
 
@@ -210,7 +211,9 @@ public class JPanelComponent implements Observer{
 												java.awt.Image.SCALE_SMOOTH)))));
 		*/
 						mapButtonsGrid2DArray[i][j].setVisible(false);
-						
+						ApplicationStatics.PATH_ARRAY[counterP][0] = i;
+						ApplicationStatics.PATH_ARRAY[counterP][1] = j;
+												counterP++;
 						
 						// Click event
 						addButtonClickEvents(mapButtonsGrid2DArray[i][j],
