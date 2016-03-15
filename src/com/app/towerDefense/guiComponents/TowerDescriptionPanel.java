@@ -257,7 +257,7 @@ public class TowerDescriptionPanel extends JPanel implements Observer, ActionLis
 			labelStatsTower[8].setText(Integer.toString(tOWER_MODELS.getTowerRange() + 1));
 			labelStatsTower[11].setText(Integer.toString(tOWER_MODELS.getTowerFireRate() + 2));
 			labelStatsTower[14].setText(Integer.toString(0));
-			labelStatsTower[17].setText(Integer.toString((int) (tOWER_MODELS.getTowerCost() * 0.5)));
+			labelStatsTower[17].setText(Integer.toString((int) (tOWER_MODELS.getTowerUpgradeCost())));
 			sellBuyTowerButton.setText("SELL");
 			upgradeTowerButton.setText("UPGRADE");
 
@@ -304,7 +304,7 @@ public class TowerDescriptionPanel extends JPanel implements Observer, ActionLis
 		if (a < 4) {
 			updateTowerDscrPanel(ApplicationStatics.TOWER_MODELS[a]);
 		} else {
-			System.out.println("inside else of update() TOWER DESCR PANEL");
+	//		System.out.println("inside else of update() TOWER DESCR PANEL");
 			updateTowerDscrPanel(tempTM);
 		}
 
@@ -316,6 +316,14 @@ public class TowerDescriptionPanel extends JPanel implements Observer, ActionLis
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	/**
+	 * This method enables the sell buy button
+	 * @param new_value takes true or false as a boolean value
+	 */
+	public void enableButtons(boolean new_value){
+		sellBuyTowerButton.setEnabled(new_value);
 	}
 
 }

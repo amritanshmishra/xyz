@@ -2,10 +2,7 @@ package com.app.towerDefense.guisystem;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;//change 1
-import java.awt.Color;//change 1
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.image.BufferStrategy;//change 1
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
@@ -39,7 +36,6 @@ public class Game extends Canvas implements Runnable { // change 1
 	private JPanelComponent panelComponent;
 	private JFrame frame;
 
-
 	// THREAD
 	private Thread thread; // change 1
 	private boolean running = false; // change 1
@@ -72,8 +68,8 @@ public class Game extends Canvas implements Runnable { // change 1
 
 		// -- creating new Player
 
-		panelComponent = jMenuBarComponent.getPanelComponent();
-		bottomGamePanel = jMenuBarComponent.getBottomPanel();
+	//	panelComponent = jMenuBarComponent.getPanelComponent();
+	//	bottomGamePanel = jMenuBarComponent.getBottomPanel();
 
 	}
 
@@ -109,31 +105,31 @@ public class Game extends Canvas implements Runnable { // change 1
 	public void run() {
 		// TODO Auto-generated method stub
 		long lastTime = System.nanoTime();
-		double amountOfTicks = 20.0; // Game speed
+		double amountOfTicks = 5.0; // Game speed
 		double ns = 1000000000 / amountOfTicks;
 		double delta = 0;
 		long timer = System.currentTimeMillis();
 		int frames = 0;
-		while(running){
+		while (running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 			lastTime = now;
-			while(delta >= 1){
+			while (delta >= 1) {
 				tick();
 				delta--;
 			}
-			if(running){
+			if (running) {
 				render();
 			}
 			frames++;
-				
-			if(System.currentTimeMillis() - timer > 1000){
+
+			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
-	//			System.out.println("FPS: " + frames);
+				// System.out.println("FPS: " + frames);
 				frames = 0;
 			}
 		}
-		stop();	
+		stop();
 	}
 
 	/**
@@ -158,41 +154,45 @@ public class Game extends Canvas implements Runnable { // change 1
 		}
 	}
 
-	int count = 0;
 	/**
 	 * Drawing on map panel
 	 */
 	private void tick() {// change 1
 		//
-		try{
-		if((panelComponent = jMenuBarComponent.getPanelComponent()) != null){
-			panelComponent.mapPanel.incY();
-			panelComponent.mapPanel.revalidate();
-			panelComponent.mapPanel.repaint();
-	
+
+		if (ApplicationStatics.START_WAVE) { //check if player pressed START button
+		//	try {
+				if ((panelComponent = jMenuBarComponent.getPanelComponent()) != null) {
+					panelComponent.mapPanel.revalidate();
+					panelComponent.mapPanel.repaint();
+
+					bottomGamePanel = jMenuBarComponent.getBottomPanel();
+					
+					bottomGamePanel.towerShopPanel.enableTowerButtons(false);
+					bottomGamePanel.towerDescrPanel.enableButtons(false);
+				}
+				
+		//	} catch (Exception e) {
+				// catching exception when program still has not created play
+				// mode map
+		//	}
 		}
-		}catch(Exception e){}
-		
 	}
 
 	/**
-	 *  DRAW function
+	 * DRAW function
 	 */
 	private void render() {// change 1
-/*		BufferStrategy bs = this.getBufferStrategy();
-		if (bs == null) {
-			this.createBufferStrategy(3);
-			return;
-		}
-
-		Graphics g = bs.getDrawGraphics();
-
-		g.setColor(Color.black);
-		g.fillRect(0, 0, 100, 100);
-
-		g.dispose();
-		bs.show();
-	*/	
+		/*
+		 * BufferStrategy bs = this.getBufferStrategy(); if (bs == null) {
+		 * this.createBufferStrategy(3); return; }
+		 * 
+		 * Graphics g = bs.getDrawGraphics();
+		 * 
+		 * g.setColor(Color.black); g.fillRect(0, 0, 100, 100);
+		 * 
+		 * g.dispose(); bs.show();
+		 */
 	}
 
 	// END

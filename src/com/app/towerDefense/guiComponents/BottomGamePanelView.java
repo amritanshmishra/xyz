@@ -24,9 +24,9 @@ public class BottomGamePanelView extends JPanel{
 	private static final long serialVersionUID = 8434137027978433069L;
 	// -- Class attributes
 	private int width, height;
-	TowerShopPanel towerShopPanel;
-	GameInfoPanel infoPanel;
-	TowerDescriptionPanel towerDescrPanel;
+	public TowerShopPanel towerShopPanel;
+	public GameInfoPanel infoPanel;
+	public TowerDescriptionPanel towerDescrPanel;
 
 	/**
 	 * The constructor

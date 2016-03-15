@@ -5,16 +5,21 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import com.app.towerDefense.models.PlayerModel;
+import com.app.towerDefense.models.Tower;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 
 /**
@@ -27,7 +32,7 @@ public class GameInfoPanel extends JPanel implements Observer {
 
 	private static final long serialVersionUID = 8847617647575898521L;
 	private JLabel sunCurrencyLabel;
-	private JButton startPauseButton;
+	private JButton startWaveButton;
 	private JLabel hpLabel;
 	private JLabel waveLabel;
 	private JLabel critterLabel;
@@ -72,13 +77,27 @@ public class GameInfoPanel extends JPanel implements Observer {
 		hpLabel.setFont(new Font("Serif", Font.BOLD, 13));
 		hpLabel.setForeground(Color.RED);
 
-		startPauseButton = new JButton("Start");
-		startPauseButton.setVisible(true);
+		startWaveButton = new JButton("Start");
+		startWaveButton.setVisible(true);
+		startWaveButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				System.out.println("start_wave is clicked");
+				
+				if(!ApplicationStatics.START_WAVE){
+					
+					ApplicationStatics.START_WAVE = true;
+					startWaveButton.setEnabled(false);
+				}
+				
+			}
+		});
 
 		leftInfoPanel.add(sunButton);
 		leftInfoPanel.add(sunCurrencyLabel);
 		leftInfoPanel.add(hpLabel);
-		leftInfoPanel.add(startPauseButton);
+		leftInfoPanel.add(startWaveButton);
 
 		// -- label that shows game wave number
 		waveLabel = new JLabel("WAVE: " + ApplicationStatics.PLAYERMODEL.getGameWave());

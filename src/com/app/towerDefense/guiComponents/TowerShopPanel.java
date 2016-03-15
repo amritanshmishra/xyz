@@ -20,6 +20,8 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
 public class TowerShopPanel extends Observable implements ActionListener {
 
 	JPanel panel;
+	JButton[] towerButton = new JButton[4];
+	
 /**
  * Constructor
  * @param new_width recieves given width parameter
@@ -46,8 +48,6 @@ public class TowerShopPanel extends Observable implements ActionListener {
 		panel.setLayout(gridLayout);
 
 		// -- creating 5 tower
-		JButton[] towerButton = new JButton[4];
-
 		for (int i = 0; i < 4; i++) {
 			towerButton[i] = new JButton(ApplicationStatics.TOWER_MODELS[i].getTowerImage());
 			towerButton[i].setText(Integer.toString(ApplicationStatics.TOWER_MODELS[i].getTowerCost()));
@@ -91,6 +91,15 @@ public class TowerShopPanel extends Observable implements ActionListener {
 	 */
 	public JPanel getPanel(){
 		return panel;
+	}
+	
+	/**
+	 * This method enables and disables the tower buttons in the shop panel
+	 */
+	public void enableTowerButtons(boolean new_value){
+		for (int i = 0; i < 4; i++) {
+			towerButton[i].setEnabled(new_value);
+		}
 	}
 	
 //END	

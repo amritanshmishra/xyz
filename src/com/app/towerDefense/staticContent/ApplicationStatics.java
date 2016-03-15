@@ -28,6 +28,7 @@ public class ApplicationStatics {
 	public static Tower[] TOWER_MODELS = new Tower[4];
 	public static PlayerModel PLAYERMODEL;
 	public static boolean HAS_BOUGHT_TOWER = false;
+	public static boolean START_WAVE = false;
 	/*
 	public static final int MAP_ENTRY_POINT=1;
 	public static final int MAP_EXIT_POINT=900;

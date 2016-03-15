@@ -33,6 +33,7 @@ public abstract class Tower {
 	protected int towerFireRangeUpgrade;
 	protected int x, y;
 	
+	protected Strategy strategy;
 
 	/**
 	 * This method gets the name of the tower
@@ -235,5 +236,16 @@ public abstract class Tower {
 	 */
 	public abstract int getRefund();
 	 
-
+	/**
+	 * Plugs in a specific strategy to be used 
+	 * @param strategy object
+	 */
+	public abstract void setStrategy(Strategy strategy);
+	
+	/**
+	 * Method that executes a different strategy depending on what strategy was 
+     * plugged in upon instantiation.
+	 */
+	public abstract void executeStrategy();
+	
 }

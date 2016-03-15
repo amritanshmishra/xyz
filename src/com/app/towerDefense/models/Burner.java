@@ -225,7 +225,22 @@ public class Burner extends Tower{
 		return getTowerCost()/2;
 	}
 
+	/**
+	 * Plugs in a specific strategy to be used 
+	 */
+	@Override
+	public void setStrategy(Strategy new_strategy){
+		super.strategy = new_strategy;
+	}
 
+	/**
+	 * Method that executes a different strategy depending on what strategy was 
+     * plugged in upon instantiation.
+	 */
+	@Override
+	public void executeStrategy(){
+		this.strategy.execute();
+	}
 
 
 }
