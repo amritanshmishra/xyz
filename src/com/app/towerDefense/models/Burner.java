@@ -10,14 +10,15 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
 
 /**
  * {@inheritDoc}
- * This class create a burner tower.
+ * This class create a burner tower from the Tower Class.
  * @author George Ekow-Daniels
  *
  */
 public class Burner extends Tower{
 	
 	/**
-	 * Constructor for the Burner Class
+	 * Constructor for the Burner Tower
+	 * This initiates the values for the tower
 	 */
 	public Burner()
 	{

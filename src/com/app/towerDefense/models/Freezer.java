@@ -10,13 +10,17 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
 
 /**
  * {@inheritDoc}
- * This class create a Freezer tower.
+ * This class create a Freezer tower from the Tower class.
  * @author George Ekow-Daniels
  * @see Tower
  *
  */
 public class Freezer extends Tower {
 	
+	/**
+	 * Constructor for the Freezer Tower
+	 * This initiates the values for the tower
+	 */
 	public Freezer()
 	{
 		setTowerName();

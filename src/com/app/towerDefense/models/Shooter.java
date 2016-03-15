@@ -10,13 +10,17 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
 
 /**
  * {@inheritDoc}
- * This class create a Shooter tower .
+ * This class create a Shooter tower from the tower class .
  * @author George Ekow-Daniels
  * @see Tower
  *
  */
 public class Shooter extends Tower{
 
+	/**
+	 * Constructor for the Shooter Tower
+	 * This initiates the values for the tower
+	 */
 	public Shooter()
 	{
 		setTowerName();

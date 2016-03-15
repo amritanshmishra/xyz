@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 /**
  * {@inheritDoc}
- * This class create a Splasher tower.
+ * This class create a Splasher tower from the Tower class.
  * @author George Ekow-Daniels
  * @see Tower
  *
@@ -17,7 +17,8 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
 public class Splasher extends Tower{
 	
 	/**
-	 * Constructor for the Splasher class
+	 * Constructor for the Splasher Tower
+	 * This initiates the values for the tower
 	 */
 	public Splasher()
 	{
