@@ -9,28 +9,28 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.app.towerDefense.models.PlayerModel;
-import com.app.towerDefense.models.TowerModel;
-import com.app.towerDefense.models.TowerModel1;
+import com.app.towerDefense.models.Tower;
+import com.app.towerDefense.models.TowerFactory;
 
 /**
  * The class <code>PlayerModelTest</code> contains tests for the class
  * <code>{@link PlayerModel}</code>.
  *
  *
- * @author Amritansh Mishra
- * @version Revision: 1.0
+ * @author George Ekow-Daniels
+ * @version Revision: 2.0
  */
 public class PlayerModelTest {
 
 	PlayerModel playerModel;
-	TowerModel1 towerModel1;
-	ArrayList<TowerModel> towerModelArray;
+	Tower Shooter;
+	ArrayList<Tower> towerModelArray;
 
 	@Before
 	public void towerModel1TestCase() {
 		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class PlayerModel");
 		playerModel = new PlayerModel();
-		towerModel1 = new TowerModel1();
+		Shooter = TowerFactory.getTower("Shooter");
 		
 
 	}
@@ -95,7 +95,7 @@ public class PlayerModelTest {
 	public void buyTowerTest() {
 		
 		playerModel = new PlayerModel();
-		towerModel1 = new TowerModel1();
+		Shooter = TowerFactory.getTower("Shooter");
 		playerModel.buyTower(1);
 		assertEquals(playerModel.towerModelArray.size(),1);
 
@@ -114,9 +114,9 @@ public class PlayerModelTest {
 		// Add additional tear down code here
 		System.out.println("@AfterClass - oneTimeTearDown");
 		playerModel = null;
-		towerModel1 = null;
+		Shooter = null;
 		assertNull(playerModel);
-		assertNull(towerModel1);
+		assertNull(Shooter);
 
 	}
 

@@ -11,11 +11,6 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import com.app.towerDefense.models.TowerFactory;
-import com.app.towerDefense.models.TowerModel;
-import com.app.towerDefense.models.TowerModel1;
-import com.app.towerDefense.models.TowerModel2;
-import com.app.towerDefense.models.TowerModel3;
-import com.app.towerDefense.models.TowerModel4;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 /**
  * This class creates the view of the game shop panel

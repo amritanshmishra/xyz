@@ -55,7 +55,7 @@ public class Freezer extends Tower {
 
 		@Override
 		public void setTowerFireRangeUpgrade() {
-			super.towerFireRangeUpgrade=1;
+			super.towerFireRangeUpgrade=2;
 			
 		}
 
@@ -176,7 +176,7 @@ public class Freezer extends Tower {
 		@Override
 		public int getTowerFireRateUpgrade() {
 			
-			return super.towerFireRangeUpgrade;
+			return super.towerFireRateUpgrade;
 		}
 
 		@Override

@@ -180,7 +180,7 @@ public class Shooter extends Tower{
 	@Override
 	public int getTowerFireRateUpgrade() {
 		
-		return super.towerFireRangeUpgrade;
+		return super.towerFireRateUpgrade;
 	}
 
 	@Override

@@ -4,7 +4,6 @@ import javax.swing.JButton;
 
 import com.app.towerDefense.models.PlayerModel;
 import com.app.towerDefense.models.Tower;
-import com.app.towerDefense.models.TowerModel;
 
 /**
  * This class contains all constant, Final and Static variables such as windows width, height of window for main window and child window, 

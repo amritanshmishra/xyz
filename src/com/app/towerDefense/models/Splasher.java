@@ -57,7 +57,7 @@ public class Splasher extends Tower{
 
 	@Override
 	public void setTowerFireRangeUpgrade() {
-		super.towerFireRangeUpgrade=3;
+		super.towerFireRangeUpgrade=2;
 		
 	}
 
@@ -79,7 +79,7 @@ public class Splasher extends Tower{
 
 	@Override
 	public void setTowerPower() {
-		super.towerPower=4;
+		super.towerPower=8;
 		
 	}
 
@@ -178,12 +178,12 @@ public class Splasher extends Tower{
 	@Override
 	public int getTowerFireRateUpgrade() {
 		
-		return super.towerFireRangeUpgrade;
+		return super.towerFireRateUpgrade;
 	}
 
 	@Override
 	public void setTowerFireRateUpgrade() {
-		super.towerFireRateUpgrade=2;
+		super.towerFireRateUpgrade=1;
 		
 	}
 

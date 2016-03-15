@@ -20,7 +20,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import com.app.towerDefense.models.Tower;
-import com.app.towerDefense.models.TowerModel;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 
 /**

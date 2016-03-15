@@ -69,7 +69,7 @@ public class Burner extends Tower{
 
 	@Override
 	public void setTowerRange() {
-		super.towerRange=1;
+		super.towerRange=4;
 	}
 
 	@Override
@@ -91,7 +91,7 @@ public class Burner extends Tower{
 
 	@Override
 	public void setTowerFireRate() {
-		super.towerFireRate=3;
+		super.towerFireRate=2;
 	}
 
 	@Override
@@ -171,19 +171,19 @@ public class Burner extends Tower{
 
 	@Override
 	public void setTowerPowerUpgrade() {
-	super.towerPowerUpgrade=3;
+	super.towerPowerUpgrade=2;
 		
 	}
 
 	@Override
 	public int getTowerFireRateUpgrade() {
 		
-		return super.towerFireRangeUpgrade;
+		return super.towerFireRateUpgrade;
 	}
 
 	@Override
 	public void setTowerFireRateUpgrade() {
-		super.towerFireRateUpgrade=3;
+		super.towerFireRateUpgrade=1;
 		
 	}
 

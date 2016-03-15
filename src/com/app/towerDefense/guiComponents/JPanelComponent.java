@@ -21,8 +21,6 @@ import javax.swing.border.LineBorder;
 import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.models.Tower;
 import com.app.towerDefense.models.TowerFactory;
-import com.app.towerDefense.models.TowerModel;
-import com.app.towerDefense.models.TowerModel1;
 import com.app.towerDefense.staticContent.AppilicationEnums.E_MapEditorMode;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 import com.app.towerDefense.utilities.MiscellaneousHelper;
