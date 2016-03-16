@@ -364,7 +364,7 @@ public class Map {
 	 * @return the boolean True if all cell is connected no independent cell
 	 *         otherwise False
 	 */
-	private boolean checkIndependentSelectedCells(MapModel new_map) {
+	public boolean checkIndependentSelectedCells(MapModel new_map) {
 		boolean result = true;
 		int mapWidth = new_map.getMapWidth();
 		int mapHeight = new_map.getMapHeight();

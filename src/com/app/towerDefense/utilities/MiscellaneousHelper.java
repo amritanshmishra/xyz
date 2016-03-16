@@ -10,6 +10,21 @@ import org.apache.commons.codec.binary.Base64;
  *
  */
 public class MiscellaneousHelper {
+	
+	/**
+	 * 
+	 * Retrun ture when string value is double
+	 * @param value a String
+	 * @return booleran
+	 */
+	public boolean isDouble(String value) {
+	    try {
+	        Double.parseDouble(value);
+	        return true;
+	    } catch (NumberFormatException e) {
+	        return false;
+	    }
+	}
 
 	/**
 	 * this method removes character from start to left

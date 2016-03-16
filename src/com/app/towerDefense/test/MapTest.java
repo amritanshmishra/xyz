@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import com.app.towerDefense.bL.Map;
 import com.app.towerDefense.models.MapModel;
+import com.app.towerDefense.staticContent.ApplicationStatics;
 import com.app.towerDefense.utilities.FileStorage;
 
 /**
@@ -24,7 +25,7 @@ public class MapTest {
 
 	Map map;
 	MapModel mapModel;
-	File file = new File("C:\\Users\\win7\\git\\xyz\\testfiles\\abc.tdm");
+	File file = new File("testfiles\\abc.tdm");
 
 	@Before
 	public void towerModel1TestCase() {
@@ -56,6 +57,20 @@ public class MapTest {
 		assertTrue(status.contains("Success"));
 	}
 
+
+	/**
+	 * Test case Check is there is any Independent or non Connected Cell.
+	 */
+	@Test
+	public void testCheckIndependentSelectedCells()
+	{
+		map = new Map();
+		mapModel = new MapModel();
+		mapModel = (new FileStorage()).openMapFile(file);
+		ApplicationStatics.MAP_ROUT_PATH = mapModel.getMapRoutPath();
+		assertTrue( map.checkIndependentSelectedCells(mapModel));
+	}
+	
 	/**
 	 * Perform post-test clean-up.
 	 *
