@@ -116,21 +116,28 @@ public class BasicCritter implements CritterType {
 	@Override
 	public void calculatePath() {
 
+		int xNext = ApplicationStatics.PATH_ARRAY1.get(i + 1).y * blockW;
+		int yNext = ApplicationStatics.PATH_ARRAY1.get(i + 1).x * blockH;
 		directionY = ApplicationStatics.PATH_ARRAY1.get(i + 1).x - ApplicationStatics.PATH_ARRAY1.get(i).x;
 		directionX = ApplicationStatics.PATH_ARRAY1.get(i + 1).y - ApplicationStatics.PATH_ARRAY1.get(i).y;
-
+		//System.out.println("Inside calculate path");
 		
-		
-		if (x >= ApplicationStatics.PATH_ARRAY1.get(i + 1).y * blockW
-				&& y >= ApplicationStatics.PATH_ARRAY1.get(i + 1).x * blockH) {
-			i++;
-			x += directionX;
-			y += directionY;
+		if (directionX == 1 || directionX == -1){
+			if( x == xNext){
+				System.out.println("inside 1 :" + (i++));
+			}
+		}else if(directionX ==0){
+			if (directionY == 1 || directionY == -1) {
+				if(y==yNext){
+					System.out.println("inside 2" + (i++));
+				}
+			}
 		}
-		else if(x >= ApplicationStatics.PATH_ARRAY1.get(i + 1).y * blockW
-				&& y >= ApplicationStatics.PATH_ARRAY1.get(i + 1).x * blockH)
+		x += directionX;
+		y += directionY;
 		
-		System.out.println("inside critter   x : " + x + " , y : " + y);
+
+	//	System.out.println("inside critter   x : " + x + " , y : " + y);
 
 	}
 

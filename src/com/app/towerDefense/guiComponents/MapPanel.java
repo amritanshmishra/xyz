@@ -72,7 +72,7 @@ public class MapPanel extends JPanel {
 				new_graphics.drawImage(critter.get(i).getCritterImage(), critter.get(i).getX(), critter.get(i).getY(),
 						30, 30, null);
 				if (multipleCriiterCounter < (i + 1) * 30) {
-					System.out.println("Inside Counter");
+			//		System.out.println("Inside Counter");
 					break;
 				}
 
