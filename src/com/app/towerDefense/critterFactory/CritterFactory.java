@@ -22,15 +22,15 @@ public class CritterFactory {
 * @param critterCurrentSpeed Current Speed of critter
 * @return critter
 */
-public CritterType getCritterfromFactory(String critterType,int critterId,LinkedList<Point> critterPath, int movePoint,int actualHealth,int currentHealth,int value,int critterActualSpeed,int critterCurrentSpeed)
+public CritterType getCritterfromFactory(String critterType)
 {
 	 if(critterType == null)
      	return new BasicCritter();
 	 else if(critterType.equalsIgnoreCase("Critter X")){
-		 	return new BasicCritter(critterId,critterPath,movePoint,actualHealth,currentHealth,value,critterActualSpeed,critterCurrentSpeed);
+		 	return new BasicCritter();
 	 }
 	 else if(critterType.equalsIgnoreCase("Critter Y")){
-		 return new AdvancedCritter(critterId,critterPath,movePoint,actualHealth,currentHealth,value,critterActualSpeed,critterCurrentSpeed);
+		 return new AdvancedCritter();
 	 }
           
 	 return null;
