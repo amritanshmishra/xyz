@@ -1,40 +1,30 @@
 package com.app.towerDefense.critterFactory;
 
-import java.awt.Point;
-import java.util.LinkedList;
-
 /**
-* This is factory class to create different kind of enemies
-* @author Amritansh Mishra
-* 
-*/
+ * This is the critter factory class to create different kind of critters
+ * 
+ * @author Amritansh Mishra
+ * 
+ */
 public class CritterFactory {
-/**
-* 
-* @param critterType Type of critter 
-* @param critterId Id of critter
-* @param critterPath Path of critter
-* @param movePoint Path of critter
-* @param actualHealth Actual Health of critter
-* @param currentHealth Current Health of critter
-* @param value Value of critter
-* @param critterActualSpeed Actual Speed of critter
-* @param critterCurrentSpeed Current Speed of critter
-* @return critter
-*/
-static public CritterType getCritterfromFactory(String critterType)
-{
-	 if(critterType == null)
-     	return new BasicCritter();
-	 else if(critterType.equalsIgnoreCase("BasicCritter")){
-		 	return new BasicCritter();
-	 }
-	 else if(critterType.equalsIgnoreCase("Critter Y")){
-		 return new AdvancedCritter();
-	 }
-          
-	 return null;
-        
-}
+
+	/**
+	 * Creates critter of diiferent types
+	 * 
+	 * @param new_critterType
+	 * @return
+	 */
+	static public CritterType getCritterfromFactory(String new_critterType) {
+		if (new_critterType == null)
+			return new BasicCritter();
+		else if (new_critterType.equalsIgnoreCase("BasicCritter")) {
+			return new BasicCritter();
+		} else if (new_critterType.equalsIgnoreCase("AdvancedCritter")) {
+			return new AdvancedCritter();
+		}
+
+		return null;
+
+	}
 
 }
