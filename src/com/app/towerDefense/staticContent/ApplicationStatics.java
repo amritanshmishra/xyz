@@ -1,5 +1,7 @@
 package com.app.towerDefense.staticContent;
 
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 
 import com.app.towerDefense.models.PlayerModel;
@@ -29,7 +31,7 @@ public class ApplicationStatics {
 	public static PlayerModel PLAYERMODEL;
 	public static boolean HAS_BOUGHT_TOWER = false;
 	public static boolean START_WAVE = false;
-	public static int[][] PATH_ARRAY = new int[8][2];
+	public static ArrayList<Integer> PATH_ARRAY = new ArrayList<Integer>();
 	/*
 	public static final int MAP_ENTRY_POINT=1;
 	public static final int MAP_EXIT_POINT=900;

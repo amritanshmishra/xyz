@@ -49,8 +49,8 @@ public class MapPanel extends JPanel {
 				blockW = width / n;
 				blockH = height / m;
 
-				a = ApplicationStatics.PATH_ARRAY[i][0];
-				b = ApplicationStatics.PATH_ARRAY[i][1];
+				a = ApplicationStatics.PATH_ARRAY.get(i);
+				b = ApplicationStatics.PATH_ARRAY.get(i+1);
 				x = a * blockW;// + blockW / 3;
 				y = b * blockH;// + blockH / 3;
 
@@ -58,14 +58,14 @@ public class MapPanel extends JPanel {
 
 				System.out.println("blockW : " + blockW + " , blockH : " + blockH);
 
-				for (int k = 0; k < 8; k++) {
-					System.out.println(k + " : x=" + ApplicationStatics.PATH_ARRAY[k][0] + " , y="
-							+ ApplicationStatics.PATH_ARRAY[k][1]);
+				for (int k = 0; k < ApplicationStatics.PATH_ARRAY.size(); k+=2) {
+					System.out.println(k + " : x=" + ApplicationStatics.PATH_ARRAY.get(k) + " , y="
+							+ ApplicationStatics.PATH_ARRAY.get(i+1));
 				}
 
 			}
 
-			calculatePath(ApplicationStatics.PATH_ARRAY);
+			calculatePath();
 
 			super.paintComponent(g);
 			g.setColor(Color.RED);
@@ -76,20 +76,20 @@ public class MapPanel extends JPanel {
 		}
 	}
 
-	public void calculatePath(int[][] array) {
+	public void calculatePath() {
 
 		
-		directionY = array[i + 1][0] - array[i][0];
-		directionX = array[i + 1][1] - array[i][1];
+		directionY = ApplicationStatics.PATH_ARRAY.get(i + 2) - ApplicationStatics.PATH_ARRAY.get(i);
+		directionX = ApplicationStatics.PATH_ARRAY.get(i + 3) - ApplicationStatics.PATH_ARRAY.get(i+1);
 
 		x += directionX;
 		y += directionY;
 		
 		if (i < array.length) {
-			System.out.println("x : " + x + " , y : " + y + " , blockW : " + ((array[i + 1][1]) * blockW) + " , blockH : "+ ((array[i + 1][0]) * blockH));
+	//		System.out.println("x : " + x + " , y : " + y + " , blockW : " + ((array[i + 1][1]) * blockW) + " , blockH : "+ ((array[i + 1][0]) * blockH));
 			
-			if (x >=  array[i + 1][1]* blockW && y >= (array[i + 1][0]) * blockH) {
-				i++;
+			if (x >= ApplicationStatics.PATH_ARRAY.get(i+3)* blockW && y >= ApplicationStatics.PATH_ARRAY.get(i+2) * blockH) {
+				i+=2;
 			}
 		}
 

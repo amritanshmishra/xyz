@@ -82,6 +82,7 @@ public class JMenuBarComponent {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource().equals(menuItemPlay)) {
+					ApplicationStatics.START_WAVE = false;
 					JFileChooser fileChooser = new JFileChooserComponent().getJFileChooser(E_JFileChooserMode.Open);
 					int result = fileChooser.showOpenDialog(new_jframe);
 					if (result == JFileChooser.APPROVE_OPTION) {
