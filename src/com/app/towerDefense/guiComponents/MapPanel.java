@@ -1,13 +1,12 @@
 package com.app.towerDefense.guiComponents;
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
 
 import javax.swing.JPanel;
 
 import com.app.towerDefense.critterFactory.CritterFactory;
 import com.app.towerDefense.critterFactory.CritterType;
+import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 
 public class MapPanel extends JPanel {
@@ -35,10 +34,13 @@ public class MapPanel extends JPanel {
 	CritterType critter1;
 	CritterType critter2;
 	long count = 0;
+	
+	MapModel mapModel;
 
-	public MapPanel() {
+	public MapPanel(MapModel new_mapModel) {
 
 		i = 0;
+		mapModel = new_mapModel;
 
 		// this.setBackground(new Color(205, 183, 158));
 	}

@@ -1,6 +1,7 @@
 package com.app.towerDefense.bL;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.staticContent.AppilicationEnums.E_MapValidationDirecton;
@@ -67,18 +68,29 @@ public class Map {
 		String status = "";
 		int i = entryPoint.x;
 		int j = entryPoint.y;
+		String name = "";
+		
 		E_MapValidationDirecton dirUpDown = E_MapValidationDirecton.Initial;
 		E_MapValidationDirecton dirLeftRight = E_MapValidationDirecton.Initial;
+		
 		int predictiveConnectedCellCount;
-		String routTrack = "" + i + "," + j + ";";
+		ApplicationStatics.MAP_ROUT_PATH = "" + i + "," + j + ";";
 		
 		//Decide initial Vertical Direction mean (Down or UP)
-		if(new_map.getMapGridSelection()[i + 1][j] == ApplicationStatics.MAP_EXIT_POINT){
-			if(new_map.getMapGridSelection()[i - 1][j] != ApplicationStatics.MAP_EXIT_POINT)
-			{
-				dirUpDown = E_MapValidationDirecton.Up;
+		if (i < mapHeight -1 )
+		{
+			if(new_map.getMapGridSelection()[i + 1][j] == ApplicationStatics.MAP_EXIT_POINT){
+				if(new_map.getMapGridSelection()[i - 1][j] != ApplicationStatics.MAP_EXIT_POINT)
+				{
+					dirUpDown = E_MapValidationDirecton.Up;
+				}
 			}
 		}
+		else
+		{
+			dirUpDown = E_MapValidationDirecton.Up;
+		}
+		
 
 		while ((i >= 0 && i < mapHeight) || (j >= 0 && j < mapWidth)) {
 			predictiveConnectedCellCount = 0;
@@ -121,7 +133,11 @@ public class Map {
 						} else {
 							predictiveConnectedCellCount = 0;
 						}
-						routTrack += "" + i + "," + j + ";";
+						
+						if(!ApplicationStatics.MAP_ROUT_PATH .contains("" + i + "," + j + ";"))
+						{
+							ApplicationStatics.MAP_ROUT_PATH  += "" + i + "," + j + ";";
+						}
 
 					}
 					// Check if it is Exit point
@@ -183,7 +199,11 @@ public class Map {
 						} else {
 							predictiveConnectedCellCount = 0;
 						}
-						routTrack += "" + i + "," + j + ";";
+						
+						if(!ApplicationStatics.MAP_ROUT_PATH .contains("" + i + "," + j + ";"))
+						{
+							ApplicationStatics.MAP_ROUT_PATH  += "" + i + "," + j + ";";
+						}
 					} else if (cellValue == ApplicationStatics.MAP_EXIT_POINT) {
 						dirUpDown = E_MapValidationDirecton.Up;
 						if (mapPathCellCount <= 2) {
@@ -241,7 +261,11 @@ public class Map {
 						} else {
 							predictiveConnectedCellCount = 0;
 						}
-						routTrack += "" + i + "," + j + ";";
+						
+						if(!ApplicationStatics.MAP_ROUT_PATH .contains("" + i + "," + j + ";"))
+						{
+							ApplicationStatics.MAP_ROUT_PATH  += "" + i + "," + j + ";";
+						}
 
 					} else if (cellValue == ApplicationStatics.MAP_EXIT_POINT) // Check
 																				// if
@@ -285,7 +309,7 @@ public class Map {
 						dirLeftRight = E_MapValidationDirecton.Right;
 
 						// Alternate Route Check
-						if (j >= 0
+						if (j > 0
 								&& new_map.getMapGridSelection()[i][j - 1] != ApplicationStatics.MAP_Scenery_POINT) {
 							predictiveConnectedCellCount++;
 						}
@@ -306,7 +330,11 @@ public class Map {
 						} else {
 							predictiveConnectedCellCount = 0;
 						}
-						routTrack += "" + i + "," + j + ";";
+						
+						if(!ApplicationStatics.MAP_ROUT_PATH .contains("" + i + "," + j + ";"))
+						{
+							ApplicationStatics.MAP_ROUT_PATH  += "" + i + "," + j + ";";
+						}
 					} else if (cellValue == ApplicationStatics.MAP_EXIT_POINT) {
 						dirLeftRight = E_MapValidationDirecton.Right;
 						if (mapPathCellCount <= 2) {
@@ -336,7 +364,7 @@ public class Map {
 		}
 		//Check for any other independent and non connected point.
 		if (status.contains("Success")) {
-			if (!checkIndependentSelectedCells(new_map, routTrack)) {
+			if (!checkIndependentSelectedCells(new_map)) {
 				status = "Error:Cells" + mapPathCellCount
 						+ ":Map has some Independant or non connected cells";
 			}
@@ -357,8 +385,7 @@ public class Map {
 	 * @return the boolean True if all cell is connected no independent cell
 	 *         otherwise False
 	 */
-	private boolean checkIndependentSelectedCells(MapModel new_map,
-			String routTrack) {
+	private boolean checkIndependentSelectedCells(MapModel new_map) {
 		boolean result = true;
 		int mapWidth = new_map.getMapWidth();
 		int mapHeight = new_map.getMapHeight();
@@ -367,7 +394,7 @@ public class Map {
 			for (int j = 0; j < mapWidth; j++) {
 				value = new_map.getMapGridSelection()[i][j];
 				if (value == ApplicationStatics.MAP_PATH_POINT) {
-					if (!routTrack.contains("" + i + "," + j + ";")) {
+					if (!ApplicationStatics.MAP_ROUT_PATH .contains("" + i + "," + j + ";")) {
 						return false;
 					}
 				}

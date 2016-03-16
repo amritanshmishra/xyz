@@ -41,14 +41,15 @@ public class JMenuBarComponent {
 	/**
 	 * this Function Implement the Menu bar for Gmae Main Window
 	 * 
-	 * @param new_jframe as JFrame
+	 * @param new_jframe
+	 *            as JFrame
 	 * @return JMenuBar
 	 */
 	public JMenuBar getGameJMenuBar(final JFrame new_jframe) {
 
-		//Set Background Image
-		final JLabel backGround = new JLabel(
-				new ImageIcon(((new ImageIcon("images/gameBk.png").getImage().getScaledInstance(new_jframe.getSize().width,
+		// Set Background Image
+		final JLabel backGround = new JLabel(new ImageIcon(
+				((new ImageIcon("images/gameBk.png").getImage().getScaledInstance(new_jframe.getSize().width,
 						(int) ((int) new_jframe.getSize().height - 30), java.awt.Image.SCALE_SMOOTH)))));
 		new_jframe.add(backGround);
 
@@ -94,17 +95,19 @@ public class JMenuBarComponent {
 								new_jframe.setLayout(new BorderLayout());
 								panelComponent = new JPanelComponent();
 								/*
-								gameMapPanel = (panelComponent).getMapPlayGridPanel(mapModel, new_jframe.getSize(),
-										E_MapEditorMode.Open);
-								*/
+								 * gameMapPanel =
+								 * (panelComponent).getMapPlayGridPanel(
+								 * mapModel, new_jframe.getSize(),
+								 * E_MapEditorMode.Open);
+								 */
 								gameMapPanel = (panelComponent).getMapEditorGridPanel(mapModel, new_jframe.getSize(),
 										E_MapEditorMode.Play);
-								
+
 								// jframe.add(gameMapPanel);
 								new_jframe.getContentPane().add(gameMapPanel, BorderLayout.NORTH);
 								bottomGamePanel = (BottomGamePanelView) new JPanelComponent()
 										.getGameTowerPanel(new_jframe.getSize());
-		//						bottomGamePanel.setMapButtons(panelComponent.getButtons());
+								// bottomGamePanel.setMapButtons(panelComponent.getButtons());
 								new_jframe.getContentPane().add(bottomGamePanel, BorderLayout.SOUTH);
 								new_jframe.setVisible(true);
 								panelComponent.setBottomGamePanelView(bottomGamePanel);
@@ -220,7 +223,8 @@ public class JMenuBarComponent {
 	/**
 	 * This method gets the Map editor menu bar
 	 * 
-	 * @param new_mapModel type MapModel object is passed to the getMapEditorJmenuBar
+	 * @param new_mapModel
+	 *            type MapModel object is passed to the getMapEditorJmenuBar
 	 * @param new_jframe
 	 *            type JFrame the frame of the application
 	 * @return the menu bar type JMenuBar
@@ -243,12 +247,16 @@ public class JMenuBarComponent {
 					if (MapValidationStatus != null)
 						JOptionPane.showMessageDialog(null, MapValidationStatus);
 					else {
-						JFileChooser fileChooser = new JFileChooserComponent()
-								.getJFileChooser(E_JFileChooserMode.Save);
+						JFileChooser fileChooser = new JFileChooserComponent().getJFileChooser(E_JFileChooserMode.Save);
 						int result = fileChooser.showSaveDialog(null);
 						if (result == JFileChooser.APPROVE_OPTION) {
 							File file = fileChooser.getSelectedFile();
 							new_mapModel.setMapSecret();
+
+							new_mapModel.setMapRoutPath(ApplicationStatics.MAP_ROUT_PATH);
+							new_mapModel.setMapRoutBoundaries(ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME);
+							new_mapModel.getMapRoutPathList();
+
 							String msg = new FileStorage().saveMapFile(file, new_mapModel);
 							if (msg.contains("SUCCESS")) {
 								JOptionPane.showMessageDialog(null, "File Save Successfuly.");
@@ -281,20 +289,22 @@ public class JMenuBarComponent {
 	public void closeFrame(JFrame new_jframe) {
 		new_jframe.dispose();
 	}
-	
+
 	/**
 	 * This method returns the bottom panel
+	 * 
 	 * @return bottom game panel object
 	 */
-	public BottomGamePanelView getBottomPanel(){
+	public BottomGamePanelView getBottomPanel() {
 		return bottomGamePanel;
 	}
-	
+
 	/**
 	 * This method returns the top map panel
+	 * 
 	 * @return game map panel object
 	 */
-	public JPanelComponent getPanelComponent(){
+	public JPanelComponent getPanelComponent() {
 		return panelComponent;
 	}
 

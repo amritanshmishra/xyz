@@ -113,7 +113,7 @@ public class JPanelComponent implements Observer{
 		// In case 'Play' Increase Panel size According to the Play Game Window
 		if (E_MapEditorMode.Play == mapEditorMode) {
 
-			panel = new MapPanel();
+			panel = new MapPanel(mapModel);
 			gridLayout = new GridLayout(mapModel.getMapHeight(),
 					mapModel.getMapWidth(), 0, 0);
 			panel.setLayout(gridLayout);
