@@ -112,7 +112,7 @@ public class BasicCritter implements CritterType {
 
 
 	@Override
-	public Image getImage() {
+	public Image getCritterImage() {
 		// TODO Auto-generated method stub
 		return image;
 	}

@@ -103,11 +103,11 @@ public class MapPanel extends JPanel {
 			super.paintComponent(g);
 			
 			critter1.calculatePath();
-			g.drawImage(critter1.getImage(), critter1.getX(), critter1.getY(), 30, 30, null);
+			g.drawImage(critter1.getCritterImage(), critter1.getX(), critter1.getY(), 30, 30, null);
 			
 			if(count > 60){
 			critter2.calculatePath();
-			g.drawImage(critter2.getImage(), critter2.getX(), critter2.getY(), 30, 30, null);
+			g.drawImage(critter2.getCritterImage(), critter2.getX(), critter2.getY(), 30, 30, null);
 			}
 			count++;
 			

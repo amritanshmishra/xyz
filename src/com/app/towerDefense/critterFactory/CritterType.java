@@ -1,26 +1,19 @@
 package com.app.towerDefense.critterFactory;
 
-import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.util.LinkedList;
-
-import javax.swing.ImageIcon;
 
 /**
- * This interface is defined as per factory pattern In this interface we define
+ * This interface is defined as per factory pattern. In this interface we define
  * the critter type and the basic methods associated with it which would be
- * latter used for creating different types of critters.
+ * later used for creating different types of critters.
  * 
  * @author Amritansh Mishra
  *
  */
 public interface CritterType {
 
-	
 	/**
-	 * getter method for X
+	 * Getter method for X
 	 */
 	public int getX();
 
@@ -30,12 +23,12 @@ public interface CritterType {
 	public int getY();
 
 	/**
-	 * getter method for actualhealth
+	 * Getter method for actualhealth
 	 */
 	public int getActualHealth();
 
 	/**
-	 * getter method for currenthealth
+	 * Getter method for currenthealth
 	 */
 	public int getCurrentHealth();
 
@@ -45,29 +38,44 @@ public interface CritterType {
 	public void setActualHealth(int actualHealth);
 
 	/**
-	 * setter method for currenthealth
+	 * Setter method for currenthealth
 	 */
 	public void setCurrentHealth(int currentHealth);
 
 	/**
-	 * getter method for CritterId
+	 * Getter method for CritterId
 	 */
 	public int getCritterId();
 
 	/**
-	 * calculates the x and y for critter
+	 * Calculates the path on which the critter would move.
 	 */
 	public void calculatePath();
-	
+
 	/**
-	 * sets blocks parameters
-	 * @param new_w width
-	 * @param new_h height
+	 * Sets blocks parameters. Blocks are buttons on the map This method allows
+	 * us to set the block width and height
+	 * 
+	 * @param new_w
+	 *            width
+	 * @param new_h
+	 *            height
 	 */
 	public void setBlocksParams(int new_w, int new_h);
-	
-	public Image getImage();
-	
+
+	/**
+	 * Returns the image for the critter
+	 * 
+	 * @return
+	 */
+	public Image getCritterImage();
+
+	/**
+	 * Set the x and y co-ordinate for critter
+	 * 
+	 * @param new_x
+	 * @param new_y
+	 */
 	public void setXY(int new_x, int new_y);
 
 }

@@ -91,7 +91,7 @@ public class AdvancedCritter implements CritterType {
 
 
 	@Override
-	public Image getImage() {
+	public Image getCritterImage() {
 		// TODO Auto-generated method stub
 		return null;
 	}
