@@ -119,13 +119,17 @@ public class BasicCritter implements CritterType {
 		directionY = ApplicationStatics.PATH_ARRAY1.get(i + 1).x - ApplicationStatics.PATH_ARRAY1.get(i).x;
 		directionX = ApplicationStatics.PATH_ARRAY1.get(i + 1).y - ApplicationStatics.PATH_ARRAY1.get(i).y;
 
-		x += directionX;
-		y += directionY;
-
+		
+		
 		if (x >= ApplicationStatics.PATH_ARRAY1.get(i + 1).y * blockW
 				&& y >= ApplicationStatics.PATH_ARRAY1.get(i + 1).x * blockH) {
 			i++;
+			x += directionX;
+			y += directionY;
 		}
+		else if(x >= ApplicationStatics.PATH_ARRAY1.get(i + 1).y * blockW
+				&& y >= ApplicationStatics.PATH_ARRAY1.get(i + 1).x * blockH)
+		
 		System.out.println("inside critter   x : " + x + " , y : " + y);
 
 	}
