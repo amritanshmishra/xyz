@@ -402,8 +402,10 @@ public class JPanelComponent implements Observer{
 				System.out.println("x : "+new_x + " , y : "+ new_y);
 
 				ApplicationStatics.SET_TOWER_DESCR_VISIBLE = false;
-				bottomGamePanel.towerDescrPanel.updateTowerDscrPanel(tempTM);
 				
+				if(bottomGamePanel != null && bottomGamePanel.towerDescrPanel!= null){
+					bottomGamePanel.towerDescrPanel.updateTowerDscrPanel(tempTM);
+				}
 				ApplicationStatics.CURRENT_SELECTED_TOWER = 4;
 				
 

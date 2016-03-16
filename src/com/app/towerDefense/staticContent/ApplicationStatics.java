@@ -29,7 +29,7 @@ public class ApplicationStatics {
 	public static PlayerModel PLAYERMODEL;
 	public static boolean HAS_BOUGHT_TOWER = false;
 	public static boolean START_WAVE = false;
-	public static int[][] PATH_ARRAY = new int[6][2];
+	public static int[][] PATH_ARRAY = new int[8][2];
 	/*
 	public static final int MAP_ENTRY_POINT=1;
 	public static final int MAP_EXIT_POINT=900;

@@ -49,17 +49,20 @@ public class MapPanel extends JPanel {
 				blockW = width / n;
 				blockH = height / m;
 
-				a = array[i][0];
-				b = array[i][1];
-				x = a * blockW + blockW / 3;
-				y = b * blockH + blockH / 3;
+				a = ApplicationStatics.PATH_ARRAY[i][0];
+				b = ApplicationStatics.PATH_ARRAY[i][1];
+				x = a * blockW;// + blockW / 3;
+				y = b * blockH;// + blockH / 3;
 
 				firstTime = false;
 
-				for(int k = 0; k<6; k++){
-					System.out.println(k+" : x="+ApplicationStatics.PATH_ARRAY[k][0]+" , y="+ApplicationStatics.PATH_ARRAY[k][1] );
+				System.out.println("blockW : " + blockW + " , blockH : " + blockH);
+
+				for (int k = 0; k < 8; k++) {
+					System.out.println(k + " : x=" + ApplicationStatics.PATH_ARRAY[k][0] + " , y="
+							+ ApplicationStatics.PATH_ARRAY[k][1]);
 				}
-				
+
 			}
 
 			calculatePath(ApplicationStatics.PATH_ARRAY);
@@ -75,25 +78,20 @@ public class MapPanel extends JPanel {
 
 	public void calculatePath(int[][] array) {
 
-		if (i < array.length) {
-			if (y > (array[i + 1][1]+1) * blockH) {
-				System.out.println("here y i++");
-				i++;
-			}else if (x > (array[i + 1][0]+1) * blockW) {
-				i++;
-				System.out.println("here x i++");
-				
-			}
-			System.out.println("x : " + x + " , y : " + y + " , blockW : " + ((array[i + 1][0]+1) * blockW) + " , blockH : "+ ((array[i + 1][1]+1) * blockH));
-		}
 		
 		directionY = array[i + 1][0] - array[i][0];
 		directionX = array[i + 1][1] - array[i][1];
 
 		x += directionX;
 		y += directionY;
-
 		
+		if (i < array.length) {
+			System.out.println("x : " + x + " , y : " + y + " , blockW : " + ((array[i + 1][1]) * blockW) + " , blockH : "+ ((array[i + 1][0]) * blockH));
+			
+			if (x >=  array[i + 1][1]* blockW && y >= (array[i + 1][0]) * blockH) {
+				i++;
+			}
+		}
 
 	}
 
