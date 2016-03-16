@@ -89,14 +89,14 @@ public class BasicCritter implements CritterType {
 	public void calculatePath() {
 
 		
-		directionY = ApplicationStatics.PATH_ARRAY.get(i + 2) - ApplicationStatics.PATH_ARRAY.get(i);
-		directionX = ApplicationStatics.PATH_ARRAY.get(i + 3) - ApplicationStatics.PATH_ARRAY.get(i+1);
+		directionY = ApplicationStatics.PATH_ARRAY1.get(i + 1).x - ApplicationStatics.PATH_ARRAY1.get(i).x;
+		directionX = ApplicationStatics.PATH_ARRAY1.get(i + 1).y- ApplicationStatics.PATH_ARRAY1.get(i).y;
 
 		x += directionX;
 		y += directionY;
 		
-		if (x >= ApplicationStatics.PATH_ARRAY.get(i+3)* blockW && y >= ApplicationStatics.PATH_ARRAY.get(i+2) * blockH) {
-				i+=2;
+		if (x >= ApplicationStatics.PATH_ARRAY1.get(i+1).y* blockW && y >= ApplicationStatics.PATH_ARRAY1.get(i+1).x * blockH) {
+				i++;
 		}
 		System.out.println("inside critter   x : "+x+" , y : "+y);
 

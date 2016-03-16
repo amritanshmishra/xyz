@@ -39,8 +39,12 @@ public class MapPanel extends JPanel {
 
 	public MapPanel(MapModel new_mapModel) {
 
-		i = 0;
+		//i = 0;
 		mapModel = new_mapModel;
+		ApplicationStatics.PATH_ARRAY1=mapModel.getMapRoutPathList();
+		if(mapModel != null){
+			System.out.println("mapModel is not null");
+		}
 
 		// this.setBackground(new Color(205, 183, 158));
 	}
@@ -53,19 +57,29 @@ public class MapPanel extends JPanel {
 			if (firstTime) {
 				width = this.getWidth();
 				height = this.getHeight();
-				blockW = width / n;
-				blockH = height / m;
-
-				xStart = ApplicationStatics.PATH_ARRAY.get(i) * blockW;// + blockW / 3;
-				yStart = ApplicationStatics.PATH_ARRAY.get(i+1) * blockH;// + blockH / 3;
-
+				blockW = width / mapModel.getMapWidth();
+				blockH = height / mapModel.getMapHeight();
+			
+				
+				//xStart = ApplicationStatics.PATH_ARRAY.get(i) * blockW;// + blockW / 3;
+				//yStart = ApplicationStatics.PATH_ARRAY.get(i+1) * blockH;// + blockH / 3;
+				xStart = ApplicationStatics.PATH_ARRAY1.get(0).x * blockW;
+				yStart = ApplicationStatics.PATH_ARRAY1.get(0).y* blockH;
+				
+				
+				
 				firstTime = false;
 
-				System.out.println("blockW : " + blockW + " , blockH : " + blockH);
-
+				System.out.println("blockW : " + blockW + " , blockH : " + blockH+ " , width : "+mapModel.getMapWidth()+" , height : "+mapModel.getMapHeight());
+				/*
 				for (int k = 0; k < ApplicationStatics.PATH_ARRAY.size(); k+=2) {
 					System.out.println(k + " : x=" + ApplicationStatics.PATH_ARRAY.get(k) + " , y="
 							+ ApplicationStatics.PATH_ARRAY.get(i+1));
+				}
+				*/
+				for (int k = 0; k < ApplicationStatics.PATH_ARRAY1.size(); k+=1) {
+					System.out.println(k + " : x=" + ApplicationStatics.PATH_ARRAY1.get(k).x + " , y="
+							+ ApplicationStatics.PATH_ARRAY1.get(k).y);
 				}
 				
 				critter1 = CritterFactory.getCritterfromFactory("BasicCritter");
