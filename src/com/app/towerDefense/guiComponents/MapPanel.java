@@ -1,6 +1,7 @@
 package com.app.towerDefense.guiComponents;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -12,108 +13,100 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
 public class MapPanel extends JPanel {
 
 	private static final long serialVersionUID = -9082005090002375868L;
-	int[][] array = new int[8][2];
-	int n = 10;
-	int m = 10;
-	int width;
-	int height;
-	int blockW;
-	int blockH;
-	int i;
-	int directionX;
-	int directionY;
 
-	boolean firstTime = true;
-	boolean firstTime2 = true;
+	int panelWidth;
+	int panelHeight;
+	int blockWidth;
+	int blockHeight;
 
-	int xStart = 0;
-	int yStart = 0;
-	
-	int a = 0, b = 0;
-	
-	CritterType critter1;
-	CritterType critter2;
-	long count = 0;
-	
+	boolean isInitialCond = true;
+	// Critter entry point co-ordinates
+	int xEntry = 0;
+	int yEntry = 0;
+
+	// To release multiple critters in the game
+	long multipleCriiterCounter = 0;
+
 	MapModel mapModel;
+	// Variable to create number of critter based on game levels
+	int wave = 2 * 2;
+	ArrayList<CritterType> critter = new ArrayList<CritterType>();
 
+	/**
+	 * Parameterized constructor for Map Panel
+	 * 
+	 * @param new_mapModel
+	 */
 	public MapPanel(MapModel new_mapModel) {
-
-		//i = 0;
 		mapModel = new_mapModel;
-		ApplicationStatics.PATH_ARRAY1=mapModel.getMapRoutPathList();
-		if(mapModel != null){
-			System.out.println("mapModel is not null");
-		}
 
-		// this.setBackground(new Color(205, 183, 158));
 	}
 
+	/**
+	 * Creates critter objects and calculates the path on which critter has to
+	 * move
+	 * 
+	 * @param new_graphics
+	 */
 	@Override
-	protected void paintComponent(Graphics g) {
+	protected void paintComponent(Graphics new_graphics) {
 
 		if (ApplicationStatics.START_WAVE) {
-		
-			if (firstTime) {
-				width = this.getWidth();
-				height = this.getHeight();
-				blockW = width / mapModel.getMapWidth();
-				blockH = height / mapModel.getMapHeight();
-			
-				
-				//xStart = ApplicationStatics.PATH_ARRAY.get(i) * blockW;// + blockW / 3;
-				//yStart = ApplicationStatics.PATH_ARRAY.get(i+1) * blockH;// + blockH / 3;
-				xStart = ApplicationStatics.PATH_ARRAY1.get(0).x * blockW;
-				yStart = ApplicationStatics.PATH_ARRAY1.get(0).y* blockH;
-				
-				
-				
-				firstTime = false;
 
-				System.out.println("blockW : " + blockW + " , blockH : " + blockH+ " , width : "+mapModel.getMapWidth()+" , height : "+mapModel.getMapHeight());
-				/*
-				for (int k = 0; k < ApplicationStatics.PATH_ARRAY.size(); k+=2) {
-					System.out.println(k + " : x=" + ApplicationStatics.PATH_ARRAY.get(k) + " , y="
-							+ ApplicationStatics.PATH_ARRAY.get(i+1));
+			if (isInitialCond) {
+				panelInit();
+				for (int i = 0; i < wave; i++) {
+					critter.add(CritterFactory.getCritterfromFactory("BasicCritter"));
+					critter.get(i).setBlocksParams(blockWidth, blockHeight);
+					critter.get(i).setXY(xEntry, yEntry);
 				}
-				*/
-				for (int k = 0; k < ApplicationStatics.PATH_ARRAY1.size(); k+=1) {
-					System.out.println(k + " : x=" + ApplicationStatics.PATH_ARRAY1.get(k).x + " , y="
-							+ ApplicationStatics.PATH_ARRAY1.get(k).y);
+				isInitialCond = false;
+			}
+
+			super.paintComponent(new_graphics);
+
+			System.out.println("count : " + multipleCriiterCounter);
+			for (int i = 0; i < wave; i++) {
+
+				critter.get(i).calculatePath();
+				new_graphics.drawImage(critter.get(i).getCritterImage(), critter.get(i).getX(), critter.get(i).getY(),
+						30, 30, null);
+				if (multipleCriiterCounter < (i + 1) * 30) {
+					System.out.println("Inside Counter");
+					break;
 				}
-				
-				critter1 = CritterFactory.getCritterfromFactory("BasicCritter");
-				critter1.setBlocksParams(blockW, blockH);
-				critter1.setXY(xStart, yStart);
-				
-				
-				
-				
+
 			}
-			
-			if(firstTime2 && count > 50){
-				critter2 = CritterFactory.getCritterfromFactory("BasicCritter");
-				critter2.setBlocksParams(blockW, blockH);
-				critter2.setXY(xStart, yStart);
-				firstTime2 = false;
-			}
-			
-			
-			System.out.println("count : "+count);
-			super.paintComponent(g);
-			
-			critter1.calculatePath();
-			g.drawImage(critter1.getCritterImage(), critter1.getX(), critter1.getY(), 30, 30, null);
-			
-			if(count > 60){
-			critter2.calculatePath();
-			g.drawImage(critter2.getCritterImage(), critter2.getX(), critter2.getY(), 30, 30, null);
-			}
-			count++;
-			
+
+			multipleCriiterCounter++;
+
 		}
 	}
 
-	
+	/**
+	 * This method iniitializes the route in the map panel for critters
+	 */
+	public void panelInit() {
+		if (mapModel != null) {
+			ApplicationStatics.PATH_ARRAY1 = mapModel.getMapRoutPathList();
+			System.out.println("Map Model is not null");
+			panelWidth = this.getWidth();
+			panelHeight = this.getHeight();
+			blockWidth = panelWidth / mapModel.getMapWidth();
+			blockHeight = panelHeight / mapModel.getMapHeight();
+
+			xEntry = ApplicationStatics.PATH_ARRAY1.get(0).x * blockWidth;
+			yEntry = ApplicationStatics.PATH_ARRAY1.get(0).y * blockHeight;
+
+			System.out.println("blockW : " + blockWidth + " , blockH : " + blockHeight + " , width : "
+					+ mapModel.getMapWidth() + " , height : " + mapModel.getMapHeight());
+
+			for (int k = 0; k < ApplicationStatics.PATH_ARRAY1.size(); k += 1) {
+				System.out.println(k + " : x=" + ApplicationStatics.PATH_ARRAY1.get(k).x + " , y="
+						+ ApplicationStatics.PATH_ARRAY1.get(k).y);
+			}
+
+		}
+	}
 
 }
