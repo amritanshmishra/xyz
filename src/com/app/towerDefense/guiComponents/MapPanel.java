@@ -2,9 +2,12 @@ package com.app.towerDefense.guiComponents;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 
 import javax.swing.JPanel;
 
+import com.app.towerDefense.critterFactory.CritterFactory;
+import com.app.towerDefense.critterFactory.CritterType;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 
 public class MapPanel extends JPanel {
@@ -22,12 +25,16 @@ public class MapPanel extends JPanel {
 	int directionY;
 
 	boolean firstTime = true;
+	boolean firstTime2 = true;
 
-	int x = 0;
-	int y = 0;
-	Graphics g;
-
+	int xStart = 0;
+	int yStart = 0;
+	
 	int a = 0, b = 0;
+	
+	CritterType critter1;
+	CritterType critter2;
+	long count = 0;
 
 	public MapPanel() {
 
@@ -40,19 +47,15 @@ public class MapPanel extends JPanel {
 	protected void paintComponent(Graphics g) {
 
 		if (ApplicationStatics.START_WAVE) {
-			// System.out.println("inside paintComponent in MapPanel Class x : "
-			// + x + " , y : " + y);
-
+		
 			if (firstTime) {
 				width = this.getWidth();
 				height = this.getHeight();
 				blockW = width / n;
 				blockH = height / m;
 
-				a = ApplicationStatics.PATH_ARRAY.get(i);
-				b = ApplicationStatics.PATH_ARRAY.get(i+1);
-				x = a * blockW;// + blockW / 3;
-				y = b * blockH;// + blockH / 3;
+				xStart = ApplicationStatics.PATH_ARRAY.get(i) * blockW;// + blockW / 3;
+				yStart = ApplicationStatics.PATH_ARRAY.get(i+1) * blockH;// + blockH / 3;
 
 				firstTime = false;
 
@@ -62,37 +65,39 @@ public class MapPanel extends JPanel {
 					System.out.println(k + " : x=" + ApplicationStatics.PATH_ARRAY.get(k) + " , y="
 							+ ApplicationStatics.PATH_ARRAY.get(i+1));
 				}
-
+				
+				critter1 = CritterFactory.getCritterfromFactory("BasicCritter");
+				critter1.setBlocksParams(blockW, blockH);
+				critter1.setXY(xStart, yStart);
+				
+				
+				
+				
 			}
-
-			calculatePath();
-
-			super.paintComponent(g);
-			g.setColor(Color.RED);
-			g.fillRect(x, y, 30, 30);
-			// g.dispose();
-			// System.out.println("w : " + this.getWidth() + " , h : " +
-			// this.getHeight());
-		}
-	}
-
-	public void calculatePath() {
-
-		
-		directionY = ApplicationStatics.PATH_ARRAY.get(i + 2) - ApplicationStatics.PATH_ARRAY.get(i);
-		directionX = ApplicationStatics.PATH_ARRAY.get(i + 3) - ApplicationStatics.PATH_ARRAY.get(i+1);
-
-		x += directionX;
-		y += directionY;
-		
-		if (i < array.length) {
-	//		System.out.println("x : " + x + " , y : " + y + " , blockW : " + ((array[i + 1][1]) * blockW) + " , blockH : "+ ((array[i + 1][0]) * blockH));
 			
-			if (x >= ApplicationStatics.PATH_ARRAY.get(i+3)* blockW && y >= ApplicationStatics.PATH_ARRAY.get(i+2) * blockH) {
-				i+=2;
+			if(firstTime2 && count > 50){
+				critter2 = CritterFactory.getCritterfromFactory("BasicCritter");
+				critter2.setBlocksParams(blockW, blockH);
+				critter2.setXY(xStart, yStart);
+				firstTime2 = false;
 			}
+			
+			
+			System.out.println("count : "+count);
+			super.paintComponent(g);
+			
+			critter1.calculatePath();
+			g.drawImage(critter1.getImage(), critter1.getX(), critter1.getY(), 30, 30, null);
+			
+			if(count > 60){
+			critter2.calculatePath();
+			g.drawImage(critter2.getImage(), critter2.getX(), critter2.getY(), 30, 30, null);
+			}
+			count++;
+			
 		}
-
 	}
+
+	
 
 }

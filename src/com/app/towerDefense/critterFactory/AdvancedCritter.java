@@ -1,17 +1,14 @@
 package com.app.towerDefense.critterFactory;
 
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.util.LinkedList;
+import java.awt.Image;
 
 @SuppressWarnings("serial")
-public class AdvancedCritter extends Rectangle implements CritterType {
+public class AdvancedCritter implements CritterType {
 
 	/**
 	 * current X and Y position of critter
 	 */
-	public int x, y;
+	private int x, y;
 	public int movePoint;
 	public static int moveStandard = 0;
 	/**
@@ -31,23 +28,24 @@ public class AdvancedCritter extends Rectangle implements CritterType {
 	 */
 	public int currentHealth;
 
+	/**
+	 * 
+	 */
+	public int getX(){
+		return x;
+	}
+	
+	/**
+	 * 
+	 */
+	public int getY(){
+		return y;
+	}
 
-
+	
 	public AdvancedCritter() {
 	}
 
-
-	@Override
-	public int Xvalue() {
-
-		return 0;
-	}
-
-	@Override
-	public int Yvalue() {
-
-		return 0;
-	}
 
 	@Override
 	public int getActualHealth() {
@@ -75,5 +73,32 @@ public class AdvancedCritter extends Rectangle implements CritterType {
 	public int getCritterId() {
 
 		return 0;
+	}
+
+
+	@Override
+	public void calculatePath() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void setBlocksParams(int new_w, int new_h) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public Image getImage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setXY(int new_x, int new_y) {
+		// TODO Auto-generated method stub
+		
 	}
 }

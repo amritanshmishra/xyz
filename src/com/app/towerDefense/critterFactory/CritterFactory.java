@@ -22,11 +22,11 @@ public class CritterFactory {
 * @param critterCurrentSpeed Current Speed of critter
 * @return critter
 */
-public CritterType getCritterfromFactory(String critterType)
+static public CritterType getCritterfromFactory(String critterType)
 {
 	 if(critterType == null)
      	return new BasicCritter();
-	 else if(critterType.equalsIgnoreCase("Critter X")){
+	 else if(critterType.equalsIgnoreCase("BasicCritter")){
 		 	return new BasicCritter();
 	 }
 	 else if(critterType.equalsIgnoreCase("Critter Y")){

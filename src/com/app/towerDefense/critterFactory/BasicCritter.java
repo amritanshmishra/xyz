@@ -1,20 +1,26 @@
 package com.app.towerDefense.critterFactory;
 
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.util.LinkedList;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
+import com.app.towerDefense.staticContent.ApplicationStatics;
 
 @SuppressWarnings("serial")
-public class BasicCritter extends Rectangle implements CritterType {
+public class BasicCritter implements CritterType {
 
 	
 	/**
 	 * current X and Y position of critter
 	 */
 	public int x, y;
-	public int movePoint;
+	public int directionX;
+	public int directionY;
 	public static int moveStandard = 0;
+	private int i = 0;
+	private int blockW, blockH;
+	public Image image;
+	
 	/**
 	 * Id of critter
 	 */
@@ -35,19 +41,20 @@ public class BasicCritter extends Rectangle implements CritterType {
 
 
 	public BasicCritter() {
+		image = new ImageIcon("images/critter1.gif").getImage();
 	}
 
 
 	@Override
-	public int Xvalue() {
+	public int getX() {
 
-		return 0;
+		return x;
 	}
 
 	@Override
-	public int Yvalue() {
+	public int getY() {
 
-		return 0;
+		return y;
 	}
 
 	@Override
@@ -76,6 +83,46 @@ public class BasicCritter extends Rectangle implements CritterType {
 	public int getCritterId() {
 
 		return 0;
+	}
+	
+	@Override
+	public void calculatePath() {
+
+		
+		directionY = ApplicationStatics.PATH_ARRAY.get(i + 2) - ApplicationStatics.PATH_ARRAY.get(i);
+		directionX = ApplicationStatics.PATH_ARRAY.get(i + 3) - ApplicationStatics.PATH_ARRAY.get(i+1);
+
+		x += directionX;
+		y += directionY;
+		
+		if (x >= ApplicationStatics.PATH_ARRAY.get(i+3)* blockW && y >= ApplicationStatics.PATH_ARRAY.get(i+2) * blockH) {
+				i+=2;
+		}
+		System.out.println("inside critter   x : "+x+" , y : "+y);
+
+	}
+	
+	/**
+	 * This method sets the button(blocks) parameters
+	 */
+	public void setBlocksParams(int new_w, int new_h){
+		blockW = new_w;
+		blockH = new_h;
+	}
+
+
+	@Override
+	public Image getImage() {
+		// TODO Auto-generated method stub
+		return image;
+	}
+
+
+	@Override
+	public void setXY(int new_x, int new_y) {
+		// TODO Auto-generated method stub
+		x = new_x;
+		y = new_y;
 	}
 
 }
