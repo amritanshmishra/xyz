@@ -41,32 +41,26 @@ public class Freezer extends Tower {
 	
 		@Override
 		public String getTowerName() {
-		
 			return super.towerName;
 		}
 
 		@Override
 		public void setTowerName() {
-			
-			super.towerName="Freezer";
-			
+			super.towerName="Freezer";	
 		}
 
 		@Override
-		public int getTowerFireRangeUpgrade() {
-			
+		public int getTowerFireRangeUpgrade() {	
 			return super.towerFireRangeUpgrade;
 		}
 
 		@Override
 		public void setTowerFireRangeUpgrade() {
-			super.towerFireRangeUpgrade=1;
-			
+			super.towerFireRangeUpgrade=1;	
 		}
 
 		@Override
-		public int getTowerRange() {
-			
+		public int getTowerRange() {	
 			return super.towerRange;
 		}
 
@@ -82,13 +76,11 @@ public class Freezer extends Tower {
 
 		@Override
 		public void setTowerPower() {
-			super.towerPower=1;
-			
+			super.towerPower=1;		
 		}
 
 		@Override
 		public int getTowerFireRate() {
-			
 			return super.towerFireRate;
 		}
 
@@ -109,14 +101,12 @@ public class Freezer extends Tower {
 		}
 
 		@Override
-		public int getTowerlevel() {
-			
+		public int getTowerlevel() {	
 			return super.towerlevel;
 		}
 
 		@Override
-		public void setTowerlevel() {
-			
+		public void setTowerlevel() {		
 			super.towerlevel = 1;
 		}
 
@@ -128,8 +118,6 @@ public class Freezer extends Tower {
 		@Override
 		public void setTowerImage() {
 		 super.towerImage=	new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_TOWER2);
-						
-			
 		}
 
 		@Override
@@ -150,44 +138,37 @@ public class Freezer extends Tower {
 
 		@Override
 		public void setTowerUpgradeCost() {
-			super.towerUpgradeCost=20;
-			
+			super.towerUpgradeCost=20;		
 		}
 
 		@Override
-		public int getTowerlevelUpgrade() {
-			
+		public int getTowerlevelUpgrade() {	
 			return super.towerlevelUpgrade;
 		}
 
 		@Override
 		public void setTowerlevelUpgrade() {
-			super.towerlevelUpgrade=1;
-			
+			super.towerlevelUpgrade=1;	
 		}
 
 		@Override
-		public int getTowerPowerUpgrade() {
-			
+		public int getTowerPowerUpgrade() {	
 			return super.towerPowerUpgrade;
 		}
 
 		@Override
 		public void setTowerPowerUpgrade() {
-		super.towerPowerUpgrade=1;
-			
+		super.towerPowerUpgrade=1;	
 		}
 
 		@Override
-		public int getTowerFireRateUpgrade() {
-			
+		public int getTowerFireRateUpgrade() {	
 			return super.towerFireRateUpgrade;
 		}
 
 		@Override
 		public void setTowerFireRateUpgrade() {
-			super.towerFireRateUpgrade=1;
-			
+			super.towerFireRateUpgrade=1;		
 		}
 
 
@@ -198,8 +179,7 @@ public class Freezer extends Tower {
 		}
 
 		@Override
-		public int getY() {
-			
+		public int getY() {	
 			return super.y;
 		}
 
@@ -207,7 +187,6 @@ public class Freezer extends Tower {
 		public void setXY(int new_x, int new_y) {
 			super.x=new_x;
 			super.y = new_y;
-			
 		}
 
 		@Override
@@ -217,13 +196,10 @@ public class Freezer extends Tower {
 			super.towerRange=getTowerRange()+getTowerFireRangeUpgrade();
 			super.towerlevel= getTowerlevel()+getTowerlevelUpgrade();
 			super.towerPower=getTowerPower()+getTowerPowerUpgrade();
-			
-		
 		}
 
 		@Override
 		public int getRefund() {
-			
 			return getTowerCost()/2;
 		}
 

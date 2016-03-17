@@ -138,7 +138,7 @@ public class AdvancedCritter extends java.util.Observable implements CritterType
 	}
 
 	/**
-	 * This method adds a listner
+	 * This method adds a listener
 	 */
 	@Override
 	public void addListener(InvalidationListener new_listener) {
@@ -147,7 +147,7 @@ public class AdvancedCritter extends java.util.Observable implements CritterType
 	}
 
 	/**
-	 * This method removes the listner
+	 * This method removes the listener
 	 */
 	@Override
 	public void removeListener(InvalidationListener new_listener) {
@@ -172,16 +172,28 @@ public class AdvancedCritter extends java.util.Observable implements CritterType
 		// TODO Auto-generated method stub
 
 	}
+	
+	/**
+	 * This method decreases life a critter by a given number
+	 */
 	@Override
 	public boolean decreaseLife(int new_power) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	/**
+	 * This method returns the currency value of the critter
+	 */
 	@Override
 	public int getValue() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	/**
+	 * This method sets the critter image path to new one
+	 */
 	@Override
 	public void setCritterImage(String new_path) {
 		// TODO Auto-generated method stub

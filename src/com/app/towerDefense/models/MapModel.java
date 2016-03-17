@@ -61,7 +61,9 @@ public class MapModel {
 		this.mapWidth = new_mapWidth;
 		this.mapHeight = new_mapHeight;
 	}
-
+/**
+ * Default constructor
+ */
 	public MapModel() {
 		// default constructor
 	}

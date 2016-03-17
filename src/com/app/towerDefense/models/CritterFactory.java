@@ -9,26 +9,25 @@ package com.app.towerDefense.models;
 public class CritterFactory {
 
 	/**
-	 * Creates critter of diiferent types
+	 * Creates critter of different types
 	 * 
 	 * @param new_critterType
-	 * @return
+	 *            creater type name
+	 * @return critter type object
 	 */
 	static public CritterType getCritterfromFactory(String new_critterType) {
-		if (new_critterType == null)
-		{
+
+		if (new_critterType == null) {
 			BasicCritter c = new BasicCritter();
-			for(int i=0;i<PlayerModel.towerModelArray.size();i++)
-			{
+			for (int i = 0; i < PlayerModel.towerModelArray.size(); i++) {
+				//assign tower observers to critter objects
 				c.addObserver(PlayerModel.towerModelArray.get(i));
 			}
 			return c;
-
-		}
-		else if (new_critterType.equalsIgnoreCase("BasicCritter")) {
+		} else if (new_critterType.equalsIgnoreCase("BasicCritter")) {
 			BasicCritter c = new BasicCritter();
-			for(int i=0;i<PlayerModel.towerModelArray.size();i++)
-			{
+			//assign tower observers to critter objects
+			for (int i = 0; i < PlayerModel.towerModelArray.size(); i++) {
 				c.addObserver(PlayerModel.towerModelArray.get(i));
 			}
 			return c;

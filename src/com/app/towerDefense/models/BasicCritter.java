@@ -21,15 +21,15 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	 * current X and Y position of critter
 	 */
 	public int x, y;
-	public int directionX;
+	public int directionX; //decides which direction critter moves
 	public int directionY;
 	private int i = 0;
 	private int blockW, blockH;
 	public Image image;
 	private int critterId;
-	int xNext;
-	int yNext;
-	int xExit;
+	int xNext; //x and y of the next path point
+	int yNext; 
+	int xExit; //x and y points of the exit on the map
 	int yExit;
 
 	/**
@@ -60,7 +60,6 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	 */
 	@Override
 	public int getX() {
-
 		return x;
 	}
 
@@ -69,7 +68,6 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	 */
 	@Override
 	public int getY() {
-
 		return y;
 	}
 
@@ -78,7 +76,6 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	 */
 	@Override
 	public int getActualHealth() {
-
 		return actualHealth;
 	}
 
@@ -87,7 +84,6 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	 */
 	@Override
 	public int getCurrentHealth() {
-
 		return currentHealth;
 	}
 
@@ -96,7 +92,6 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	 */
 	@Override
 	public int getCritterId() {
-
 		return critterId;
 	}
 
@@ -105,21 +100,22 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	 */
 	@Override
 	public boolean calculatePath() {
-
+		
 //		 System.out.println("i : "+i+" ,  arraysize : "+ (ApplicationStatics.PATH_ARRAY1.size()-1));
 		
+		//check if it is the end of the path
 			if(i == ApplicationStatics.PATH_ARRAY1.size()-1){
 				return false;
 			}
 			
-			// && x == xExit && y == yExit
-			
+			//calculate the next x and y coordinates of the next block of the path 
 			xNext = ApplicationStatics.PATH_ARRAY1.get(i + 1).y * blockW;
 			yNext = ApplicationStatics.PATH_ARRAY1.get(i + 1).x * blockH;
+			//calculate the critter movement direction
 			directionY = ApplicationStatics.PATH_ARRAY1.get(i + 1).x - ApplicationStatics.PATH_ARRAY1.get(i).x;
 			directionX = ApplicationStatics.PATH_ARRAY1.get(i + 1).y - ApplicationStatics.PATH_ARRAY1.get(i).y;
-			//System.out.println("Inside calculate path");
-			
+		
+			//move to next block when conditions satisfy
 			if (directionX == 1 || directionX == -1){
 				if( x == xNext){
 			//		System.out.println("inside 1 :" + (i++));
@@ -133,24 +129,25 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 					}
 				}
 			}
+			//increment or decrement the x and y coordinates of the critter
 			x += directionX;
 			y += directionY;	
-
+		//notify all observers about a change in x and y
 		setChanged();
 		notifyObservers();
 //		System.out.println("inside critter   x : " + x + " , y : " + y);
-		
-		return true;
+	
+		return true; //successful path calculation
 
 	}
 
 	/**
-	 * This method sets the button(blocks) parameters
+	 * This method sets the button(blocks) parameters to local variable
 	 */
 	public void setBlocksParams(int new_w, int new_h) {
 		blockW = new_w;
 		blockH = new_h;
-		System.out.println("blockW:"+blockW+" blockH:"+blockH);
+	//	System.out.println("blockW:"+blockW+" blockH:"+blockH);
 	}
 
 	/**
@@ -158,7 +155,6 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	 */
 	@Override
 	public Image getCritterImage() {
-
 		return image;
 	}
 
@@ -168,19 +164,19 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	 */
 	@Override
 	public void setID(int new_id) {
-
 		critterId = new_id;
 	}
 
-	/**
-	 * @return the blockW
+	/**This method returns the block width
+	 * @return the block width
 	 */
 	public int getBlockW() {
 		return blockW;
 	}
 
 	/**
-	 * @return the blockH
+	 * This method returns the block height
+	 * @return the block height
 	 */
 	public int getBlockH() {
 		return blockH;
@@ -206,8 +202,7 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 		// TODO Auto-generated method stub
 		x = new_xEntry;
 		y = new_yEntry;
-		System.out.println("myX : "+x+" , myY : "+y);
-		
+	//	System.out.println("myX : "+x+" , myY : "+y);
 	}
 
 	/**
@@ -224,13 +219,12 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	public boolean decreaseLife(int new_power) {
 		// TODO Auto-generated method stub
 		currentHealth = currentHealth - new_power;
-		if(currentHealth < 0)
-		{
+		if(currentHealth < 0){
 			return false;
 		}
-		
 		return true;
 	}
+	
 	/**
 	 * This method returns the money value of a critter when it dies.
 	 * @return amount of currency
@@ -239,11 +233,13 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 		return value;
 	}
 
+	/**
+	 * This method sets the critter image path to new one
+	 */
 	@Override
 	public void setCritterImage(String new_path) {
 		// TODO Auto-generated method stub
-		image = new ImageIcon(new_path).getImage();
-		
+		image = new ImageIcon(new_path).getImage();	
 	}
 
 }

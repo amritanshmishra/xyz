@@ -217,8 +217,6 @@ public class Burner extends Tower{
 		super.towerRange=getTowerRange()+getTowerFireRangeUpgrade();
 		super.towerlevel= getTowerlevel()+getTowerlevelUpgrade();
 		super.towerPower=getTowerPower()+getTowerPowerUpgrade();
-		
-	
 	}
 
 	@Override
