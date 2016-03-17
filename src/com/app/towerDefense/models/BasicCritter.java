@@ -6,6 +6,8 @@ import javax.swing.ImageIcon;
 
 import com.app.towerDefense.staticContent.ApplicationStatics;
 
+import javafx.beans.InvalidationListener;
+
 /**
  * This class is the basic critter that would move on the map Contains different
  * methhods to create and move a critter on the map selected by player
@@ -13,7 +15,7 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
  * @author Amritansh Mishra
  *
  */
-public class BasicCritter implements CritterType {
+public class BasicCritter extends java.util.Observable implements CritterType {
 
 	/**
 	 * current X and Y position of critter
@@ -119,6 +121,9 @@ public class BasicCritter implements CritterType {
 		}
 		x += directionX;
 		y += directionY;
+		setChanged();
+		notifyObservers();
+
 
 	}
 
@@ -170,6 +175,18 @@ public class BasicCritter implements CritterType {
 	 */
 	public int getBlockH() {
 		return blockH;
+	}
+
+	@Override
+	public void addListener(InvalidationListener arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeListener(InvalidationListener arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

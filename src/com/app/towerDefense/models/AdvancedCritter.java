@@ -2,6 +2,8 @@ package com.app.towerDefense.models;
 
 import java.awt.Image;
 
+import javafx.beans.InvalidationListener;
+
 /**
  * This class will be implemented in the final buil
  * This class is the advanced critter that would move on the map Contains
@@ -10,7 +12,7 @@ import java.awt.Image;
  * @author Amritansh Mishra
  *
  */
-public class AdvancedCritter implements CritterType {
+public class AdvancedCritter extends java.util.Observable implements CritterType {
 
 	/**
 	 * current X and Y position of critter
@@ -133,5 +135,15 @@ public class AdvancedCritter implements CritterType {
 	public int getBlockH() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	@Override
+	public void addListener(InvalidationListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void removeListener(InvalidationListener listener) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -9,6 +9,8 @@ import java.util.Observable;
 
 import javax.swing.Icon;
 
+import com.app.towerDefense.staticContent.ApplicationStatics;
+
 /**
  * Tower abstract class is the super-typer of all types of objects produced by the TowerFactory. 
  * @author George Ekow-Daniels
@@ -248,9 +250,31 @@ public abstract class Tower extends Observable {
 	 */
 	public abstract void executeStrategy();
 	
-	public void update(Observable clitter, Object x)
+	public void update(Observable critter, Object x)
 	{
-		//System.out.println(Crity);
+		int xblockdifference=((1*ApplicationStatics.BLOCK_HEIGHT)+ApplicationStatics.BLOCK_HEIGHT/2);
+		int yblockdifference=((1*ApplicationStatics.BLOCK_WIDTH)+ApplicationStatics.BLOCK_WIDTH/2);
+		
+		int xpix = (this.getX()*ApplicationStatics.BLOCK_HEIGHT)+ApplicationStatics.BLOCK_HEIGHT/2;
+		int ypix = (this.getY()*ApplicationStatics.BLOCK_WIDTH)+ApplicationStatics.BLOCK_WIDTH/2;
+		
+		if(
+				((((CritterType)critter).getX()==(xpix+xblockdifference)
+					&&((CritterType)critter).getY()==ypix))|| 
+				((((CritterType)critter).getX()==(xpix-xblockdifference)
+					&&((CritterType)critter).getY()==ypix))||
+				((((CritterType)critter).getX()==(xpix)
+					&&((CritterType)critter).getY()==ypix+yblockdifference))||
+				(((CritterType)critter).getX()==(xpix)
+					&&((CritterType)critter).getY()==ypix-yblockdifference))
+		{
+			System.out.println("Shoot me "+this.towerName+" Critter ID"+ ((CritterType)critter).getCritterId() );
+		}
+		
+				
+			
+		
+		
 	}
 	
 }

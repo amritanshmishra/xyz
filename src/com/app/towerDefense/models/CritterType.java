@@ -2,6 +2,8 @@ package com.app.towerDefense.models;
 
 import java.awt.Image;
 
+import javafx.beans.Observable;
+
 /**
  * This interface is defined as per factory pattern. In this interface we define
  * the critter type and the basic methods associated with it which would be
@@ -10,7 +12,7 @@ import java.awt.Image;
  * @author Amritansh Mishra
  *
  */
-public interface CritterType {
+public interface CritterType extends Observable {
 
 	/**
 	 * Getter method for X
