@@ -22,7 +22,7 @@ public class PlayerModel extends Observable{
 	private int hpPlayer;
 	private int gameWave;
 	private String playerName;
-	public ArrayList<Tower> towerModelArray;
+	public static ArrayList<Tower> towerModelArray;
 
 	/**
 	 * Constructor that initializes default values

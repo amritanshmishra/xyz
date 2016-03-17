@@ -70,7 +70,7 @@ public class MapPanel extends JPanel {
 
 			super.paintComponent(new_graphics);
 
-			System.out.println("count : " + multipleCriiterCounter);
+			//System.out.println("count : " + multipleCriiterCounter);
 			for (int i = 0; i < wave; i++) {
 
 				critter.get(i).calculatePath();

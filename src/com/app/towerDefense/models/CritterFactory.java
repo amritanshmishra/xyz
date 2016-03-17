@@ -16,9 +16,23 @@ public class CritterFactory {
 	 */
 	static public CritterType getCritterfromFactory(String new_critterType) {
 		if (new_critterType == null)
-			return new BasicCritter();
+		{
+			BasicCritter c = new BasicCritter();
+			for(int i=0;i<PlayerModel.towerModelArray.size();i++)
+			{
+				c.addObserver(PlayerModel.towerModelArray.get(i));
+			}
+			return c;
+
+		}
 		else if (new_critterType.equalsIgnoreCase("BasicCritter")) {
-			return new BasicCritter();
+			BasicCritter c = new BasicCritter();
+			for(int i=0;i<PlayerModel.towerModelArray.size();i++)
+			{
+				c.addObserver(PlayerModel.towerModelArray.get(i));
+			}
+			return c;
+
 		} else if (new_critterType.equalsIgnoreCase("AdvancedCritter")) {
 			return new AdvancedCritter();
 		}

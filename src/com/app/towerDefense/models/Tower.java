@@ -5,7 +5,9 @@ package com.app.towerDefense.models;
 
 
 import java.awt.Dimension;
+import java.awt.geom.Ellipse2D;
 import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.Icon;
 
@@ -16,7 +18,7 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
  * @author George Ekow-Daniels
  *
  */
-public abstract class Tower extends Observable {
+public abstract class Tower implements Observer {
 	
 	public int towerID;
 	protected String towerName;
@@ -252,25 +254,42 @@ public abstract class Tower extends Observable {
 	
 	public void update(Observable critter, Object x)
 	{
-		int xblockdifference=((1*ApplicationStatics.BLOCK_HEIGHT)+ApplicationStatics.BLOCK_HEIGHT/2);
-		int yblockdifference=((1*ApplicationStatics.BLOCK_WIDTH)+ApplicationStatics.BLOCK_WIDTH/2);
+		int xblockdifference=((1*ApplicationStatics.BLOCK_HEIGHT));//+ApplicationStatics.BLOCK_HEIGHT);
+		int yblockdifference=((1*ApplicationStatics.BLOCK_WIDTH));//+ApplicationStatics.BLOCK_WIDTH);
 		
-		int xpix = (this.getX()*ApplicationStatics.BLOCK_HEIGHT)+ApplicationStatics.BLOCK_HEIGHT/2;
-		int ypix = (this.getY()*ApplicationStatics.BLOCK_WIDTH)+ApplicationStatics.BLOCK_WIDTH/2;
+		int xpix = (this.getX()*ApplicationStatics.BLOCK_HEIGHT);//+ApplicationStatics.BLOCK_HEIGHT;
+		int ypix = (this.getY()*ApplicationStatics.BLOCK_WIDTH);//+ApplicationStatics.BLOCK_WIDTH;
 		
-		if(
-				((((CritterType)critter).getX()==(xpix+xblockdifference)
+		/*System.out.println("Cx="+((CritterType)critter).getX()+
+				", Cy="+((CritterType)critter).getY()
+				+", x :"+xpix +", y "+ypix);
+		*/
+		
+		Ellipse2D.Double circle =
+				  new Ellipse2D.Double((double) this.getX(), this.getY(), 200,200)
+				  ;
+		if(circle.contains( ((CritterType)critter).getX(), ((CritterType)critter).getY()))
+		{
+			System.out.println("Shooter");
+		}
+		else
+		{
+			
+		}
+		
+		/*if(
+				((((CritterType)critter).getX()<=(xpix+xblockdifference)
 					&&((CritterType)critter).getY()==ypix))|| 
-				((((CritterType)critter).getX()==(xpix-xblockdifference)
+				((((CritterType)critter).getX()>=(xpix-xblockdifference)
 					&&((CritterType)critter).getY()==ypix))||
 				((((CritterType)critter).getX()==(xpix)
-					&&((CritterType)critter).getY()==ypix+yblockdifference))||
+					&&((CritterType)critter).getY()>=ypix+yblockdifference))||
 				(((CritterType)critter).getX()==(xpix)
-					&&((CritterType)critter).getY()==ypix-yblockdifference))
+					&&((CritterType)critter).getY()<=ypix-yblockdifference))
 		{
 			System.out.println("Shoot me "+this.towerName+" Critter ID"+ ((CritterType)critter).getCritterId() );
 		}
-		
+		*/
 				
 			
 		
