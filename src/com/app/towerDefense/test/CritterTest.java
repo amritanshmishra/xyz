@@ -42,7 +42,8 @@ public class CritterTest {
 	Image critterImage = new ImageIcon(ApplicationStatics.IMAGE_PATH_CRITTER)
 			.getImage();
 	MapModel mapModel;
-	File file = new File("testfiles\\abc.tdm");
+//	File file = new File("testfiles\\abc.tdm"); // for Windows OS
+	File file = new File("testfiles/abc.tdm"); // for Mac OS
 
 	/**
 	 * Test case Initialization for CritterTest

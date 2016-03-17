@@ -16,26 +16,31 @@ public interface CritterType extends Observable {
 
 	/**
 	 * Getter method for X
+	 * @return X
 	 */
 	public int getX();
 
 	/**
 	 * getter method for Y
+	 * @return Y
 	 */
 	public int getY();
 
 	/**
 	 * Getter method for actualhealth
+	 * @return critter actual Health
 	 */
 	public int getActualHealth();
 
 	/**
 	 * Getter method for currenthealth
+	 * @return critter Health
 	 */
 	public int getCurrentHealth();
 
 	/**
 	 * Getter method for CritterId
+	 * @return critter id
 	 */
 	public int getCritterId();
 
@@ -59,13 +64,13 @@ public interface CritterType extends Observable {
 	/**
 	 * Returns the image for the critter
 	 * 
-	 * @return
+	 * @return critter image
 	 */
 	public Image getCritterImage();
 	
 	/**
 	 * set the image for the critter
-	 * 
+	 * @param new_path image path
 	 *
 	 */
 	public void setCritterImage(String new_path);
@@ -82,14 +87,6 @@ public interface CritterType extends Observable {
 	 * @param new_xExit x coordinate of exit point
 	 * @param new_yExit y coordinate of exit point
 	 * 
-	 * @param new_xEntry
-	 *            x coordinate of entry point
-	 * @param new_yEntry
-	 *            y coordinate of entry point
-	 * @param new_xExit
-	 *            x coordinate of exit point
-	 * @param new_yExit
-	 *            y coordinate of exit point
 	 */
 
 	public void setXYExit(int new_xExit, int new_yExit);
@@ -104,18 +101,8 @@ public interface CritterType extends Observable {
 	 * this method gets the block width on map panel
 	 * @return block width
 	 */
-	/**
-	 * This method returns the block width
-	 * 
-	 * @return
-	 */
 	public int getBlockW();
 
-	/**
-	 * This method returns the block height
-	 * 
-	 * @return
-	 */
 	/**
 	 * this method gets the block height on map panel
 	 * @return block height

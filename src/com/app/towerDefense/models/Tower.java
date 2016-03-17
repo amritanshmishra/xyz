@@ -231,7 +231,8 @@ public abstract class Tower implements Observer {
 
 	/**
 	 * This method sets the X and Y coordinates of the tower model
-	 * 
+	 * @param new_x x axis
+	 * @param new_y y axis
 	 */
 	public abstract void setXY(int new_x, int new_y);
 
@@ -250,8 +251,8 @@ public abstract class Tower implements Observer {
 	/**
 	 * Plugs in a specific strategy to be used
 	 * 
-	 * @param strategy
-	 *            object
+	 * @param new_strategy
+	 *            Strategy object
 	 */
 	public abstract void setStrategy(Strategy new_strategy);
 

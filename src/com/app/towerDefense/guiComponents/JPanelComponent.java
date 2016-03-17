@@ -68,11 +68,11 @@ public class JPanelComponent implements Observer {
 	/**
 	 * get Implemented Panel for Game Window screen Map Section in Playing mode
 	 * 
-	 * @param type
+	 * @param new_width
 	 *            Integer width of parent
-	 * @param type
+	 * @param new_height
 	 *            Integer height of parent
-	 * @return JPanel
+	 * @return JPanel game panel object
 	 */
 	public JPanel getGameMapPanel(int new_width, int new_height) {
 		JPanel panel = new JPanel();
@@ -598,8 +598,6 @@ public class JPanelComponent implements Observer {
 	 * This method sets the Buttons to Yellow on the map that are eligible for
 	 * tower placement
 	 * 
-	 * @param new_mapButtons
-	 *            the reference to our map buttons
 	 */
 	public void setMapButtonsToYellow() {
 
@@ -652,8 +650,6 @@ public class JPanelComponent implements Observer {
 	 * This method sets icons on the map buttons where they have been placed by
 	 * player
 	 * 
-	 * @param new_mapButtons
-	 *            reference to our map button
 	 * @param new_i
 	 *            x coordinate of the button
 	 * @param new_j

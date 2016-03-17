@@ -356,9 +356,7 @@ public class Map {
 	 * 
 	 * @param new_map
 	 *            the map
-	 * @param routTrack
-	 *            Comma separated string that contains the all connected path
-	 *            cells accumulated in previous step.
+	 *
 	 * 
 	 * @return the boolean True if all cell is connected no independent cell
 	 *         otherwise False

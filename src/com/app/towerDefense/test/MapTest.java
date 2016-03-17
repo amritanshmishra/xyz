@@ -26,7 +26,8 @@ public class MapTest {
 
 	Map map;
 	MapModel mapModel;
-	File file = new File("testfiles\\abc.tdm");
+	File file = new File("testfiles/abc.tdm"); //for Mac OSX
+//	File file = new File("testfiles\\abc.tdm"); //for Windows OS
 
 	/**
 	 * Test case Initialization for MapTest

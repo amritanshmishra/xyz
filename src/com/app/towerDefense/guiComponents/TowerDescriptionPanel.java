@@ -274,8 +274,8 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 	 * updates the Tower Description Panel information when new tower is
 	 * selected
 	 * 
-	 * @param new_towerID
-	 *            tower Id
+	 * @param new_tower_models
+	 *            tower 
 	 */
 	public void updateTowerDscrPanel(Tower new_tower_models) {
 

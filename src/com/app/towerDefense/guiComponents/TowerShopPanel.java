@@ -103,6 +103,7 @@ public class TowerShopPanel extends Observable implements ActionListener {
 
 	/**
 	 * This method enables and disables the tower buttons in the shop panel
+	 * @param new_value enable or disable tower button
 	 */
 	public void enableTowerButtons(boolean new_value) {
 		for (int i = 0; i < 4; i++) {

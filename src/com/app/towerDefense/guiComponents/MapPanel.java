@@ -54,7 +54,7 @@ public class MapPanel extends JPanel {
 	/**
 	 * Parameterized constructor for Map Panel
 	 * 
-	 * @param new_mapModel
+	 * @param new_mapModel map model object
 	 */
 	public MapPanel(MapModel new_mapModel) {
 		mapModel = new_mapModel;
