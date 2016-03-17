@@ -5,9 +5,9 @@ import java.awt.Image;
 import javafx.beans.InvalidationListener;
 
 /**
- * This class will be implemented in the final buil
- * This class is the advanced critter that would move on the map Contains
- * different methhods to create and move a critter on the map selected by player
+ * This class will be implemented as part of the final build. This class is the
+ * advanced critter that would move on the map Contains different methhods to
+ * create and move a critter on the map selected by player
  * 
  * @author Amritansh Mishra
  *
@@ -42,6 +42,7 @@ public class AdvancedCritter extends java.util.Observable implements CritterType
 	public int getX() {
 		return x;
 	}
+
 	/**
 	 * Getter method for y co-ordinate of critter
 	 */
@@ -72,7 +73,6 @@ public class AdvancedCritter extends java.util.Observable implements CritterType
 
 		return 0;
 	}
-
 
 	/**
 	 * Returns critter id
@@ -116,36 +116,60 @@ public class AdvancedCritter extends java.util.Observable implements CritterType
 	@Override
 	public void setID(int new_id) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
+	/**
+	 * Returns block width
+	 */
 	@Override
 	public int getBlockW() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	/**
+	 * Returns block height
+	 */
 	@Override
 	public int getBlockH() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	/**
+	 * This method adds a listner
+	 */
 	@Override
-	public void addListener(InvalidationListener listener) {
+	public void addListener(InvalidationListener new_listener) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
+	/**
+	 * This method removes the listner
+	 */
 	@Override
-	public void removeListener(InvalidationListener listener) {
+	public void removeListener(InvalidationListener new_listener) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
+	/**
+	 * This method sets the entry point for the advanced critter
+	 */
 	@Override
 	public void setXY(int new_xEntry, int new_yEntry) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
+	/**
+	 * This method sets the exit point for the advanced critter
+	 */
 	@Override
 	public void setXYExit(int new_xExit, int new_yExit) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
