@@ -24,6 +24,9 @@ public class BasicCritter implements CritterType {
 	private int i = 0;
 	private int blockW, blockH;
 	public Image image;
+	private int id;
+	int xNext;
+	int yNext;
 
 	/**
 	 * Id of critter
@@ -47,6 +50,8 @@ public class BasicCritter implements CritterType {
 	 */
 	public BasicCritter() {
 		image = new ImageIcon("images/critter1.gif").getImage();
+		actualHealth = 10;
+		currentHealth = actualHealth;
 	}
 
 	/**
@@ -73,7 +78,7 @@ public class BasicCritter implements CritterType {
 	@Override
 	public int getActualHealth() {
 
-		return 0;
+		return actualHealth;
 	}
 
 	/**
@@ -82,24 +87,9 @@ public class BasicCritter implements CritterType {
 	@Override
 	public int getCurrentHealth() {
 
-		return 0;
+		return currentHealth;
 	}
 
-	/**
-	 * Setter method for actual critter health
-	 */
-	@Override
-	public void setActualHealth(int actualHealth) {
-
-	}
-
-	/**
-	 * Setter method for current critter health
-	 */
-	@Override
-	public void setCurrentHealth(int currentHealth) {
-
-	}
 
 	/**
 	 * Returns critter id
@@ -116,8 +106,8 @@ public class BasicCritter implements CritterType {
 	@Override
 	public void calculatePath() {
 
-		int xNext = ApplicationStatics.PATH_ARRAY1.get(i + 1).y * blockW;
-		int yNext = ApplicationStatics.PATH_ARRAY1.get(i + 1).x * blockH;
+		xNext = ApplicationStatics.PATH_ARRAY1.get(i + 1).y * blockW;
+		yNext = ApplicationStatics.PATH_ARRAY1.get(i + 1).x * blockH;
 		directionY = ApplicationStatics.PATH_ARRAY1.get(i + 1).x - ApplicationStatics.PATH_ARRAY1.get(i).x;
 		directionX = ApplicationStatics.PATH_ARRAY1.get(i + 1).y - ApplicationStatics.PATH_ARRAY1.get(i).y;
 		//System.out.println("Inside calculate path");
@@ -166,6 +156,12 @@ public class BasicCritter implements CritterType {
 		// TODO Auto-generated method stub
 		x = new_x;
 		y = new_y;
+	}
+
+	@Override
+	public void setID(int new_id) {
+		// TODO Auto-generated method stub
+		id = new_id;
 	}
 
 }

@@ -7,7 +7,6 @@ package com.app.towerDefense.models;
 import java.awt.Dimension;
 
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 
 /**
  * Tower abstract class is the super-typer of all types of objects produced by the TowerFactory. 

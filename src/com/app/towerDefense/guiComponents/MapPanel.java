@@ -59,6 +59,7 @@ public class MapPanel extends JPanel {
 					critter.add(CritterFactory.getCritterfromFactory("BasicCritter"));
 					critter.get(i).setBlocksParams(blockWidth, blockHeight);
 					critter.get(i).setXY(xEntry, yEntry);
+					critter.get(i).setID(i);
 				}
 				isInitialCond = false;
 			}

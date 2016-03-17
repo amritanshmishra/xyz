@@ -33,16 +33,6 @@ public interface CritterType {
 	public int getCurrentHealth();
 
 	/**
-	 * Setter method for actualhealth
-	 */
-	public void setActualHealth(int actualHealth);
-
-	/**
-	 * Setter method for currenthealth
-	 */
-	public void setCurrentHealth(int currentHealth);
-
-	/**
 	 * Getter method for CritterId
 	 */
 	public int getCritterId();
@@ -77,5 +67,7 @@ public interface CritterType {
 	 * @param new_y
 	 */
 	public void setXY(int new_x, int new_y);
+	
+	public void setID(int new_id);
 
 }

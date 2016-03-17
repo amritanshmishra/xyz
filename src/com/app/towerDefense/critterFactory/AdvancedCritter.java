@@ -2,7 +2,7 @@ package com.app.towerDefense.critterFactory;
 
 import java.awt.Image;
 
-/**
+/**=o
  * This class is the advanced critter that would move on the map Contains
  * different methhods to create and move a critter on the map selected by player
  * 
@@ -15,7 +15,6 @@ public class AdvancedCritter implements CritterType {
 	 * current X and Y position of critter
 	 */
 	private int x, y;
-	public int movePoint;
 
 	/**
 	 * Id of critter
@@ -40,7 +39,6 @@ public class AdvancedCritter implements CritterType {
 	public int getX() {
 		return x;
 	}
-
 	/**
 	 * Getter method for y co-ordinate of critter
 	 */
@@ -72,21 +70,6 @@ public class AdvancedCritter implements CritterType {
 		return 0;
 	}
 
-	/**
-	 * Setter method for actual critter health
-	 */
-	@Override
-	public void setActualHealth(int actualHealth) {
-
-	}
-
-	/**
-	 * Setter method for current critter health
-	 */
-	@Override
-	public void setCurrentHealth(int currentHealth) {
-
-	}
 
 	/**
 	 * Returns critter id
@@ -131,5 +114,10 @@ public class AdvancedCritter implements CritterType {
 	public void setXY(int new_x, int new_y) {
 		// TODO Auto-generated method stub
 
+	}
+	@Override
+	public void setID(int new_id) {
+		// TODO Auto-generated method stub
+		
 	}
 }
