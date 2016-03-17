@@ -32,7 +32,7 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
 public class TowerDescriptionPanel extends JPanel implements Observer, ActionListener {
 
 	private static final long serialVersionUID = -2664654291872636064L;
-	public JLabel towerLabelDESCR = new JLabel(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_Tower1));
+	public JLabel towerLabelDESCR = new JLabel(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_TOWER1));
 	private JLabel[] labelStatsTower;
 	private JLabel towerNameLabel;
 	private JButton upgradeTowerButton;
@@ -150,7 +150,7 @@ public class TowerDescriptionPanel extends JPanel implements Observer, ActionLis
 								int h = ApplicationStatics.MAP_BUTTONS[x][y].getHeight();
 
 								ApplicationStatics.MAP_BUTTONS[x][y]
-										.setIcon(new ImageIcon(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_Scenery)
+										.setIcon(new ImageIcon(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_SCENERY)
 												.getImage().getScaledInstance(w, h, java.awt.Image.SCALE_SMOOTH)));
 								System.out.println("tower deleted successfully.");
 

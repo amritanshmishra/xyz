@@ -125,7 +125,7 @@ public class Burner extends Tower{
 
 	@Override
 	public void setTowerImage() {
-	 super.towerImage=	new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_Tower3);
+	 super.towerImage=	new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_TOWER3);
 					
 		
 	}

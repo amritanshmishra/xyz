@@ -130,7 +130,7 @@ public class Shooter extends Tower{
 
 	@Override
 	public void setTowerImage() {
-	 super.towerImage=	new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_Tower1);
+	 super.towerImage=	new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_TOWER1);
 		
 		
 	}

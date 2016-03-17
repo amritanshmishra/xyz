@@ -126,7 +126,7 @@ public class Freezer extends Tower {
 
 		@Override
 		public void setTowerImage() {
-		 super.towerImage=	new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_Tower2);
+		 super.towerImage=	new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_TOWER2);
 						
 			
 		}

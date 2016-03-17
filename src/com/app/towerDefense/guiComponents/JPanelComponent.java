@@ -298,7 +298,7 @@ public class JPanelComponent implements Observer{
 						mapButtonsGrid2DArray[i][j]
 								.setIcon(new ImageIcon(
 										((new ImageIcon(
-												ApplicationStatics.IMAGE_PATH_MAP_Scenery)
+												ApplicationStatics.IMAGE_PATH_MAP_SCENERY)
 												.getImage().getScaledInstance(
 												(int) parentDimension
 														.getWidth()
@@ -606,14 +606,14 @@ public class JPanelComponent implements Observer{
 
 					ApplicationStatics.MAP_BUTTONS[i][j].setEnabled(true);
 					if (ApplicationStatics.HAS_BOUGHT_TOWER) {
-						ApplicationStatics.MAP_BUTTONS[i][j].setIcon(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_ButtonYellow));
+						ApplicationStatics.MAP_BUTTONS[i][j].setIcon(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_BUTTONYELLOW));
 						setTowersOnMap(i, j);
 					} else {
 						// -- sets all button icons to green scenery and later
 						int x = ApplicationStatics.MAP_BUTTONS[i][j].getWidth();
 						int y = ApplicationStatics.MAP_BUTTONS[i][j].getHeight();
 						ApplicationStatics.MAP_BUTTONS[i][j]
-								.setIcon(new ImageIcon(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_Scenery)
+								.setIcon(new ImageIcon(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_SCENERY)
 										.getImage().getScaledInstance(x, y, java.awt.Image.SCALE_SMOOTH)));
 
 						setTowersOnMap(i, j);

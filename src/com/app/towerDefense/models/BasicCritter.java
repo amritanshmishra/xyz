@@ -49,7 +49,7 @@ public class BasicCritter implements CritterType {
 	 * Constructor to initialize the critter with image
 	 */
 	public BasicCritter() {
-		image = new ImageIcon("images/critter1.gif").getImage();
+		image = new ImageIcon(ApplicationStatics.IMAGE_PATH_CRITTER).getImage();
 		actualHealth = 10;
 		currentHealth = actualHealth;
 	}

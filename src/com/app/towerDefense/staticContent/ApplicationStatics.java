@@ -69,14 +69,14 @@ public class ApplicationStatics {
 	public static final String IMAGE_PATH_MAP_ENTRY = "images/mapEntry.png";
 	public static final String IMAGE_PATH_MAP_EXIT = "images/mapExit.png";
 	public static final String IMAGE_PATH_MAP_ROUTE = "images/mapRouteGreen.png";
-	public static final String IMAGE_PATH_MAP_Scenery = "images/mapSceneryGreen.png";
-	public static final String IMAGE_PATH_MAP_Critter1 = "images/critter1.gif";
-	public static final String IMAGE_PATH_MAP_Sun = "images/sun.png";
-	public static final String IMAGE_PATH_MAP_Tower1 = "images/tower1.png";
-	public static final String IMAGE_PATH_MAP_Tower2 = "images/tower2.png";
-	public static final String IMAGE_PATH_MAP_Tower3 = "images/tower3.png";
-	public static final String IMAGE_PATH_MAP_Tower4 = "images/tower4.png";
-	public static final String IMAGE_PATH_MAP_Tower5 = "images/tower5.png";
-	public static final String IMAGE_PATH_MAP_ButtonYellow = "images/button_yellow.png";
-
+	public static final String IMAGE_PATH_MAP_SCENERY = "images/mapSceneryGreen.png";
+	public static final String IMAGE_PATH_MAP_CRITTER1 = "images/critter1.gif";
+	public static final String IMAGE_PATH_MAP_SUN = "images/sun.png";
+	public static final String IMAGE_PATH_MAP_TOWER1 = "images/tower1.png";
+	public static final String IMAGE_PATH_MAP_TOWER2 = "images/tower2.png";
+	public static final String IMAGE_PATH_MAP_TOWER3 = "images/tower3.png";
+	public static final String IMAGE_PATH_MAP_TOWER4 = "images/tower4.png";
+	public static final String IMAGE_PATH_MAP_TOWER5 = "images/tower5.png";
+	public static final String IMAGE_PATH_MAP_BUTTONYELLOW = "images/button_yellow.png";
+	public static final String IMAGE_PATH_CRITTER="images/critter1.gif";
 }

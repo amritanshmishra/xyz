@@ -67,7 +67,7 @@ public class GameInfoPanel extends JPanel implements Observer {
 		leftInfoPanel.setLayout(new FlowLayout());
 
 		// creating and setting labels and buttons on Game Info Panel
-		JLabel sunButton = new JLabel(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_Sun));
+		JLabel sunButton = new JLabel(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_SUN));
 
 		sunCurrencyLabel = new JLabel("Sun " + ApplicationStatics.PLAYERMODEL.getSunCurrency());
 		sunCurrencyLabel.setFont(new Font("Serif", Font.BOLD, 13));
@@ -108,8 +108,8 @@ public class GameInfoPanel extends JPanel implements Observer {
 		critterLabel = new JLabel(s, SwingConstants.CENTER);
 
 		// -- button that displays the critter image as background image
-		critterIconButton = new JButton(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_Critter1));
-		critterIconButton.setDisabledIcon(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_Critter1));
+		critterIconButton = new JButton(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_CRITTER1));
+		critterIconButton.setDisabledIcon(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_CRITTER1));
 		critterIconButton.setEnabled(false);
 
 		// -- adding labels and buttons on Game info Panel

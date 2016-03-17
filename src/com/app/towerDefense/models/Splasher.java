@@ -125,7 +125,7 @@ public class Splasher extends Tower{
 
 	@Override
 	public void setTowerImage() {
-	 super.towerImage=	new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_Tower4);
+	 super.towerImage=	new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_TOWER4);
 					
 		
 	}
