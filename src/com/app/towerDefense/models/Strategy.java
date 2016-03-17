@@ -9,7 +9,7 @@ public interface Strategy {
 
 	/**
 	 * Method whose implementation varies depending on the strategy adopted.
-	 * @return
+	 * 
 	 */
 	void execute();
 	

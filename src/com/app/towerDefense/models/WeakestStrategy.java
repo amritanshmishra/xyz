@@ -7,6 +7,9 @@ package com.app.towerDefense.models;
  */
 public class WeakestStrategy implements Strategy{
 
+	/**
+	 * Executes the Weakest strategy 
+	 */
 	@Override
 	public void execute() {
 		// TODO Auto-generated method stub

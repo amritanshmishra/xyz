@@ -253,7 +253,7 @@ public abstract class Tower implements Observer {
 	 * @param strategy
 	 *            object
 	 */
-	public abstract void setStrategy(Strategy strategy);
+	public abstract void setStrategy(Strategy new_strategy);
 
 	/**
 	 * Method that executes a different strategy depending on what strategy was
@@ -265,8 +265,10 @@ public abstract class Tower implements Observer {
 	 * update method that called when observable called its function notify
 	 * updates the location between tower and critter
 	 * if it in range of tower, get shot
+	 * @param new_critter observable critter
+	 * @param new_x the object
 	 */
-	public void update(Observable critter, Object x) {
+	public void update(Observable new_critter, Object new_x) {
 
 		int bW = ApplicationStatics.BLOCK_WIDTH;
 		int bH = ApplicationStatics.BLOCK_HEIGHT;
@@ -275,8 +277,8 @@ public abstract class Tower implements Observer {
 		int xpix = (this.getY() * bW) - bW;// +ApplicationStatics.BLOCK_HEIGHT;
 		int ypix = (this.getX() * bH) - bH;// +ApplicationStatics.BLOCK_WIDTH;
 
-		int xCr = ((CritterType) critter).getX() + bW / 3;
-		int yCr = ((CritterType) critter).getY() + bH / 3;
+		int xCr = ((CritterType) new_critter).getX() + bW / 3;
+		int yCr = ((CritterType) new_critter).getY() + bH / 3;
 
 		// double d = Math.sqrt((bW+bW/2)*(bW+bW/2)+(bH+bH/2)*(bH+bH/2))+5;
 
@@ -292,37 +294,37 @@ public abstract class Tower implements Observer {
 		// ypix="+ypix+ " d="+d);
 
 		Ellipse2D ellipse = new Ellipse2D.Double((double) xpix, (double) ypix, bW * 3, bH * 3);
-		if (isBusy == -1 || isBusy == ((CritterType) critter).getCritterId()) {
+		if (isBusy == -1 || isBusy == ((CritterType) new_critter).getCritterId()) {
 			// Enterss
 			if (ellipse.contains(xCr, yCr)) {
 
 				if(this.getSpecialEffect() == "Freeze"){
-					((CritterType) critter).setCritterImage(ApplicationStatics.IMAGE_PATH_CRITTER_FROZEN);
+					((CritterType) new_critter).setCritterImage(ApplicationStatics.IMAGE_PATH_CRITTER_FROZEN);
 				}else if(this.getSpecialEffect() == "Burn"){
-					((CritterType) critter).setCritterImage(ApplicationStatics.IMAGE_PATH_CRITTER_BURN);
+					((CritterType) new_critter).setCritterImage(ApplicationStatics.IMAGE_PATH_CRITTER_BURN);
 				}else if(this.getSpecialEffect() == "Splash"){
-					((CritterType) critter).setCritterImage(ApplicationStatics.IMAGE_PATH_CRITTER_SPLASH);
+					((CritterType) new_critter).setCritterImage(ApplicationStatics.IMAGE_PATH_CRITTER_SPLASH);
 				}else{
-					((CritterType) critter).setCritterImage(ApplicationStatics.IMAGE_PATH_CRITTER);
+					((CritterType) new_critter).setCritterImage(ApplicationStatics.IMAGE_PATH_CRITTER);
 				}
 				
-				isBusy = ((CritterType) critter).getCritterId();
+				isBusy = ((CritterType) new_critter).getCritterId();
 				// Criter Hit Counter
-				if (counter[((CritterType) critter).getCritterId()] == 0) {
-					boolean isdied = ((CritterType) critter).decreaseLife(this.getTowerPower());
+				if (counter[((CritterType) new_critter).getCritterId()] == 0) {
+					boolean isdied = ((CritterType) new_critter).decreaseLife(this.getTowerPower());
 					if (!isdied) {
-						ApplicationStatics.PLAYERMODEL.addSunCurrency(((CritterType) critter).getValue());
+						ApplicationStatics.PLAYERMODEL.addSunCurrency(((CritterType) new_critter).getValue());
 						isBusy = -1;
 					}
 					MapPanel.drawLines(this.getY() * bW, this.getX() * bH, xCr, yCr, this.getTowerName(), isdied,
-							((CritterType) critter).getCritterId());
+							((CritterType) new_critter).getCritterId());
 
 					System.out.println("bW=" + bW + " bH=" + bH + " Tower " + this.getTowerName() + " shoots critter "
-							+ ((CritterType) critter).getCritterId());
+							+ ((CritterType) new_critter).getCritterId());
 				}
-				counter[((CritterType) critter).getCritterId()]++;
-				if (counter[((CritterType) critter).getCritterId()] == 30) {
-					counter[((CritterType) critter).getCritterId()] = 0;
+				counter[((CritterType) new_critter).getCritterId()]++;
+				if (counter[((CritterType) new_critter).getCritterId()] == 30) {
+					counter[((CritterType) new_critter).getCritterId()] = 0;
 				}
 			}else{
 				isBusy = -1;

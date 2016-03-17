@@ -66,11 +66,11 @@ public class PlayerModel extends Observable{
 	/**
 	 * adds value to sun currency
 	 * 
-	 * @param value
+	 * @param new_value
 	 *            amount of increase
 	 */
-	public void addSunCurrency(int value) {
-		sunCurrency += value;
+	public void addSunCurrency(int new_value) {
+		sunCurrency += new_value;
 		setChanged();
 		notifyObservers();
 	}
@@ -78,11 +78,11 @@ public class PlayerModel extends Observable{
 	/**
 	 * subtracts value from sun currency
 	 * 
-	 * @param value
+	 * @param new_value
 	 *            amount of decrease
 	 */
-	public void subSunCurrency(int value) {
-		sunCurrency -= value;
+	public void subSunCurrency(int new_value) {
+		sunCurrency -= new_value;
 		setChanged();
 		notifyObservers();
 	}
@@ -214,7 +214,9 @@ public class PlayerModel extends Observable{
 		}
 		return true;
 	}
-	
+	/**
+	 * this method increment game wave and alert observers about the changes
+	 */
 	public void incGameWave(){
 		gameWave++;
 		setChanged();
