@@ -7,7 +7,7 @@ import org.apache.commons.codec.binary.Base64;
  * used Function which is mostly used indepentently
  * 
  * @author Sajjad Ashraf
- *
+ * 
  */
 public class MiscellaneousHelper {
 
@@ -37,7 +37,8 @@ public class MiscellaneousHelper {
 	 *            characters to be removed
 	 * @return string the result
 	 */
-	public String RemoveCharacterFromStrartorLeft(String new_inputString, String new_characters) {
+	public String RemoveCharacterFromStrartorLeft(String new_inputString,
+			String new_characters) {
 		return new_inputString.replaceAll("^" + new_characters + "+", "");
 		// return InputString.replaceAll("^0+(?!$)", "");
 	}
@@ -51,7 +52,8 @@ public class MiscellaneousHelper {
 	 *            characters to be removed
 	 * @return string the result
 	 */
-	public String RemoveCharacterFromEndorRight(String new_inputString, String new_characters) {
+	public String RemoveCharacterFromEndorRight(String new_inputString,
+			String new_characters) {
 		return new_inputString.replaceAll("\\" + new_characters + "+$", "");
 	}
 
@@ -64,8 +66,10 @@ public class MiscellaneousHelper {
 	 *            characters to be removed
 	 * @return string the result
 	 */
-	public String RemoveCharacterFromBothEnd(String new_inputString, String new_characters) {
-		return new_inputString.replaceAll("^\\" + new_characters + "+|\\" + new_characters + "+$", "");
+	public String RemoveCharacterFromBothEnd(String new_inputString,
+			String new_characters) {
+		return new_inputString.replaceAll("^\\" + new_characters + "+|\\"
+				+ new_characters + "+$", "");
 	}
 
 	/**

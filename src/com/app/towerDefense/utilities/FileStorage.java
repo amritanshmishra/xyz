@@ -13,7 +13,7 @@ import com.google.gson.Gson;
  * This class is for saving a map
  * 
  * @author Sajjad Ashraf
- *
+ * 
  */
 public class FileStorage {
 
@@ -55,7 +55,8 @@ public class FileStorage {
 
 		String fileContent = "";
 		try {
-			fileContent = new String(Files.readAllBytes(Paths.get(new_file.getPath())));
+			fileContent = new String(Files.readAllBytes(Paths.get(new_file
+					.getPath())));
 			fileContent = (new MiscellaneousHelper()).DecodeBase64(fileContent);
 			return (MapModel) getObjectFromJson(fileContent, MapModel.class);
 		} catch (IOException e) {
