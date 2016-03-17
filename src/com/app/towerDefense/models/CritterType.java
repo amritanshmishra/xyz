@@ -70,4 +70,9 @@ public interface CritterType {
 	
 	public void setID(int new_id);
 
+	public int getBlockW();
+	
+	public int getBlockH();
+	
+
 }

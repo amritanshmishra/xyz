@@ -158,4 +158,20 @@ public class BasicCritter implements CritterType {
 		critterId = new_id;
 	}
 
+	/**
+	 * @return the blockW
+	 */
+	public int getBlockW() {
+		return blockW;
+	}
+
+	/**
+	 * @return the blockH
+	 */
+	public int getBlockH() {
+		return blockH;
+	}
+	
+	
+
 }

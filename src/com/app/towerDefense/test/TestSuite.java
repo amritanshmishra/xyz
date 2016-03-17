@@ -20,7 +20,8 @@ import org.junit.runners.Suite;
 			ShooterTest.class, 
 			SplasherTest.class,
 			FileStorageTest.class,
-			MiscellaneousHelperTest.class
+			MiscellaneousHelperTest.class,
+			CritterTest.class
 		})
 public class TestSuite {
 

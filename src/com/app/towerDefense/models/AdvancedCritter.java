@@ -124,4 +124,14 @@ public class AdvancedCritter implements CritterType {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public int getBlockW() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public int getBlockH() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
