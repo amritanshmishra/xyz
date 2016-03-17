@@ -21,7 +21,7 @@ import com.app.towerDefense.staticContent.AppilicationEnums.E_JFileChooserMode;
 public class JFileChooserComponentTest {
 
 	JFileChooserComponent jFileChooserComponent;
-	
+
 	/**
 	 * Test case Initialization for GameTest
 	 */
@@ -30,34 +30,33 @@ public class JFileChooserComponentTest {
 		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class Map");
 		jFileChooserComponent = new JFileChooserComponent();
 	}
-	
+
 	/**
-	 * Run Unit Test TestGetJFileChooser IT gives you JFileChooser Save or Open mode according to provided input
+	 * Run Unit Test TestGetJFileChooser IT gives you JFileChooser Save or Open
+	 * mode according to provided input
 	 */
-	
+
 	@Test
-	public void TestGetJFileChooser()
-	{
+	public void TestGetJFileChooser() {
 		assertNotNull(jFileChooserComponent.getJFileChooser(E_JFileChooserMode.Open));
 		assertNotNull(jFileChooserComponent.getJFileChooser(E_JFileChooserMode.Save));
 	}
-	
+
 	/**
 	 * Run Unit Test TestGetFileChooser return the fileChooser
 	 */
-	
+
 	@Test
-	public void TestGetFileChooser()
-	{
+	public void TestGetFileChooser() {
 		assertNull(jFileChooserComponent.getFileChooser());
-		
+
 		jFileChooserComponent.getJFileChooser(E_JFileChooserMode.Open);
 		assertNotNull(jFileChooserComponent.getFileChooser());
-		
+
 		jFileChooserComponent.getJFileChooser(E_JFileChooserMode.Save);
 		assertNotNull(jFileChooserComponent.getFileChooser());
 	}
-	
+
 	/**
 	 * Perform post-test clean-up.
 	 *
@@ -69,10 +68,8 @@ public class JFileChooserComponentTest {
 	@After
 	public void tearDown() throws Exception {
 		// Add additional tear down code here
-		System.out.println("@AfterClass - oneTimeTearDown");	
+		System.out.println("@AfterClass - oneTimeTearDown");
 
 	}
-
-	
 
 }

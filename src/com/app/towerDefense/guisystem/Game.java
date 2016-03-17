@@ -14,7 +14,7 @@ import com.app.towerDefense.models.PlayerModel;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 
 /**
- * version 17.03.2016 13:59
+ * 
  * @author usbaitass
  *
  *         Main Class that initiates the creation of the project Applied the

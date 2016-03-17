@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.app.towerDefense.bL.Map;
+import com.app.towerDefense.gameLogic.Map;
 import com.app.towerDefense.guisystem.MapEditor;
 import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.staticContent.AppilicationEnums.E_JFileChooserMode;
@@ -81,8 +81,8 @@ public class JMenuBarComponent {
 		class menuItemAction implements ActionListener {
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (e.getSource().equals(menuItemPlay)) {
+			public void actionPerformed(ActionEvent new_e) {
+				if (new_e.getSource().equals(menuItemPlay)) {
 					ApplicationStatics.START_WAVE = false;
 					JFileChooser fileChooser = new JFileChooserComponent().getJFileChooser(E_JFileChooserMode.Open);
 					int result = fileChooser.showOpenDialog(new_jframe);
@@ -123,7 +123,7 @@ public class JMenuBarComponent {
 					} else {
 						JOptionPane.showMessageDialog(null, "No File Selected");
 					}
-				} else if (e.getSource().equals(menuItemCreateMap)) {
+				} else if (new_e.getSource().equals(menuItemCreateMap)) {
 
 					final JTextField txtX = new JTextField();
 					final JTextField txtY = new JTextField();
@@ -185,7 +185,7 @@ public class JMenuBarComponent {
 						System.out.println("Login canceled");
 					}
 
-				} else if (e.getSource().equals(menuItemOpenMap)) {
+				} else if (new_e.getSource().equals(menuItemOpenMap)) {
 					JFileChooser fileChooser = new JFileChooserComponent().getJFileChooser(E_JFileChooserMode.Open);
 					int result = fileChooser.showOpenDialog(new_jframe);
 					if (result == JFileChooser.APPROVE_OPTION) {
@@ -205,9 +205,9 @@ public class JMenuBarComponent {
 					} else {
 						JOptionPane.showMessageDialog(null, "No File Selected");
 					}
-				} else if (e.getSource().equals(menuItemExit)) {
+				} else if (new_e.getSource().equals(menuItemExit)) {
 					System.exit(0);
-				} else if (e.getSource().equals(menuItemAbout)) {
+				} else if (new_e.getSource().equals(menuItemAbout)) {
 					JOptionPane.showMessageDialog(null,
 							"**** Tower Defense Game **** \r\n Version 1.0 Build 1 \r\n Developed By Team5 \r\n All rights reserved  � Fall 2016");
 				}
@@ -242,8 +242,8 @@ public class JMenuBarComponent {
 		class menuItemAction implements ActionListener {
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (e.getSource().equals(menuItemSave)) {
+			public void actionPerformed(ActionEvent new_event) {
+				if (new_event.getSource().equals(menuItemSave)) {
 					String MapValidationStatus = (new Map()).mapValidations(new_mapModel);
 
 					if (MapValidationStatus != null)
@@ -269,7 +269,7 @@ public class JMenuBarComponent {
 					}
 				}
 
-				else if (e.getSource().equals(menuItemExit)) {
+				else if (new_event.getSource().equals(menuItemExit)) {
 					closeFrame(new_jframe);
 				}
 

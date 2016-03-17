@@ -2,7 +2,6 @@ package com.app.towerDefense.guiComponents;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -32,7 +31,7 @@ import com.app.towerDefense.utilities.MiscellaneousHelper;
  * @author Sajjad Ashraf
  * 
  */
-public class JPanelComponent implements Observer{
+public class JPanelComponent implements Observer {
 
 	private BottomGamePanelView bottomGamePanel;
 
@@ -40,27 +39,26 @@ public class JPanelComponent implements Observer{
 	private JButton jButtonEntry;
 	private JButton jButtonExit;
 	public JButton jButtonTower;
-	public MapPanel mapPanel; //CHANGE Ulan
+	public MapPanel mapPanel; // CHANGE Ulan
 
 	private E_MapEditorMode mapEditorMode;
 
 	/**
 	 * get Implemented Panel for Game Window screen Tower Section
 	 * 
-	 * @param parentDimension
+	 * @param new_parentDimension
 	 *            type Dimension dimension of parent Screen so that this panel
 	 *            Fit or reshape accordingly
 	 * @return JPanel
 	 */
-	public JPanel getGameTowerPanel(Dimension parentDimension) {
-		bottomGamePanel = new BottomGamePanelView(parentDimension.width,
-				parentDimension.height * 1 / 4 - 30);
-		bottomGamePanel.setPreferredSize(new Dimension(parentDimension.width,
-				parentDimension.height * 1 / 4 - 30));
-		bottomGamePanel.setMaximumSize(new Dimension(parentDimension.width,
-				parentDimension.height * 1 / 4 - 30));
-		bottomGamePanel.setMinimumSize(new Dimension(parentDimension.width,
-				parentDimension.height * 1 / 4 - 30));
+	public JPanel getGameTowerPanel(Dimension new_parentDimension) {
+		bottomGamePanel = new BottomGamePanelView(new_parentDimension.width, new_parentDimension.height * 1 / 4 - 30);
+		bottomGamePanel
+				.setPreferredSize(new Dimension(new_parentDimension.width, new_parentDimension.height * 1 / 4 - 30));
+		bottomGamePanel
+				.setMaximumSize(new Dimension(new_parentDimension.width, new_parentDimension.height * 1 / 4 - 30));
+		bottomGamePanel
+				.setMinimumSize(new Dimension(new_parentDimension.width, new_parentDimension.height * 1 / 4 - 30));
 		// panel.setBackground(Color.CYAN);
 		return bottomGamePanel;
 	}
@@ -74,11 +72,11 @@ public class JPanelComponent implements Observer{
 	 *            Integer height of parent
 	 * @return JPanel
 	 */
-	public JPanel getGameMapPanel(int width, int height) {
+	public JPanel getGameMapPanel(int new_width, int new_height) {
 		JPanel panel = new JPanel();
-		panel.setPreferredSize(new Dimension(width, height));
-		panel.setMaximumSize(new Dimension(width, height));
-		panel.setMinimumSize(new Dimension(width, height));
+		panel.setPreferredSize(new Dimension(new_width, new_height));
+		panel.setMaximumSize(new Dimension(new_width, new_height));
+		panel.setMinimumSize(new Dimension(new_width, new_height));
 		panel.setBackground(Color.GREEN);
 		return panel;
 	}
@@ -89,62 +87,54 @@ public class JPanelComponent implements Observer{
 	 * Play 2) Map Grid Editor when Mode is Create 3) Map Grid Editor when Mode
 	 * is OPen
 	 * 
-	 * @param mapModel
+	 * @param new_mapModel
 	 *            Type MapModel
-	 * @param parentDimension
+	 * @param new_parentDimension
 	 *            Type Dimension
-	 * @param mode
+	 * @param new_mode
 	 *            Type E_MapEditorMode Enum variable with three possible values
 	 *            {Create, Open, Play}
 	 * @return JPanel
 	 */
-	public JPanel getMapEditorGridPanel(final MapModel mapModel,
-			Dimension parentDimension, E_MapEditorMode mode) {
-		mapEditorMode = mode;
+	public JPanel getMapEditorGridPanel(final MapModel new_mapModel, Dimension new_parentDimension, E_MapEditorMode new_mode) {
+		mapEditorMode = new_mode;
 		JPanel panel;
 		GridLayout gridLayout;
 
 		// When Create Mode Initialize the mapGridSelection to new
 		if (E_MapEditorMode.Create == mapEditorMode) {
-			mapModel.mapGridSelection = new int[mapModel.getMapHeight()][mapModel
-					.getMapWidth()];
+			new_mapModel.mapGridSelection = new int[new_mapModel.getMapHeight()][new_mapModel.getMapWidth()];
 		}
 
 		// In case 'Play' Increase Panel size According to the Play Game Window
 		if (E_MapEditorMode.Play == mapEditorMode) {
 
-			panel = new MapPanel(mapModel);
-			gridLayout = new GridLayout(mapModel.getMapHeight(),
-					mapModel.getMapWidth(), 0, 0);
+			panel = new MapPanel(new_mapModel);
+			gridLayout = new GridLayout(new_mapModel.getMapHeight(), new_mapModel.getMapWidth(), 0, 0);
 			panel.setLayout(gridLayout);
 
-			mapPanel = (MapPanel)panel; //CHANGE Ulan
-			
-			if (parentDimension != null) {
-				panel.setPreferredSize(new Dimension(parentDimension.width,
-						parentDimension.height * 3 / 4 - 10));
-				panel.setMaximumSize(new Dimension(parentDimension.width,
-						parentDimension.height * 3 / 4 - 10));
-				panel.setMinimumSize(new Dimension(parentDimension.width,
-						parentDimension.height * 3 / 4 - 10));
+			mapPanel = (MapPanel) panel; // CHANGE Ulan
+
+			if (new_parentDimension != null) {
+				panel.setPreferredSize(new Dimension(new_parentDimension.width, new_parentDimension.height * 3 / 4 - 10));
+				panel.setMaximumSize(new Dimension(new_parentDimension.width, new_parentDimension.height * 3 / 4 - 10));
+				panel.setMinimumSize(new Dimension(new_parentDimension.width, new_parentDimension.height * 3 / 4 - 10));
 			}
 		} else {
 			panel = new JPanel();
-			gridLayout = new GridLayout(mapModel.getMapHeight(),
-					mapModel.getMapWidth(), 3, 3);
+			gridLayout = new GridLayout(new_mapModel.getMapHeight(), new_mapModel.getMapWidth(), 3, 3);
 			panel.setLayout(gridLayout);
 		}
 
-		mapButtonsGrid2DArray = new JButton[mapModel.getMapHeight()][mapModel
-				.getMapWidth()];
+		mapButtonsGrid2DArray = new JButton[new_mapModel.getMapHeight()][new_mapModel.getMapWidth()];
 
-		for (int i = 0; i < mapModel.getMapHeight(); i++) {
-			for (int j = 0; j < mapModel.getMapWidth(); j++) {
+		for (int i = 0; i < new_mapModel.getMapHeight(); i++) {
+			for (int j = 0; j < new_mapModel.getMapWidth(); j++) {
 				mapButtonsGrid2DArray[i][j] = new JButton();
 				int value = 0;
 				int multiple = 0;
 
-				multiple = mapModel.getMapWidth();
+				multiple = new_mapModel.getMapWidth();
 
 				if (i == 0 && j == 0)
 					value = 0;
@@ -154,23 +144,22 @@ public class JPanelComponent implements Observer{
 				mapButtonsGrid2DArray[i][j].setName(value + ":" + i + ":" + j);
 
 				if (E_MapEditorMode.Create == mapEditorMode) {
-					mapModel.mapGridSelection[i][j] = 0;
+					new_mapModel.mapGridSelection[i][j] = 0;
 					mapButtonsGrid2DArray[i][j].setBackground(Color.gray);
 					// Click event
-					addButtonClickEvents(mapButtonsGrid2DArray[i][j], mapModel);
+					addButtonClickEvents(mapButtonsGrid2DArray[i][j], new_mapModel);
 					// Right Click Event
-					addMouseClickOnButtonEvents(mapButtonsGrid2DArray[i][j],
-							mapModel);
+					addMouseClickOnButtonEvents(mapButtonsGrid2DArray[i][j], new_mapModel);
 				}
 
 				else if (E_MapEditorMode.Open == mapEditorMode) {
 
-					if (mapModel.mapGridSelection[i][j] == ApplicationStatics.MAP_PATH_POINT) {
+					if (new_mapModel.mapGridSelection[i][j] == ApplicationStatics.MAP_PATH_POINT) {
 						mapButtonsGrid2DArray[i][j].setBackground(Color.green);
-					} else if (mapModel.mapGridSelection[i][j] == ApplicationStatics.MAP_ENTRY_POINT) {
+					} else if (new_mapModel.mapGridSelection[i][j] == ApplicationStatics.MAP_ENTRY_POINT) {
 						mapButtonsGrid2DArray[i][j].setBackground(Color.red);
 						mapButtonsGrid2DArray[i][j].setText("E");
-					} else if (mapModel.mapGridSelection[i][j] == ApplicationStatics.MAP_EXIT_POINT) {
+					} else if (new_mapModel.mapGridSelection[i][j] == ApplicationStatics.MAP_EXIT_POINT) {
 						mapButtonsGrid2DArray[i][j].setBackground(Color.red);
 						mapButtonsGrid2DArray[i][j].setText("O");
 					} else {
@@ -178,99 +167,80 @@ public class JPanelComponent implements Observer{
 					}
 
 					// Click event
-					addButtonClickEvents(mapButtonsGrid2DArray[i][j], mapModel);
+					addButtonClickEvents(mapButtonsGrid2DArray[i][j], new_mapModel);
 					// Right Click Event
-					addMouseClickOnButtonEvents(mapButtonsGrid2DArray[i][j],
-							mapModel);
+					addMouseClickOnButtonEvents(mapButtonsGrid2DArray[i][j], new_mapModel);
 				}
 
 				else if (E_MapEditorMode.Play == mapEditorMode) {
-					mapButtonsGrid2DArray[i][j].setBorder(new LineBorder(
-							Color.green, 0));
-					mapButtonsGrid2DArray[i][j].setPreferredSize(new Dimension(
-							10, 10));
+					mapButtonsGrid2DArray[i][j].setBorder(new LineBorder(Color.green, 0));
+					mapButtonsGrid2DArray[i][j].setPreferredSize(new Dimension(10, 10));
 
 					// Condition for Path cell
-					if (mapModel.mapGridSelection[i][j] == ApplicationStatics.MAP_PATH_POINT) {
+					if (new_mapModel.mapGridSelection[i][j] == ApplicationStatics.MAP_PATH_POINT) {
 						// b[i][j].setBackground(Color.green);
 
-				/*		mapButtonsGrid2DArray[i][j]
-								.setIcon(new ImageIcon(
-										((new ImageIcon(
-												ApplicationStatics.IMAGE_PATH_MAP_ROUTE)
-												.getImage().getScaledInstance(
-												(int) parentDimension
-														.getWidth()
-														/ mapModel
-																.getMapWidth(),
-												(int) parentDimension
-														.getHeight()
-														/ mapModel
-																.getMapHeight(),
-												java.awt.Image.SCALE_SMOOTH)))));
-		*/
+						/*
+						 * mapButtonsGrid2DArray[i][j] .setIcon(new ImageIcon(
+						 * ((new ImageIcon(
+						 * ApplicationStatics.IMAGE_PATH_MAP_ROUTE)
+						 * .getImage().getScaledInstance( (int) parentDimension
+						 * .getWidth() / mapModel .getMapWidth(), (int)
+						 * parentDimension .getHeight() / mapModel
+						 * .getMapHeight(), java.awt.Image.SCALE_SMOOTH)))));
+						 */
 						mapButtonsGrid2DArray[i][j].setVisible(false);
 						ApplicationStatics.PATH_ARRAY.add(i);
 						ApplicationStatics.PATH_ARRAY.add(j);
-						
+
 						// Click event
-						addButtonClickEvents(mapButtonsGrid2DArray[i][j],
-								mapModel);
+						addButtonClickEvents(mapButtonsGrid2DArray[i][j], new_mapModel);
 						// Right Click Event
 						// addMouseClickOnButtonEvents(b[i][j], i, j, mapModel);
 
-						if ((i >= 0 && i < mapModel.getMapHeight())
-								|| (j >= 0 && j < mapModel.getMapWidth())) {
+						if ((i >= 0 && i < new_mapModel.getMapHeight()) || (j >= 0 && j < new_mapModel.getMapWidth())) {
 							String name = "";
 							// Select Down button
-							if (i != mapModel.getMapHeight() - 1) {
-								if (mapModel.mapGridSelection[i + 1][j] != ApplicationStatics.MAP_PATH_POINT
-										&& mapModel.mapGridSelection[i + 1][j] != ApplicationStatics.MAP_ENTRY_POINT
-										&& mapModel.mapGridSelection[i + 1][j] != ApplicationStatics.MAP_EXIT_POINT) {
+							if (i != new_mapModel.getMapHeight() - 1) {
+								if (new_mapModel.mapGridSelection[i + 1][j] != ApplicationStatics.MAP_PATH_POINT
+										&& new_mapModel.mapGridSelection[i + 1][j] != ApplicationStatics.MAP_ENTRY_POINT
+										&& new_mapModel.mapGridSelection[i + 1][j] != ApplicationStatics.MAP_EXIT_POINT) {
 									name = "" + (i + 1) + ":" + j;
-									if (!ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME
-											.contains(name))
-										ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME += name
-												+ ",";
+									if (!ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME.contains(name))
+										ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME += name + ",";
 								}
 							}
 
 							// Select up button
 							if (i > 0) {
-								if (mapModel.mapGridSelection[i - 1][j] != ApplicationStatics.MAP_PATH_POINT
-										&& mapModel.mapGridSelection[i - 1][j] != ApplicationStatics.MAP_ENTRY_POINT
-										&& mapModel.mapGridSelection[i - 1][j] != ApplicationStatics.MAP_EXIT_POINT) {
+								if (new_mapModel.mapGridSelection[i - 1][j] != ApplicationStatics.MAP_PATH_POINT
+										&& new_mapModel.mapGridSelection[i - 1][j] != ApplicationStatics.MAP_ENTRY_POINT
+										&& new_mapModel.mapGridSelection[i - 1][j] != ApplicationStatics.MAP_EXIT_POINT) {
 									name = "" + (i - 1) + ":" + j;
-									if (!ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME
-											.contains(name))
-										ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME += name
-												+ ",";
+									if (!ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME.contains(name))
+										ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME += name + ",";
 								}
 							}
 
 							// Checking for Left cell
-							if (j != mapModel.getMapWidth() - 1) {
-								if (mapModel.mapGridSelection[i][j + 1] != ApplicationStatics.MAP_PATH_POINT
-										&& mapModel.mapGridSelection[i][j + 1] != ApplicationStatics.MAP_ENTRY_POINT
-										&& mapModel.mapGridSelection[i][j + 1] != ApplicationStatics.MAP_EXIT_POINT) {
+							if (j != new_mapModel.getMapWidth() - 1) {
+								if (new_mapModel.mapGridSelection[i][j + 1] != ApplicationStatics.MAP_PATH_POINT
+										&& new_mapModel.mapGridSelection[i][j + 1] != ApplicationStatics.MAP_ENTRY_POINT
+										&& new_mapModel.mapGridSelection[i][j + 1] != ApplicationStatics.MAP_EXIT_POINT) {
 									name = "" + (i) + ":" + (j + 1);
-									if (!ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME
-											.contains(name))
-										ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME += name
-												+ ",";
+									if (!ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME.contains(name))
+										ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME += name + ",";
 								}
 							}
 
 							// Checking For Right Cell
 							if (j > 0) {
-								if (mapModel.mapGridSelection[i][j - 1] != ApplicationStatics.MAP_PATH_POINT
-										&& mapModel.mapGridSelection[i][j - 1] != ApplicationStatics.MAP_ENTRY_POINT
-										&& mapModel.mapGridSelection[i][j - 1] != ApplicationStatics.MAP_EXIT_POINT) {
+								if (new_mapModel.mapGridSelection[i][j - 1] != ApplicationStatics.MAP_PATH_POINT
+										&& new_mapModel.mapGridSelection[i][j - 1] != ApplicationStatics.MAP_ENTRY_POINT
+										&& new_mapModel.mapGridSelection[i][j - 1] != ApplicationStatics.MAP_EXIT_POINT) {
 									name = "" + (i) + ":" + (j - 1);
-									if (!ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME
-											.contains(name))
-										ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME += name
-												+ ",";
+									if (!ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME.contains(name))
+										ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME += name + ",";
 								}
 							}
 
@@ -278,7 +248,7 @@ public class JPanelComponent implements Observer{
 
 					}
 					// Condition for Entry Cell
-					else if (mapModel.mapGridSelection[i][j] == ApplicationStatics.MAP_ENTRY_POINT) {
+					else if (new_mapModel.mapGridSelection[i][j] == ApplicationStatics.MAP_ENTRY_POINT) {
 						mapButtonsGrid2DArray[i][j].setBackground(Color.red);
 						mapButtonsGrid2DArray[i][j].setText("E");
 						// b[i][j].setIcon(new ImageIcon (
@@ -286,7 +256,7 @@ public class JPanelComponent implements Observer{
 						mapButtonsGrid2DArray[i][j].setEnabled(false);
 					}
 					// Condition for Exit Cell
-					else if (mapModel.mapGridSelection[i][j] == ApplicationStatics.MAP_EXIT_POINT) {
+					else if (new_mapModel.mapGridSelection[i][j] == ApplicationStatics.MAP_EXIT_POINT) {
 						mapButtonsGrid2DArray[i][j].setBackground(Color.red);
 						mapButtonsGrid2DArray[i][j].setText("O");
 						mapButtonsGrid2DArray[i][j].setEnabled(false);
@@ -295,24 +265,14 @@ public class JPanelComponent implements Observer{
 					}
 					// Condition for Scenery Cell
 					else {
-						mapButtonsGrid2DArray[i][j]
-								.setIcon(new ImageIcon(
-										((new ImageIcon(
-												ApplicationStatics.IMAGE_PATH_MAP_SCENERY)
-												.getImage().getScaledInstance(
-												(int) parentDimension
-														.getWidth()
-														/ mapModel
-																.getMapWidth(),
-												(int) parentDimension
-														.getHeight()
-														/ mapModel
-																.getMapHeight(),
+						mapButtonsGrid2DArray[i][j].setIcon(
+								new ImageIcon(((new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_SCENERY).getImage()
+										.getScaledInstance((int) new_parentDimension.getWidth() / new_mapModel.getMapWidth(),
+												(int) new_parentDimension.getHeight() / new_mapModel.getMapHeight(),
 												java.awt.Image.SCALE_SMOOTH)))));
 
 						// Click event
-						addButtonClickEvents(mapButtonsGrid2DArray[i][j],
-								mapModel);
+						addButtonClickEvents(mapButtonsGrid2DArray[i][j], new_mapModel);
 						// Right Click Event
 						// addMouseClickOnButtonEvents(b[i][j], i, j, mapModel);
 
@@ -330,16 +290,12 @@ public class JPanelComponent implements Observer{
 		if (E_MapEditorMode.Play == mapEditorMode) {
 			if (ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME.length() > 1) {
 				ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME = (new MiscellaneousHelper())
-						.RemoveCharacterFromEndorRight(
-								ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME,
-								",");
+						.RemoveCharacterFromEndorRight(ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME, ",");
 			}
-			System.out.println("MAP Boundary Points : "
-					+ ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME);
+			System.out.println("MAP Boundary Points : " + ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME);
 			ApplicationStatics.MAP_BUTTONS = mapButtonsGrid2DArray;
 		}
-		
-		
+
 		return panel;
 	}
 
@@ -348,13 +304,13 @@ public class JPanelComponent implements Observer{
 	 * of these button we perform certain actions this method implements logic
 	 * behind the on click of button
 	 * 
-	 * @param button
+	 * @param new_button
 	 *            Type JButton
-	 * @param mapModel
+	 * @param new_mapModel
 	 *            Type MapModel
 	 */
-	private void addButtonClickEvents(JButton button, final MapModel mapModel) {
-		button.addActionListener(new ActionListener() {
+	private void addButtonClickEvents(JButton new_button, final MapModel new_mapModel) {
+		new_button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JButton btn = ((JButton) e.getSource());
@@ -363,51 +319,49 @@ public class JPanelComponent implements Observer{
 				int _j = Integer.parseInt(nameArry[2]);
 
 				// If Previously an Scenery Point
-				if (mapModel.mapGridSelection[_i][_j] == ApplicationStatics.MAP_Scenery_POINT) {
+				if (new_mapModel.mapGridSelection[_i][_j] == ApplicationStatics.MAP_Scenery_POINT) {
 					btn.setBackground(Color.green);
-					mapModel.mapGridSelection[_i][_j] = ApplicationStatics.MAP_PATH_POINT;
+					new_mapModel.mapGridSelection[_i][_j] = ApplicationStatics.MAP_PATH_POINT;
 				}
 				// If Previously an Path point
-				else if (mapModel.mapGridSelection[_i][_j] == ApplicationStatics.MAP_PATH_POINT) {
-					mapModel.mapGridSelection[_i][_j] = ApplicationStatics.MAP_Scenery_POINT;
+				else if (new_mapModel.mapGridSelection[_i][_j] == ApplicationStatics.MAP_PATH_POINT) {
+					new_mapModel.mapGridSelection[_i][_j] = ApplicationStatics.MAP_Scenery_POINT;
 					btn.setBackground(Color.gray);
 				}
 				// If Previously an Entry point
-				else if (mapModel.mapGridSelection[_i][_j] == ApplicationStatics.MAP_ENTRY_POINT) {
-					mapModel.mapGridSelection[_i][_j] = ApplicationStatics.MAP_Scenery_POINT;
+				else if (new_mapModel.mapGridSelection[_i][_j] == ApplicationStatics.MAP_ENTRY_POINT) {
+					new_mapModel.mapGridSelection[_i][_j] = ApplicationStatics.MAP_Scenery_POINT;
 					btn.setBackground(Color.gray);
 					btn.setText("");
-					mapModel.isEntryDone = false;
+					new_mapModel.isEntryDone = false;
 					jButtonEntry = null;
 				}
 				// If Previously an Exit Point
-				else if (mapModel.mapGridSelection[_i][_j] == ApplicationStatics.MAP_EXIT_POINT) {
-					mapModel.mapGridSelection[_i][_j] = ApplicationStatics.MAP_Scenery_POINT;
+				else if (new_mapModel.mapGridSelection[_i][_j] == ApplicationStatics.MAP_EXIT_POINT) {
+					new_mapModel.mapGridSelection[_i][_j] = ApplicationStatics.MAP_Scenery_POINT;
 					btn.setBackground(Color.gray);
 					btn.setText("");
-					mapModel.isExitDone = false;
+					new_mapModel.isExitDone = false;
 					jButtonExit = null;
 				}
 
-				System.out.println("Button Click Event Btn Name : "
-						+ btn.getName());
+				System.out.println("Button Click Event Btn Name : " + btn.getName());
 
-				//-- ulan's code here
+				// -- ulan's code here
 				String[] tempStr = btn.getName().split(":");
 				int new_x = Integer.parseInt(tempStr[1]);
 				int new_y = Integer.parseInt(tempStr[2]);
 
 				Tower tempTM = TowerFactory.getTower("Shooter");
-				
-				System.out.println("x : "+new_x + " , y : "+ new_y);
+
+				System.out.println("x : " + new_x + " , y : " + new_y);
 
 				ApplicationStatics.SET_TOWER_DESCR_VISIBLE = false;
-				
-				if(bottomGamePanel != null && bottomGamePanel.towerDescrPanel!= null){
+
+				if (bottomGamePanel != null && bottomGamePanel.towerDescrPanel != null) {
 					bottomGamePanel.towerDescrPanel.updateTowerDscrPanel(tempTM);
 				}
 				ApplicationStatics.CURRENT_SELECTED_TOWER = 4;
-				
 
 				if (ApplicationStatics.HAS_BOUGHT_TOWER) {
 					System.out.println("The Button " + btn.getName() + " is clicked");
@@ -435,8 +389,7 @@ public class JPanelComponent implements Observer{
 						}
 					}
 				}
-				
-				
+
 			}
 		});
 	}
@@ -446,14 +399,13 @@ public class JPanelComponent implements Observer{
 	 * click on these button we perform certain actions this method implements
 	 * logic behind the on right click of button
 	 * 
-	 * @param button
+	 * @param new_button
 	 *            Type JButton
-	 * @param mapModel
+	 * @param new_mapModel
 	 *            Type MapModel
 	 */
-	private void addMouseClickOnButtonEvents(JButton button,
-			final MapModel mapModel) {
-		button.addMouseListener(new MouseAdapter() {
+	private void addMouseClickOnButtonEvents(JButton new_button, final MapModel new_mapModel) {
+		new_button.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				// boolean mine = field.isMine(x, y);
 				// When Right button Clicked of Mouse
@@ -470,50 +422,47 @@ public class JPanelComponent implements Observer{
 					int _j = Integer.parseInt(nameArry[2]);
 
 					// if Previously it is Entry Button
-					if (mapModel.mapGridSelection[_i][_j] == ApplicationStatics.MAP_ENTRY_POINT) {
+					if (new_mapModel.mapGridSelection[_i][_j] == ApplicationStatics.MAP_ENTRY_POINT) {
 						// Change mapGridSelection value
-						mapModel.mapGridSelection[_i][_j] = ApplicationStatics.MAP_Scenery_POINT;
+						new_mapModel.mapGridSelection[_i][_j] = ApplicationStatics.MAP_Scenery_POINT;
 						btn.setBackground(Color.gray);
 						btn.setText("");
 						jButtonEntry = null;
-						mapModel.isEntryDone = false;
-						mapModel.setEntryPoint(null);
+						new_mapModel.isEntryDone = false;
+						new_mapModel.setEntryPoint(null);
 					}
 					// if Previously it is Exit Button
-					else if (mapModel.mapGridSelection[_i][_j] == ApplicationStatics.MAP_EXIT_POINT) {
-						mapModel.mapGridSelection[_i][_j] = ApplicationStatics.MAP_Scenery_POINT;
+					else if (new_mapModel.mapGridSelection[_i][_j] == ApplicationStatics.MAP_EXIT_POINT) {
+						new_mapModel.mapGridSelection[_i][_j] = ApplicationStatics.MAP_Scenery_POINT;
 						btn.setBackground(Color.gray);
 						btn.setText("");
 						jButtonExit = null;
-						mapModel.isExitDone = false;
-						mapModel.setExitPoint(null);
+						new_mapModel.isExitDone = false;
+						new_mapModel.setExitPoint(null);
 					}
 					// if Previously it is Path and Scenery button
-					else if (mapModel.mapGridSelection[_i][_j] == ApplicationStatics.MAP_Scenery_POINT
-							|| mapModel.mapGridSelection[_i][_j] == ApplicationStatics.MAP_PATH_POINT) {
+					else if (new_mapModel.mapGridSelection[_i][_j] == ApplicationStatics.MAP_Scenery_POINT
+							|| new_mapModel.mapGridSelection[_i][_j] == ApplicationStatics.MAP_PATH_POINT) {
 						// Check Entry is already Selected
-						if (!mapModel.isEntryDone) {
+						if (!new_mapModel.isEntryDone) {
 							btn.setBackground(Color.RED);
 							btn.setText("E");
 							jButtonEntry = btn;
-							mapModel.mapGridSelection[_i][_j] = ApplicationStatics.MAP_ENTRY_POINT;
-							mapModel.setEntryPoint(new Point(_i, _j));
-							mapModel.isEntryDone = true;
-						} else if (!mapModel.isExitDone) {
+							new_mapModel.mapGridSelection[_i][_j] = ApplicationStatics.MAP_ENTRY_POINT;
+							new_mapModel.setEntryPoint(new Point(_i, _j));
+							new_mapModel.isEntryDone = true;
+						} else if (!new_mapModel.isExitDone) {
 							btn.setBackground(Color.RED);
 							btn.setText("O");
 							jButtonExit = btn;
-							mapModel.mapGridSelection[_i][_j] = ApplicationStatics.MAP_EXIT_POINT;
-							mapModel.setExitPoint(new Point(_i, _j));
-							mapModel.isExitDone = true;
+							new_mapModel.mapGridSelection[_i][_j] = ApplicationStatics.MAP_EXIT_POINT;
+							new_mapModel.setExitPoint(new Point(_i, _j));
+							new_mapModel.isExitDone = true;
 						} else {
-							JOptionPane
-									.showMessageDialog(null,
-											"Both Enrty and Exit Point Already Selected");
+							JOptionPane.showMessageDialog(null, "Both Enrty and Exit Point Already Selected");
 						}
 					}
-					System.out.println(" Mouse Right Clicked Event Btn Name : "
-							+ btn.getName());
+					System.out.println(" Mouse Right Clicked Event Btn Name : " + btn.getName());
 				}
 			}
 		});
@@ -530,11 +479,11 @@ public class JPanelComponent implements Observer{
 	}
 
 	/**
-	 * @param jButtonTower
+	 * @param new_jButtonTower
 	 *            the jButtonTower to set
 	 */
-	public void setjButtonTower(JButton jButtonTower) {
-		this.jButtonTower = jButtonTower;
+	public void setjButtonTower(JButton new_jButtonTower) {
+		this.jButtonTower = new_jButtonTower;
 	}
 
 	/**
@@ -583,11 +532,11 @@ public class JPanelComponent implements Observer{
 	 * update method from observable PlayerModel class
 	 */
 	@Override
-	public void update(Observable o, Object arg) {
+	public void update(Observable new_o, Object new_arg) {
 		// TODO Auto-generated method stub
 		setMapButtonsToYellow();
 	}
-	
+
 	/**
 	 * This method sets the Buttons to Yellow on the map that are eligible for
 	 * tower placement
@@ -598,7 +547,8 @@ public class JPanelComponent implements Observer{
 	public void setMapButtonsToYellow() {
 
 		String stringMapCoord = "";
-	//	System.out.println("inside setMapButtonsToYellow "+ ApplicationStatics.HAS_BOUGHT_TOWER);
+		// System.out.println("inside setMapButtonsToYellow "+
+		// ApplicationStatics.HAS_BOUGHT_TOWER);
 
 		for (int i = 0; i < ApplicationStatics.MAP_BUTTONS.length; i++) {
 
@@ -608,7 +558,8 @@ public class JPanelComponent implements Observer{
 
 					ApplicationStatics.MAP_BUTTONS[i][j].setEnabled(true);
 					if (ApplicationStatics.HAS_BOUGHT_TOWER) {
-						ApplicationStatics.MAP_BUTTONS[i][j].setIcon(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_BUTTONYELLOW));
+						ApplicationStatics.MAP_BUTTONS[i][j]
+								.setIcon(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_BUTTONYELLOW));
 						setTowersOnMap(i, j);
 					} else {
 						// -- sets all button icons to green scenery and later
@@ -622,14 +573,14 @@ public class JPanelComponent implements Observer{
 					}
 				} else { // -- disable buttons boundaries
 					ApplicationStatics.MAP_BUTTONS[i][j].setEnabled(!ApplicationStatics.HAS_BOUGHT_TOWER);
-		//			ApplicationStatics.MAP_BUTTONS[i][j].setDisabledIcon(new ImageIcon());
+					// ApplicationStatics.MAP_BUTTONS[i][j].setDisabledIcon(new
+					// ImageIcon());
 				}
 			}
 		}
-		
+
 	}
-	
-	
+
 	/**
 	 * This method sets icons on the map buttons where they have been placed by
 	 * player
@@ -651,12 +602,11 @@ public class JPanelComponent implements Observer{
 				} else {
 					ApplicationStatics.MAP_BUTTONS[new_i][new_j].setEnabled(true);
 				}
-				ApplicationStatics.MAP_BUTTONS[new_i][new_j].setIcon(ApplicationStatics.PLAYERMODEL.towerModelArray.get(k).getTowerImage());
+				ApplicationStatics.MAP_BUTTONS[new_i][new_j]
+						.setIcon(ApplicationStatics.PLAYERMODEL.towerModelArray.get(k).getTowerImage());
 			}
 		}
-		
-		
-		
+
 	}
 
 }

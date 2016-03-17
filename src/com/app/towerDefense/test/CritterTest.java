@@ -1,17 +1,15 @@
 package com.app.towerDefense.test;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import java.awt.Image;
 import java.io.File;
-
 import javax.swing.ImageIcon;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.app.towerDefense.bL.Map;
 import com.app.towerDefense.models.AdvancedCritter;
 import com.app.towerDefense.models.BasicCritter;
 import com.app.towerDefense.models.CritterFactory;
@@ -19,7 +17,6 @@ import com.app.towerDefense.models.CritterType;
 import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 import com.app.towerDefense.utilities.FileStorage;
-
 import junit.framework.Assert;
 
 /**
@@ -71,7 +68,7 @@ public class CritterTest {
 		assertEquals(basicCritter.getCritterId(), critterId);
 		assertEquals(basicCritter.getCritterImage(), critterImage);
 	}
-	
+
 	/**
 	 * Test case for setting block parameters
 	 */
@@ -100,18 +97,18 @@ public class CritterTest {
 	 */
 	@Test
 	public void testCalculateCritterPath() {
-		boolean isException=true;
+		boolean isException = true;
 		basicCritter.setXY(6, 6);
 		basicCritter.setBlocksParams(400, 300);
-		
+
 		mapModel = (new FileStorage()).openMapFile(file);
 		ApplicationStatics.PATH_ARRAY1 = mapModel.getMapRoutPathList();
-		
+
 		try {
 			basicCritter.calculatePath();
-			isException=false;
+			isException = false;
 		} catch (Exception e) {
-			isException=true;
+			isException = true;
 		}
 		assertFalse(isException);
 	}
@@ -130,8 +127,8 @@ public class CritterTest {
 		System.out.println("@AfterClass - oneTimeTearDown");
 		basicCritter = null;
 		critterImage = null;
-		mapModel=null;
-		file=null;
+		mapModel = null;
+		file = null;
 		assertNull(basicCritter);
 		assertNull(critterImage);
 		assertNull(mapModel);
@@ -140,4 +137,3 @@ public class CritterTest {
 	}
 
 }
-

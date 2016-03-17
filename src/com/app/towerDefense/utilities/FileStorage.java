@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 /**
  * This class is for saving a map
  * 
- * 	@author Sajjad Ashraf
+ * @author Sajjad Ashraf
  *
  */
 public class FileStorage {

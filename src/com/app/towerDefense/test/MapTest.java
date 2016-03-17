@@ -8,7 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.app.towerDefense.bL.Map;
+import com.app.towerDefense.gameLogic.Map;
 import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 import com.app.towerDefense.utilities.FileStorage;
@@ -29,7 +29,7 @@ public class MapTest {
 
 	/**
 	 * Test case Initialization for MapTest
-	 */	
+	 */
 	@Before
 	public void towerModel1TestCase() {
 		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class Map");
