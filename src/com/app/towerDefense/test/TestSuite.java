@@ -3,6 +3,8 @@ package com.app.towerDefense.test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
+import com.app.towerDefense.guisystem.Game;
+
 /**
  * The class is a test suite for all the tower model test cases.
  * 
