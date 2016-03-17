@@ -29,7 +29,7 @@ public class MapTest {
 
 	/**
 	 * Test case Initialization for MapTest
-	 */	
+	 */
 	@Before
 	public void towerModel1TestCase() {
 		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class Map");

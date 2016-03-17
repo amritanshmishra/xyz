@@ -16,7 +16,7 @@ import com.app.towerDefense.models.MapModel;
  *
  *
  * @author Amritansh Mishra
- * @version 1.0 
+ * @version 1.0
  */
 public class MapModelTest {
 
@@ -55,15 +55,15 @@ public class MapModelTest {
 		assertNotNull(mapModel);
 
 	}
-	
+
 	/**
-	 * Run the MapModel getMapRoutPathList Method this method Compute a ArrayList on this bas of mapRoutPath.
+	 * Run the MapModel getMapRoutPathList Method this method Compute a
+	 * ArrayList on this bas of mapRoutPath.
 	 *
 	 */
 	@Test
-	public void testGetMapRoutPathList()
-	{
-		mapModel = new  MapModel();
+	public void testGetMapRoutPathList() {
+		mapModel = new MapModel();
 		mapModel.setMapRoutPath("0,0;1,0;2,0;3,0;3,1,3,2,3,3");
 		mapModel.getMapRoutPathList();
 		assertNotNull(mapModel);

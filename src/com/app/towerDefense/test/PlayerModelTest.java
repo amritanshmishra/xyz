@@ -31,13 +31,12 @@ public class PlayerModelTest {
 		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class PlayerModel");
 		playerModel = new PlayerModel();
 		Shooter = TowerFactory.getTower("Shooter");
-		
 
 	}
 
 	/**
 	 * Run the PlayerModel default constructor test.
-	 *	 
+	 * 
 	 *
 	 */
 	@Test
@@ -93,11 +92,11 @@ public class PlayerModelTest {
 	 */
 	@Test
 	public void buyTowerTest() {
-		
+
 		playerModel = new PlayerModel();
 		Shooter = TowerFactory.getTower("Shooter");
 		playerModel.buyTower(1);
-		assertEquals(playerModel.towerModelArray.size(),1);
+		assertEquals(playerModel.towerModelArray.size(), 1);
 
 	}
 

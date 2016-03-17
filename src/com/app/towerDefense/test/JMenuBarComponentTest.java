@@ -29,7 +29,7 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
 public class JMenuBarComponentTest {
 
 	JMenuBarComponent jMenuBarComponent;
-	
+
 	/**
 	 * Test case Initialization for GameTest
 	 */
@@ -38,7 +38,7 @@ public class JMenuBarComponentTest {
 		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class Map");
 		jMenuBarComponent = new JMenuBarComponent();
 	}
-	
+
 	/**
 	 * Run Unit Test GetGameJMenuBar it return game menu
 	 * 
@@ -48,9 +48,8 @@ public class JMenuBarComponentTest {
 		int width = ApplicationStatics.WINDOW_WIDTH;
 		int height = ApplicationStatics.WINDOW_HEIGHT;
 
-
 		JFrame frame = new JFrame();
-		//frame.setTitle(title);
+		// frame.setTitle(title);
 		frame.setPreferredSize(new Dimension(width, height));
 		frame.setMaximumSize(new Dimension(width, height));
 		frame.setMinimumSize(new Dimension(width, height));
@@ -59,7 +58,7 @@ public class JMenuBarComponentTest {
 		JMenuBar jMenubar = jMenuBarComponent.getGameJMenuBar(frame);
 		assertNotNull(jMenubar);
 	}
-	
+
 	/**
 	 * Run Unit Test GetMapEditorJMenuBar it return Map Editor menu
 	 * 
@@ -69,9 +68,8 @@ public class JMenuBarComponentTest {
 		int width = ApplicationStatics.WINDOW_WIDTH;
 		int height = ApplicationStatics.WINDOW_HEIGHT;
 
-
 		JFrame frame = new JFrame();
-		//frame.setTitle(title);
+		// frame.setTitle(title);
 		frame.setPreferredSize(new Dimension(width, height));
 		frame.setMaximumSize(new Dimension(width, height));
 		frame.setMinimumSize(new Dimension(width, height));
@@ -80,8 +78,7 @@ public class JMenuBarComponentTest {
 		JMenuBar jMenubar = jMenuBarComponent.getMapEditorJMenuBar(new MapModel(), frame);
 		assertNotNull(jMenubar);
 	}
-	
-	
+
 	/**
 	 * Perform post-test clean-up.
 	 *
@@ -93,8 +90,8 @@ public class JMenuBarComponentTest {
 	@After
 	public void tearDown() throws Exception {
 		// Add additional tear down code here
-		System.out.println("@AfterClass - oneTimeTearDown");	
-		jMenuBarComponent= null;
+		System.out.println("@AfterClass - oneTimeTearDown");
+		jMenuBarComponent = null;
 		assertNull(jMenuBarComponent);
 
 	}
