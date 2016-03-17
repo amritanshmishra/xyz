@@ -24,14 +24,10 @@ public class BasicCritter implements CritterType {
 	private int i = 0;
 	private int blockW, blockH;
 	public Image image;
-	private int id;
+	private int critterId;
 	int xNext;
 	int yNext;
 
-	/**
-	 * Id of critter
-	 */
-	public int critterId;
 	/**
 	 * value of critter
 	 */
@@ -90,14 +86,13 @@ public class BasicCritter implements CritterType {
 		return currentHealth;
 	}
 
-
 	/**
 	 * Returns critter id
 	 */
 	@Override
 	public int getCritterId() {
 
-		return 0;
+		return critterId;
 	}
 
 	/**
@@ -110,24 +105,20 @@ public class BasicCritter implements CritterType {
 		yNext = ApplicationStatics.PATH_ARRAY1.get(i + 1).x * blockH;
 		directionY = ApplicationStatics.PATH_ARRAY1.get(i + 1).x - ApplicationStatics.PATH_ARRAY1.get(i).x;
 		directionX = ApplicationStatics.PATH_ARRAY1.get(i + 1).y - ApplicationStatics.PATH_ARRAY1.get(i).y;
-		//System.out.println("Inside calculate path");
-		
-		if (directionX == 1 || directionX == -1){
-			if( x == xNext){
+
+		if (directionX == 1 || directionX == -1) {
+			if (x == xNext) {
 				System.out.println("inside 1 :" + (i++));
 			}
-		}else if(directionX ==0){
+		} else if (directionX == 0) {
 			if (directionY == 1 || directionY == -1) {
-				if(y==yNext){
+				if (y == yNext) {
 					System.out.println("inside 2" + (i++));
 				}
 			}
 		}
 		x += directionX;
 		y += directionY;
-		
-
-	//	System.out.println("inside critter   x : " + x + " , y : " + y);
 
 	}
 
@@ -144,7 +135,7 @@ public class BasicCritter implements CritterType {
 	 */
 	@Override
 	public Image getCritterImage() {
-		// TODO Auto-generated method stub
+
 		return image;
 	}
 
@@ -153,15 +144,18 @@ public class BasicCritter implements CritterType {
 	 */
 	@Override
 	public void setXY(int new_x, int new_y) {
-		// TODO Auto-generated method stub
+
 		x = new_x;
 		y = new_y;
 	}
 
+	/**
+	 * This method sets the id for the basic critter
+	 */
 	@Override
 	public void setID(int new_id) {
-		// TODO Auto-generated method stub
-		id = new_id;
+
+		critterId = new_id;
 	}
 
 }

@@ -2,7 +2,8 @@ package com.app.towerDefense.models;
 
 import java.awt.Image;
 
-/**=o
+/**
+ * This class will be implemented in the final buil
  * This class is the advanced critter that would move on the map Contains
  * different methhods to create and move a critter on the map selected by player
  * 
@@ -115,6 +116,9 @@ public class AdvancedCritter implements CritterType {
 		// TODO Auto-generated method stub
 
 	}
+	/**
+	 * This method sets the id for the advanced critter
+	 */
 	@Override
 	public void setID(int new_id) {
 		// TODO Auto-generated method stub

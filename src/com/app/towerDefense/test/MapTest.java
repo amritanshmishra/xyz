@@ -57,20 +57,18 @@ public class MapTest {
 		assertTrue(status.contains("Success"));
 	}
 
-
 	/**
 	 * Test case Check is there is any Independent or non Connected Cell.
 	 */
 	@Test
-	public void testCheckIndependentSelectedCells()
-	{
+	public void testCheckIndependentSelectedCells() {
 		map = new Map();
 		mapModel = new MapModel();
 		mapModel = (new FileStorage()).openMapFile(file);
 		ApplicationStatics.MAP_ROUT_PATH = mapModel.getMapRoutPath();
-		assertTrue( map.checkIndependentSelectedCells(mapModel));
+		assertTrue(map.checkIndependentSelectedCells(mapModel));
 	}
-	
+
 	/**
 	 * Perform post-test clean-up.
 	 *
