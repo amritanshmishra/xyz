@@ -6,8 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.app.towerDefense.bL.Map;
-import com.app.towerDefense.guisystem.Game;
+import com.app.towerDefense.gameLogic.Map;
+import com.app.towerDefense.guiSystem.Game;
 import com.app.towerDefense.models.MapModel;
 /**
  * The class <code>GameTest</code> contains tests for the class

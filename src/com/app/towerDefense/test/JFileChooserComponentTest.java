@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.app.towerDefense.guiComponents.JFileChooserComponent;
-import com.app.towerDefense.guisystem.Game;
+import com.app.towerDefense.guiSystem.Game;
 import com.app.towerDefense.staticContent.AppilicationEnums.E_JFileChooserMode;
 
 /**

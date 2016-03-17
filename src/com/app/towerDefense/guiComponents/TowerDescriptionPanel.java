@@ -114,7 +114,7 @@ public class TowerDescriptionPanel extends JPanel implements Observer, ActionLis
 		sellBuyTowerButton.setPreferredSize(new Dimension(70, 20));
 		sellBuyTowerButton.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent new_e) {
 
 				if (sellBuyTowerButton.getText() == "BUY" && ApplicationStatics.CURRENT_SELECTED_TOWER < 4) {
 
@@ -175,7 +175,7 @@ public class TowerDescriptionPanel extends JPanel implements Observer, ActionLis
 		upgradeTowerButton.addActionListener(new ActionListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent new_e) {
 				System.out.println("upgrade button was clicked!");
 
 				// System.out.println("button coordinates= "
@@ -234,30 +234,30 @@ public class TowerDescriptionPanel extends JPanel implements Observer, ActionLis
 	 * @param new_towerID
 	 *            tower Id
 	 */
-	public void updateTowerDscrPanel(Tower tOWER_MODELS) {
+	public void updateTowerDscrPanel(Tower new_tower_models) {
 
-		tempTM = tOWER_MODELS;
+		tempTM = new_tower_models;
 
-		labelStatsTower[1].setText(Integer.toString(tOWER_MODELS.getTowerlevel()));
-		labelStatsTower[4].setText(Integer.toString(tOWER_MODELS.getTowerPower()));
-		labelStatsTower[7].setText(Integer.toString(tOWER_MODELS.getTowerRange()));
-		labelStatsTower[10].setText(Integer.toString(tOWER_MODELS.getTowerFireRate()));
+		labelStatsTower[1].setText(Integer.toString(new_tower_models.getTowerlevel()));
+		labelStatsTower[4].setText(Integer.toString(new_tower_models.getTowerPower()));
+		labelStatsTower[7].setText(Integer.toString(new_tower_models.getTowerRange()));
+		labelStatsTower[10].setText(Integer.toString(new_tower_models.getTowerFireRate()));
 		labelStatsTower[13].setText(Integer.toString(0));
-		labelStatsTower[16].setText(Integer.toString(tOWER_MODELS.getTowerCost()));
+		labelStatsTower[16].setText(Integer.toString(new_tower_models.getTowerCost()));
 
-		towerNameLabel.setText(tOWER_MODELS.getTowerName());
-		towerLabelDESCR.setIcon(tOWER_MODELS.getTowerImage());
+		towerNameLabel.setText(new_tower_models.getTowerName());
+		towerLabelDESCR.setIcon(new_tower_models.getTowerImage());
 
 		// currentSelectedTowerName = "tower" + Integer.toString(new_towerID);
 		// -- checks if tower is selected from the shop or the map
 
 		if (ApplicationStatics.SET_TOWER_DESCR_VISIBLE) {
-			labelStatsTower[2].setText(Integer.toString(tOWER_MODELS.getTowerlevel() + 1));
-			labelStatsTower[5].setText(Integer.toString(tOWER_MODELS.getTowerPower() * 2));
-			labelStatsTower[8].setText(Integer.toString(tOWER_MODELS.getTowerRange() + 1));
-			labelStatsTower[11].setText(Integer.toString(tOWER_MODELS.getTowerFireRate() + 2));
+			labelStatsTower[2].setText(Integer.toString(new_tower_models.getTowerlevel() + 1));
+			labelStatsTower[5].setText(Integer.toString(new_tower_models.getTowerPower() * 2));
+			labelStatsTower[8].setText(Integer.toString(new_tower_models.getTowerRange() + 1));
+			labelStatsTower[11].setText(Integer.toString(new_tower_models.getTowerFireRate() + 2));
 			labelStatsTower[14].setText(Integer.toString(0));
-			labelStatsTower[17].setText(Integer.toString((int) (tOWER_MODELS.getTowerUpgradeCost())));
+			labelStatsTower[17].setText(Integer.toString((int) (new_tower_models.getTowerUpgradeCost())));
 			sellBuyTowerButton.setText("SELL");
 			upgradeTowerButton.setText("UPGRADE");
 
@@ -296,7 +296,7 @@ public class TowerDescriptionPanel extends JPanel implements Observer, ActionLis
 	 * Playermodel or towerShopPanel
 	 */
 	@Override
-	public void update(Observable o, Object arg) {
+	public void update(Observable new_o, Object new_arg) {
 		// TODO Auto-generated method stub
 		// updateTowerDscrPanel(new TowerModel1());
 		int a = ApplicationStatics.CURRENT_SELECTED_TOWER;
@@ -313,7 +313,7 @@ public class TowerDescriptionPanel extends JPanel implements Observer, ActionLis
  * override functions of Observer Class
  */
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent new_e) {
 		// TODO Auto-generated method stub
 
 	}

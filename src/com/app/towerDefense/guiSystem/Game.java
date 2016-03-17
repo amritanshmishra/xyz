@@ -1,4 +1,4 @@
-package com.app.towerDefense.guisystem;
+package com.app.towerDefense.guiSystem;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;//change 1

@@ -1,4 +1,4 @@
-package com.app.towerDefense.guisystem;
+package com.app.towerDefense.guiSystem;
 
 import java.awt.Dimension;
 import java.awt.Point;

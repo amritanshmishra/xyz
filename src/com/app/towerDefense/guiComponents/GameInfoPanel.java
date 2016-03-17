@@ -12,14 +12,11 @@ import java.util.Observer;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import com.app.towerDefense.models.PlayerModel;
-import com.app.towerDefense.models.Tower;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 
 /**
@@ -81,16 +78,16 @@ public class GameInfoPanel extends JPanel implements Observer {
 		startWaveButton.setVisible(true);
 		startWaveButton.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent new_event) {
 
 				System.out.println("start_wave is clicked");
-				
-				if(!ApplicationStatics.START_WAVE){
-					
+
+				if (!ApplicationStatics.START_WAVE) {
+
 					ApplicationStatics.START_WAVE = true;
-			//		startWaveButton.setEnabled(false);
+					// startWaveButton.setEnabled(false);
 				}
-				
+
 			}
 		});
 
@@ -121,17 +118,17 @@ public class GameInfoPanel extends JPanel implements Observer {
 		this.add(rightInfoPanel, BorderLayout.EAST);
 
 	}
-/**
- * updates all info on the player if any changes occur on his behalf
- */
+
+	/**
+	 * updates all info on the player if any changes occur on his behalf
+	 */
 	@Override
-	public void update(Observable o, Object arg) {
+	public void update(Observable new_o, Object new_arg) {
 		// TODO Auto-generated method stub
-		sunCurrencyLabel.setText("Sun " + ((PlayerModel)o).getSunCurrency());
-		hpLabel.setText("HP " + ((PlayerModel)o).getHpPlayer());
-		waveLabel.setText("WAVE: " + ((PlayerModel)o).getGameWave());
+		sunCurrencyLabel.setText("Sun " + ((PlayerModel) new_o).getSunCurrency());
+		hpLabel.setText("HP " + ((PlayerModel) new_o).getHpPlayer());
+		waveLabel.setText("WAVE: " + ((PlayerModel) new_o).getGameWave());
 		critterLabel.setText("<html>Critter: Zomby x 5<br>Health: 50</html>");
 	}
-
 
 }

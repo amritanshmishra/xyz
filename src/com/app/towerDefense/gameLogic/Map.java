@@ -1,4 +1,4 @@
-package com.app.towerDefense.bL;
+package com.app.towerDefense.gameLogic;
 
 import java.awt.Point;
 import java.util.ArrayList;

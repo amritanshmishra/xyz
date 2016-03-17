@@ -12,8 +12,10 @@ import javax.swing.JPanel;
 
 import com.app.towerDefense.models.TowerFactory;
 import com.app.towerDefense.staticContent.ApplicationStatics;
+
 /**
  * This class creates the view of the game shop panel
+ * 
  * @author usbaitass
  *
  */
@@ -21,20 +23,25 @@ public class TowerShopPanel extends Observable implements ActionListener {
 
 	JPanel panel;
 	JButton[] towerButton = new JButton[4];
-	
-/**
- * Constructor
- * @param new_width recieves given width parameter
- * @param new_height receives given height parameter
- */
+
+	/**
+	 * Constructor
+	 * 
+	 * @param new_width
+	 *            recieves given width parameter
+	 * @param new_height
+	 *            receives given height parameter
+	 */
 	public TowerShopPanel(int new_width, int new_height) {
 
 		// -----CREATING---Five--Towers---for---SHOP-------
 		ApplicationStatics.TOWER_MODELS[0] = TowerFactory.getTower("Shooter");
-		ApplicationStatics.TOWER_MODELS[1] = TowerFactory.getTower("Freezer");;
+		ApplicationStatics.TOWER_MODELS[1] = TowerFactory.getTower("Freezer");
+		;
 		ApplicationStatics.TOWER_MODELS[2] = TowerFactory.getTower("Burner");
-		ApplicationStatics.TOWER_MODELS[3] = TowerFactory.getTower("Splasher");;
-		
+		ApplicationStatics.TOWER_MODELS[3] = TowerFactory.getTower("Splasher");
+		;
+
 		panel = new JPanel();
 
 		panel.setMinimumSize(new Dimension(new_width, new_height));
@@ -65,14 +72,14 @@ public class TowerShopPanel extends Observable implements ActionListener {
 	 * panel
 	 */
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent new_e) {
 		// TODO Auto-generated method stub
-		Object o = e.getSource();
+		Object o = new_e.getSource();
 		JButton button = (JButton) o;
 		String bName = button.getName();
 
 		int tempTid = Integer.parseInt(bName.substring(bName.length() - 1));
-	
+
 		String tempS = bName.substring(0, bName.length() - 1);
 
 		if (tempS.compareTo("tower") == 0) {
@@ -84,23 +91,24 @@ public class TowerShopPanel extends Observable implements ActionListener {
 			notifyObservers();
 		}
 	}
-	
+
 	/**
 	 * This method returns the Tower shop panel
+	 * 
 	 * @return panel object
 	 */
-	public JPanel getPanel(){
+	public JPanel getPanel() {
 		return panel;
 	}
-	
+
 	/**
 	 * This method enables and disables the tower buttons in the shop panel
 	 */
-	public void enableTowerButtons(boolean new_value){
+	public void enableTowerButtons(boolean new_value) {
 		for (int i = 0; i < 4; i++) {
 			towerButton[i].setEnabled(new_value);
 		}
 	}
-	
-//END	
+
+	// END
 }
