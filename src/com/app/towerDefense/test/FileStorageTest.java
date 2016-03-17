@@ -44,6 +44,7 @@ public class FileStorageTest {
 		mapModel = new MapModel();
 		fileSave = new File("testfiles\\newGeneratedByTestCase.tdm");
 		fileOpen = new File("testfiles\\abc.tdm");
+		
 	}
 	
 	/**
@@ -62,7 +63,7 @@ public class FileStorageTest {
 	
 	/**
 	 * Test GetObjectFromJson Return Object from Json String Depending upon Class Type 
-	 * @throws IOException 
+	 * @throws IOException map file is wrong
 	 */
 	
 	@Test
