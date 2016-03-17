@@ -41,6 +41,7 @@ public interface CritterType extends Observable {
 
 	/**
 	 * Calculates the path on which the critter would move.
+	 * 
 	 * @return true if the path is eligible
 	 */
 	public boolean calculatePath();
@@ -65,20 +66,39 @@ public interface CritterType extends Observable {
 
 	/**
 	 * This method sets critters entry and exit points parameters
-	 * @param new_xEntry x coordinate of entry point
-	 * @param new_yEntry y coordinate of entry point
-	 * @param new_xExit x coordinate of exit point
-	 * @param new_yExit y coordinate of exit point
+	 * 
+	 * @param new_xEntry
+	 *            x coordinate of entry point
+	 * @param new_yEntry
+	 *            y coordinate of entry point
+	 * @param new_xExit
+	 *            x coordinate of exit point
+	 * @param new_yExit
+	 *            y coordinate of exit point
 	 */
 	public void setXY(int new_xEntry, int new_yEntry);
-	
+
 	public void setXYExit(int new_xExit, int new_yExit);
-	
+
+	/**
+	 * This method sets the critter id
+	 * 
+	 * @param new_id
+	 */
 	public void setID(int new_id);
 
+	/**
+	 * This method returns the block width
+	 * 
+	 * @return
+	 */
 	public int getBlockW();
-	
+
+	/**
+	 * This method returns the block height
+	 * 
+	 * @return
+	 */
 	public int getBlockH();
-	
 
 }
