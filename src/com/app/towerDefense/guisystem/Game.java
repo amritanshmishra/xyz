@@ -1,7 +1,7 @@
 package com.app.towerDefense.guisystem;
 
 import java.awt.BorderLayout;
-import java.awt.Canvas;//change 1
+import java.awt.Canvas;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
@@ -13,10 +13,12 @@ import com.app.towerDefense.guiComponents.JPanelComponent;
 import com.app.towerDefense.models.PlayerModel;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 
+//change 1
+
 /**
  * 
  * @author usbaitass
- *
+ * 
  *         Main Class that initiates the creation of the project Applied the
  *         Singleton Pattern on Game Class.
  */
@@ -68,8 +70,8 @@ public class Game extends Canvas implements Runnable { // change 1
 
 		// -- creating new Player
 
-	//	panelComponent = jMenuBarComponent.getPanelComponent();
-	//	bottomGamePanel = jMenuBarComponent.getBottomPanel();
+		// panelComponent = jMenuBarComponent.getPanelComponent();
+		// bottomGamePanel = jMenuBarComponent.getBottomPanel();
 
 	}
 
@@ -90,18 +92,19 @@ public class Game extends Canvas implements Runnable { // change 1
 	 * Main Method of the class that creates the Game Instance and starts the
 	 * game.
 	 * 
-	 * @param args
+	 * @param new_args
 	 *            contains the supplied command-line arguments as an array of
 	 *            String objects
 	 */
-	public static void main(String args[]) {
+	public static void main(String new_args[]) {
 		Game.getInstance().start();
 	}
 
 	/**
 	 * GAME LOOP , updates the game. This method runs the thread
 	 */
-	@Override // change 1
+	@Override
+	// change 1
 	public void run() {
 		// TODO Auto-generated method stub
 		long lastTime = System.nanoTime();
@@ -109,25 +112,25 @@ public class Game extends Canvas implements Runnable { // change 1
 		double ns = 1000000000 / amountOfTicks;
 		double delta = 0;
 		long timer = System.currentTimeMillis();
-//		int frames = 0;
+		// int frames = 0;
 		while (running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 			lastTime = now;
 			while (delta >= 1) {
 				tick();
-				if(ApplicationStatics.GAME_OVER){
+				if (ApplicationStatics.GAME_OVER) {
 					stop();
 					break;
 				}
 				delta--;
 			}
-//			frames++;
+			// frames++;
 
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
 				// System.out.println("FPS: " + frames);
-//				frames = 0;
+				// frames = 0;
 			}
 		}
 		stop();
@@ -149,8 +152,8 @@ public class Game extends Canvas implements Runnable { // change 1
 	public synchronized void stop() {// change 1
 		try {
 			thread.join(0); // stops the thread
-			//thread.stop();
-		//	thread.join(0);
+			// thread.stop();
+			// thread.join(0);
 			System.out.println("Game loop is stopped.");
 			running = false;
 		} catch (Exception e) {
@@ -165,40 +168,42 @@ public class Game extends Canvas implements Runnable { // change 1
 	private void tick() {// change 1
 		//
 
+		if (!ApplicationStatics.GAME_OVER) { // check if game is over
+			// try {
+			if ((panelComponent = jMenuBarComponent.getPanelComponent()) != null) {
+				panelComponent.mapPanel.revalidate();
+				panelComponent.mapPanel.repaint();
 
-		if (!ApplicationStatics.GAME_OVER) { //check if game is over
-		//	try {
-				if ((panelComponent = jMenuBarComponent.getPanelComponent()) != null) {
-					panelComponent.mapPanel.revalidate();
-					panelComponent.mapPanel.repaint();
-					
-					
-					bottomGamePanel = jMenuBarComponent.getBottomPanel();
-					
-					if(ApplicationStatics.START_WAVE && bottomGamePanel != null){ //check if wave is started
-						bottomGamePanel.towerShopPanel.enableTowerButtons(false);
-						bottomGamePanel.towerDescrPanel.enableButtons(false);
-						bottomGamePanel.infoPanel.startWaveButton.setEnabled(false);
-					}else if(!ApplicationStatics.START_WAVE && bottomGamePanel != null){
-						bottomGamePanel.towerShopPanel.enableTowerButtons(true);
-						bottomGamePanel.towerDescrPanel.enableButtons(true);
-						bottomGamePanel.infoPanel.startWaveButton.setEnabled(true);
-					}
+				bottomGamePanel = jMenuBarComponent.getBottomPanel();
+
+				if (ApplicationStatics.START_WAVE && bottomGamePanel != null) { // check
+																				// if
+																				// wave
+																				// is
+																				// started
+					bottomGamePanel.towerShopPanel.enableTowerButtons(false);
+					bottomGamePanel.towerDescrPanel.enableButtons(false);
+					bottomGamePanel.infoPanel.startWaveButton.setEnabled(false);
+				} else if (!ApplicationStatics.START_WAVE
+						&& bottomGamePanel != null) {
+					bottomGamePanel.towerShopPanel.enableTowerButtons(true);
+					bottomGamePanel.towerDescrPanel.enableButtons(true);
+					bottomGamePanel.infoPanel.startWaveButton.setEnabled(true);
 				}
-				
-		//	} catch (Exception e) {
-				// catching exception when program still has not created play
-				// mode map
-		//	}
-		}else{
-			System.out.println("GMALSDLASDK:AKSDkalsdk");	
-			System.out.println("Game over : "+ ApplicationStatics.GAME_OVER);
-			System.out.println("Start wave : "+ApplicationStatics.START_WAVE);
+			}
+
+			// } catch (Exception e) {
+			// catching exception when program still has not created play
+			// mode map
+			// }
+		} else {
+			System.out.println("GMALSDLASDK:AKSDkalsdk");
+			System.out.println("Game over : " + ApplicationStatics.GAME_OVER);
+			System.out.println("Start wave : " + ApplicationStatics.START_WAVE);
 			Game.getInstance().stop();
 		}
 
 	}
-
 
 	// END
 }

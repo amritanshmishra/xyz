@@ -14,8 +14,8 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
 /**
  * This is the map editor class
  * 
-* @author Sajjad Ashraf
- *
+ * @author Sajjad Ashraf
+ * 
  */
 public class MapEditor extends JFrame {
 
@@ -38,7 +38,8 @@ public class MapEditor extends JFrame {
 	 * @param new_mapEditorMode
 	 *            is the map editor mode
 	 */
-	public MapEditor(JFrame new_parent, String new_title, int new_width, int new_height, MapModel new_mapModel,
+	public MapEditor(JFrame new_parent, String new_title, int new_width,
+			int new_height, MapModel new_mapModel,
 			E_MapEditorMode new_mapEditorMode) {
 		if (new_parent != null) {
 			Dimension parentSize = new_parent.getSize();
@@ -66,9 +67,11 @@ public class MapEditor extends JFrame {
 		this.setVisible(true);
 
 		// -- Load MenuBar From Components
-		this.setJMenuBar((new JMenuBarComponent()).getMapEditorJMenuBar(new_mapModel, this));
+		this.setJMenuBar((new JMenuBarComponent()).getMapEditorJMenuBar(
+				new_mapModel, this));
 		// -- Load GridEditor Panel From Components
-		this.setContentPane((new JPanelComponent()).getMapEditorGridPanel(mapModel,null, mapEditorMode));
+		this.setContentPane((new JPanelComponent()).getMapEditorGridPanel(
+				mapModel, null, mapEditorMode));
 
 	}
 
