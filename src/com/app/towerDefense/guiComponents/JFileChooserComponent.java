@@ -15,14 +15,15 @@ import com.app.towerDefense.staticContent.AppilicationEnums.*;
  */
 public class JFileChooserComponent {
 
+	private JFileChooser fileChooser;
+	
 	/**
-	 * The Constructor
+	 * The Method gives you JFileChooser Save or Open mode according to provided input.
 	 * 
 	 * @param new_fileChooserMode
 	 *            the mode of a file open and on the base of this argument it behave accordingly.
-	 * @return a file
+	 * @return a file 
 	 */
-	private JFileChooser fileChooser;
 	
 	public JFileChooser getJFileChooser(E_JFileChooserMode new_fileChooserMode) {
 		fileChooser = new JFileChooser();

@@ -23,7 +23,9 @@ import com.app.towerDefense.guisystem.Game;
 			SplasherTest.class,
 			FileStorageTest.class,
 			MiscellaneousHelperTest.class,
-			CritterTest.class
+			CritterTest.class,
+			JFileChooserComponentTest.class,
+			JMenuBarComponentTest.class
 		})
 public class TestSuite {
 
