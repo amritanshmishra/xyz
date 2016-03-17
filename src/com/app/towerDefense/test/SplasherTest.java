@@ -34,15 +34,15 @@ public class SplasherTest {
 	public void test() {
 
 		int towerLevel = 1;
-		int towerPower = 8;
-		int towerRange = 3;
-		int towerFireRate = 2;
+		int towerPower = 1;
+		int towerRange = 2;
+		int towerFireRate = 1;
 		int towerCost = 80;
 		int towerFireRateUpgrade = 1;
 		int towerLevelUpgrade = 1;
 		int towerUpgradeCost = 40;
-		int towerFireRangeUpgrade = 2;
-		int towerPowerUpgrade = 4;
+		int towerFireRangeUpgrade = 1;
+		int towerPowerUpgrade = 1;
 		String towerName = "Splasher";
 		// Change towerImagePath
 

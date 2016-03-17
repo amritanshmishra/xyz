@@ -34,15 +34,15 @@ public class FreezerTest {
 	public void test() {
 		
 		int towerLevel = 1;
-		int towerPower = 2;
+		int towerPower = 1;
 		int towerRange = 1;
-		int towerFireRate = 2;
+		int towerFireRate = 1;
 		int towerCost = 40;
-		int towerFireRateUpgrade = 2;
+		int towerFireRateUpgrade = 1;
 		int towerLevelUpgrade = 1;
 		int towerUpgradeCost = 20;
-		int towerFireRangeUpgrade = 2;
-		int towerPowerUpgrade=2;
+		int towerFireRangeUpgrade = 1;
+		int towerPowerUpgrade=1;
 		String towerName = "Freezer";
 		//Change towerImagePath
 

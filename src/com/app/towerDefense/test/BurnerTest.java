@@ -34,8 +34,8 @@ public class BurnerTest {
 
 		int towerLevel = 1;
 		int towerPower = 2;
-		int towerRange = 4;
-		int towerFireRate = 2;
+		int towerRange = 1;
+		int towerFireRate = 1;
 		int towerCost = 60;
 		int towerFireRateUpgrade = 1;
 		int towerLevelUpgrade = 1;

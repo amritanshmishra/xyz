@@ -87,7 +87,7 @@ public class Shooter extends Tower{
 
 	@Override
 	public void setTowerPower() {
-		super.towerPower=3;
+		super.towerPower=1;
 		
 	}
 
