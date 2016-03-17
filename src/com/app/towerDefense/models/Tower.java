@@ -264,8 +264,16 @@ public abstract class Tower implements Observer {
 				", Cy="+((CritterType)critter).getY()
 				+", x :"+xpix +", y "+ypix);
 		*/
+		if((xpix<=((CritterType)critter).getX()|| ((CritterType)critter).getX()<=(xpix+xblockdifference))&& (ypix<=((CritterType)critter).getY()|| ((CritterType)critter).getY()<=(ypix+yblockdifference)))
+		{
+			System.out.println("in tower range shoot");
+		}
 		
-		Ellipse2D.Double circle =
+		/*if(ypix<=((CritterType)critter).getY()&& ((CritterType)critter).getY()<=(ypix+yblockdifference))
+		{
+			System.out.println("in y range");
+		}
+		/*Ellipse2D.Double circle =
 				  new Ellipse2D.Double((double) this.getX(), this.getY(), 200,200)
 				  ;
 		if(circle.contains( ((CritterType)critter).getX(), ((CritterType)critter).getY()))
