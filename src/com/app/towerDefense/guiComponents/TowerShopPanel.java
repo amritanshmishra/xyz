@@ -17,7 +17,7 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
  * This class creates the view of the game shop panel
  * 
  * @author usbaitass
- *
+ * 
  */
 public class TowerShopPanel extends Observable implements ActionListener {
 

@@ -19,7 +19,7 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
  *         health, the wave and critter information
  *         </p>
  */
-public class BottomGamePanelView extends JPanel{
+public class BottomGamePanelView extends JPanel {
 
 	private static final long serialVersionUID = 8434137027978433069L;
 	// -- Class attributes
@@ -34,13 +34,13 @@ public class BottomGamePanelView extends JPanel{
 	 * @param new_width
 	 *            width of the frame
 	 * @param new_height
-	 *             height of the frame
+	 *            height of the frame
 	 */
 	public BottomGamePanelView(int new_width, int new_height) {
-		
+
 		this.width = new_width;
 		this.height = new_height;
-		
+
 		// ---BOTTOM-GAME-PANEL-VIEW-- setting Dimensions and layout
 		this.setMinimumSize(new Dimension(width, height));
 		this.setMaximumSize(new Dimension(width, height));
@@ -49,21 +49,20 @@ public class BottomGamePanelView extends JPanel{
 		this.setBackground(new Color(205, 183, 158)); // BROWN
 		BorderLayout borderLayout = new BorderLayout();
 		this.setLayout(borderLayout);
-	
+
 		// ------THREE----PANELS-------------------------------
 		towerShopPanel = new TowerShopPanel(width / 4, height);
 		infoPanel = new GameInfoPanel(width / 4, height);
 		towerDescrPanel = new TowerDescriptionPanel(width / 2, height);
-		
-		
+
 		this.add(infoPanel, BorderLayout.WEST);
 		this.add(towerDescrPanel, BorderLayout.CENTER);
 		this.add(towerShopPanel.getPanel(), BorderLayout.EAST);
-		
+
 		// Link observers and observable objects
 		towerShopPanel.addObserver(towerDescrPanel);
 		ApplicationStatics.PLAYERMODEL.addObserver(infoPanel);
 		ApplicationStatics.PLAYERMODEL.addObserver(towerDescrPanel);
 	}
-// END
+	// END
 }

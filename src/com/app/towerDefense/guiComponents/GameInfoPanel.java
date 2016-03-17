@@ -25,7 +25,7 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
  * This class creates view of the Game information panel and all elements on it
  * 
  * @author usbaitass
- *
+ * 
  */
 public class GameInfoPanel extends JPanel implements Observer {
 
@@ -57,8 +57,10 @@ public class GameInfoPanel extends JPanel implements Observer {
 
 		JPanel leftInfoPanel = new JPanel();
 		JPanel rightInfoPanel = new JPanel();
-		leftInfoPanel.setPreferredSize(new Dimension(new_width / 3, new_height));
-		rightInfoPanel.setPreferredSize(new Dimension(new_width * 2 / 3, new_height));
+		leftInfoPanel
+				.setPreferredSize(new Dimension(new_width / 3, new_height));
+		rightInfoPanel.setPreferredSize(new Dimension(new_width * 2 / 3,
+				new_height));
 
 		leftInfoPanel.setBackground(new Color(205, 183, 158)); // BROWN
 		rightInfoPanel.setBackground(new Color(205, 183, 158)); // BROWN
@@ -66,13 +68,16 @@ public class GameInfoPanel extends JPanel implements Observer {
 		leftInfoPanel.setLayout(new FlowLayout());
 
 		// creating and setting labels and buttons on Game Info Panel
-		JLabel sunButton = new JLabel(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_SUN));
+		JLabel sunButton = new JLabel(new ImageIcon(
+				ApplicationStatics.IMAGE_PATH_MAP_SUN));
 
-		sunCurrencyLabel = new JLabel("Sun " + ApplicationStatics.PLAYERMODEL.getSunCurrency());
+		sunCurrencyLabel = new JLabel("Sun "
+				+ ApplicationStatics.PLAYERMODEL.getSunCurrency());
 		sunCurrencyLabel.setFont(new Font("Serif", Font.BOLD, 13));
 
 		// -- Label that show the health status of the player
-		hpLabel = new JLabel("HP " + ApplicationStatics.PLAYERMODEL.getHpPlayer());
+		hpLabel = new JLabel("HP "
+				+ ApplicationStatics.PLAYERMODEL.getHpPlayer());
 		hpLabel.setFont(new Font("Serif", Font.BOLD, 13));
 		hpLabel.setForeground(Color.RED);
 
@@ -99,17 +104,23 @@ public class GameInfoPanel extends JPanel implements Observer {
 		leftInfoPanel.add(startWaveButton);
 
 		// -- label that shows game wave number
-		waveLabel = new JLabel("WAVE: " + ApplicationStatics.PLAYERMODEL.getGameWave());
+		waveLabel = new JLabel("WAVE: "
+				+ ApplicationStatics.PLAYERMODEL.getGameWave());
 		waveLabel.setFont(new Font("Serif", Font.BOLD, 12));
 		waveLabel.setHorizontalAlignment(JLabel.CENTER);
 
-		CritterType tempCritter = CritterFactory.getCritterfromFactory("BasicCritter");
-		String s = "<html>Critter: Zomby x"+ ApplicationStatics.PLAYERMODEL.getGameWave()*2 +"<br>Health: "+ tempCritter.getActualHealth() +"</html>";
+		CritterType tempCritter = CritterFactory
+				.getCritterfromFactory("BasicCritter");
+		String s = "<html>Critter: Zomby x"
+				+ ApplicationStatics.PLAYERMODEL.getGameWave() * 2
+				+ "<br>Health: " + tempCritter.getActualHealth() + "</html>";
 		critterLabel = new JLabel(s, SwingConstants.CENTER);
 
 		// -- button that displays the critter image as background image
-		critterIconButton = new JButton(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_CRITTER1));
-		critterIconButton.setDisabledIcon(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_CRITTER1));
+		critterIconButton = new JButton(new ImageIcon(
+				ApplicationStatics.IMAGE_PATH_MAP_CRITTER1));
+		critterIconButton.setDisabledIcon(new ImageIcon(
+				ApplicationStatics.IMAGE_PATH_MAP_CRITTER1));
 		critterIconButton.setEnabled(false);
 
 		// -- adding labels and buttons on Game info Panel
@@ -128,7 +139,8 @@ public class GameInfoPanel extends JPanel implements Observer {
 	@Override
 	public void update(Observable new_o, Object new_arg) {
 		// TODO Auto-generated method stub
-		sunCurrencyLabel.setText("Sun " + ((PlayerModel) new_o).getSunCurrency());
+		sunCurrencyLabel.setText("Sun "
+				+ ((PlayerModel) new_o).getSunCurrency());
 		hpLabel.setText("HP " + ((PlayerModel) new_o).getHpPlayer());
 		waveLabel.setText("WAVE: " + ((PlayerModel) new_o).getGameWave());
 		critterLabel.setText("<html>Critter: Zomby x 5<br>Health: 50</html>");

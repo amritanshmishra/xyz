@@ -1,14 +1,11 @@
 package com.app.towerDefense.guiComponents;
 
-import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Line2D;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -18,16 +15,13 @@ import com.app.towerDefense.models.CritterFactory;
 import com.app.towerDefense.models.CritterType;
 import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.models.PlayerModel;
-import com.app.towerDefense.models.Tower;
 import com.app.towerDefense.staticContent.ApplicationStatics;
-
-import javafx.scene.shape.Circle;
 
 /**
  * Draws elements on map
  * 
  * @author usbaitass
- *
+ * 
  */
 public class MapPanel extends JPanel {
 
@@ -83,8 +77,10 @@ public class MapPanel extends JPanel {
 					if (isInitialCond) {
 						panelInit();
 						for (int i = 0; i < wave; i++) {
-							critter.add(CritterFactory.getCritterfromFactory("BasicCritter"));
-							critter.get(i).setBlocksParams(blockWidth, blockHeight);
+							critter.add(CritterFactory
+									.getCritterfromFactory("BasicCritter"));
+							critter.get(i).setBlocksParams(blockWidth,
+									blockHeight);
 							critter.get(i).setXY(xEntry, yEntry);
 							critter.get(i).setXYExit(xExit, yExit);
 
@@ -99,17 +95,21 @@ public class MapPanel extends JPanel {
 						// multipleCriiterCounter);
 						for (int i = 0; i < critter.size(); i++) {
 							if (critter.get(i).calculatePath()) {
-//								System.out.println("i : " + i + ", size : " + critter.size());
+								// System.out.println("i : " + i + ", size : " +
+								// critter.size());
 
-								new_graphics.drawImage(critter.get(i).getCritterImage(), critter.get(i).getX(),
-										critter.get(i).getY(), 30, 30, null);
+								new_graphics.drawImage(critter.get(i)
+										.getCritterImage(), critter.get(i)
+										.getX(), critter.get(i).getY(), 30, 30,
+										null);
 
 								if (multipleCriiterCounter < (i + 1) * 30) {
 									// System.out.println("Inside Counter");
 									break;
 								}
 							} else {
-								if (ApplicationStatics.PLAYERMODEL.decrementHealth(1)) {
+								if (ApplicationStatics.PLAYERMODEL
+										.decrementHealth(1)) {
 									System.out.println("Player is still alive");
 								} else {
 									ApplicationStatics.GAME_OVER = true;
@@ -124,8 +124,11 @@ public class MapPanel extends JPanel {
 					}
 
 					for (int k = 0; k < PlayerModel.towerModelArray.size(); k++) {
-						Ellipse2D ellipse = new Ellipse2D.Double(PlayerModel.towerModelArray.get(k).getXT(),
-								(int) PlayerModel.towerModelArray.get(k).getYT(), ApplicationStatics.BLOCK_WIDTH * 3,
+						Ellipse2D ellipse = new Ellipse2D.Double(
+								PlayerModel.towerModelArray.get(k).getXT(),
+								(int) PlayerModel.towerModelArray.get(k)
+										.getYT(),
+								ApplicationStatics.BLOCK_WIDTH * 3,
 								ApplicationStatics.BLOCK_HEIGHT * 3);
 						Graphics2D g2 = (Graphics2D) graphics;
 						((Graphics2D) graphics).setStroke(new BasicStroke(2));
@@ -139,7 +142,8 @@ public class MapPanel extends JPanel {
 					}
 
 					Graphics2D g2 = (Graphics2D) new_graphics;
-					g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+					g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+							RenderingHints.VALUE_ANTIALIAS_ON);
 					// int w = getWidth();
 					// int h = getHeight();
 					g2.setPaint(Color.red);
@@ -169,16 +173,25 @@ public class MapPanel extends JPanel {
 
 	/**
 	 * Draws the shooting lines from tower to critter
-	 * @param new_tx tower x coordinate
-	 * @param new_ty tower y coordinate
-	 * @param new_cx critter x coordinate
-	 * @param new_cy critter y coordinate
-	 * @param new_tower_types tower type number
-	 * @param new_isdied true if tower is busy with critter
-	 * @param new_critterId current critter id
+	 * 
+	 * @param new_tx
+	 *            tower x coordinate
+	 * @param new_ty
+	 *            tower y coordinate
+	 * @param new_cx
+	 *            critter x coordinate
+	 * @param new_cy
+	 *            critter y coordinate
+	 * @param new_tower_types
+	 *            tower type number
+	 * @param new_isdied
+	 *            true if tower is busy with critter
+	 * @param new_critterId
+	 *            current critter id
 	 */
-	public static void drawLines(int new_tx, int new_ty, int new_cx, int new_cy, String new_tower_types,
-			boolean new_isdied, int new_critterId) {
+	public static void drawLines(int new_tx, int new_ty, int new_cx,
+			int new_cy, String new_tower_types, boolean new_isdied,
+			int new_critterId) {
 		// graphics = (Graphics2D) graphics;
 		if (new_tower_types == "Burner") {
 			graphics.setColor(Color.RED);
@@ -227,11 +240,16 @@ public class MapPanel extends JPanel {
 			xEntry = ApplicationStatics.PATH_ARRAY1.get(0).y * blockWidth;
 			yEntry = ApplicationStatics.PATH_ARRAY1.get(0).x * blockHeight;
 
-			xExit = ApplicationStatics.PATH_ARRAY1.get(ApplicationStatics.PATH_ARRAY1.size() - 1).y * blockWidth;
-			yExit = ApplicationStatics.PATH_ARRAY1.get(ApplicationStatics.PATH_ARRAY1.size() - 1).x * blockHeight;
+			xExit = ApplicationStatics.PATH_ARRAY1
+					.get(ApplicationStatics.PATH_ARRAY1.size() - 1).y
+					* blockWidth;
+			yExit = ApplicationStatics.PATH_ARRAY1
+					.get(ApplicationStatics.PATH_ARRAY1.size() - 1).x
+					* blockHeight;
 
 			for (int k = 0; k < ApplicationStatics.PATH_ARRAY1.size(); k += 1) {
-				System.out.println(k + " : x=" + ApplicationStatics.PATH_ARRAY1.get(k).x + " , y="
+				System.out.println(k + " : x="
+						+ ApplicationStatics.PATH_ARRAY1.get(k).x + " , y="
 						+ ApplicationStatics.PATH_ARRAY1.get(k).y);
 			}
 

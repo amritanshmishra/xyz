@@ -1,7 +1,6 @@
 package com.app.towerDefense.gameLogic;
 
 import java.awt.Point;
-import java.util.ArrayList;
 
 import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.staticContent.AppilicationEnums.E_MapValidationDirecton;
