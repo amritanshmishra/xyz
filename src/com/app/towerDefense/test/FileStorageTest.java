@@ -42,8 +42,8 @@ public class FileStorageTest {
 		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class MapModel and others.");
 		fileStorage = new FileStorage();
 		mapModel = new MapModel();
-		fileSave = new File("testfiles\\newGeneratedByTestCase.tdm");
-		fileOpen = new File("testfiles\\abc.tdm");
+		fileSave = new File("testfiles/newGeneratedByTestCase.tdm");
+		fileOpen = new File("testfiles/abc.tdm");
 	}
 	
 	/**

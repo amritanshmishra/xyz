@@ -35,6 +35,8 @@ public class Splasher extends Tower{
 		setTowerFireRangeUpgrade();
 		setTowerFireRateUpgrade();
 		setTowerPowerUpgrade();
+		
+		specialEffect = "Splash";
 	}
 	
 	@Override
@@ -58,7 +60,7 @@ public class Splasher extends Tower{
 
 	@Override
 	public void setTowerFireRangeUpgrade() {
-		super.towerFireRangeUpgrade=2;
+		super.towerFireRangeUpgrade=1;
 		
 	}
 
@@ -70,7 +72,7 @@ public class Splasher extends Tower{
 
 	@Override
 	public void setTowerRange() {
-		super.towerRange=3;
+		super.towerRange=2;
 	}
 
 	@Override
@@ -80,7 +82,7 @@ public class Splasher extends Tower{
 
 	@Override
 	public void setTowerPower() {
-		super.towerPower=8;
+		super.towerPower=1;
 		
 	}
 
@@ -92,7 +94,7 @@ public class Splasher extends Tower{
 
 	@Override
 	public void setTowerFireRate() {
-		super.towerFireRate=2;
+		super.towerFireRate=1;
 	}
 
 	@Override
@@ -172,7 +174,7 @@ public class Splasher extends Tower{
 
 	@Override
 	public void setTowerPowerUpgrade() {
-	super.towerPowerUpgrade=4;
+	super.towerPowerUpgrade=1;
 		
 	}
 

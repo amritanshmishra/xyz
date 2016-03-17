@@ -62,23 +62,58 @@ public interface CritterType extends Observable {
 	 * @return
 	 */
 	public Image getCritterImage();
+	
+	/**
+	 * set the image for the critter
+	 * 
+	 *
+	 */
+	public void setCritterImage(String new_path);
 
 	/**
-	 * This method sets critters entry and exit points parameters
+	 * This method sets critters entry points parameters
 	 * @param new_xEntry x coordinate of entry point
 	 * @param new_yEntry y coordinate of entry point
-	 * @param new_xExit x coordinate of exit point
-	 * @param new_yExit y coordinate of exit point
 	 */
 	public void setXY(int new_xEntry, int new_yEntry);
 	
+	/**
+	 * This method sets critters exit points parameters
+	 * @param new_xExit x coordinate of exit point
+	 * @param new_yExit y coordinate of exit point
+	 */
 	public void setXYExit(int new_xExit, int new_yExit);
 	
+	/**
+	 * sets the id of the critter
+	 * @param new_id critter id
+	 */
 	public void setID(int new_id);
 
+	/**
+	 * this method gets the block width on map panel
+	 * @return block width
+	 */
 	public int getBlockW();
 	
+	/**
+	 * this method gets the block height on map panel
+	 * @return block height
+	 */
 	public int getBlockH();
+	
+	/**
+	 * This method decrease the critter life by amount given
+	 * @param new_power amount of hp to be substracted
+	 * @return true if the critter is stayed alive , false if critter died
+	 */
+	public boolean decreaseLife(int new_power);
+	
+	/**
+	 * gets the currency amount for critter that is killed
+	 * @return amount of currency
+	 */
+	public int getValue();
 	
 
 }

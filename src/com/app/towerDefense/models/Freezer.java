@@ -36,6 +36,7 @@ public class Freezer extends Tower {
 		setTowerFireRangeUpgrade();
 		setTowerFireRateUpgrade();
 		setTowerPowerUpgrade();
+		specialEffect = "Freeze";
 	}
 	
 		@Override
@@ -59,7 +60,7 @@ public class Freezer extends Tower {
 
 		@Override
 		public void setTowerFireRangeUpgrade() {
-			super.towerFireRangeUpgrade=2;
+			super.towerFireRangeUpgrade=1;
 			
 		}
 
@@ -81,7 +82,7 @@ public class Freezer extends Tower {
 
 		@Override
 		public void setTowerPower() {
-			super.towerPower=2;
+			super.towerPower=1;
 			
 		}
 
@@ -93,7 +94,7 @@ public class Freezer extends Tower {
 
 		@Override
 		public void setTowerFireRate() {
-			super.towerFireRate=2;
+			super.towerFireRate=1;
 		}
 
 		@Override
@@ -173,7 +174,7 @@ public class Freezer extends Tower {
 
 		@Override
 		public void setTowerPowerUpgrade() {
-		super.towerPowerUpgrade=2;
+		super.towerPowerUpgrade=1;
 			
 		}
 
@@ -185,7 +186,7 @@ public class Freezer extends Tower {
 
 		@Override
 		public void setTowerFireRateUpgrade() {
-			super.towerFireRateUpgrade=2;
+			super.towerFireRateUpgrade=1;
 			
 		}
 

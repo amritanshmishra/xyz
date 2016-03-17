@@ -39,7 +39,7 @@ public class CritterTest {
 	int critterId = 10;
 	Image critterImage = new ImageIcon(ApplicationStatics.IMAGE_PATH_CRITTER).getImage();
 	MapModel mapModel;
-	File file = new File("testfiles\\abc.tdm");
+	File file = new File("testfiles/abc.tdm");
 
 	@Before
 	public void critterTestCase() {

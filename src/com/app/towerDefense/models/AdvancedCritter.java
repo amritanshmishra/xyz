@@ -148,4 +148,19 @@ public class AdvancedCritter extends java.util.Observable implements CritterType
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public boolean decreaseLife(int new_power) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public int getValue() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public void setCritterImage(String new_path) {
+		// TODO Auto-generated method stub
+		
+	}
 }

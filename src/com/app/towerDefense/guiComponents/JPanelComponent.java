@@ -320,6 +320,8 @@ public class JPanelComponent implements Observer{
 
 				}
 
+				mapButtonsGrid2DArray[i][j].setOpaque(true);
+				mapButtonsGrid2DArray[i][j].setBorderPainted(false);
 				panel.add(mapButtonsGrid2DArray[i][j]);
 			}
 		}

@@ -18,6 +18,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import com.app.towerDefense.models.CritterFactory;
+import com.app.towerDefense.models.CritterType;
 import com.app.towerDefense.models.PlayerModel;
 import com.app.towerDefense.models.Tower;
 import com.app.towerDefense.staticContent.ApplicationStatics;
@@ -104,7 +106,8 @@ public class GameInfoPanel extends JPanel implements Observer {
 		waveLabel.setFont(new Font("Serif", Font.BOLD, 12));
 		waveLabel.setHorizontalAlignment(JLabel.CENTER);
 
-		String s = "<html>Critter: Zomby x 5<br>Health: 50</html>";
+		CritterType tempCritter = CritterFactory.getCritterfromFactory("BasicCritter");
+		String s = "<html>Critter: Zomby x"+ ApplicationStatics.PLAYERMODEL.getGameWave()*2 +"<br>Health: "+ tempCritter.getActualHealth() +"</html>";
 		critterLabel = new JLabel(s, SwingConstants.CENTER);
 
 		// -- button that displays the critter image as background image

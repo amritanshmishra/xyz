@@ -49,9 +49,10 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	 * Constructor to initialize the critter with image
 	 */
 	public BasicCritter() {
-		image = new ImageIcon(ApplicationStatics.IMAGE_PATH_CRITTER).getImage();
+		image = new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_CRITTER1).getImage();
 		actualHealth = 10;
 		currentHealth = actualHealth;
+		value = 10;
 	}
 
 	/**
@@ -121,14 +122,14 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 			
 			if (directionX == 1 || directionX == -1){
 				if( x == xNext){
-					System.out.println("inside 1 :" + (i++));
-			//		i++;
+			//		System.out.println("inside 1 :" + (i++));
+					i++;
 				}
 			}else if(directionX ==0){
 				if (directionY == 1 || directionY == -1) {
 					if(y==yNext){
-						System.out.println("inside 2" + (i++));
-			//			i++;
+			//			System.out.println("inside 2" + (i++));
+						i++;
 					}
 				}
 			}
@@ -218,7 +219,31 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 		xExit = new_xExit;
 		yExit = new_yExit;
 	}
-	
-	
+
+	@Override
+	public boolean decreaseLife(int new_power) {
+		// TODO Auto-generated method stub
+		currentHealth = currentHealth - new_power;
+		if(currentHealth < 0)
+		{
+			return false;
+		}
+		
+		return true;
+	}
+	/**
+	 * This method returns the money value of a critter when it dies.
+	 * @return amount of currency
+	 */
+	public int getValue(){
+		return value;
+	}
+
+	@Override
+	public void setCritterImage(String new_path) {
+		// TODO Auto-generated method stub
+		image = new ImageIcon(new_path).getImage();
+		
+	}
 
 }

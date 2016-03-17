@@ -201,9 +201,27 @@ public class TowerDescriptionPanel extends JPanel implements Observer, ActionLis
 		});
 
 		// -- adding the labels and buttons on Tower Description Panel
-		strategyTowerButton = new JButton("STRATEGY");
+		strategyTowerButton = new JButton("NearToEND");
 		strategyTowerButton.setOpaque(true);
 		strategyTowerButton.setPreferredSize(new Dimension(70, 20));
+		strategyTowerButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("strategy button was clicked!");
+
+				if(strategyTowerButton.getText() == "NearToEND"){
+					strategyTowerButton.setText("Weakest");
+					tempTM.setSpecialEffect("Weakest");
+				}else if(strategyTowerButton.getText() == "Weakest"){
+					strategyTowerButton.setText("Strongest");
+					tempTM.setSpecialEffect("Strongest");
+				}else if(strategyTowerButton.getText() == "Strongest"){
+					strategyTowerButton.setText("NearToEND");
+					tempTM.setSpecialEffect("NearToEND");
+				}
+
+			}
+		});
 
 		// -- initializing the tower description panel information to default
 		updateTowerDscrPanel(ApplicationStatics.TOWER_MODELS[0]);
@@ -242,7 +260,7 @@ public class TowerDescriptionPanel extends JPanel implements Observer, ActionLis
 		labelStatsTower[4].setText(Integer.toString(tOWER_MODELS.getTowerPower()));
 		labelStatsTower[7].setText(Integer.toString(tOWER_MODELS.getTowerRange()));
 		labelStatsTower[10].setText(Integer.toString(tOWER_MODELS.getTowerFireRate()));
-		labelStatsTower[13].setText(Integer.toString(0));
+		labelStatsTower[13].setText(tOWER_MODELS.getSpecialEffect());
 		labelStatsTower[16].setText(Integer.toString(tOWER_MODELS.getTowerCost()));
 
 		towerNameLabel.setText(tOWER_MODELS.getTowerName());

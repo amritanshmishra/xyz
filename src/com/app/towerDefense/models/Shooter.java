@@ -36,6 +36,8 @@ public class Shooter extends Tower{
 		setTowerFireRangeUpgrade();
 		setTowerFireRateUpgrade();
 		setTowerPowerUpgrade();
+		
+		specialEffect = "";
 	}
 	
 	/**
@@ -85,7 +87,7 @@ public class Shooter extends Tower{
 
 	@Override
 	public void setTowerPower() {
-		super.towerPower=1;
+		super.towerPower=3;
 		
 	}
 

@@ -35,6 +35,8 @@ public class Burner extends Tower{
 		setTowerFireRangeUpgrade();
 		setTowerFireRateUpgrade();
 		setTowerPowerUpgrade();
+		
+		specialEffect = "Burn";
 	}
 	
 	@Override
@@ -70,7 +72,7 @@ public class Burner extends Tower{
 
 	@Override
 	public void setTowerRange() {
-		super.towerRange=4;
+		super.towerRange=1;
 	}
 
 	@Override
@@ -92,7 +94,7 @@ public class Burner extends Tower{
 
 	@Override
 	public void setTowerFireRate() {
-		super.towerFireRate=2;
+		super.towerFireRate=1;
 	}
 
 	@Override
