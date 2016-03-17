@@ -1,6 +1,7 @@
 package com.app.towerDefense.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 
@@ -16,8 +17,8 @@ import com.app.towerDefense.utilities.FileStorage;
 /**
  * The class <code>MapTest</code> contains tests for the class
  * <code>{@link Map}</code>.
- *
- *
+ * 
+ * 
  * @author Amritansh Mishra
  * @version 1.0
  */
@@ -32,7 +33,8 @@ public class MapTest {
 	 */
 	@Before
 	public void towerModel1TestCase() {
-		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class Map");
+		System.out
+				.println("@BeforeClass - oneTimeSetUp-Creating object of class Map");
 		map = new Map();
 		mapModel = new MapModel();
 	}
@@ -74,11 +76,11 @@ public class MapTest {
 
 	/**
 	 * Perform post-test clean-up.
-	 *
+	 * 
 	 * @throws Exception
 	 *             if the clean-up fails for some reason
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	@After
 	public void tearDown() throws Exception {

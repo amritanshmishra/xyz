@@ -1,12 +1,14 @@
 package com.app.towerDefense.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.utilities.MiscellaneousHelper;
 
 /**
@@ -92,11 +94,11 @@ public class MiscellaneousHelperTest {
 
 	/**
 	 * Perform post-test clean-up.
-	 *
+	 * 
 	 * @throws Exception
 	 *             if the clean-up fails for some reason
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	@After
 	public void tearDown() throws Exception {

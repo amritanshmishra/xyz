@@ -1,38 +1,45 @@
 package com.app.towerDefense.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.app.towerDefense.models.Freezer;
 import com.app.towerDefense.models.Tower;
 import com.app.towerDefense.models.TowerFactory;
 
 /**
  * The class <code>FreezerTest</code> contains tests for the class
  * <code>{@link Freezer}</code>.
- *
- *
+ * 
+ * 
  * @author George Ekow-Daniels
- * @version 1.0 
+ * @version 1.0
  */
 public class FreezerTest {
 
 	Tower freezer;
 
+	/**
+	 * Test case Initialization for FreezerTest
+	 */
 	@Before
 	public void freezerTestCase() {
-		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class Freezer");
+		System.out
+				.println("@BeforeClass - oneTimeSetUp-Creating object of class Freezer");
 		freezer = TowerFactory.getTower("Freezer");
 	}
-	
+
 	/**
-	 * Test case for setter methods in class TowerModel2
+	 * Test case for setter methods in class FreezerTest
 	 */
 	@Test
 	public void test() {
-		
+
 		int towerLevel = 1;
 		int towerPower = 1;
 		int towerRange = 1;
@@ -42,9 +49,9 @@ public class FreezerTest {
 		int towerLevelUpgrade = 1;
 		int towerUpgradeCost = 20;
 		int towerFireRangeUpgrade = 1;
-		int towerPowerUpgrade=1;
+		int towerPowerUpgrade = 1;
 		String towerName = "Freezer";
-		//Change towerImagePath
+		// Change towerImagePath
 
 		assertNotNull(freezer);
 
@@ -65,7 +72,7 @@ public class FreezerTest {
 		assertEquals(freezer.getTowerFireRateUpgrade(), towerFireRateUpgrade);
 
 		assertEquals(freezer.getTowerlevelUpgrade(), towerLevelUpgrade);
-		
+
 		assertEquals(freezer.getTowerPowerUpgrade(), towerPowerUpgrade);
 
 		assertEquals(freezer.getTowerUpgradeCost(), towerUpgradeCost);
@@ -74,20 +81,19 @@ public class FreezerTest {
 
 	/**
 	 * Perform post-test clean-up.
-	 *
+	 * 
 	 * @throws Exception
 	 *             if the clean-up fails for some reason
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	@After
 	public void tearDown() throws Exception {
 		// Add additional tear down code here
 		System.out.println("@AfterClass - oneTimeTearDown");
-		freezer=null;
+		freezer = null;
 		assertNull(freezer);
-		
+
 	}
 
 }
-

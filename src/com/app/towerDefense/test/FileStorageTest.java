@@ -1,19 +1,19 @@
 package com.app.towerDefense.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import javax.security.auth.login.FailedLoginException;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.app.towerDefense.gameLogic.Map;
 import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.utilities.FileStorage;
 import com.app.towerDefense.utilities.MiscellaneousHelper;
@@ -21,8 +21,8 @@ import com.app.towerDefense.utilities.MiscellaneousHelper;
 /**
  * The class <code>FileStorageTest</code> contains tests for the class
  * <code>{@link FileStorage}</code>.
- *
- *
+ * 
+ * 
  * @author Sajjad Ashraf
  * @version 1.0
  */

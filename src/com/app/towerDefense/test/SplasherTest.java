@@ -1,34 +1,41 @@
 package com.app.towerDefense.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.app.towerDefense.models.Splasher;
 import com.app.towerDefense.models.Tower;
 import com.app.towerDefense.models.TowerFactory;
 
 /**
  * The class <code>SplasherTest</code> contains tests for the class
  * <code>{@link Splasher}</code>.
- *
- *
+ * 
+ * 
  * @author George Ekow-Daniels
- * @version 1.0 
+ * @version 1.0
  */
 public class SplasherTest {
 
 	Tower splasher;
 
+	/**
+	 * Test case Initialization for SplasherTest
+	 */
 	@Before
 	public void splasherTestCase() {
-		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class Splasher");
+		System.out
+				.println("@BeforeClass - oneTimeSetUp-Creating object of class Splasher");
 		splasher = TowerFactory.getTower("Splasher");
 	}
 
 	/**
-	 * Test case for setter methods in class towerModel4
+	 * Test case for setter methods in class SplasherTest
 	 */
 	@Test
 	public void test() {
@@ -74,11 +81,11 @@ public class SplasherTest {
 
 	/**
 	 * Perform post-test clean-up.
-	 *
+	 * 
 	 * @throws Exception
 	 *             if the clean-up fails for some reason
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	@After
 	public void tearDown() throws Exception {

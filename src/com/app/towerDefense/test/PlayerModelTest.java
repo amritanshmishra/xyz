@@ -26,6 +26,9 @@ public class PlayerModelTest {
 	Tower Shooter;
 	ArrayList<Tower> towerModelArray;
 
+	/**
+	 * Test case Initialization for PlayerModelTest
+	 */
 	@Before
 	public void towerModel1TestCase() {
 		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class PlayerModel");

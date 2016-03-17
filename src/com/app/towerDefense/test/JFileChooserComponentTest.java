@@ -1,20 +1,20 @@
 package com.app.towerDefense.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.app.towerDefense.guiComponents.JFileChooserComponent;
-import com.app.towerDefense.guisystem.Game;
 import com.app.towerDefense.staticContent.AppilicationEnums.E_JFileChooserMode;
 
 /**
  * The class <code>JFileChooserComponentTest</code> contains tests for the class
  * <code>{@link JFileChooserComponent}</code>.
- *
- *
+ * 
+ * 
  * @author Sajjad Ashraf
  * @version 1.0
  */
@@ -27,7 +27,8 @@ public class JFileChooserComponentTest {
 	 */
 	@Before
 	public void beforeTestCase() {
-		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class Map");
+		System.out
+				.println("@BeforeClass - oneTimeSetUp-Creating object of class Map");
 		jFileChooserComponent = new JFileChooserComponent();
 	}
 
@@ -38,8 +39,10 @@ public class JFileChooserComponentTest {
 
 	@Test
 	public void TestGetJFileChooser() {
-		assertNotNull(jFileChooserComponent.getJFileChooser(E_JFileChooserMode.Open));
-		assertNotNull(jFileChooserComponent.getJFileChooser(E_JFileChooserMode.Save));
+		assertNotNull(jFileChooserComponent
+				.getJFileChooser(E_JFileChooserMode.Open));
+		assertNotNull(jFileChooserComponent
+				.getJFileChooser(E_JFileChooserMode.Save));
 	}
 
 	/**
@@ -59,11 +62,11 @@ public class JFileChooserComponentTest {
 
 	/**
 	 * Perform post-test clean-up.
-	 *
+	 * 
 	 * @throws Exception
 	 *             if the clean-up fails for some reason
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	@After
 	public void tearDown() throws Exception {

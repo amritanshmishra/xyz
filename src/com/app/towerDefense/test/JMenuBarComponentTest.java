@@ -1,8 +1,8 @@
 package com.app.towerDefense.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
@@ -12,17 +12,15 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.app.towerDefense.guiComponents.JFileChooserComponent;
 import com.app.towerDefense.guiComponents.JMenuBarComponent;
 import com.app.towerDefense.models.MapModel;
-import com.app.towerDefense.models.PlayerModel;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 
 /**
  * The class <code>JMenuBarComponentTest</code> contains tests for the class
  * <code>{@link JMenuBarComponent}</code>.
- *
- *
+ * 
+ * 
  * @author Sajjad Ashraf
  * @version 1.0
  */
@@ -35,7 +33,8 @@ public class JMenuBarComponentTest {
 	 */
 	@Before
 	public void beforeTestCase() {
-		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class Map");
+		System.out
+				.println("@BeforeClass - oneTimeSetUp-Creating object of class Map");
 		jMenuBarComponent = new JMenuBarComponent();
 	}
 
@@ -75,17 +74,18 @@ public class JMenuBarComponentTest {
 		frame.setMinimumSize(new Dimension(width, height));
 		frame.getContentPane().removeAll();
 
-		JMenuBar jMenubar = jMenuBarComponent.getMapEditorJMenuBar(new MapModel(), frame);
+		JMenuBar jMenubar = jMenuBarComponent.getMapEditorJMenuBar(
+				new MapModel(), frame);
 		assertNotNull(jMenubar);
 	}
 
 	/**
 	 * Perform post-test clean-up.
-	 *
+	 * 
 	 * @throws Exception
 	 *             if the clean-up fails for some reason
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	@After
 	public void tearDown() throws Exception {

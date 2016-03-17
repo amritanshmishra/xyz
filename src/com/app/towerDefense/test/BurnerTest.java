@@ -1,18 +1,22 @@
 package com.app.towerDefense.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.app.towerDefense.models.Burner;
 import com.app.towerDefense.models.Tower;
 import com.app.towerDefense.models.TowerFactory;
 
 /**
  * The class <code>BurnerTest</code> contains tests for the class
  * <code>{@link Burner}</code>.
- *
- *
+ * 
+ * 
  * @author George Ekow-Daniels
  * @version 1.0
  */
@@ -20,14 +24,18 @@ public class BurnerTest {
 
 	Tower burner;
 
+	/**
+	 * Test case Initialization for BurnerTest
+	 */
 	@Before
 	public void burnerTestCase() {
-		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class Burner");
+		System.out
+				.println("@BeforeClass - oneTimeSetUp-Creating object of class Burner");
 		burner = TowerFactory.getTower("Burner");
 	}
 
 	/**
-	 * Test case for setter methods in class TowerModel3
+	 * Test case for setter methods in class BurnerTest
 	 */
 	@Test
 	public void test() {
@@ -64,7 +72,7 @@ public class BurnerTest {
 		assertEquals(burner.getTowerFireRateUpgrade(), towerFireRateUpgrade);
 
 		assertEquals(burner.getTowerlevelUpgrade(), towerLevelUpgrade);
-		
+
 		assertEquals(burner.getTowerPowerUpgrade(), towerPowerUpgrade);
 
 		assertEquals(burner.getTowerUpgradeCost(), towerUpgradeCost);
@@ -73,11 +81,11 @@ public class BurnerTest {
 
 	/**
 	 * Perform post-test clean-up.
-	 *
+	 * 
 	 * @throws Exception
 	 *             if the clean-up fails for some reason
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	@After
 	public void tearDown() throws Exception {

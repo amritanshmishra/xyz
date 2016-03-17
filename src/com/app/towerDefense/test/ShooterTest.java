@@ -1,34 +1,41 @@
 package com.app.towerDefense.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.app.towerDefense.models.Shooter;
 import com.app.towerDefense.models.Tower;
 import com.app.towerDefense.models.TowerFactory;
 
 /**
  * The class <code>ShooterTest</code> contains tests for the class
  * <code>{@link Shooter}</code>.
- *
- *
+ * 
+ * 
  * @author George Ekow-Daniels
- * @version 1.0 
+ * @version 1.0
  */
 public class ShooterTest {
 
 	Tower shooter;
 
+	/**
+	 * Test case Initialization for ShooterTest
+	 */
 	@Before
 	public void shooterTestCase() {
-		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class Shooter");
+		System.out
+				.println("@BeforeClass - oneTimeSetUp-Creating object of class Shooter");
 		shooter = TowerFactory.getTower("Shooter");
 	}
-	
+
 	/**
-	 * Test case for setter methods in class TowerModel1
+	 * Test case for setter methods in class ShooterTest
 	 */
 	@Test
 	public void test() {
@@ -42,9 +49,9 @@ public class ShooterTest {
 		int towerLevelUpgrade = 1;
 		int towerUpgradeCost = 10;
 		int towerFireRangeUpgrade = 1;
-		int towerPowerUpgrade=1;
+		int towerPowerUpgrade = 1;
 		String towerName = "Shooter";
-		//Change towerImagePath
+		// Change towerImagePath
 
 		assertNotNull(shooter);
 
@@ -65,7 +72,7 @@ public class ShooterTest {
 		assertEquals(shooter.getTowerFireRateUpgrade(), towerFireRateUpgrade);
 
 		assertEquals(shooter.getTowerlevelUpgrade(), towerLevelUpgrade);
-		
+
 		assertEquals(shooter.getTowerPowerUpgrade(), towerPowerUpgrade);
 
 		assertEquals(shooter.getTowerUpgradeCost(), towerUpgradeCost);
@@ -74,19 +81,19 @@ public class ShooterTest {
 
 	/**
 	 * Perform post-test clean-up.
-	 *
+	 * 
 	 * @throws Exception
 	 *             if the clean-up fails for some reason
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	@After
 	public void tearDown() throws Exception {
 		// Add additional tear down code here
 		System.out.println("@AfterClass - oneTimeTearDown");
-		shooter=null;
+		shooter = null;
 		assertNull(shooter);
-		
+
 	}
 
 }

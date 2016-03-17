@@ -4,12 +4,18 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+
 import java.awt.Image;
 import java.io.File;
+
 import javax.swing.ImageIcon;
+
+import junit.framework.Assert;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import com.app.towerDefense.models.AdvancedCritter;
 import com.app.towerDefense.models.BasicCritter;
 import com.app.towerDefense.models.CritterFactory;
@@ -17,13 +23,12 @@ import com.app.towerDefense.models.CritterType;
 import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 import com.app.towerDefense.utilities.FileStorage;
-import junit.framework.Assert;
 
 /**
  * The class <code>BasicCritterTest</code> contains tests for the class
  * <code>{@link BasicCritter}</code>.
- *
- *
+ * 
+ * 
  * @author Amritansh Mishra
  * @version 1.0
  */
@@ -34,15 +39,21 @@ public class CritterTest {
 	int actualHealth = 10;
 	int currentHealth = 10;
 	int critterId = 10;
-	Image critterImage = new ImageIcon(ApplicationStatics.IMAGE_PATH_CRITTER).getImage();
+	Image critterImage = new ImageIcon(ApplicationStatics.IMAGE_PATH_CRITTER)
+			.getImage();
 	MapModel mapModel;
 	File file = new File("testfiles\\abc.tdm");
 
+	/**
+	 * Test case Initialization for CritterTest
+	 */
 	@Before
 	public void critterTestCase() {
-		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class BasicCritter & AdvancedCritter");
+		System.out
+				.println("@BeforeClass - oneTimeSetUp-Creating object of class BasicCritter & AdvancedCritter");
 		basicCritter = CritterFactory.getCritterfromFactory("BasicCritter");
-		advancedCritter = CritterFactory.getCritterfromFactory("AdvancedCritter");
+		advancedCritter = CritterFactory
+				.getCritterfromFactory("AdvancedCritter");
 		basicCritter.setID(critterId);
 	}
 
@@ -115,11 +126,11 @@ public class CritterTest {
 
 	/**
 	 * Perform post-test clean-up.
-	 *
+	 * 
 	 * @throws Exception
 	 *             if the clean-up fails for some reason
-	 *
-	 *
+	 * 
+	 * 
 	 */
 	@After
 	public void tearDown() throws Exception {
