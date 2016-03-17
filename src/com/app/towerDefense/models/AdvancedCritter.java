@@ -87,9 +87,9 @@ public class AdvancedCritter extends java.util.Observable implements CritterType
 	 * Calculates the path on which the critter would move
 	 */
 	@Override
-	public void calculatePath() {
+	public boolean calculatePath() {
 		// TODO Auto-generated method stub
-
+		return true;
 	}
 
 	/**
@@ -110,14 +110,6 @@ public class AdvancedCritter extends java.util.Observable implements CritterType
 		return null;
 	}
 
-	/**
-	 * This method sets the x and y co-ordinate for the critter
-	 */
-	@Override
-	public void setXY(int new_x, int new_y) {
-		// TODO Auto-generated method stub
-
-	}
 	/**
 	 * This method sets the id for the advanced critter
 	 */
@@ -143,6 +135,16 @@ public class AdvancedCritter extends java.util.Observable implements CritterType
 	}
 	@Override
 	public void removeListener(InvalidationListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setXY(int new_xEntry, int new_yEntry) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setXYExit(int new_xExit, int new_yExit) {
 		// TODO Auto-generated method stub
 		
 	}

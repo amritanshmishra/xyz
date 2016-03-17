@@ -105,31 +105,33 @@ public class Game extends Canvas implements Runnable { // change 1
 	public void run() {
 		// TODO Auto-generated method stub
 		long lastTime = System.nanoTime();
-		double amountOfTicks = 5.0; // Game speed
+		double amountOfTicks = 50.0; // Game speed 5.0
 		double ns = 1000000000 / amountOfTicks;
 		double delta = 0;
 		long timer = System.currentTimeMillis();
-		int frames = 0;
+//		int frames = 0;
 		while (running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 			lastTime = now;
 			while (delta >= 1) {
 				tick();
+				if(ApplicationStatics.GAME_OVER){
+					stop();
+					break;
+				}
 				delta--;
 			}
-			if (running) {
-				render();
-			}
-			frames++;
+//			frames++;
 
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
 				// System.out.println("FPS: " + frames);
-				frames = 0;
+//				frames = 0;
 			}
 		}
 		stop();
+
 	}
 
 	/**
@@ -146,7 +148,10 @@ public class Game extends Canvas implements Runnable { // change 1
 	 */
 	public synchronized void stop() {// change 1
 		try {
-			thread.join(); // stops the thread
+			thread.join(0); // stops the thread
+			//thread.stop();
+		//	thread.join(0);
+			System.out.println("Game loop is stopped.");
 			running = false;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -160,40 +165,40 @@ public class Game extends Canvas implements Runnable { // change 1
 	private void tick() {// change 1
 		//
 
-		if (ApplicationStatics.START_WAVE) { //check if player pressed START button
+
+		if (!ApplicationStatics.GAME_OVER) { //check if game is over
 		//	try {
 				if ((panelComponent = jMenuBarComponent.getPanelComponent()) != null) {
 					panelComponent.mapPanel.revalidate();
 					panelComponent.mapPanel.repaint();
-
+					
+					
 					bottomGamePanel = jMenuBarComponent.getBottomPanel();
 					
-					bottomGamePanel.towerShopPanel.enableTowerButtons(false);
-					bottomGamePanel.towerDescrPanel.enableButtons(false);
+					if(ApplicationStatics.START_WAVE && bottomGamePanel != null){ //check if wave is started
+						bottomGamePanel.towerShopPanel.enableTowerButtons(false);
+						bottomGamePanel.towerDescrPanel.enableButtons(false);
+						bottomGamePanel.infoPanel.startWaveButton.setEnabled(false);
+					}else if(!ApplicationStatics.START_WAVE && bottomGamePanel != null){
+						bottomGamePanel.towerShopPanel.enableTowerButtons(true);
+						bottomGamePanel.towerDescrPanel.enableButtons(true);
+						bottomGamePanel.infoPanel.startWaveButton.setEnabled(true);
+					}
 				}
 				
 		//	} catch (Exception e) {
 				// catching exception when program still has not created play
 				// mode map
 		//	}
+		}else{
+			System.out.println("GMALSDLASDK:AKSDkalsdk");	
+			System.out.println("Game over : "+ ApplicationStatics.GAME_OVER);
+			System.out.println("Start wave : "+ApplicationStatics.START_WAVE);
+			Game.getInstance().stop();
 		}
+
 	}
 
-	/**
-	 * DRAW function
-	 */
-	private void render() {// change 1
-		/*
-		 * BufferStrategy bs = this.getBufferStrategy(); if (bs == null) {
-		 * this.createBufferStrategy(3); return; }
-		 * 
-		 * Graphics g = bs.getDrawGraphics();
-		 * 
-		 * g.setColor(Color.black); g.fillRect(0, 0, 100, 100);
-		 * 
-		 * g.dispose(); bs.show();
-		 */
-	}
 
 	// END
 }

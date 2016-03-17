@@ -32,7 +32,7 @@ public class GameInfoPanel extends JPanel implements Observer {
 
 	private static final long serialVersionUID = 8847617647575898521L;
 	private JLabel sunCurrencyLabel;
-	private JButton startWaveButton;
+	public JButton startWaveButton;
 	private JLabel hpLabel;
 	private JLabel waveLabel;
 	private JLabel critterLabel;
@@ -88,7 +88,7 @@ public class GameInfoPanel extends JPanel implements Observer {
 				if(!ApplicationStatics.START_WAVE){
 					
 					ApplicationStatics.START_WAVE = true;
-					startWaveButton.setEnabled(false);
+			//		startWaveButton.setEnabled(false);
 				}
 				
 			}

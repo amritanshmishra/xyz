@@ -41,8 +41,9 @@ public interface CritterType extends Observable {
 
 	/**
 	 * Calculates the path on which the critter would move.
+	 * @return true if the path is eligible
 	 */
-	public void calculatePath();
+	public boolean calculatePath();
 
 	/**
 	 * Sets blocks parameters. Blocks are buttons on the map This method allows
@@ -63,12 +64,15 @@ public interface CritterType extends Observable {
 	public Image getCritterImage();
 
 	/**
-	 * Set the x and y co-ordinate for critter
-	 * 
-	 * @param new_x
-	 * @param new_y
+	 * This method sets critters entry and exit points parameters
+	 * @param new_xEntry x coordinate of entry point
+	 * @param new_yEntry y coordinate of entry point
+	 * @param new_xExit x coordinate of exit point
+	 * @param new_yExit y coordinate of exit point
 	 */
-	public void setXY(int new_x, int new_y);
+	public void setXY(int new_xEntry, int new_yEntry);
+	
+	public void setXYExit(int new_xExit, int new_yExit);
 	
 	public void setID(int new_id);
 

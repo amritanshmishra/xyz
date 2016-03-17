@@ -197,6 +197,30 @@ public class PlayerModel extends Observable{
 		return towerModelArray;
 	} 
 	
+	/**
+	 * This method substracts hit points from player current health points
+	 * @param new_n hit points to be substracted
+	 * @return true if player is still has health
+	 */
+	public boolean decrementHealth(int new_n){
+		hpPlayer -= new_n;
+		setChanged();
+		notifyObservers();
+		if(hpPlayer <= 0){
+		//	JFrame frame = new JFrame();
+			System.out.println("dead");
+		//	JOptionPane.showMessageDialog(frame,"You are dead.");
+			return false;
+		}
+		return true;
+	}
+	
+	public void incGameWave(){
+		gameWave++;
+		setChanged();
+		notifyObservers();
+	}
+
 	
 
 	// END

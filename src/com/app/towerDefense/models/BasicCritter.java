@@ -29,6 +29,8 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	private int critterId;
 	int xNext;
 	int yNext;
+	int xExit;
+	int yExit;
 
 	/**
 	 * value of critter
@@ -101,29 +103,43 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	 * Calculates the path on which the critter would move
 	 */
 	@Override
-	public void calculatePath() {
+	public boolean calculatePath() {
 
-		xNext = ApplicationStatics.PATH_ARRAY1.get(i + 1).y * blockW;
-		yNext = ApplicationStatics.PATH_ARRAY1.get(i + 1).x * blockH;
-		directionY = ApplicationStatics.PATH_ARRAY1.get(i + 1).x - ApplicationStatics.PATH_ARRAY1.get(i).x;
-		directionX = ApplicationStatics.PATH_ARRAY1.get(i + 1).y - ApplicationStatics.PATH_ARRAY1.get(i).y;
-
-		if (directionX == 1 || directionX == -1) {
-			if (x == xNext) {
-				System.out.println("inside 1 :" + (i++));
+//		 System.out.println("i : "+i+" ,  arraysize : "+ (ApplicationStatics.PATH_ARRAY1.size()-1));
+		
+			if(i == ApplicationStatics.PATH_ARRAY1.size()-1){
+				return false;
 			}
-		} else if (directionX == 0) {
-			if (directionY == 1 || directionY == -1) {
-				if (y == yNext) {
-					System.out.println("inside 2" + (i++));
+			
+			// && x == xExit && y == yExit
+			
+			xNext = ApplicationStatics.PATH_ARRAY1.get(i + 1).y * blockW;
+			yNext = ApplicationStatics.PATH_ARRAY1.get(i + 1).x * blockH;
+			directionY = ApplicationStatics.PATH_ARRAY1.get(i + 1).x - ApplicationStatics.PATH_ARRAY1.get(i).x;
+			directionX = ApplicationStatics.PATH_ARRAY1.get(i + 1).y - ApplicationStatics.PATH_ARRAY1.get(i).y;
+			//System.out.println("Inside calculate path");
+			
+			if (directionX == 1 || directionX == -1){
+				if( x == xNext){
+			//		System.out.println("inside 1 :" + (i++));
+					i++;
+				}
+			}else if(directionX ==0){
+				if (directionY == 1 || directionY == -1) {
+					if(y==yNext){
+		//				System.out.println("inside 2" + (i++));
+						i++;
+					}
 				}
 			}
-		}
-		x += directionX;
-		y += directionY;
+			x += directionX;
+			y += directionY;	
+
 		setChanged();
 		notifyObservers();
-
+//		System.out.println("inside critter   x : " + x + " , y : " + y);
+		
+		return true;
 
 	}
 
@@ -144,15 +160,6 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 		return image;
 	}
 
-	/**
-	 * This method sets the x and y co-ordinate for the critter
-	 */
-	@Override
-	public void setXY(int new_x, int new_y) {
-
-		x = new_x;
-		y = new_y;
-	}
 
 	/**
 	 * This method sets the id for the basic critter
@@ -187,6 +194,26 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	public void removeListener(InvalidationListener arg0) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	/**
+	 * This method sets the initial x and y coordinates for the critter
+	 */
+	@Override
+	public void setXY(int new_xEntry, int new_yEntry) {
+		// TODO Auto-generated method stub
+		x = new_xEntry;
+		y = new_yEntry;
+	}
+
+	/**
+	 * This method sets the exit x and y coordinates for the critter
+	 */
+	@Override
+	public void setXYExit(int new_xExit, int new_yExit) {
+		// TODO Auto-generated method stub
+		xExit = new_xExit;
+		yExit = new_yExit;
 	}
 	
 	

@@ -102,6 +102,8 @@ public class JMenuBarComponent {
 								 */
 								gameMapPanel = (panelComponent).getMapEditorGridPanel(mapModel, new_jframe.getSize(),
 										E_MapEditorMode.Play);
+								
+								ApplicationStatics.GAME_OVER = false;
 
 								// jframe.add(gameMapPanel);
 								new_jframe.getContentPane().add(gameMapPanel, BorderLayout.NORTH);

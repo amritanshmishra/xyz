@@ -596,7 +596,7 @@ public class JPanelComponent implements Observer{
 	public void setMapButtonsToYellow() {
 
 		String stringMapCoord = "";
-		System.out.println("inside setMapButtonsToYellow "+ ApplicationStatics.HAS_BOUGHT_TOWER);
+	//	System.out.println("inside setMapButtonsToYellow "+ ApplicationStatics.HAS_BOUGHT_TOWER);
 
 		for (int i = 0; i < ApplicationStatics.MAP_BUTTONS.length; i++) {
 

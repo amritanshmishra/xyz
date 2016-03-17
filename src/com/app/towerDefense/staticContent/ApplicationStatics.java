@@ -39,6 +39,7 @@ public class ApplicationStatics {
 	public static String MAP_PATH_BOUNDARY_BUTTONS_NAME = "";
 	public static int BLOCK_WIDTH;
 	public static int BLOCK_HEIGHT;
+	public static boolean GAME_OVER = false;
 
 	/*
 	 * public static final int MAP_ENTRY_POINT=1; public static final int
