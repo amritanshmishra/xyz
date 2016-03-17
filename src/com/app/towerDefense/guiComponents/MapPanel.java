@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-import com.app.towerDefense.critterFactory.CritterFactory;
-import com.app.towerDefense.critterFactory.CritterType;
+import com.app.towerDefense.models.CritterFactory;
+import com.app.towerDefense.models.CritterType;
 import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 

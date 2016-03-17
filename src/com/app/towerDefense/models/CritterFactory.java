@@ -1,4 +1,4 @@
-package com.app.towerDefense.critterFactory;
+package com.app.towerDefense.models;
 
 /**
  * This is the critter factory class to create different kind of critters

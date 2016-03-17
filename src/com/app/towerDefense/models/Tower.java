@@ -5,6 +5,7 @@ package com.app.towerDefense.models;
 
 
 import java.awt.Dimension;
+import java.util.Observable;
 
 import javax.swing.Icon;
 
@@ -13,7 +14,7 @@ import javax.swing.Icon;
  * @author George Ekow-Daniels
  *
  */
-public abstract class Tower {
+public abstract class Tower extends Observable {
 	
 	public int towerID;
 	protected String towerName;
@@ -246,5 +247,10 @@ public abstract class Tower {
      * plugged in upon instantiation.
 	 */
 	public abstract void executeStrategy();
+	
+	public void update(Observable clitter, Object x)
+	{
+		//System.out.println(Crity);
+	}
 	
 }

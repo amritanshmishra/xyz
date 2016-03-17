@@ -1,4 +1,4 @@
-package com.app.towerDefense.critterFactory;
+package com.app.towerDefense.models;
 
 import java.awt.Image;
 
