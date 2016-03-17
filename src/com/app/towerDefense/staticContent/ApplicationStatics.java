@@ -14,7 +14,7 @@ import com.app.towerDefense.models.Tower;
  * names and image paths
  * 
  * @author Sajjad Ashraf
- *
+ * 
  */
 public class ApplicationStatics {
 
@@ -40,7 +40,6 @@ public class ApplicationStatics {
 	public static int BLOCK_WIDTH;
 	public static int BLOCK_HEIGHT;
 	public static boolean GAME_OVER = false;
-	
 
 	/*
 	 * public static final int MAP_ENTRY_POINT=1; public static final int
@@ -82,8 +81,8 @@ public class ApplicationStatics {
 	public static final String IMAGE_PATH_MAP_TOWER4 = "images/tower4.png";
 	public static final String IMAGE_PATH_MAP_TOWER5 = "images/tower5.png";
 	public static final String IMAGE_PATH_MAP_BUTTONYELLOW = "images/button_yellow.png";
-	public static final String IMAGE_PATH_CRITTER="images/critter1.gif";
-	public static final String IMAGE_PATH_CRITTER_FROZEN="images/freeze.gif";
-	public static final String IMAGE_PATH_CRITTER_BURN="images/burn.gif";
-	public static final String IMAGE_PATH_CRITTER_SPLASH="images/splash.gif";
+	public static final String IMAGE_PATH_CRITTER = "images/critter1.gif";
+	public static final String IMAGE_PATH_CRITTER_FROZEN = "images/freeze.gif";
+	public static final String IMAGE_PATH_CRITTER_BURN = "images/burn.gif";
+	public static final String IMAGE_PATH_CRITTER_SPLASH = "images/splash.gif";
 }
