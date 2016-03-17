@@ -9,7 +9,11 @@ import com.app.towerDefense.models.CritterFactory;
 import com.app.towerDefense.models.CritterType;
 import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.staticContent.ApplicationStatics;
-
+/**
+ * Draws elements on map
+ * @author usbaitass
+ *
+ */
 public class MapPanel extends JPanel {
 
 	private static final long serialVersionUID = -9082005090002375868L;
@@ -95,6 +99,9 @@ public class MapPanel extends JPanel {
 			panelHeight = this.getHeight();
 			blockWidth = panelWidth / mapModel.getMapWidth();
 			blockHeight = panelHeight / mapModel.getMapHeight();
+			
+			ApplicationStatics.BLOCK_WIDTH = blockWidth;
+			ApplicationStatics.BLOCK_HEIGHT = blockHeight;
 
 			xEntry = ApplicationStatics.PATH_ARRAY1.get(0).x * blockWidth;
 			yEntry = ApplicationStatics.PATH_ARRAY1.get(0).y * blockHeight;
