@@ -19,7 +19,8 @@ import org.junit.runners.Suite;
 			PlayerModelTest.class,
 			ShooterTest.class, 
 			SplasherTest.class,
-			FileStorageTest.class
+			FileStorageTest.class,
+			MiscellaneousHelperTest.class
 		})
 public class TestSuite {
 

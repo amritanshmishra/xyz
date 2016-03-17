@@ -36,7 +36,8 @@ public class MiscellaneousHelper {
 	 * @return string the result
 	 */
 	public String RemoveCharacterFromStrartorLeft(String InputString, String Characters) {
-		return InputString.replaceAll("^\\" + Characters + "+", "");
+		return InputString.replaceAll("^" + Characters + "+", "");
+		//return InputString.replaceAll("^0+(?!$)", ""); 
 	}
 
 	/**

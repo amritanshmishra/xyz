@@ -22,6 +22,9 @@ public class MapModelTest {
 
 	MapModel mapModel;
 
+	/**
+	 * Test case Initialization for MapModelTest
+	 */
 	@Before
 	public void towerModel1TestCase() {
 		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class MapModel");
