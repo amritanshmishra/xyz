@@ -70,7 +70,7 @@ public class MapPanel extends JPanel {
 						critter.get(i).setBlocksParams(blockWidth, blockHeight);
 						critter.get(i).setXY(xEntry, yEntry);
 						critter.get(i).setXYExit(xExit, yExit);
-						
+
 						critter.get(i).setID(i);
 					}
 					isInitialCond = false;
@@ -130,23 +130,21 @@ public class MapPanel extends JPanel {
 			ApplicationStatics.BLOCK_WIDTH = blockWidth;
 			ApplicationStatics.BLOCK_HEIGHT = blockHeight;
 
-			xEntry = ApplicationStatics.PATH_ARRAY1.get(0).x * blockWidth;
-			yEntry = ApplicationStatics.PATH_ARRAY1.get(0).y * blockHeight;
+			xEntry = ApplicationStatics.PATH_ARRAY1.get(0).y * blockWidth;
+			yEntry = ApplicationStatics.PATH_ARRAY1.get(0).x * blockHeight;
 
-			xExit = ApplicationStatics.PATH_ARRAY1.get(ApplicationStatics.PATH_ARRAY1.size() - 1).x * blockWidth;
-			yExit = ApplicationStatics.PATH_ARRAY1.get(ApplicationStatics.PATH_ARRAY1.size() - 1).y * blockHeight;
+			xExit = ApplicationStatics.PATH_ARRAY1.get(ApplicationStatics.PATH_ARRAY1.size() - 1).y * blockWidth;
+			yExit = ApplicationStatics.PATH_ARRAY1.get(ApplicationStatics.PATH_ARRAY1.size() - 1).x * blockHeight;
 
 			// System.out.println("blockW : " + blockWidth + " , blockH : " +
 			// blockHeight + " , width : "
 			// + mapModel.getMapWidth() + " , height : " +
 			// mapModel.getMapHeight());
 
-			// for (int k = 0; k < ApplicationStatics.PATH_ARRAY1.size(); k +=
-			// 1) {
-			// System.out.println(k + " : x=" +
-			// ApplicationStatics.PATH_ARRAY1.get(k).x + " , y="
-			// + ApplicationStatics.PATH_ARRAY1.get(k).y);
-			// }
+			for (int k = 0; k < ApplicationStatics.PATH_ARRAY1.size(); k += 1) {
+				System.out.println(k + " : x=" + ApplicationStatics.PATH_ARRAY1.get(k).x + " , y="
+						+ ApplicationStatics.PATH_ARRAY1.get(k).y);
+			}
 
 			wave = 2 * ApplicationStatics.PLAYERMODEL.getGameWave();
 

@@ -121,14 +121,14 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 			
 			if (directionX == 1 || directionX == -1){
 				if( x == xNext){
-			//		System.out.println("inside 1 :" + (i++));
-					i++;
+					System.out.println("inside 1 :" + (i++));
+			//		i++;
 				}
 			}else if(directionX ==0){
 				if (directionY == 1 || directionY == -1) {
 					if(y==yNext){
-		//				System.out.println("inside 2" + (i++));
-						i++;
+						System.out.println("inside 2" + (i++));
+			//			i++;
 					}
 				}
 			}
@@ -149,6 +149,7 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	public void setBlocksParams(int new_w, int new_h) {
 		blockW = new_w;
 		blockH = new_h;
+		System.out.println("blockW:"+blockW+" blockH:"+blockH);
 	}
 
 	/**
@@ -204,6 +205,8 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 		// TODO Auto-generated method stub
 		x = new_xEntry;
 		y = new_yEntry;
+		System.out.println("myX : "+x+" , myY : "+y);
+		
 	}
 
 	/**
