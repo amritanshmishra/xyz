@@ -40,7 +40,7 @@ public class ApplicationStatics {
 	public static int BLOCK_WIDTH;
 	public static int BLOCK_HEIGHT;
 	public static boolean GAME_OVER = false;
-
+	public static String MAP_SECRECT_TAG="_Team5";
 	/*
 	 * public static final int MAP_ENTRY_POINT=1; public static final int
 	 * MAP_EXIT_POINT=900; public static final int MAP_PATH_POINT=1; public
@@ -53,9 +53,11 @@ public class ApplicationStatics {
 	public static final int MAP_Scenery_POINT = 0;
 
 	// Window Titles
+	private static final String TITLE_GAME_WINDOW = "Tower Defence Game by \"Team 5\".";
 	public static final String TITLE_MAP_EDITOR = "MAP EDITOR";
 	public static final String MAP_MODE_CREATE = "(CREATE)";
 	public static final String MAP_MODE_OPEN = "(OPEN)";
+	public static final String GAME_PLAYER_NAME = "";
 
 	// MENU Related Items
 	public static final String MENU_FILE = "FILE";
@@ -66,6 +68,14 @@ public class ApplicationStatics {
 	public static final String MENU_ITEM_ABOUT = "ABOUT";
 	public static final String MENU_ITEM_SAVE = "SAVE";
 	public static final String MENU_ITEM_EXIT = "EXIT";
+	
+	//Logs
+	private static String LOG_CURRENT_SESSION_TAG = "";
+	private static String LOG_TOWE_TAG = "";
+	
+	//Date
+	public static final String DATE_FORMAT_DEFAULT="yyyyMMddHHmmssSSS";
+	
 
 	// -- Images Paths
 	public static final String IMAGE_PATH_GAME_BK = "images/gameBk.png";
@@ -85,4 +95,48 @@ public class ApplicationStatics {
 	public static final String IMAGE_PATH_CRITTER_FROZEN = "images/freeze.gif";
 	public static final String IMAGE_PATH_CRITTER_BURN = "images/burn.gif";
 	public static final String IMAGE_PATH_CRITTER_SPLASH = "images/splash.gif";
+	
+	
+	
+	//Getter and Setter Sections
+	
+	// Window Titles
+	/**
+	 * @return the titleGameWindow
+	 */
+	public static String getTitleGameWindow() {
+		return TITLE_GAME_WINDOW+" ("+GAME_PLAYER_NAME+")";
+	}
+
+	//Logs
+	/**
+	 * @return the lOG_CURRENT_SESSION_TAG
+	 */
+	public static String getLog_Current_Session_Tag() {
+		return LOG_CURRENT_SESSION_TAG;
+	}
+
+	/**
+	 * @param lOG_CURRENT_SESSION_TAG the lOG_CURRENT_SESSION_TAG to set
+	 */
+	public static void setLog_Current_Session_Tag(String new_session) {
+		LOG_CURRENT_SESSION_TAG = "LOG_CURRENT_SESSION_TAG_"+new_session;
+	}
+
+	/**
+	 * @return the lOG_TOWE_TAG
+	 */
+	public static String getLog_Tower_Tag() {
+		return LOG_TOWE_TAG;
+	}
+
+	/**
+	 * @param lOG_TOWE_TAG the lOG_TOWE_TAG to set
+	 */
+	public static void setLog_Tower_Tag(String new_session) {
+		LOG_TOWE_TAG = new_session;
+	}
+	
+	
+	
 }

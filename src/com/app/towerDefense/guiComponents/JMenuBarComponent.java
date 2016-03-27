@@ -99,7 +99,7 @@ public class JMenuBarComponent {
 						MapModel mapModel = (new com.app.towerDefense.utilities.FileStorage())
 								.openMapFile(file);
 						if (mapModel != null) {
-							if (mapModel.mapSecret.contains("_Team5")) {
+							if (mapModel.mapSecret.contains(ApplicationStatics.MAP_SECRECT_TAG)) {
 								new_jframe.getContentPane().removeAll();
 								new_jframe.setLayout(new BorderLayout());
 								panelComponent = new JPanelComponent();

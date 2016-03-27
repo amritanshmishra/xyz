@@ -14,6 +14,7 @@ import com.app.towerDefense.guiComponents.JMenuBarComponent;
 import com.app.towerDefense.guiComponents.JPanelComponent;
 import com.app.towerDefense.models.PlayerModel;
 import com.app.towerDefense.staticContent.ApplicationStatics;
+import com.app.towerDefense.utilities.MiscellaneousHelper;
 
 //change 1
 
@@ -27,6 +28,7 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
 public class Game extends Canvas implements Runnable { // change 1
 
 	private static final long serialVersionUID = 1324355855108644765L;
+
 	//Log
 	final static Logger logger = Logger.getLogger(Game.class);
 	
@@ -51,11 +53,15 @@ public class Game extends Canvas implements Runnable { // change 1
 	 * Constructor of the Game Class
 	 */
 	public Game() {
-		// game frame settings
+		// logs
+		ApplicationStatics.setLog_Current_Session_Tag(new MiscellaneousHelper().getCurrentDateStr());
+		logger.info(ApplicationStatics.getLog_Current_Session_Tag());
+
+		// game frame settings		
 		width = ApplicationStatics.WINDOW_WIDTH;
 		height = ApplicationStatics.WINDOW_HEIGHT;
-		title = "Tower Defence Game by \"Team 5\".";
-
+		title = ApplicationStatics.getTitleGameWindow();
+		
 		ApplicationStatics.PLAYERMODEL = new PlayerModel();
 
 		frame = new JFrame();
@@ -72,7 +78,6 @@ public class Game extends Canvas implements Runnable { // change 1
 		gameJMenuBar = jMenuBarComponent.getGameJMenuBar(frame);
 		frame.setJMenuBar(gameJMenuBar);
 		frame.setVisible(true);
-		logger.info("Game Started");
 		// -- creating new Player
 
 		// panelComponent = jMenuBarComponent.getPanelComponent();

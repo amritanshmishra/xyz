@@ -5,6 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.app.towerDefense.staticContent.ApplicationStatics;
+import com.app.towerDefense.utilities.MiscellaneousHelper;
+
 /**
  * This class is for the Map Model
  * 
@@ -81,7 +84,7 @@ public class MapModel {
 	 * This method sets the map secret
 	 */
 	public void setMapSecret() {
-		this.mapSecret = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()) + "_Team5";
+		this.mapSecret = new MiscellaneousHelper().getCurrentDateStr() +ApplicationStatics.MAP_SECRECT_TAG;
 	}
 
 	/**

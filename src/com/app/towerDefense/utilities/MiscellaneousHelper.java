@@ -1,6 +1,11 @@
 package com.app.towerDefense.utilities;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.apache.commons.codec.binary.Base64;
+
+import com.app.towerDefense.staticContent.ApplicationStatics;
 
 /**
  * this class is a miscellaneous helper class. It contains some extra frequently
@@ -97,5 +102,27 @@ public class MiscellaneousHelper {
 		byte[] valueDecoded = Base64.decodeBase64(new_input.getBytes());
 		return new String(valueDecoded);
 
+	}
+	
+	
+	/**
+	 * This method return date in string form in Format 'yyyyMMddHHmmssSSS' 
+	 * 
+	 * @return string date
+	 */
+	public String getCurrentDateStr()
+	{
+		return new SimpleDateFormat(ApplicationStatics.DATE_FORMAT_DEFAULT).format(new Date());
+	}
+	
+	/**
+	 * This method return date in string form. The date format is depend upon the input Provied by user.
+	 * @param new_format
+	 * @return
+	 */
+	
+	public String getCurrentDateStr(String new_format)
+	{
+		return new SimpleDateFormat(new_format).format(new Date());
 	}
 }
