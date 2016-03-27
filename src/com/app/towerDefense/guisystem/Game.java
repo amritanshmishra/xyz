@@ -7,6 +7,8 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 
+import org.apache.log4j.Logger;
+
 import com.app.towerDefense.guiComponents.BottomGamePanelView;
 import com.app.towerDefense.guiComponents.JMenuBarComponent;
 import com.app.towerDefense.guiComponents.JPanelComponent;
@@ -25,7 +27,9 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
 public class Game extends Canvas implements Runnable { // change 1
 
 	private static final long serialVersionUID = 1324355855108644765L;
-
+	//Log
+	final static Logger logger = Logger.getLogger(Game.class);
+	
 	private static Game instance = new Game();
 
 	private int width;
@@ -42,6 +46,7 @@ public class Game extends Canvas implements Runnable { // change 1
 	private Thread thread; // change 1
 	private boolean running = false; // change 1
 
+	
 	/**
 	 * Constructor of the Game Class
 	 */
@@ -67,7 +72,7 @@ public class Game extends Canvas implements Runnable { // change 1
 		gameJMenuBar = jMenuBarComponent.getGameJMenuBar(frame);
 		frame.setJMenuBar(gameJMenuBar);
 		frame.setVisible(true);
-
+		logger.info("Game Started");
 		// -- creating new Player
 
 		// panelComponent = jMenuBarComponent.getPanelComponent();
