@@ -78,11 +78,19 @@ public class Game extends Canvas implements Runnable { // change 1
 		gameJMenuBar = jMenuBarComponent.getGameJMenuBar(frame);
 		frame.setJMenuBar(gameJMenuBar);
 		frame.setVisible(true);
+		logger.info("Game Loaded!!");
 		// -- creating new Player
 
 		// panelComponent = jMenuBarComponent.getPanelComponent();
 		// bottomGamePanel = jMenuBarComponent.getBottomPanel();
 
+	}
+	
+	
+	public void refreshGameFrameTitle()
+	{
+		title = ApplicationStatics.getTitleGameWindow();
+		frame.setTitle(title);
 	}
 
 	/**

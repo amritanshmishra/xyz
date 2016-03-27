@@ -57,7 +57,7 @@ public class ApplicationStatics {
 	public static final String TITLE_MAP_EDITOR = "MAP EDITOR";
 	public static final String MAP_MODE_CREATE = "(CREATE)";
 	public static final String MAP_MODE_OPEN = "(OPEN)";
-	public static final String GAME_PLAYER_NAME = "";
+	public static String GAME_PLAYER_NAME = "";
 
 	// MENU Related Items
 	public static final String MENU_FILE = "FILE";
@@ -72,6 +72,7 @@ public class ApplicationStatics {
 	//Logs
 	private static String LOG_CURRENT_SESSION_TAG = "";
 	private static String LOG_TOWE_TAG = "";
+	private static String LOG_File_PATH = "log\\gameLog.log";
 	
 	//Date
 	public static final String DATE_FORMAT_DEFAULT="yyyyMMddHHmmssSSS";
@@ -105,7 +106,10 @@ public class ApplicationStatics {
 	 * @return the titleGameWindow
 	 */
 	public static String getTitleGameWindow() {
-		return TITLE_GAME_WINDOW+" ("+GAME_PLAYER_NAME+")";
+		if(GAME_PLAYER_NAME.length() > 0)
+			return TITLE_GAME_WINDOW+". Player :("+GAME_PLAYER_NAME+")";
+		else
+			return TITLE_GAME_WINDOW;
 	}
 
 	//Logs

@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,9 +17,11 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.app.towerDefense.gameLogic.Map;
+import com.app.towerDefense.guisystem.Game;
 import com.app.towerDefense.guisystem.MapEditor;
 import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.staticContent.AppilicationEnums.E_JFileChooserMode;
@@ -99,7 +102,8 @@ public class JMenuBarComponent {
 						MapModel mapModel = (new com.app.towerDefense.utilities.FileStorage())
 								.openMapFile(file);
 						if (mapModel != null) {
-							if (mapModel.mapSecret.contains(ApplicationStatics.MAP_SECRECT_TAG)) {
+							if (mapModel.mapSecret.contains(ApplicationStatics.MAP_SECRECT_TAG)) {								
+								getPlayerName();								
 								new_jframe.getContentPane().removeAll();
 								new_jframe.setLayout(new BorderLayout());
 								panelComponent = new JPanelComponent();
@@ -325,6 +329,29 @@ public class JMenuBarComponent {
 		menuItemExit.addActionListener(new menuItemAction());
 		menuBar.add(menuFile);
 		return menuBar;
+	}
+	/**
+	 * this function Prompt user to enter Player Name
+	 */
+	
+	public void getPlayerName(){
+		//reset Player Name or remove old player name 
+		ApplicationStatics.GAME_PLAYER_NAME="";
+		JTextField firstName = new JTextField();
+		final JComponent[] jComponentArray = new JComponent[] {
+				new JLabel("Enter Name"),
+				firstName
+		};
+		JOptionPane.showMessageDialog(null, jComponentArray, ApplicationStatics.getTitleGameWindow(), JOptionPane.PLAIN_MESSAGE);
+		if(firstName.getText().length() == 0){
+		    JOptionPane.showMessageDialog(null, "Please Player Name.", ApplicationStatics.getTitleGameWindow(),JOptionPane.WARNING_MESSAGE);
+			getPlayerName();
+		}
+		else
+		{
+			ApplicationStatics.GAME_PLAYER_NAME= firstName.getText().replaceAll(" ", "_");
+			Game.getInstance().refreshGameFrameTitle();
+		}
 	}
 
 	/**
