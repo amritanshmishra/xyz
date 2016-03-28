@@ -53,26 +53,33 @@ public class ApplicationStatics {
 	public static final int MAP_Scenery_POINT = 0;
 
 	// Window Titles
+	public static String GAME_PLAYER_NAME = "";
 	private static final String TITLE_GAME_WINDOW = "Tower Defence Game by \"Team 5\".";
 	public static final String TITLE_MAP_EDITOR = "MAP EDITOR";
+	public static final String TITLE_LOG_VIEWER = "LOG VIEWER";
 	public static final String MAP_MODE_CREATE = "(CREATE)";
-	public static final String MAP_MODE_OPEN = "(OPEN)";
-	public static String GAME_PLAYER_NAME = "";
+	public static final String MAP_MODE_OPEN = "(OPEN)";	
+	public static final String LOG_VIEWER_MODE_GLOBLE = "GLOBLE";
+	public static final String LOG_VIEWER_MODE_CURRENT_SESSION = "CURRENT SESSION";
+	public static final String LOG_VIEWER_MODE_TOWERS = "TOWERS";
+	public static final String LOG_VIEWER_MODE_TOWERS_COLLECTION = "TOWERS COLLECTION";
 
 	// MENU Related Items
 	public static final String MENU_FILE = "FILE";
 	public static final String MENU_HELP = "HELP";
+	public static final String MENU_VIEW = "VIEW";
 	public static final String MENU_ITEM_PLAY = "PLAY";
 	public static final String MENU_ITEM_CREATE_MAP = "CREATE MAP";
 	public static final String MENU_ITEM_OPEN_MAP = "OPEN_MAP";
 	public static final String MENU_ITEM_ABOUT = "ABOUT";
 	public static final String MENU_ITEM_SAVE = "SAVE";
 	public static final String MENU_ITEM_EXIT = "EXIT";
+	public static final String MENU_ITEM_LOG_VIEWER = "LOG_VIEWER ";
 	
 	//Logs
 	private static String LOG_CURRENT_SESSION_TAG = "";
 	private static String LOG_TOWE_TAG = "";
-	private static String LOG_File_PATH = "log\\gameLog.log";
+	public static String LOG_File_PATH = "log\\gameLog.log";
 	
 	//Date
 	public static final String DATE_FORMAT_DEFAULT="yyyyMMddHHmmssSSS";

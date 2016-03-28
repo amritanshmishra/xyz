@@ -22,9 +22,11 @@ import javax.swing.JTextField;
 
 import com.app.towerDefense.gameLogic.Map;
 import com.app.towerDefense.guisystem.Game;
+import com.app.towerDefense.guisystem.LogViewer;
 import com.app.towerDefense.guisystem.MapEditor;
 import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.staticContent.AppilicationEnums.E_JFileChooserMode;
+import com.app.towerDefense.staticContent.AppilicationEnums.E_LogViewerState;
 import com.app.towerDefense.staticContent.AppilicationEnums.E_MapEditorMode;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 import com.app.towerDefense.utilities.FileStorage;
@@ -76,6 +78,12 @@ public class JMenuBarComponent {
 				ApplicationStatics.MENU_ITEM_EXIT);
 		menuFile.add(menuItemExit);
 
+		JMenu menuView = new JMenu(ApplicationStatics.MENU_VIEW);
+		menuBar.add(menuView);
+		final JMenuItem menuItemLogViewer = new JMenuItem(
+				ApplicationStatics.MENU_ITEM_LOG_VIEWER);
+		menuView.add(menuItemLogViewer);
+		
 		JMenu menuHelp = new JMenu(ApplicationStatics.MENU_HELP);
 		menuBar.add(menuHelp);
 		final JMenuItem menuItemAbout = new JMenuItem(
@@ -250,6 +258,16 @@ public class JMenuBarComponent {
 									null,
 									"**** Tower Defense Game **** \r\n Version 1.0 Build 1 \r\n Developed By Team5 \r\n All rights reserved  � Fall 2016");
 				}
+				else if (new_e.getSource().equals(menuItemLogViewer)) {
+					new LogViewer(
+							new_jframe,
+							ApplicationStatics.TITLE_LOG_VIEWER,
+							ApplicationStatics.CHILD_POPUP_WINDOW_WIDTH,
+							ApplicationStatics.CHILD_POPUP_WINDOW_HEIGHT,
+							ApplicationStatics.LOG_File_PATH, 
+							E_LogViewerState.GlobalLog);
+				}
+				
 			}
 
 		}
@@ -258,6 +276,7 @@ public class JMenuBarComponent {
 		menuItemOpenMap.addActionListener(new menuItemAction());
 		menuItemExit.addActionListener(new menuItemAction());
 		menuItemAbout.addActionListener(new menuItemAction());
+		menuItemLogViewer.addActionListener(new menuItemAction());
 		return menuBar;
 	}
 
@@ -330,10 +349,10 @@ public class JMenuBarComponent {
 		menuBar.add(menuFile);
 		return menuBar;
 	}
+	
 	/**
 	 * this function Prompt user to enter Player Name
-	 */
-	
+	 */	
 	public void getPlayerName(){
 		//reset Player Name or remove old player name 
 		ApplicationStatics.GAME_PLAYER_NAME="";

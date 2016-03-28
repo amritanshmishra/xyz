@@ -1,5 +1,9 @@
 package com.app.towerDefense.utilities;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -125,4 +129,19 @@ public class MiscellaneousHelper {
 	{
 		return new SimpleDateFormat(new_format).format(new Date());
 	}
+	
+	public String readFile(File new_file)
+	{
+		try {
+			return new String(Files.readAllBytes(Paths.get(new_file
+					.getPath())));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	
 }

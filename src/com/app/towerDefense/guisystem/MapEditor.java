@@ -19,6 +19,10 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
  */
 public class MapEditor extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	MapModel mapModel;
 	E_MapEditorMode mapEditorMode;
 

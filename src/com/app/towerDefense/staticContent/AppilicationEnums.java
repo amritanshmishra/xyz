@@ -41,5 +41,13 @@ public class AppilicationEnums {
 	public enum E_JFileChooserMode {
 		Open, Save
 	}
+	
+	/**
+	 * Enumerators to express the Log Viewver State
+	 * 
+	 */
+	public enum E_LogViewerState {
+		GlobalLog, CurrentSessionLog, TowerLog, TowerCollectionLog
+	}
 
 }
