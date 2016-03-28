@@ -40,6 +40,7 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 	private JButton upgradeTowerButton;
 	private JButton sellBuyTowerButton;
 	private JButton strategyTowerButton;
+	private JButton logTowerButton;
 	private Tower tempTM;
 
 	/**
@@ -187,6 +188,17 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 			}
 
 		});
+		
+		logTowerButton = new JButton("Log");
+		logTowerButton.setPreferredSize(new Dimension(70, 20));
+		logTowerButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			
+				System.out.println("Tower log button was clicked.");
+				
+			}
+		});
 
 		// -- initializing the tower upgrade button
 		// -- and implementing its functionality
@@ -258,12 +270,19 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 
 		JPanel topPanel = new JPanel();
 		topPanel.setLayout(new BorderLayout());
-		topPanel.add(sellBuyTowerButton, BorderLayout.NORTH);
-		topPanel.add(botPanel, BorderLayout.SOUTH);
+		topPanel.add(sellBuyTowerButton, BorderLayout.WEST);
+		topPanel.add(logTowerButton, BorderLayout.EAST);
+		topPanel.setBackground(new Color(205, 183, 158)); // BROWN
+
+		
+		JPanel commonPanel = new JPanel();
+		commonPanel.setLayout(new BorderLayout());
+		commonPanel.add(topPanel, BorderLayout.NORTH);
+		commonPanel.add(botPanel, BorderLayout.SOUTH);
 
 		rightPanel.add(towerNameLabel, BorderLayout.NORTH);
 		rightPanel.add(towerLabelDESCR, BorderLayout.CENTER);
-		rightPanel.add(topPanel, BorderLayout.SOUTH);
+		rightPanel.add(commonPanel, BorderLayout.SOUTH);
 
 		this.add(leftPanel, BorderLayout.CENTER);
 		this.add(rightPanel, BorderLayout.EAST);
@@ -312,16 +331,7 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 			labelStatsTower[17].setText(Integer.toString((int) (new_tower_models
 					.getTowerUpgradeCost())));
 			sellBuyTowerButton.setText("SELL");
-			upgradeTowerButton.setText("UPGRADE");
-
-			labelStatsTower[2].setVisible(true);
-			labelStatsTower[5].setVisible(true);
-			labelStatsTower[8].setVisible(true);
-			labelStatsTower[11].setVisible(true);
-			labelStatsTower[14].setVisible(true);
-			labelStatsTower[17].setVisible(true);
-			upgradeTowerButton.setVisible(true);
-			strategyTowerButton.setVisible(true);
+		
 		} else {
 			labelStatsTower[2].setText("");
 			labelStatsTower[5].setText("");
@@ -330,17 +340,21 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 			labelStatsTower[14].setText("");
 			labelStatsTower[17].setText("");
 			sellBuyTowerButton.setText("BUY");
-			upgradeTowerButton.setText("");
-
-			labelStatsTower[2].setVisible(false);
-			labelStatsTower[5].setVisible(false);
-			labelStatsTower[8].setVisible(false);
-			labelStatsTower[11].setVisible(false);
-			labelStatsTower[14].setVisible(false);
-			labelStatsTower[17].setVisible(false);
+		
 			upgradeTowerButton.setVisible(false);
 			strategyTowerButton.setVisible(false);
 		}
+		
+		labelStatsTower[2].setVisible(ApplicationStatics.SET_TOWER_DESCR_VISIBLE);
+		labelStatsTower[5].setVisible(ApplicationStatics.SET_TOWER_DESCR_VISIBLE);
+		labelStatsTower[8].setVisible(ApplicationStatics.SET_TOWER_DESCR_VISIBLE);
+		labelStatsTower[11].setVisible(ApplicationStatics.SET_TOWER_DESCR_VISIBLE);
+		labelStatsTower[14].setVisible(ApplicationStatics.SET_TOWER_DESCR_VISIBLE);
+		labelStatsTower[17].setVisible(ApplicationStatics.SET_TOWER_DESCR_VISIBLE);
+		upgradeTowerButton.setVisible(ApplicationStatics.SET_TOWER_DESCR_VISIBLE);
+		strategyTowerButton.setVisible(ApplicationStatics.SET_TOWER_DESCR_VISIBLE);
+		logTowerButton.setVisible(ApplicationStatics.SET_TOWER_DESCR_VISIBLE);
+	
 
 	}
 
