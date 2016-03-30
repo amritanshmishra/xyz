@@ -7,8 +7,11 @@ import java.awt.Dimension;
 import java.awt.geom.Ellipse2D;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 import com.app.towerDefense.guiComponents.MapPanel;
 import com.app.towerDefense.staticContent.ApplicationStatics;
@@ -40,12 +43,22 @@ public abstract class Tower implements Observer {
 	protected int towerFireRateUpgrade;
 	protected int towerFireRangeUpgrade;
 	protected int x, y;
-	protected int[] counter = new int[100];
 	protected Strategy strategy;
-	protected int isBusy = -1;
+	protected int isBusy = -1; // if not -1, then tower has a target
 	protected String specialEffect;
 
-	public double xt, yt, dt;
+	protected double xt, yt, dtw, dth; // x,y coordinates of range circle and
+										// diameters
+
+	protected Timer timer; // timer for shooting
+	protected boolean shoot = true; // shoots when value is true
+
+	/**
+	 * Constructor
+	 */
+	public Tower() {
+		timer = new Timer();
+	}
 
 	/**
 	 * This method gets the name of the tower
@@ -231,8 +244,11 @@ public abstract class Tower implements Observer {
 
 	/**
 	 * This method sets the X and Y coordinates of the tower model
-	 * @param new_x x axis
-	 * @param new_y y axis
+	 * 
+	 * @param new_x
+	 *            x axis
+	 * @param new_y
+	 *            y axis
 	 */
 	public abstract void setXY(int new_x, int new_y);
 
@@ -264,115 +280,158 @@ public abstract class Tower implements Observer {
 
 	/**
 	 * update method that called when observable called its function notify
-	 * updates the location between tower and critter
-	 * if it in range of tower, get shot
-	 * @param new_critter observable critter
-	 * @param new_x the object
+	 * updates the location between tower and critter if it in range of tower,
+	 * get shot
+	 * 
+	 * @param new_critter
+	 *            observable critter
+	 * @param new_x
+	 *            the object
 	 */
 	public void update(Observable new_critter, Object new_x) {
+		if (((BasicCritter) new_critter).isDead == true) {
+			isBusy = -1;
+			shoot = true;
+			// System.out.println("critter null");
+		} else {
 
-		int bW = ApplicationStatics.BLOCK_WIDTH;
-		int bH = ApplicationStatics.BLOCK_HEIGHT;
+			int bW = ApplicationStatics.BLOCK_WIDTH;
+			int bH = ApplicationStatics.BLOCK_HEIGHT;
 
-		// tower coord
-		int xpix = (this.getY() * bW) - bW;// +ApplicationStatics.BLOCK_HEIGHT;
-		int ypix = (this.getX() * bH) - bH;// +ApplicationStatics.BLOCK_WIDTH;
+			int xCr = ((CritterType) new_critter).getX() + bW / 3;
+			int yCr = ((CritterType) new_critter).getY() + bH / 3;
 
-		int xCr = ((CritterType) new_critter).getX() + bW / 3;
-		int yCr = ((CritterType) new_critter).getY() + bH / 3;
+			Ellipse2D ellipse = new Ellipse2D.Double(xt, yt, dtw, dth);
+			if (isBusy == -1 || isBusy == ((CritterType) new_critter).getCritterId()) {
+				// critter is in range of tower
+				if (ellipse.contains(xCr, yCr)) {
+					if (shoot) {
 
-		// double d = Math.sqrt((bW+bW/2)*(bW+bW/2)+(bH+bH/2)*(bH+bH/2))+5;
+						isBusy = ((CritterType) new_critter).getCritterId();
 
-		// xpix -= (bW);
-		// ypix -= (bH);
+						if (((CritterType) new_critter).decreaseLife(getTowerPower())) {
+							System.out.println("Tower " + getTowerName() + " id:" + towerID + " shoots critter id:"
+									+ ((CritterType) new_critter).getCritterId() + " damage:" + getTowerPower());
 
-		xt = xpix;
-		yt = ypix;
-		// dt = d;
-		// dt = 144;
+							MapPanel.drawLines(getY() * bW + bW / 2, getX() * bH + bH / 2, xCr, yCr, getTowerName(),
+									((CritterType) new_critter).getCritterId());
+								
+							if (getSpecialEffect() == "Freeze") {
+								((CritterType) new_critter).setCritterImage(ApplicationStatics.IMAGE_PATH_CRITTER_FROZEN);
+								((CritterType) new_critter).slowSpeed();
+							} else if (getSpecialEffect() == "Burn") {
+								((CritterType) new_critter).setCritterImage(ApplicationStatics.IMAGE_PATH_CRITTER_BURN);
+								((CritterType) new_critter).burnHealth(getTowerPower());
+							} else if (getSpecialEffect() == "Splash") {
+						//		((CritterType) new_critter).setCritterImage(ApplicationStatics.IMAGE_PATH_CRITTER_SPLASH);
+								((CritterType) new_critter).splashDamage(getTowerPower());
+							}
+							
+						}
 
-		// System.out.println(this.getTowerName()+" xpix="+ xpix + "
-		// ypix="+ypix+ " d="+d);
+						if (((CritterType) new_critter).killCritter()) {
+							isBusy = -1;
+						}
 
-		Ellipse2D ellipse = new Ellipse2D.Double((double) xpix, (double) ypix, bW * 3, bH * 3);
-		if (isBusy == -1 || isBusy == ((CritterType) new_critter).getCritterId()) {
-			// Enterss
-			if (ellipse.contains(xCr, yCr)) {
+						
 
-				if(this.getSpecialEffect() == "Freeze"){
-					((CritterType) new_critter).setCritterImage(ApplicationStatics.IMAGE_PATH_CRITTER_FROZEN);
-				}else if(this.getSpecialEffect() == "Burn"){
-					((CritterType) new_critter).setCritterImage(ApplicationStatics.IMAGE_PATH_CRITTER_BURN);
-				}else if(this.getSpecialEffect() == "Splash"){
-					((CritterType) new_critter).setCritterImage(ApplicationStatics.IMAGE_PATH_CRITTER_SPLASH);
-				}else{
-					((CritterType) new_critter).setCritterImage(ApplicationStatics.IMAGE_PATH_CRITTER);
-				}
-				
-				isBusy = ((CritterType) new_critter).getCritterId();
-				// Criter Hit Counter
-				if (counter[((CritterType) new_critter).getCritterId()] == 0) {
-					boolean isdied = ((CritterType) new_critter).decreaseLife(this.getTowerPower());
-					if (!isdied) {
-						ApplicationStatics.PLAYERMODEL.addSunCurrency(((CritterType) new_critter).getValue());
-						isBusy = -1;
+						shoot = false;
+						timer.schedule(new TimerTask() {
+							@Override
+							public void run() {
+								// Your database code here
+								shoot = true;
+							}
+						}, 1500);
 					}
-					MapPanel.drawLines(this.getY() * bW, this.getX() * bH, xCr, yCr, this.getTowerName(), isdied,
-							((CritterType) new_critter).getCritterId());
 
-					System.out.println("bW=" + bW + " bH=" + bH + " Tower " + this.getTowerName() + " shoots critter "
-							+ ((CritterType) new_critter).getCritterId());
+				} else {
+					isBusy = -1;
+
 				}
-				counter[((CritterType) new_critter).getCritterId()]++;
-				if (counter[((CritterType) new_critter).getCritterId()] == 30) {
-					counter[((CritterType) new_critter).getCritterId()] = 0;
-				}
-			}else{
-				isBusy = -1;
+
 			}
-		
 		}
 
 	}
 
 	/*
 	 * This method returns the tower x coordinate
+	 * 
 	 * @return x coordinate
 	 */
 	public double getXT() {
 		return xt;
 	}
-	
+
 	/*
 	 * This method returns the tower y coordinate
+	 * 
 	 * @return y coordinate
 	 */
 	public double getYT() {
 		return yt;
 	}
 
-	/*
-	 * This method returns the tower maximum distance for tower range
-	 * @return tower range distance
-	 */
-	public double getDT() {
-		return dt;
-	}
-	
 	/**
 	 * This method returns the special effect name
+	 * 
 	 * @return special effect name
 	 */
-	public String getSpecialEffect(){
+	public String getSpecialEffect() {
 		return specialEffect;
 	}
-	
+
 	/**
 	 * This method sets the special effect for the tower
-	 * @param new_str gets special effect name
+	 * 
+	 * @param new_str
+	 *            gets special effect name
 	 */
-	public void setSpecialEffect(String new_str){
+	public void setSpecialEffect(String new_str) {
 		specialEffect = new_str;
+	}
+
+	/**
+	 * This method calculates the tower range circle area, top left x and y
+	 * coordinates
+	 */
+	public void calculateRangeCircleCoordinates() {
+
+		int bW = ApplicationStatics.BLOCK_WIDTH;
+		int bH = ApplicationStatics.BLOCK_HEIGHT;
+		// System.out.println("BWBH "+bW+" "+bH);
+
+		double rangeT = (double) getTowerRange() / 100 - 1;
+		if (rangeT == -1) {
+			rangeT = 0;
+		}
+
+		xt = y * bW - bW - bW * rangeT;
+		yt = x * bH - bH - bH * rangeT;
+
+		// calculation the range circle diameter
+		rangeT *= 2;
+		dtw = ApplicationStatics.BLOCK_WIDTH * 3 + ApplicationStatics.BLOCK_WIDTH * rangeT;
+		dth = ApplicationStatics.BLOCK_HEIGHT * 3 + ApplicationStatics.BLOCK_HEIGHT * rangeT;
+	}
+
+	/**
+	 * This method returns the diameter in width of range circle of the tower
+	 * 
+	 * @return diameter value width
+	 */
+	public double getDTW() {
+		return dtw;
+	}
+
+	/**
+	 * This method returns the diameter in height of range circle of the tower
+	 * 
+	 * @return diameter value height
+	 */
+	public double getDTH() {
+		return dth;
 	}
 
 }

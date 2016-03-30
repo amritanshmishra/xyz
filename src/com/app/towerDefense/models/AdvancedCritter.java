@@ -92,14 +92,6 @@ public class AdvancedCritter extends java.util.Observable implements CritterType
 		return true;
 	}
 
-	/**
-	 * This method sets the button(blocks) parameters
-	 */
-	@Override
-	public void setBlocksParams(int new_w, int new_h) {
-		// TODO Auto-generated method stub
-
-	}
 
 	/**
 	 * This method returns the image used for the critter
@@ -119,23 +111,6 @@ public class AdvancedCritter extends java.util.Observable implements CritterType
 
 	}
 
-	/**
-	 * Returns block width
-	 */
-	@Override
-	public int getBlockW() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	/**
-	 * Returns block height
-	 */
-	@Override
-	public int getBlockH() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	/**
 	 * This method adds a listener
@@ -198,5 +173,47 @@ public class AdvancedCritter extends java.util.Observable implements CritterType
 	public void setCritterImage(String new_path) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public int getSpeed() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void slowSpeed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void burnHealth(int new_amount) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean killCritter() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public void splashDamage(int new_amount) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public CritterHealthBar getHealthBar() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean getShowSplashArea() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

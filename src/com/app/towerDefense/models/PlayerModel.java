@@ -136,6 +136,7 @@ public class PlayerModel extends Observable{
 			break;
 		
 		}
+		tempTM.towerID = towerModelArray.size();
 		towerModelArray.add(tempTM);
 
 		ApplicationStatics.HAS_BOUGHT_TOWER = true;
@@ -204,11 +205,12 @@ public class PlayerModel extends Observable{
 	 */
 	public boolean decrementHealth(int new_n){
 		hpPlayer -= new_n;
+		System.out.println("Critter reached the Exit: -1 from Hit Points!");
 		setChanged();
 		notifyObservers();
 		if(hpPlayer <= 0){
 		//	JFrame frame = new JFrame();
-			System.out.println("dead");
+			System.out.println("Hit Points reached zero.");
 		//	JOptionPane.showMessageDialog(frame,"You are dead.");
 			return false;
 		}

@@ -65,7 +65,7 @@ public class Shooter extends Tower{
 
 	@Override
 	public void setTowerFireRangeUpgrade() {
-		super.towerFireRangeUpgrade=1;
+		super.towerFireRangeUpgrade=25;
 		
 	}
 
@@ -77,7 +77,7 @@ public class Shooter extends Tower{
 
 	@Override
 	public void setTowerRange() {
-		super.towerRange=1;
+		super.towerRange=100;
 	}
 
 	@Override
@@ -179,8 +179,11 @@ public class Shooter extends Tower{
 
 	@Override
 	public void setTowerPowerUpgrade() {
-	super.towerPowerUpgrade=1;
-		
+		if(towerlevel%2==1){
+			super.towerPowerUpgrade=1;
+		}else{
+			super.towerPowerUpgrade=0;
+		}
 	}
 
 	@Override
@@ -191,7 +194,7 @@ public class Shooter extends Tower{
 
 	@Override
 	public void setTowerFireRateUpgrade() {
-		super.towerFireRateUpgrade=1;
+		super.towerFireRateUpgrade=0;
 		
 	}
 
@@ -210,20 +213,22 @@ public class Shooter extends Tower{
 	
 	@Override
 	public void setXY(int new_x, int new_y) {
-		super.x=new_x;
-		super.y = new_y;
-		
+		x = new_x;
+		y = new_y;
+		calculateRangeCircleCoordinates();
 	}
 
 	@Override
 	public void upgradeTower() {
+		
 		super.towerFireRate=getTowerFireRate() + getTowerFireRateUpgrade();
 		super.towerCost=getTowerCost()+getTowerUpgradeCost();
 		super.towerRange=getTowerRange()+getTowerFireRangeUpgrade();
 		super.towerlevel= getTowerlevel()+getTowerlevelUpgrade();
 		super.towerPower=getTowerPower()+getTowerPowerUpgrade();
 		
-	
+		super.calculateRangeCircleCoordinates();
+		setTowerPowerUpgrade();
 	}
 	
 	@Override
@@ -248,4 +253,6 @@ public class Shooter extends Tower{
 	public void executeStrategy(){
 		this.strategy.execute();
 	}
+	
+	
 }

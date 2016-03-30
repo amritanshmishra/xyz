@@ -126,6 +126,8 @@ public class JMenuBarComponent {
 												new_jframe.getSize(),
 												E_MapEditorMode.Play);
 
+								
+									//ulan
 								ApplicationStatics.GAME_OVER = false;
 
 								// jframe.add(gameMapPanel);
@@ -141,6 +143,12 @@ public class JMenuBarComponent {
 										.setBottomGamePanelView(bottomGamePanel);
 								ApplicationStatics.PLAYERMODEL
 										.addObserver(panelComponent);
+								
+								//ulan
+								ApplicationStatics.BLOCK_WIDTH = gameMapPanel.getWidth() / mapModel.getMapWidth();;
+								ApplicationStatics.BLOCK_HEIGHT = gameMapPanel.getHeight() / mapModel.getMapHeight();
+							//	System.out.println("HERERER: "+ ApplicationStatics.BLOCK_WIDTH);
+								
 							} else {
 								JOptionPane.showMessageDialog(null,
 										"In valid Map File.");

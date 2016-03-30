@@ -60,7 +60,7 @@ public class Splasher extends Tower{
 
 	@Override
 	public void setTowerFireRangeUpgrade() {
-		super.towerFireRangeUpgrade=1;
+		super.towerFireRangeUpgrade=25;
 		
 	}
 
@@ -72,7 +72,7 @@ public class Splasher extends Tower{
 
 	@Override
 	public void setTowerRange() {
-		super.towerRange=2;
+		super.towerRange=100;
 	}
 
 	@Override
@@ -174,7 +174,7 @@ public class Splasher extends Tower{
 
 	@Override
 	public void setTowerPowerUpgrade() {
-	super.towerPowerUpgrade=1;
+	super.towerPowerUpgrade=0;
 		
 	}
 
@@ -186,7 +186,7 @@ public class Splasher extends Tower{
 
 	@Override
 	public void setTowerFireRateUpgrade() {
-		super.towerFireRateUpgrade=1;
+		super.towerFireRateUpgrade=0;
 		
 	}
 
@@ -207,7 +207,7 @@ public class Splasher extends Tower{
 	public void setXY(int new_x, int new_y) {
 		super.x=new_x;
 		super.y = new_y;
-		
+		calculateRangeCircleCoordinates();
 	}
 
 	@Override
@@ -218,6 +218,7 @@ public class Splasher extends Tower{
 		super.towerlevel= getTowerlevel()+getTowerlevelUpgrade();
 		super.towerPower=getTowerPower()+getTowerPowerUpgrade();
 		
+		calculateRangeCircleCoordinates();
 	
 	}
 

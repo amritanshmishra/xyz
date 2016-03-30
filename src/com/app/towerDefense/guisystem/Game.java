@@ -6,6 +6,7 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 
 import org.apache.log4j.Logger;
 
@@ -126,7 +127,7 @@ public class Game extends Canvas implements Runnable { // change 1
 	public void run() {
 		// TODO Auto-generated method stub
 		long lastTime = System.nanoTime();
-		double amountOfTicks = 50.0; // Game speed 5.0
+		double amountOfTicks = 20.0; // Game speed 5.0
 		double ns = 1000000000 / amountOfTicks;
 		double delta = 0;
 		long timer = System.currentTimeMillis();
@@ -215,10 +216,21 @@ public class Game extends Canvas implements Runnable { // change 1
 			// mode map
 			// }
 		} else {
-			System.out.println("GMALSDLASDK:AKSDkalsdk");
-			System.out.println("Game over : " + ApplicationStatics.GAME_OVER);
-			System.out.println("Start wave : " + ApplicationStatics.START_WAVE);
+			System.out.println("Game over");
+		//	System.out.println("Game over : " + ApplicationStatics.GAME_OVER);
+		//	System.out.println("Start wave : " + ApplicationStatics.START_WAVE);
+			
+			String tempStr = "";
+			if(ApplicationStatics.PLAYERMODEL.getHpPlayer()<=0){
+				tempStr = "You lose, game over!";
+			}else{
+				tempStr = "You win!";
+			}
+			JFrame frame = new JFrame();
+			
+			JOptionPane.showMessageDialog(frame, tempStr);
 			Game.getInstance().stop();
+			
 		}
 
 	}

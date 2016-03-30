@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import com.app.towerDefense.models.BasicCritter;
 import com.app.towerDefense.models.CritterFactory;
 import com.app.towerDefense.models.CritterType;
 import com.app.towerDefense.models.PlayerModel;
@@ -36,6 +37,7 @@ public class GameInfoPanel extends JPanel implements Observer {
 	private JLabel waveLabel;
 	private JLabel critterLabel;
 	private JButton critterIconButton;
+	private CritterType tempCritter;
 
 	/**
 	 * Constructor
@@ -109,7 +111,7 @@ public class GameInfoPanel extends JPanel implements Observer {
 		waveLabel.setFont(new Font("Serif", Font.BOLD, 12));
 		waveLabel.setHorizontalAlignment(JLabel.CENTER);
 
-		CritterType tempCritter = CritterFactory
+		tempCritter = CritterFactory
 				.getCritterfromFactory("BasicCritter");
 		String s = "<html>Critter: Zomby x"
 				+ ApplicationStatics.PLAYERMODEL.getGameWave() * 2
@@ -143,7 +145,10 @@ public class GameInfoPanel extends JPanel implements Observer {
 				+ ((PlayerModel) new_o).getSunCurrency());
 		hpLabel.setText("HP " + ((PlayerModel) new_o).getHpPlayer());
 		waveLabel.setText("WAVE: " + ((PlayerModel) new_o).getGameWave());
-		critterLabel.setText("<html>Critter: Zomby x 5<br>Health: 50</html>");
+		String s = "<html>Critter: Zomby x"
+				+ ApplicationStatics.PLAYERMODEL.getGameWave() * 2
+				+ "<br>Health: " + tempCritter.getActualHealth() + "</html>";
+		critterLabel.setText(s);
 	}
 
 }

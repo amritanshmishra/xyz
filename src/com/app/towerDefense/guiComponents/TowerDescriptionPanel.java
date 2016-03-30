@@ -304,8 +304,8 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 				.getTowerlevel()));
 		labelStatsTower[4].setText(Integer.toString(new_tower_models
 				.getTowerPower()));
-		labelStatsTower[7].setText(Integer.toString(new_tower_models
-				.getTowerRange()));
+		labelStatsTower[7].setText(Double.toString((double)new_tower_models
+				.getTowerRange()/100));
 		labelStatsTower[10].setText(Integer.toString(new_tower_models
 				.getTowerFireRate()));
 		labelStatsTower[13].setText(new_tower_models.getSpecialEffect());
@@ -320,14 +320,14 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 
 		if (ApplicationStatics.SET_TOWER_DESCR_VISIBLE) {
 			labelStatsTower[2].setText(Integer.toString(new_tower_models
-					.getTowerlevel() + 1));
+					.getTowerlevel() + new_tower_models.getTowerlevelUpgrade()));
 			labelStatsTower[5].setText(Integer.toString(new_tower_models
-					.getTowerPower() * 2));
-			labelStatsTower[8].setText(Integer.toString(new_tower_models
-					.getTowerRange() + 1));
+					.getTowerPower() + new_tower_models.getTowerPowerUpgrade()));
+			labelStatsTower[8].setText(Double.toString((double)(new_tower_models
+					.getTowerRange() + new_tower_models.getTowerFireRangeUpgrade())/100));
 			labelStatsTower[11].setText(Integer.toString(new_tower_models
-					.getTowerFireRate() + 2));
-			labelStatsTower[14].setText(Integer.toString(0));
+					.getTowerFireRate() + new_tower_models.getTowerFireRateUpgrade()));
+			labelStatsTower[14].setText(new_tower_models.getSpecialEffect());
 			labelStatsTower[17].setText(Integer.toString((int) (new_tower_models
 					.getTowerUpgradeCost())));
 			sellBuyTowerButton.setText("SELL");

@@ -51,17 +51,6 @@ public interface CritterType extends Observable {
 	public boolean calculatePath();
 
 	/**
-	 * Sets blocks parameters. Blocks are buttons on the map This method allows
-	 * us to set the block width and height
-	 * 
-	 * @param new_w
-	 *            width
-	 * @param new_h
-	 *            height
-	 */
-	public void setBlocksParams(int new_w, int new_h);
-
-	/**
 	 * Returns the image for the critter
 	 * 
 	 * @return critter image
@@ -97,17 +86,6 @@ public interface CritterType extends Observable {
 	 */
 	public void setID(int new_id);
 
-	/**
-	 * this method gets the block width on map panel
-	 * @return block width
-	 */
-	public int getBlockW();
-
-	/**
-	 * this method gets the block height on map panel
-	 * @return block height
-	 */
-	public int getBlockH();
 	
 	/**
 	 * This method decrease the critter life by amount given
@@ -122,5 +100,44 @@ public interface CritterType extends Observable {
 	 */
 	public int getValue();
 	
+	/**
+	 * This method returns the speed value of the critter
+	 * @return speed value
+	 */
+	public int getSpeed();
+	
+	/**
+	 * This method decreases the speed value of the critter
+	 */
+	public void slowSpeed();
+	
+	/**
+	 * This method burns the critter for amount after being hit by burning tower
+	 * @param new_amount amount to burn
+	 */
+	public void burnHealth(int new_amount);
 
+	/**
+	 * This method kills critter if health reached zero and deletes the object
+	 * @return true if critter is killed
+	 */
+	public boolean killCritter();
+	
+	/**
+	 * This method splashes the damage around the critter to near by critters
+	 * @param new_amount amount of damage to be splashed
+	 */
+	public void splashDamage(int new_amount);
+	
+	/**
+	 * This method returns the critter health bar object
+	 * @return critter health bar object
+	 */
+	public CritterHealthBar getHealthBar();
+	
+	/**
+	 * This method returns the boolean when we can draw the splash area circle
+	 * @return true if splash effect has occurred
+	 */
+	public boolean getShowSplashArea();
 }

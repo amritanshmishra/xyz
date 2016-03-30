@@ -7,10 +7,14 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import com.app.towerDefense.models.BasicCritter;
 import com.app.towerDefense.models.CritterFactory;
 import com.app.towerDefense.models.CritterType;
 import com.app.towerDefense.models.MapModel;
@@ -27,11 +31,6 @@ public class MapPanel extends JPanel {
 
 	private static final long serialVersionUID = -9082005090002375868L;
 
-	int panelWidth;
-	int panelHeight;
-	int blockWidth;
-	int blockHeight;
-
 	boolean isInitialCond = true;
 	// Critter entry point co-ordinates
 	int xEntry = 0;
@@ -47,18 +46,18 @@ public class MapPanel extends JPanel {
 	MapModel mapModel;
 	// Variable to create number of critter based on game levels
 	int wave = 2;
-	static ArrayList<CritterType> critter = new ArrayList<CritterType>();
+	public static ArrayList<CritterType> critter = new ArrayList<CritterType>();
 
 	public static Graphics graphics;
 
 	/**
 	 * Parameterized constructor for Map Panel
 	 * 
-	 * @param new_mapModel map model object
+	 * @param new_mapModel
+	 *            map model object
 	 */
 	public MapPanel(MapModel new_mapModel) {
 		mapModel = new_mapModel;
-
 	}
 
 	/**
@@ -77,10 +76,7 @@ public class MapPanel extends JPanel {
 					if (isInitialCond) {
 						panelInit();
 						for (int i = 0; i < wave; i++) {
-							critter.add(CritterFactory
-									.getCritterfromFactory("BasicCritter"));
-							critter.get(i).setBlocksParams(blockWidth,
-									blockHeight);
+							critter.add(CritterFactory.getCritterfromFactory("BasicCritter"));
 							critter.get(i).setXY(xEntry, yEntry);
 							critter.get(i).setXYExit(xExit, yExit);
 
@@ -98,19 +94,43 @@ public class MapPanel extends JPanel {
 								// System.out.println("i : " + i + ", size : " +
 								// critter.size());
 
-								new_graphics.drawImage(critter.get(i)
-										.getCritterImage(), critter.get(i)
-										.getX(), critter.get(i).getY(), 30, 30,
-										null);
+								new_graphics.drawImage(critter.get(i).getCritterImage(), critter.get(i).getX(),
+										critter.get(i).getY(), 30, 30, null);
 
-								if (multipleCriiterCounter < (i + 1) * 30) {
+								if (critter.get(i).getShowSplashArea()) {
+
+									// Ellipse2D ellipse2 = new
+									// Ellipse2D.Double(critter.get(i).getX()-ApplicationStatics.BLOCK_WIDTH/2,critter.get(i).getY()-ApplicationStatics.BLOCK_HEIGHT/2,ApplicationStatics.BLOCK_WIDTH,ApplicationStatics.BLOCK_HEIGHT);
+									Ellipse2D ellipse2 = new Ellipse2D.Double(critter.get(i).getX() - 27,
+											critter.get(i).getY(), ApplicationStatics.BLOCK_WIDTH,
+											ApplicationStatics.BLOCK_HEIGHT);
+									Graphics2D g3 = (Graphics2D) graphics;
+									((Graphics2D) graphics).setStroke(new BasicStroke(1));
+									graphics.setColor(Color.RED);
+									g3.draw(ellipse2);
+								}
+								graphics.setColor(Color.GREEN);
+								((Graphics2D) graphics).setStroke(new BasicStroke(5));
+								graphics.drawLine((critter.get(i)).getHealthBar().x, (critter.get(i)).getHealthBar().y,
+										(critter.get(i)).getHealthBar().xMid, (critter.get(i)).getHealthBar().y);
+								if (critter.get(i).getHealthBar().xMid != critter.get(i).getHealthBar().xEnd) {
+									graphics.setColor(Color.RED);
+									graphics.drawLine((critter.get(i)).getHealthBar().xMid,
+											(critter.get(i)).getHealthBar().y, (critter.get(i)).getHealthBar().xEnd,
+											(critter.get(i)).getHealthBar().y);
+
+									// System.out.println("x:"+(critter.get(i)).getHealthBar().x+"
+									// xMid:"+(critter.get(i)).getHealthBar().xMid+"
+									// xEnd:"+(critter.get(i)).getHealthBar().xEnd);
+								}
+
+								if (multipleCriiterCounter < (i + 1) * 15) {
 									// System.out.println("Inside Counter");
 									break;
 								}
 							} else {
-								if (ApplicationStatics.PLAYERMODEL
-										.decrementHealth(1)) {
-									System.out.println("Player is still alive");
+								if (ApplicationStatics.PLAYERMODEL.decrementHealth(1)) {
+									System.out.println("Play smarter, you still have a chance!");
 								} else {
 									ApplicationStatics.GAME_OVER = true;
 									// Game.getInstance().stop();
@@ -124,16 +144,18 @@ public class MapPanel extends JPanel {
 					}
 
 					for (int k = 0; k < PlayerModel.towerModelArray.size(); k++) {
-						Ellipse2D ellipse = new Ellipse2D.Double(
-								PlayerModel.towerModelArray.get(k).getXT(),
-								(int) PlayerModel.towerModelArray.get(k)
-										.getYT(),
-								ApplicationStatics.BLOCK_WIDTH * 3,
-								ApplicationStatics.BLOCK_HEIGHT * 3);
+						double xt = PlayerModel.towerModelArray.get(k).getXT();
+						double yt = PlayerModel.towerModelArray.get(k).getYT();
+						double dW = PlayerModel.towerModelArray.get(k).getDTW();
+						double dH = PlayerModel.towerModelArray.get(k).getDTH();
+						Ellipse2D ellipse = new Ellipse2D.Double(xt, yt, dW, dH);
 						Graphics2D g2 = (Graphics2D) graphics;
-						((Graphics2D) graphics).setStroke(new BasicStroke(2));
+						((Graphics2D) graphics).setStroke(new BasicStroke(1));
 						graphics.setColor(Color.BLACK);
 						g2.draw(ellipse);
+						// System.out.println("tower:"+
+						// PlayerModel.towerModelArray.get(k).towerID+"
+						// xt:"+xt+" yt:"+yt);
 						// System.out.println(PlayerModel.towerModelArray.get(k).getXT()+"
 						// "+ PlayerModel.towerModelArray.get(k).getYT()+" "+
 						// PlayerModel.towerModelArray.get(k).getDT()+" "+
@@ -141,20 +163,24 @@ public class MapPanel extends JPanel {
 
 					}
 
-					Graphics2D g2 = (Graphics2D) new_graphics;
-					g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-							RenderingHints.VALUE_ANTIALIAS_ON);
-					// int w = getWidth();
-					// int h = getHeight();
-					g2.setPaint(Color.red);
+					/*
+					 * Graphics2D g2 = (Graphics2D) new_graphics;
+					 * g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+					 * RenderingHints.VALUE_ANTIALIAS_ON);
+					 * g2.setPaint(Color.red);
+					 */
 
 					multipleCriiterCounter++;
 
 					if (critter.size() == 0 && !ApplicationStatics.GAME_OVER) {
-						ApplicationStatics.START_WAVE = false;
-						isInitialCond = true;
-						multipleCriiterCounter = 0;
-						ApplicationStatics.PLAYERMODEL.incGameWave();
+						if (ApplicationStatics.PLAYERMODEL.getGameWave() == 5) {
+							ApplicationStatics.GAME_OVER = true;
+						} else {
+							ApplicationStatics.START_WAVE = false;
+							isInitialCond = true;
+							multipleCriiterCounter = 0;
+							ApplicationStatics.PLAYERMODEL.incGameWave();
+						}
 					}
 				}
 			}
@@ -162,6 +188,7 @@ public class MapPanel extends JPanel {
 		} catch (IndexOutOfBoundsException e) {
 			JOptionPane.showMessageDialog(null, "Wave Completed");
 			if (critter.size() == 0 && !ApplicationStatics.GAME_OVER) {
+
 				ApplicationStatics.START_WAVE = false;
 				isInitialCond = true;
 				multipleCriiterCounter = 0;
@@ -189,8 +216,7 @@ public class MapPanel extends JPanel {
 	 * @param new_critterId
 	 *            current critter id
 	 */
-	public static void drawLines(int new_tx, int new_ty, int new_cx,
-			int new_cy, String new_tower_types, boolean new_isdied,
+	public static void drawLines(int new_tx, int new_ty, int new_cx, int new_cy, String new_tower_types,
 			int new_critterId) {
 		// graphics = (Graphics2D) graphics;
 		if (new_tower_types == "Burner") {
@@ -207,19 +233,10 @@ public class MapPanel extends JPanel {
 			// ((Graphics2D) graphics).setStroke(new BasicStroke(10));
 		}
 
-		// ((Graphics2D) graphics).draw(new
-		// Line2D.Float(new_tx,new_ty,new_cx,new_cy));
-		((Graphics2D) graphics).setStroke(new BasicStroke(10));
+		((Graphics2D) graphics).setStroke(new BasicStroke(3));
+		
 		graphics.drawLine(new_tx, new_ty, new_cx, new_cy);
-
-		if (!new_isdied) {
-			for (int j = 0; j < critter.size(); j++) {
-				if (critter.get(j).getCritterId() == new_critterId) {
-					critter.remove(j);
-				}
-			}
-
-		}
+	
 	}
 
 	/**
@@ -229,29 +246,21 @@ public class MapPanel extends JPanel {
 		if (mapModel != null) {
 			ApplicationStatics.PATH_ARRAY1 = mapModel.getMapRoutPathList();
 			// System.out.println("Map Model is not null");
-			panelWidth = this.getWidth();
-			panelHeight = this.getHeight();
-			blockWidth = panelWidth / mapModel.getMapWidth();
-			blockHeight = panelHeight / mapModel.getMapHeight();
 
-			ApplicationStatics.BLOCK_WIDTH = blockWidth;
-			ApplicationStatics.BLOCK_HEIGHT = blockHeight;
+			xEntry = ApplicationStatics.PATH_ARRAY1.get(0).y * ApplicationStatics.BLOCK_WIDTH;
+			yEntry = ApplicationStatics.PATH_ARRAY1.get(0).x * ApplicationStatics.BLOCK_HEIGHT;
 
-			xEntry = ApplicationStatics.PATH_ARRAY1.get(0).y * blockWidth;
-			yEntry = ApplicationStatics.PATH_ARRAY1.get(0).x * blockHeight;
+			xExit = ApplicationStatics.PATH_ARRAY1.get(ApplicationStatics.PATH_ARRAY1.size() - 1).y
+					* ApplicationStatics.BLOCK_WIDTH;
+			yExit = ApplicationStatics.PATH_ARRAY1.get(ApplicationStatics.PATH_ARRAY1.size() - 1).x
+					* ApplicationStatics.BLOCK_HEIGHT;
 
-			xExit = ApplicationStatics.PATH_ARRAY1
-					.get(ApplicationStatics.PATH_ARRAY1.size() - 1).y
-					* blockWidth;
-			yExit = ApplicationStatics.PATH_ARRAY1
-					.get(ApplicationStatics.PATH_ARRAY1.size() - 1).x
-					* blockHeight;
-
-			for (int k = 0; k < ApplicationStatics.PATH_ARRAY1.size(); k += 1) {
-				System.out.println(k + " : x="
-						+ ApplicationStatics.PATH_ARRAY1.get(k).x + " , y="
-						+ ApplicationStatics.PATH_ARRAY1.get(k).y);
-			}
+			/*
+			 * for (int k = 0; k < ApplicationStatics.PATH_ARRAY1.size(); k +=
+			 * 1) { System.out.println(k + " : x=" +
+			 * ApplicationStatics.PATH_ARRAY1.get(k).x + " , y=" +
+			 * ApplicationStatics.PATH_ARRAY1.get(k).y); }
+			 */
 
 			wave = 2 * ApplicationStatics.PLAYERMODEL.getGameWave();
 

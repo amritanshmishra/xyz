@@ -84,14 +84,14 @@ public class CritterTest {
 	/**
 	 * Test case for setting block parameters
 	 */
-	@Test
+	/*@Test
 	public void testSetBlocksParams() {
 
 		basicCritter.setBlocksParams(400, 300);
 
 		assertEquals(400, basicCritter.getBlockW());
 		assertEquals(300, basicCritter.getBlockH());
-	}
+	}*/
 
 	/**
 	 * Test case for x and y co-rdinates for critters
@@ -111,7 +111,7 @@ public class CritterTest {
 	public void testCalculateCritterPath() {
 		boolean isException = true;
 		basicCritter.setXY(6, 6);
-		basicCritter.setBlocksParams(400, 300);
+	//	basicCritter.setBlocksParams(400, 300);
 
 		mapModel = (new FileStorage()).openMapFile(file);
 		ApplicationStatics.PATH_ARRAY1 = mapModel.getMapRoutPathList();
