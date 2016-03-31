@@ -63,6 +63,7 @@ public class ApplicationStatics {
 	public static final String LOG_VIEWER_MODE_CURRENT_SESSION = "CURRENT SESSION";
 	public static final String LOG_VIEWER_MODE_TOWERS = "TOWERS";
 	public static final String LOG_VIEWER_MODE_TOWERS_COLLECTION = "TOWERS COLLECTION";
+	public static final String LOG_VIEWER_MODE_MAP_PLAYERS_STATISTICS = "Map Players Statistics";
 
 	// MENU Related Items
 	public static final String MENU_FILE = "FILE";
@@ -120,7 +121,7 @@ public class ApplicationStatics {
 	public static final String MSG_CANCELED_MAP_CREATION = "Canceled map creation.";
 	public static final String MSG_FILE_SELECT = "%s File %s selected.";
 	public static final String MSG_CLOSING_GAME_APPLICATION = "Closing game application.";
-	public static final String MSG_MENU_SELECTED = "Breadcrumbs Menu Selected: %s > %s .";
+	public static final String MSG_MENU_SELECTED = "Breadcrumbs Menu Selected: %s > %s.";
 	public static final String MSG_GAME_PLAYER_NAME = "Game Player Name";
 	
 	

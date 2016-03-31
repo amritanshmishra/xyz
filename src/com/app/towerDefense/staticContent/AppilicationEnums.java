@@ -47,7 +47,7 @@ public class AppilicationEnums {
 	 * 
 	 */
 	public enum E_LogViewerState {
-		GlobalLog, CurrentSessionLog, TowerLog, TowerCollectionLog
+		GlobalLog, CurrentSessionLog, TowerLog, TowerCollectionLog, MapPlayersStatistics
 	}
 
 }

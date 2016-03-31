@@ -20,6 +20,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import org.apache.log4j.Logger;
 
@@ -354,31 +356,45 @@ public class JPanelComponent implements Observer {
 		//Tabs
 		JTabbedPane jTabbedPane = new JTabbedPane();
 		panel.add(jTabbedPane);
-	    JPanel tabPanelGloble = new JPanel();
+	    
+		//Tabs Panel
+		JPanel tabPanelGloble = new JPanel();
 	    JPanel tabPanelCurrentSession = new JPanel();	    
 	    JPanel tabPanelTowers = new JPanel();
 	    JPanel tabPanelTowersCollection = new JPanel();
+	    JPanel tabPanelMapPlayersStatistics = new JPanel();
 	    
-	    
+	    //TextArea for Displaying log data
 	    JTextArea txtAreaGloble = getJTextArea();
 	    JTextArea txtAreaCurrentSession = getJTextArea();
 	    JTextArea txtAreaTowers = getJTextArea();
 	    JTextArea txtAreaTowersCollection = getJTextArea();
+	    JTextArea txtAreaMapPlayersStatistics = getJTextArea();
 		
-	    	    
+	    //Add Scroll bar to tabs	    
 	    tabPanelGloble.add(getJScrollPane(txtAreaGloble));	    
 	    tabPanelCurrentSession.add(getJScrollPane(txtAreaCurrentSession));
 	    tabPanelTowers.add(getJScrollPane(txtAreaTowers));
 	    tabPanelTowersCollection.add(getJScrollPane(txtAreaTowersCollection));
+	    tabPanelMapPlayersStatistics.add(txtAreaMapPlayersStatistics);
 	    
+	    //add Panels to Tabs
 	    jTabbedPane.addTab(ApplicationStatics.LOG_VIEWER_MODE_GLOBLE, tabPanelGloble);
 	    jTabbedPane.addTab(ApplicationStatics.LOG_VIEWER_MODE_CURRENT_SESSION, tabPanelCurrentSession);
 	    jTabbedPane.addTab(ApplicationStatics.LOG_VIEWER_MODE_TOWERS, tabPanelTowers);
 	    jTabbedPane.addTab(ApplicationStatics.LOG_VIEWER_MODE_TOWERS_COLLECTION, tabPanelTowersCollection);
-		
+	    jTabbedPane.addTab(ApplicationStatics.LOG_VIEWER_MODE_MAP_PLAYERS_STATISTICS, tabPanelMapPlayersStatistics);
+		    
+	    //Set Tab which is by default Opened
+	    jTabbedPane.setSelectedIndex(new_elog_viewer_state.ordinal());
+	    
+	    //Read Logs for Current Opeing Tab
 	    LogReader logReader = new  LogReader(new_log_file_path, new_elog_viewer_state.GlobalLog);
 	    txtAreaGloble.setText(logReader.read());
 		
+	  //initialized Tab Change event
+	    addTagChangeListner(jTabbedPane);
+	    
 		return panel;
 	}
 	
@@ -746,5 +762,17 @@ public class JPanelComponent implements Observer {
 	public JScrollPane getJScrollPane(JTextArea new_jtextarea)
 	{
 		return new JScrollPane(new_jtextarea);
+	}
+	
+	public void addTagChangeListner(JTabbedPane jTabbedPane ){
+		jTabbedPane.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if (e.getSource() instanceof JTabbedPane) {
+                    JTabbedPane pane = (JTabbedPane) e.getSource();
+                    System.out.println("Selected Tab Name : " + pane.getName()+", Selected paneNo : " + pane.getSelectedIndex());
+                }
+            }
+        });
 	}
 }

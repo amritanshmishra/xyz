@@ -19,6 +19,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import org.apache.log4j.Logger;
+
 import com.app.towerDefense.models.Tower;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 
@@ -42,6 +44,7 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 	private JButton strategyTowerButton;
 	private JButton logTowerButton;
 	private Tower tempTM;
+	final static Logger logger = Logger.getLogger(GameInfoPanel.class);
 
 	/**
 	 * Constructor
@@ -180,7 +183,7 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 								ApplicationStatics.SET_TOWER_DESCR_VISIBLE = false;
 								ApplicationStatics.CURRENT_SELECTED_TOWER = 0;
 							} else {
-								System.out.println("could not delete tower.");
+								logger.info("could not delete tower.");
 							}
 						}
 					}
@@ -195,7 +198,7 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			
-				System.out.println("Tower log button was clicked.");
+				logger.info("Tower log button was clicked.");
 				
 			}
 		});
@@ -210,16 +213,16 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("upgrade button was clicked!");
+				logger.info("upgrade button was clicked!");
 
-				// System.out.println("button coordinates= "
+				// logger.info("button coordinates= "
 				// +towerButtonDESCR.getName());
 
 				int balance = ApplicationStatics.PLAYERMODEL.getSunCurrency();
 
 				if (balance >= tempTM.getTowerUpgradeCost()) {
 					tempTM.upgradeTower();
-					System.out.println("Tower is upgraded successfully.");
+					logger.info("Tower is upgraded successfully.");
 					ApplicationStatics.PLAYERMODEL.subSunCurrency(tempTM
 							.getTowerUpgradeCost());
 					JFrame frame = new JFrame();
@@ -244,7 +247,7 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 		strategyTowerButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("strategy button was clicked!");
+				logger.info("strategy button was clicked!");
 
 				if (strategyTowerButton.getText() == "NearToEND") {
 					strategyTowerButton.setText("Weakest");
@@ -371,7 +374,7 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 		if (a < 4) {
 			updateTowerDscrPanel(ApplicationStatics.TOWER_MODELS[a]);
 		} else {
-			// System.out.println("inside else of update() TOWER DESCR PANEL");
+			// logger.info("inside else of update() TOWER DESCR PANEL");
 			updateTowerDscrPanel(tempTM);
 		}
 

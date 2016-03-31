@@ -16,6 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import org.apache.log4j.Logger;
+
 import com.app.towerDefense.models.BasicCritter;
 import com.app.towerDefense.models.CritterFactory;
 import com.app.towerDefense.models.CritterType;
@@ -39,6 +41,7 @@ public class GameInfoPanel extends JPanel implements Observer {
 	private JButton critterIconButton;
 	private CritterType tempCritter;
 
+	final static Logger logger = Logger.getLogger(GameInfoPanel.class);
 	/**
 	 * Constructor
 	 * 
@@ -89,7 +92,7 @@ public class GameInfoPanel extends JPanel implements Observer {
 			@Override
 			public void actionPerformed(ActionEvent new_event) {
 
-				System.out.println("start_wave is clicked");
+				logger.info("Wave is stated.");
 
 				if (!ApplicationStatics.START_WAVE) {
 
