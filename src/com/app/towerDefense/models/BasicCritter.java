@@ -291,7 +291,7 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	 * @param new_amount
 	 *            amount health to burn
 	 */
-	public void burnHealth(int new_amount) {
+	public void burnHealth(final int new_amount) {
 		timerFreezing.schedule(new TimerTask() {
 			@Override
 			public void run() {

@@ -20,6 +20,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import org.apache.log4j.Logger;
+
 import com.app.towerDefense.gameLogic.Map;
 import com.app.towerDefense.guisystem.Game;
 import com.app.towerDefense.guisystem.LogViewer;
@@ -43,6 +45,8 @@ public class JMenuBarComponent {
 	private BottomGamePanelView bottomGamePanel;
 	private JPanelComponent panelComponent;
 
+	//Log
+	final static Logger logger = Logger.getLogger(JMenuBarComponent.class);
 	/**
 	 * this Function Implement the Menu bar for Gmae Main Window
 	 * 
@@ -101,6 +105,7 @@ public class JMenuBarComponent {
 			@Override
 			public void actionPerformed(ActionEvent new_e) {
 				if (new_e.getSource().equals(menuItemPlay)) {
+					logger.info(String.format(ApplicationStatics.MSG_MENU_SELECTED, ApplicationStatics.MENU_FILE, ApplicationStatics.MENU_ITEM_PLAY));
 					ApplicationStatics.START_WAVE = false;
 					JFileChooser fileChooser = new JFileChooserComponent()
 							.getJFileChooser(E_JFileChooserMode.Open);
@@ -109,6 +114,7 @@ public class JMenuBarComponent {
 						File file = fileChooser.getSelectedFile();
 						MapModel mapModel = (new com.app.towerDefense.utilities.FileStorage())
 								.openMapFile(file);
+						logger.info( String.format(ApplicationStatics.MSG_FILE_SELECT, "Map"," Name:"+file.getName()+" "));
 						if (mapModel != null) {
 							if (mapModel.mapSecret.contains(ApplicationStatics.MAP_SECRECT_TAG)) {								
 								getPlayerName();								
@@ -148,20 +154,24 @@ public class JMenuBarComponent {
 								ApplicationStatics.BLOCK_WIDTH = gameMapPanel.getWidth() / mapModel.getMapWidth();;
 								ApplicationStatics.BLOCK_HEIGHT = gameMapPanel.getHeight() / mapModel.getMapHeight();
 							//	System.out.println("HERERER: "+ ApplicationStatics.BLOCK_WIDTH);
-								
+								logger.info(String.format(ApplicationStatics.MSG_MAP_FILE_LOADED_SAVED, "Loaded") );
 							} else {
+								logger.info(ApplicationStatics.MSG_IN_VALID_MAP);
 								JOptionPane.showMessageDialog(null,
-										"In valid Map File.");
+										ApplicationStatics.MSG_IN_VALID_MAP);
 							}
 
-						} else
+						} else{
+							logger.info(ApplicationStatics.MSG_UNABLE_TO_TDM_OPEN_FILE);
 							JOptionPane.showMessageDialog(null,
-									"Unable to .tdm open File");
+									ApplicationStatics.MSG_UNABLE_TO_TDM_OPEN_FILE);
+						}
 					} else {
-						JOptionPane.showMessageDialog(null, "No File Selected");
+						logger.info(ApplicationStatics.MSG_NO_FILE_SELECTED);
+						JOptionPane.showMessageDialog(null, ApplicationStatics.MSG_NO_FILE_SELECTED);
 					}
 				} else if (new_e.getSource().equals(menuItemCreateMap)) {
-
+					logger.info(String.format(ApplicationStatics.MSG_MENU_SELECTED, ApplicationStatics.MENU_FILE, ApplicationStatics.MENU_ITEM_CREATE_MAP));
 					final JTextField txtX = new JTextField();
 					final JTextField txtY = new JTextField();
 
@@ -192,28 +202,36 @@ public class JMenuBarComponent {
 					Object[] message = { "Size of X:", txtX, "Size of Y:", txtY };
 
 					int option = JOptionPane.showConfirmDialog(null, message,
-							"SET SIZE OF MAP", JOptionPane.OK_CANCEL_OPTION);
+							ApplicationStatics.TITLE_MSG_SET_SIZE_OF_MAP, JOptionPane.OK_CANCEL_OPTION);
 					if (option == JOptionPane.OK_OPTION) {
 						String x = txtX.getText().trim();
 						String y = txtY.getText().trim();
 
-						if (x.length() == 0)
+						if (x.length() == 0){
+							logger.info(String.format(ApplicationStatics.MSG_X_MAY_NOT_EMPTY,"X"));
 							JOptionPane.showMessageDialog(null,
-									"Size of X May not Be Empty");
+									String.format(ApplicationStatics.MSG_X_MAY_NOT_EMPTY,"X"));
+						}
 
-						else if (y.length() == 0)
+						else if (y.length() == 0){
+							logger.info(String.format(ApplicationStatics.MSG_X_MAY_NOT_EMPTY,"Y"));
 							JOptionPane.showMessageDialog(null,
-									"Size of Y May not Be Empty");
+									String.format(ApplicationStatics.MSG_X_MAY_NOT_EMPTY,"Y"));
+						}
 
 						else if (Integer.parseInt(x) < 1
-								|| Integer.parseInt(x) > 30)
+								|| Integer.parseInt(x) > 30){
+							logger.info(String.format(ApplicationStatics.MSG_X_MUST_BE_IN_RANGE,"X"));
 							JOptionPane.showMessageDialog(null,
-									"Size of X must Lie between 1 - 30");
+									String.format(ApplicationStatics.MSG_X_MUST_BE_IN_RANGE,"X"));
+						}
 
 						else if (Integer.parseInt(y) < 1
-								|| Integer.parseInt(y) > 30)
+								|| Integer.parseInt(y) > 30){
+							logger.info(String.format(ApplicationStatics.MSG_X_MUST_BE_IN_RANGE,"Y"));
 							JOptionPane.showMessageDialog(null,
-									"Size of Y must Lie between 1 - 30");
+									String.format(ApplicationStatics.MSG_X_MUST_BE_IN_RANGE,"Y"));
+						}
 
 						else {
 							MapModel mapModel = new MapModel();
@@ -228,10 +246,11 @@ public class JMenuBarComponent {
 									mapModel, E_MapEditorMode.Create);
 						}
 					} else {
-						System.out.println("Login canceled");
+						logger.info(ApplicationStatics.MSG_CANCELED_MAP_CREATION);
 					}
 
 				} else if (new_e.getSource().equals(menuItemOpenMap)) {
+					logger.info(String.format(ApplicationStatics.MSG_MENU_SELECTED, ApplicationStatics.MENU_FILE, ApplicationStatics.MENU_ITEM_OPEN_MAP));
 					JFileChooser fileChooser = new JFileChooserComponent()
 							.getJFileChooser(E_JFileChooserMode.Open);
 					int result = fileChooser.showOpenDialog(new_jframe);
@@ -239,8 +258,9 @@ public class JMenuBarComponent {
 						File file = fileChooser.getSelectedFile();
 						MapModel mapModel = (new com.app.towerDefense.utilities.FileStorage())
 								.openMapFile(file);
+						logger.info( String.format(ApplicationStatics.MSG_FILE_SELECT, "Map"," Name:"+file.getName()+" "));
 						if (mapModel != null) {
-							if (mapModel.mapSecret.contains("_Team5")) {
+							if (mapModel.mapSecret.contains(ApplicationStatics.MAP_SECRECT_TAG)) {
 								new MapEditor(
 										new_jframe,
 										ApplicationStatics.TITLE_MAP_EDITOR,
@@ -248,25 +268,33 @@ public class JMenuBarComponent {
 										ApplicationStatics.CHILD_POPUP_WINDOW_HEIGHT,
 										mapModel, E_MapEditorMode.Open);
 							} else {
+								logger.info(ApplicationStatics.MSG_IN_VALID_MAP);
 								JOptionPane.showMessageDialog(null,
-										"In valid Map File.");
+										ApplicationStatics.MSG_IN_VALID_MAP);
 							}
 
-						} else
+						} else{
+							logger.info(ApplicationStatics.MSG_UNABLE_TO_TDM_OPEN_FILE);
 							JOptionPane.showMessageDialog(null,
-									"Unable to .tdm open File");
+									ApplicationStatics.MSG_UNABLE_TO_TDM_OPEN_FILE);
+						}
 					} else {
-						JOptionPane.showMessageDialog(null, "No File Selected");
+						logger.info(ApplicationStatics.MSG_NO_FILE_SELECTED);
+						JOptionPane.showMessageDialog(null, ApplicationStatics.MSG_NO_FILE_SELECTED);
 					}
 				} else if (new_e.getSource().equals(menuItemExit)) {
+					logger.info(String.format(ApplicationStatics.MSG_MENU_SELECTED, ApplicationStatics.MENU_FILE, ApplicationStatics.MENU_ITEM_EXIT));
+					logger.info(ApplicationStatics.MSG_CLOSING_GAME_APPLICATION);
 					System.exit(0);
 				} else if (new_e.getSource().equals(menuItemAbout)) {
+					logger.info(String.format(ApplicationStatics.MSG_MENU_SELECTED, ApplicationStatics.MENU_HELP, ApplicationStatics.MENU_ITEM_ABOUT));
 					JOptionPane
 							.showMessageDialog(
 									null,
 									"**** Tower Defense Game **** \r\n Version 1.0 Build 1 \r\n Developed By Team5 \r\n All rights reserved  � Fall 2016");
 				}
 				else if (new_e.getSource().equals(menuItemLogViewer)) {
+					logger.info(String.format(ApplicationStatics.MSG_MENU_SELECTED, ApplicationStatics.MENU_VIEW, ApplicationStatics.MENU_ITEM_LOG_VIEWER));
 					new LogViewer(
 							new_jframe,
 							ApplicationStatics.TITLE_LOG_VIEWER,
@@ -313,18 +341,23 @@ public class JMenuBarComponent {
 			@Override
 			public void actionPerformed(ActionEvent new_event) {
 				if (new_event.getSource().equals(menuItemSave)) {
+					logger.info(String.format(ApplicationStatics.MSG_MENU_SELECTED, ApplicationStatics.MENU_FILE, ApplicationStatics.MENU_ITEM_SAVE));
 					String MapValidationStatus = (new Map())
 							.mapValidations(new_mapModel);
 
-					if (MapValidationStatus != null)
+					if (MapValidationStatus != null){
+						logger.info("Map Validation Failed, "+MapValidationStatus);
 						JOptionPane
 								.showMessageDialog(null, MapValidationStatus);
+					}
 					else {
 						JFileChooser fileChooser = new JFileChooserComponent()
 								.getJFileChooser(E_JFileChooserMode.Save);
 						int result = fileChooser.showSaveDialog(null);
 						if (result == JFileChooser.APPROVE_OPTION) {
 							File file = fileChooser.getSelectedFile();
+							logger.info( String.format(ApplicationStatics.MSG_FILE_SELECT, "Map"," Name:"+file.getName()+" "));
+							
 							new_mapModel.setMapSecret();
 
 							new_mapModel
@@ -332,15 +365,18 @@ public class JMenuBarComponent {
 							new_mapModel
 									.setMapRoutBoundaries(ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME);
 							new_mapModel.getMapRoutPathList();
-
+							
 							String msg = new FileStorage().saveMapFile(file,
 									new_mapModel);
-							if (msg.contains("SUCCESS")) {
+							if (msg.contains(ApplicationStatics.STATUS_SUCCESS)) {
+								logger.info(String.format(ApplicationStatics.MSG_MAP_FILE_LOADED_SAVED, "saved"));
 								JOptionPane.showMessageDialog(null,
-										"File Save Successfuly.");
+										String.format(ApplicationStatics.MSG_MAP_FILE_LOADED_SAVED, "saved"));
 								closeFrame(new_jframe);
-							} else
+							} else{
+								logger.info("Saving failed, "+msg);
 								JOptionPane.showMessageDialog(null, msg);
+							}
 						}
 					}
 				}
@@ -366,17 +402,18 @@ public class JMenuBarComponent {
 		ApplicationStatics.GAME_PLAYER_NAME="";
 		JTextField firstName = new JTextField();
 		final JComponent[] jComponentArray = new JComponent[] {
-				new JLabel("Enter Name"),
+				new JLabel(ApplicationStatics.MSG_GAME_PLAYER_NAME),
 				firstName
 		};
 		JOptionPane.showMessageDialog(null, jComponentArray, ApplicationStatics.getTitleGameWindow(), JOptionPane.PLAIN_MESSAGE);
 		if(firstName.getText().length() == 0){
-		    JOptionPane.showMessageDialog(null, "Please Player Name.", ApplicationStatics.getTitleGameWindow(),JOptionPane.WARNING_MESSAGE);
+		    JOptionPane.showMessageDialog(null, ApplicationStatics.MSG_GAME_PLAYER_NAME+" required.", ApplicationStatics.getTitleGameWindow(),JOptionPane.WARNING_MESSAGE);
 			getPlayerName();
 		}
 		else
 		{
 			ApplicationStatics.GAME_PLAYER_NAME= firstName.getText().replaceAll(" ", "_");
+			logger.info(ApplicationStatics.MSG_GAME_PLAYER_NAME+" : "+ApplicationStatics.GAME_PLAYER_NAME);
 			Game.getInstance().refreshGameFrameTitle();
 		}
 	}

@@ -70,11 +70,11 @@ public class ApplicationStatics {
 	public static final String MENU_VIEW = "VIEW";
 	public static final String MENU_ITEM_PLAY = "PLAY";
 	public static final String MENU_ITEM_CREATE_MAP = "CREATE MAP";
-	public static final String MENU_ITEM_OPEN_MAP = "OPEN_MAP";
+	public static final String MENU_ITEM_OPEN_MAP = "OPEN MAP";
 	public static final String MENU_ITEM_ABOUT = "ABOUT";
 	public static final String MENU_ITEM_SAVE = "SAVE";
 	public static final String MENU_ITEM_EXIT = "EXIT";
-	public static final String MENU_ITEM_LOG_VIEWER = "LOG_VIEWER ";
+	public static final String MENU_ITEM_LOG_VIEWER = "LOG VIEWER ";
 	
 	//Logs
 	private static String LOG_CURRENT_SESSION_TAG = "";
@@ -104,6 +104,24 @@ public class ApplicationStatics {
 	public static final String IMAGE_PATH_CRITTER_BURN = "images/burn.gif";
 	public static final String IMAGE_PATH_CRITTER_SPLASH = "images/splash.gif";
 	
+	//Popup Title
+	public static final String TITLE_MSG_SET_SIZE_OF_MAP= "SET SIZE OF MAP";
+	
+	//Status
+	public static final String STATUS_SUCCESS= "SUCCESS";
+	
+	//Prompt Messages
+	public static final String MSG_IN_VALID_MAP = "In valid map file.";
+	public static final String MSG_UNABLE_TO_TDM_OPEN_FILE = "Unable to .tdm open file";
+	public static final String MSG_NO_FILE_SELECTED = "No file selected";
+	public static final String MSG_MAP_FILE_LOADED_SAVED = "Map file %s successfully!";
+	public static final String MSG_X_MAY_NOT_EMPTY = "Size of %s may not be empty";
+	public static final String MSG_X_MUST_BE_IN_RANGE = "Size of %s must Lie between 1 - 30";
+	public static final String MSG_CANCELED_MAP_CREATION = "Canceled map creation.";
+	public static final String MSG_FILE_SELECT = "%s File %s selected.";
+	public static final String MSG_CLOSING_GAME_APPLICATION = "Closing game application.";
+	public static final String MSG_MENU_SELECTED = "Breadcrumbs Menu Selected: %s > %s .";
+	public static final String MSG_GAME_PLAYER_NAME = "Game Player Name";
 	
 	
 	//Getter and Setter Sections

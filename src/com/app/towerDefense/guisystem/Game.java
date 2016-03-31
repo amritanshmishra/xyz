@@ -216,7 +216,7 @@ public class Game extends Canvas implements Runnable { // change 1
 			// mode map
 			// }
 		} else {
-			System.out.println("Game over");
+		//	System.out.println("Game over");
 		//	System.out.println("Game over : " + ApplicationStatics.GAME_OVER);
 		//	System.out.println("Start wave : " + ApplicationStatics.START_WAVE);
 			
@@ -230,7 +230,7 @@ public class Game extends Canvas implements Runnable { // change 1
 			
 			JOptionPane.showMessageDialog(frame, tempStr);
 			Game.getInstance().stop();
-			
+			logger.info("Game over: Result : "+tempStr);
 		}
 
 	}
