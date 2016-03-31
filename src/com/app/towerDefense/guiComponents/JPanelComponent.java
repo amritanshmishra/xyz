@@ -467,7 +467,7 @@ public class JPanelComponent implements Observer {
 				ApplicationStatics.CURRENT_SELECTED_TOWER = 4;
 
 				if (ApplicationStatics.HAS_BOUGHT_TOWER) {
-					System.out.println("The Button " + btn.getName()
+					logger.info("Tower Placcement Button " + btn.getName()
 							+ " is clicked");
 					if (!ApplicationStatics.PLAYERMODEL.towerModelArray
 							.isEmpty()) {

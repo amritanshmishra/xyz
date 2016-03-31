@@ -92,14 +92,11 @@ public class GameInfoPanel extends JPanel implements Observer {
 			@Override
 			public void actionPerformed(ActionEvent new_event) {
 
-				logger.info("Wave is stated.");
-
+				logger.info("Wave is started "+ApplicationStatics.PLAYERMODEL.getGameWave()+".");
 				if (!ApplicationStatics.START_WAVE) {
-
 					ApplicationStatics.START_WAVE = true;
 					// startWaveButton.setEnabled(false);
 				}
-
 			}
 		});
 
@@ -135,6 +132,12 @@ public class GameInfoPanel extends JPanel implements Observer {
 
 		this.add(leftInfoPanel, BorderLayout.WEST);
 		this.add(rightInfoPanel, BorderLayout.EAST);
+		
+		logger.info("Sun "+ ApplicationStatics.PLAYERMODEL.getSunCurrency()+", "
+				+"HP :"+ApplicationStatics.PLAYERMODEL.getHpPlayer()+", "
+				+"WAVE: " + ApplicationStatics.PLAYERMODEL.getGameWave()+", "
+				+ "Critter: Zomby x"+ (ApplicationStatics.PLAYERMODEL.getGameWave() * 2)+", "
+				+ "Health: " + tempCritter.getActualHealth()+".");
 
 	}
 
@@ -152,6 +155,11 @@ public class GameInfoPanel extends JPanel implements Observer {
 				+ ApplicationStatics.PLAYERMODEL.getGameWave() * 2
 				+ "<br>Health: " + tempCritter.getActualHealth() + "</html>";
 		critterLabel.setText(s);
+		logger.info("Sun :"+ ((PlayerModel) new_o).getSunCurrency()+", "
+				+"HP :"+((PlayerModel) new_o).getHpPlayer()+", "
+				+"WAVE: " + ((PlayerModel) new_o).getGameWave()+", "
+				+ "Critter: Zomby x"+ (ApplicationStatics.PLAYERMODEL.getGameWave() * 2)+", "
+				+ "Health: " + tempCritter.getActualHealth()+".");
 	}
 
 }

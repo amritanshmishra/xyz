@@ -21,8 +21,10 @@ import javax.swing.SwingConstants;
 
 import org.apache.log4j.Logger;
 
+import com.app.towerDefense.guisystem.LogViewer;
 import com.app.towerDefense.models.Tower;
 import com.app.towerDefense.staticContent.ApplicationStatics;
+import com.app.towerDefense.staticContent.AppilicationEnums.E_LogViewerState;
 
 /**
  * This class creates the view of tower description that shows the current
@@ -127,7 +129,7 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 
 				if (sellBuyTowerButton.getText() == "BUY"
 						&& ApplicationStatics.CURRENT_SELECTED_TOWER < 4) {
-
+					logger.info("BUY Button Clicked.");
 					int tempTCost = ApplicationStatics.TOWER_MODELS[ApplicationStatics.CURRENT_SELECTED_TOWER]
 							.getTowerCost();
 					int currentBalance = ApplicationStatics.PLAYERMODEL
@@ -144,14 +146,16 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 									.showMessageDialog(
 											frame,
 											"You have bought a tower.\n Place it ONLY on the YELLOW Part on the map please.");
+							logger.info("You have bought a tower.\n Place it ONLY on the YELLOW Part on the map please.");
 						}
 					} else {
 						JFrame frame = new JFrame();
 						JOptionPane.showMessageDialog(frame,
 								"You don't have enough suns for this tower.");
+						logger.info("You don't have enough suns for this tower.");
 					}
 				} else {
-
+					logger.info("Sell Button Clicked.");
 					int temp_x = tempTM.getX();
 					int temp_y = tempTM.getY();
 
@@ -177,8 +181,7 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 																w,
 																h,
 																java.awt.Image.SCALE_SMOOTH)));
-								System.out
-										.println("tower deleted successfully.");
+								logger.info("tower deleted successfully.");
 
 								ApplicationStatics.SET_TOWER_DESCR_VISIBLE = false;
 								ApplicationStatics.CURRENT_SELECTED_TOWER = 0;
@@ -199,7 +202,13 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 			public void actionPerformed(ActionEvent e) {
 			
 				logger.info("Tower log button was clicked.");
-				
+				new LogViewer(
+						null,
+						ApplicationStatics.TITLE_LOG_VIEWER,
+						ApplicationStatics.CHILD_POPUP_WINDOW_WIDTH,
+						ApplicationStatics.CHILD_POPUP_WINDOW_HEIGHT,
+						ApplicationStatics.LOG_File_PATH, 
+						E_LogViewerState.TowerLog);
 			}
 		});
 
