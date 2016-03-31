@@ -21,63 +21,61 @@ import javafx.beans.InvalidationListener;
  */
 public class BasicCritter extends java.util.Observable implements CritterType {
 
-	/**
-	 * current X and Y position of critter
-	 */
-	public int x, y;
-	public int directionX; // decides which direction critter moves
-	public int directionY;
-	private int i = 0;
-	private int blockW, blockH;
-	public Image image;
 	private int critterId;
-	int xNext; // x and y of the next path point
-	int yNext;
-	int xExit; // x and y points of the exit on the map
-	int yExit;
-	int speed;
-	int actualSpeed;
-	Timer timerFreezing;
-	String currentPath;
-	Timer timerBurning;
+	private Image image;
+	private int value;
+	private int actualHealth;
+	private int currentHealth;
+	private CritterHealthBar healthBar;
 	public boolean isDead = false;
-	public CritterHealthBar healthBar;
-	public boolean showSplashArea;
-	Timer timerSplash;
+	private String currentPath;
 
-	/**
-	 * value of critter
-	 */
-	public int value;
-	/**
-	 * Actual Health of critter
-	 */
-	public int actualHealth;
-	/**
-	 * Current Health of critter
-	 */
-	public int currentHealth;
+	// current X and Y position of critter
+	private int x, y;
+	// decides which direction critter moves
+	private int directionX; 
+	private int directionY;
+	private int i = 0;
+	// x and y of the next path point
+	private int xNext;
+	private int yNext;
+	// map blocks size
+	private int blockW, blockH;
 
+	private int speed;
+	private int actualSpeed;
+	private Timer timerFreezing;
+	private Timer timerBurning;
+	private Timer timerSplash;	
+	private boolean showSplashArea;
+	
+	
 	/**
-	 * Constructor to initialize the critter with image
+	 * Constructor of a critter based on the wave level parameter
+	 * @param new_waveLevel wave level parameter
 	 */
-	public BasicCritter() {
-		image = new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_CRITTER1).getImage();
-		actualHealth = 10;
+	public BasicCritter(int new_waveLevel) {
+		currentPath = ApplicationStatics.IMAGE_PATH_MAP_CRITTER1;	
+		image = new ImageIcon(currentPath).getImage();
+		
+		int multiplier = (new_waveLevel-1)/3+1;
+		actualHealth = 10*multiplier;
 		currentHealth = actualHealth;
-		value = 5;
-		actualSpeed = 2;
+		actualSpeed = (new_waveLevel-1)/5+2;
 		speed = actualSpeed;
+		value = actualHealth/2+actualSpeed;
+
 		blockW = ApplicationStatics.BLOCK_WIDTH;
 		blockH = ApplicationStatics.BLOCK_HEIGHT;
-		timerFreezing = new Timer();
-		currentPath = ApplicationStatics.IMAGE_PATH_MAP_CRITTER1;
-		timerBurning = new Timer();
 		
+		timerFreezing = new Timer();
+		timerBurning = new Timer();
+		timerSplash = new Timer();
+		showSplashArea = false;
+
 		healthBar = new CritterHealthBar();
 		this.addObserver(healthBar);
-		showSplashArea = false;
-		timerSplash = new Timer();
+
 	}
 
 	/**
@@ -94,6 +92,17 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	@Override
 	public int getY() {
 		return y;
+	}
+	
+	/**
+	 * This method sets the initial x and y coordinates for the critter
+	 */
+	@Override
+	public void setXY(int new_xEntry, int new_yEntry) {
+		// TODO Auto-generated method stub
+		x = new_xEntry;
+		y = new_yEntry;
+		// System.out.println("myX : "+x+" , myY : "+y);
 	}
 
 	/**
@@ -119,7 +128,84 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	public int getCritterId() {
 		return critterId;
 	}
+	
+	/**
+	 * This method sets the id for the basic critter
+	 */
+	@Override
+	public void setID(int new_id) {
+		critterId = new_id;
+	}
 
+	/**
+	 * This method returns the image used for the critter
+	 */
+	@Override
+	public Image getCritterImage() {
+		return image;
+	}
+	
+	/**
+	 * This method sets the critter image path to new one
+	 */
+	@Override
+	public void setCritterImage(String new_path) {
+		// TODO Auto-generated method stub
+		if (ApplicationStatics.IMAGE_PATH_MAP_CRITTER1 == currentPath) {
+			image = new ImageIcon(new_path).getImage();
+			currentPath = new_path;
+		}
+	}
+	
+	/**
+	 * This method returns the money value of a critter when it dies.
+	 * 
+	 * @return amount of currency
+	 */
+	public int getValue() {
+		return value;
+	}
+	
+	/**
+	 * This method returns the critter speed
+	 * 
+	 * @return speed value
+	 */
+	public int getSpeed() {
+		return speed;
+	}
+	
+	/**
+	 * This method sets the critter speed to original value
+	 */
+	public void setToNormalSpeed() {
+		speed = actualSpeed;
+	}
+	
+	@Override
+	public CritterHealthBar getHealthBar() {
+		// TODO Auto-generated method stub
+		return healthBar;
+	}
+
+	@Override
+	public boolean getShowSplashArea() {
+		// TODO Auto-generated method stub
+		return showSplashArea;
+	}
+	
+	@Override
+	public void addListener(InvalidationListener arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void removeListener(InvalidationListener arg0) {
+		// TODO Auto-generated method stub
+
+	}
+	
 	/**
 	 * Calculates the path on which the critter would move
 	 */
@@ -170,55 +256,6 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 
 	}
 
-	/**
-	 * This method returns the image used for the critter
-	 */
-	@Override
-	public Image getCritterImage() {
-		return image;
-	}
-
-	/**
-	 * This method sets the id for the basic critter
-	 */
-	@Override
-	public void setID(int new_id) {
-		critterId = new_id;
-	}
-
-	@Override
-	public void addListener(InvalidationListener arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void removeListener(InvalidationListener arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/**
-	 * This method sets the initial x and y coordinates for the critter
-	 */
-	@Override
-	public void setXY(int new_xEntry, int new_yEntry) {
-		// TODO Auto-generated method stub
-		x = new_xEntry;
-		y = new_yEntry;
-		// System.out.println("myX : "+x+" , myY : "+y);
-	}
-
-	/**
-	 * This method sets the exit x and y coordinates for the critter
-	 */
-	@Override
-	public void setXYExit(int new_xExit, int new_yExit) {
-		// TODO Auto-generated method stub
-		xExit = new_xExit;
-		yExit = new_yExit;
-	}
-
 	@Override
 	public boolean decreaseLife(int new_power) {
 		// TODO Auto-generated method stub
@@ -230,35 +267,6 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 		return true;
 	}
 
-	/**
-	 * This method returns the money value of a critter when it dies.
-	 * 
-	 * @return amount of currency
-	 */
-	public int getValue() {
-		return value;
-	}
-
-	/**
-	 * This method sets the critter image path to new one
-	 */
-	@Override
-	public void setCritterImage(String new_path) {
-		// TODO Auto-generated method stub
-		if (ApplicationStatics.IMAGE_PATH_MAP_CRITTER1 == currentPath) {
-			image = new ImageIcon(new_path).getImage();
-			currentPath = new_path;
-		}
-	}
-
-	/**
-	 * This method returns the critter speed
-	 * 
-	 * @return speed value
-	 */
-	public int getSpeed() {
-		return speed;
-	}
 
 	/**
 	 * This method slows the speed of critter movement
@@ -277,12 +285,6 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 
 	}
 
-	/**
-	 * This method sets the critter speed to original value
-	 */
-	public void setToNormalSpeed() {
-		speed = actualSpeed;
-	}
 
 	/**
 	 * This method burns the critter for the same amount after taking the damage
@@ -292,7 +294,7 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	 *            amount health to burn
 	 */
 	public void burnHealth(final int new_amount) {
-		timerFreezing.schedule(new TimerTask() {
+		timerBurning.schedule(new TimerTask() {
 			@Override
 			public void run() {
 				// Your database code here
@@ -331,7 +333,7 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 
 		showSplashArea = true;
 		
-		timerFreezing.schedule(new TimerTask() {
+		timerSplash.schedule(new TimerTask() {
 			@Override
 			public void run() {
 				// Your database code here
@@ -353,16 +355,5 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 		}
 	}
 
-	@Override
-	public CritterHealthBar getHealthBar() {
-		// TODO Auto-generated method stub
-		return healthBar;
-	}
-
-	@Override
-	public boolean getShowSplashArea() {
-		// TODO Auto-generated method stub
-		return showSplashArea;
-	}
 
 }

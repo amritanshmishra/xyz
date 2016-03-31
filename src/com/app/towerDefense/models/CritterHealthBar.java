@@ -23,10 +23,10 @@ public class CritterHealthBar implements Observer{
 		
 		BasicCritter cr = (BasicCritter)o;
 		
-		x = cr.x+15;
-		y = cr.y+36;
-		xMid = x+cr.currentHealth;
-		xEnd = x+cr.actualHealth;
+		x = cr.getX()+15;
+		y = cr.getY()+36;
+		xMid = x+cr.getCurrentHealth();
+		xEnd = x+cr.getActualHealth();
 	}
 	
 	

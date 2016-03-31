@@ -72,15 +72,6 @@ public interface CritterType extends Observable {
 	public void setXY(int new_xEntry, int new_yEntry);
 	
 	/**
-	 * This method sets critters exit points parameters
-	 * @param new_xExit x coordinate of exit point
-	 * @param new_yExit y coordinate of exit point
-	 * 
-	 */
-
-	public void setXYExit(int new_xExit, int new_yExit);
-	
-	/**
 	 * sets the id of the critter
 	 * @param new_id critter id
 	 */

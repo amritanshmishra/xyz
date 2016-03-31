@@ -1,5 +1,7 @@
 package com.app.towerDefense.models;
 
+import com.app.towerDefense.staticContent.ApplicationStatics;
+
 /**
  * This is the critter factory class to create different kind of critters
  * 
@@ -18,14 +20,14 @@ public class CritterFactory {
 	static public CritterType getCritterfromFactory(String new_critterType) {
 
 		if (new_critterType == null) {
-			BasicCritter c = new BasicCritter();
+			BasicCritter c = new BasicCritter(ApplicationStatics.PLAYERMODEL.getGameWave());
 			for (int i = 0; i < PlayerModel.towerModelArray.size(); i++) {
 				//assign tower observers to critter objects
 				c.addObserver(PlayerModel.towerModelArray.get(i));
 			}
 			return c;
 		} else if (new_critterType.equalsIgnoreCase("BasicCritter")) {
-			BasicCritter c = new BasicCritter();
+			BasicCritter c = new BasicCritter(ApplicationStatics.PLAYERMODEL.getGameWave());
 			//assign tower observers to critter objects
 			for (int i = 0; i < PlayerModel.towerModelArray.size(); i++) {
 				c.addObserver(PlayerModel.towerModelArray.get(i));

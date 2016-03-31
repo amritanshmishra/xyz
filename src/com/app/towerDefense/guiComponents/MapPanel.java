@@ -78,7 +78,6 @@ public class MapPanel extends JPanel {
 						for (int i = 0; i < wave; i++) {
 							critter.add(CritterFactory.getCritterfromFactory("BasicCritter"));
 							critter.get(i).setXY(xEntry, yEntry);
-							critter.get(i).setXYExit(xExit, yExit);
 
 							critter.get(i).setID(i);
 						}
