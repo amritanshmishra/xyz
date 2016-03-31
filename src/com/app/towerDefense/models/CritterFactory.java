@@ -32,8 +32,6 @@ public class CritterFactory {
 			}
 			return c;
 
-		} else if (new_critterType.equalsIgnoreCase("AdvancedCritter")) {
-			return new AdvancedCritter();
 		}
 
 		return null;

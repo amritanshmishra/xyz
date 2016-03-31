@@ -16,7 +16,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.app.towerDefense.models.AdvancedCritter;
 import com.app.towerDefense.models.BasicCritter;
 import com.app.towerDefense.models.CritterFactory;
 import com.app.towerDefense.models.CritterType;
@@ -66,8 +65,7 @@ public class CritterTest {
 		assertNotNull(basicCritter);
 		assertNotNull(advancedCritter);
 		Assert.assertTrue(basicCritter instanceof BasicCritter);
-		Assert.assertTrue(advancedCritter instanceof AdvancedCritter);
-
+	
 	}
 
 	/**
