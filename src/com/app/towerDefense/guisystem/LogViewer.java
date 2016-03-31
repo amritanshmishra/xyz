@@ -14,6 +14,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 
 import com.app.towerDefense.gameLogic.LogReader;
+import com.app.towerDefense.guiComponents.JPanelComponent;
 import com.app.towerDefense.staticContent.AppilicationEnums.E_LogViewerState;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 /**
@@ -59,9 +60,6 @@ public class LogViewer extends JFrame  {
 			new_title += " " + ApplicationStatics.LOG_VIEWER_MODE_TOWERS_COLLECTION;
 		}	
 		
-
-		
-		
 		// --- Set Map Editor Windows Properties
 		this.setTitle(new_title);
 		this.setPreferredSize(new Dimension(new_width, new_height));
@@ -70,50 +68,10 @@ public class LogViewer extends JFrame  {
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.setVisible(true);
-		
-		
-		
+		this.setVisible(true);		
 		
 		//Tabs
-		JTabbedPane jTabbedPane = new JTabbedPane();
-	    getContentPane().add(jTabbedPane);
-	    JPanel tabPanelGloble = new JPanel();
-	    JPanel tabPanelCurrentSession = new JPanel();	    
-	    JPanel tabPanelTowers = new JPanel();
-	    JPanel tabPanelTowersCollection = new JPanel();
+	    getContentPane().add(new JPanelComponent().getLogViewerPanel(new_log_file_path, new_elog_viewer_state));
 	    
-	    
-	    JTextArea txtAreaGloble = getJTextArea();
-	    JTextArea txtAreaCurrentSession = getJTextArea();
-	    JTextArea txtAreaTowers = getJTextArea();
-	    JTextArea txtAreaTowersCollection = getJTextArea();
-		
-	    	    
-	    tabPanelGloble.add(getJScrollPane(txtAreaGloble));	    
-	    tabPanelCurrentSession.add(getJScrollPane(txtAreaCurrentSession));
-	    tabPanelTowers.add(getJScrollPane(txtAreaTowers));
-	    tabPanelTowersCollection.add(getJScrollPane(txtAreaTowersCollection));
-	    
-	    jTabbedPane.addTab(ApplicationStatics.LOG_VIEWER_MODE_GLOBLE, tabPanelGloble);
-	    jTabbedPane.addTab(ApplicationStatics.LOG_VIEWER_MODE_CURRENT_SESSION, tabPanelCurrentSession);
-	    jTabbedPane.addTab(ApplicationStatics.LOG_VIEWER_MODE_TOWERS, tabPanelTowers);
-	    jTabbedPane.addTab(ApplicationStatics.LOG_VIEWER_MODE_TOWERS_COLLECTION, tabPanelTowersCollection);
-	}
-	
-	public JTextArea getJTextArea()
-	{
-		JTextArea jTextArea = new JTextArea(33, 100);
-		jTextArea.setText(new LogReader(logFilePath, eLogViewerState.GlobalLog).read());
-		jTextArea.setFont(new Font("Courier New", Font.PLAIN, 12));
-		jTextArea.setEditable(false);
-		jTextArea.setLineWrap(true);
-		jTextArea.setWrapStyleWord(true);
-		return jTextArea;
-	}
-	
-	public JScrollPane getJScrollPane(JTextArea new_jtextarea)
-	{
-		return new JScrollPane(new_jtextarea);
 	}
 }

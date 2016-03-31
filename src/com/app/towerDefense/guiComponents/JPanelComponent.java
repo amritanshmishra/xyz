@@ -2,6 +2,7 @@ package com.app.towerDefense.guiComponents;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -15,11 +16,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
+import org.apache.log4j.Logger;
+
+import com.app.towerDefense.gameLogic.LogReader;
+import com.app.towerDefense.guisystem.Game;
 import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.models.Tower;
 import com.app.towerDefense.models.TowerFactory;
+import com.app.towerDefense.staticContent.AppilicationEnums.E_LogViewerState;
 import com.app.towerDefense.staticContent.AppilicationEnums.E_MapEditorMode;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 import com.app.towerDefense.utilities.MiscellaneousHelper;
@@ -42,6 +51,7 @@ public class JPanelComponent implements Observer {
 	public MapPanel mapPanel; // CHANGE Ulan
 
 	private E_MapEditorMode mapEditorMode;
+	final static Logger logger = Logger.getLogger(JPanelComponent.class);
 
 	/**
 	 * get Implemented Panel for Game Window screen Tower Section
@@ -330,7 +340,7 @@ public class JPanelComponent implements Observer {
 								ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME,
 								",");
 			}
-			System.out.println("MAP Boundary Points : "
+			logger.info("MAP Boundary Points : "
 					+ ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME);
 			ApplicationStatics.MAP_BUTTONS = mapButtonsGrid2DArray;
 		}
@@ -338,6 +348,40 @@ public class JPanelComponent implements Observer {
 		return panel;
 	}
 
+	public JPanel getLogViewerPanel(String new_log_file_path, E_LogViewerState new_elog_viewer_state)
+	{
+		JPanel panel = new JPanel();
+		//Tabs
+		JTabbedPane jTabbedPane = new JTabbedPane();
+		panel.add(jTabbedPane);
+	    JPanel tabPanelGloble = new JPanel();
+	    JPanel tabPanelCurrentSession = new JPanel();	    
+	    JPanel tabPanelTowers = new JPanel();
+	    JPanel tabPanelTowersCollection = new JPanel();
+	    
+	    
+	    JTextArea txtAreaGloble = getJTextArea();
+	    JTextArea txtAreaCurrentSession = getJTextArea();
+	    JTextArea txtAreaTowers = getJTextArea();
+	    JTextArea txtAreaTowersCollection = getJTextArea();
+		
+	    	    
+	    tabPanelGloble.add(getJScrollPane(txtAreaGloble));	    
+	    tabPanelCurrentSession.add(getJScrollPane(txtAreaCurrentSession));
+	    tabPanelTowers.add(getJScrollPane(txtAreaTowers));
+	    tabPanelTowersCollection.add(getJScrollPane(txtAreaTowersCollection));
+	    
+	    jTabbedPane.addTab(ApplicationStatics.LOG_VIEWER_MODE_GLOBLE, tabPanelGloble);
+	    jTabbedPane.addTab(ApplicationStatics.LOG_VIEWER_MODE_CURRENT_SESSION, tabPanelCurrentSession);
+	    jTabbedPane.addTab(ApplicationStatics.LOG_VIEWER_MODE_TOWERS, tabPanelTowers);
+	    jTabbedPane.addTab(ApplicationStatics.LOG_VIEWER_MODE_TOWERS_COLLECTION, tabPanelTowersCollection);
+		
+	    LogReader logReader = new  LogReader(new_log_file_path, new_elog_viewer_state.GlobalLog);
+	    txtAreaGloble.setText(logReader.read());
+		
+		return panel;
+	}
+	
 	/**
 	 * Actually Map Grid contains buttons inside each cell of grid and on click
 	 * of these button we perform certain actions this method implements logic
@@ -385,7 +429,7 @@ public class JPanelComponent implements Observer {
 					jButtonExit = null;
 				}
 
-				System.out.println("Button Click Event Btn Name : "
+				logger.info("Button Click Event Btn Name : "
 						+ btn.getName());
 
 				// -- ulan's code here
@@ -516,9 +560,10 @@ public class JPanelComponent implements Observer {
 							JOptionPane
 									.showMessageDialog(null,
 											"Both Enrty and Exit Point Already Selected");
+							logger.info("Both Enrty and Exit Point Already Selected");
 						}
 					}
-					System.out.println(" Mouse Right Clicked Event Btn Name : "
+					logger.info(" Mouse Right Clicked Event Btn Name : "
 							+ btn.getName());
 				}
 			}
@@ -678,4 +723,28 @@ public class JPanelComponent implements Observer {
 
 	}
 
+	/**
+	 * This function return Text area 
+	 * @return JTextArea
+	 */
+	public JTextArea getJTextArea()
+	{
+		JTextArea jTextArea = new JTextArea(33, 100);
+		//jTextArea.setText(new LogReader(logFilePath, eLogViewerState.GlobalLog).read());
+		jTextArea.setFont(new Font("Courier New", Font.PLAIN, 12));
+		jTextArea.setEditable(false);
+		jTextArea.setLineWrap(true);
+		jTextArea.setWrapStyleWord(true);
+		return jTextArea;
+	}
+	
+	/**
+	 * This function return ScrollPane
+	 * @param new_jtextarea JTextArea type
+	 * @return JScrollPane
+	 */
+	public JScrollPane getJScrollPane(JTextArea new_jtextarea)
+	{
+		return new JScrollPane(new_jtextarea);
+	}
 }
