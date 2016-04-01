@@ -6,6 +6,9 @@ import java.util.Observable;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import org.apache.log4j.Logger;
+
+import com.app.towerDefense.guiComponents.MapPanel;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 
 /**
@@ -23,6 +26,7 @@ public class PlayerModel extends Observable{
 	private int gameWave;
 	private String playerName;
 	public static ArrayList<Tower> towerModelArray;
+	final static Logger logger = Logger.getLogger(MapPanel.class);
 
 	/**
 	 * Constructor that initializes default values
@@ -142,7 +146,7 @@ public class PlayerModel extends Observable{
 		ApplicationStatics.HAS_BOUGHT_TOWER = true;
 		subSunCurrency(tempTM.getTowerCost());
 		
-		System.out.println("Player bought Tower id = " + Integer.toString(new_towerID));
+		logger.info("Player bought Tower id = " + Integer.toString(new_towerID));
 
 		return tempTM;
 	}
@@ -155,7 +159,7 @@ public class PlayerModel extends Observable{
 	 * @return true if deleted successfully
 	 */
 	public boolean sellTower(int new_towerID) {
-		System.out.println("inside sellTower()");
+		logger.info("inside sellTower()");
 		if (towerModelArray.isEmpty()) {
 			return false;
 		} else {
@@ -186,7 +190,7 @@ public class PlayerModel extends Observable{
 	 */
 	public void printAllTowers() {
 		for (int i = 0; i < towerModelArray.size(); i++) {
-			System.out.println(towerModelArray.get(i).getTowerName() + " x="+towerModelArray.get(i).getX() + " y="+towerModelArray.get(i).getY());
+			logger.info(towerModelArray.get(i).getTowerName() + " x="+towerModelArray.get(i).getX() + " y="+towerModelArray.get(i).getY());
 		}
 	}
 	
@@ -205,12 +209,12 @@ public class PlayerModel extends Observable{
 	 */
 	public boolean decrementHealth(int new_n){
 		hpPlayer -= new_n;
-		System.out.println("Critter reached the Exit: -1 from Hit Points!");
+		logger.info("Critter reached the Exit: -1 from Hit Points!");
 		setChanged();
 		notifyObservers();
 		if(hpPlayer <= 0){
 		//	JFrame frame = new JFrame();
-			System.out.println("Hit Points reached zero.");
+			logger.info("Hit Points reached zero.");
 		//	JOptionPane.showMessageDialog(frame,"You are dead.");
 			return false;
 		}
