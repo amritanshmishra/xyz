@@ -46,7 +46,7 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 	private JButton strategyTowerButton;
 	private JButton logTowerButton;
 	private Tower tempTM;
-	final static Logger logger = Logger.getLogger(GameInfoPanel.class);
+	final static Logger logger = Logger.getLogger(TowerDescriptionPanel.class);
 
 	/**
 	 * Constructor

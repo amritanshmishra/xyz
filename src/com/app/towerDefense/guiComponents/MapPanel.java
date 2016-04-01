@@ -14,6 +14,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import org.apache.log4j.Logger;
+
 import com.app.towerDefense.models.BasicCritter;
 import com.app.towerDefense.models.CritterFactory;
 import com.app.towerDefense.models.CritterType;
@@ -49,6 +51,7 @@ public class MapPanel extends JPanel {
 	public static ArrayList<CritterType> critter = new ArrayList<CritterType>();
 
 	public static Graphics graphics;
+	final static Logger logger = Logger.getLogger(MapPanel.class);
 
 	/**
 	 * Parameterized constructor for Map Panel
@@ -86,11 +89,11 @@ public class MapPanel extends JPanel {
 
 					super.paintComponent(new_graphics);
 					if (critter.size() > 0) {
-						// System.out.println("count : " +
+						// logger.info("count : " +
 						// multipleCriiterCounter);
 						for (int i = 0; i < critter.size(); i++) {
 							if (critter.get(i).calculatePath()) {
-								// System.out.println("i : " + i + ", size : " +
+								// logger.info("i : " + i + ", size : " +
 								// critter.size());
 
 								new_graphics.drawImage(critter.get(i).getCritterImage(), critter.get(i).getX(),
@@ -118,18 +121,18 @@ public class MapPanel extends JPanel {
 											(critter.get(i)).getHealthBar().y, (critter.get(i)).getHealthBar().xEnd,
 											(critter.get(i)).getHealthBar().y);
 
-									// System.out.println("x:"+(critter.get(i)).getHealthBar().x+"
+									// logger.info("x:"+(critter.get(i)).getHealthBar().x+"
 									// xMid:"+(critter.get(i)).getHealthBar().xMid+"
 									// xEnd:"+(critter.get(i)).getHealthBar().xEnd);
 								}
 
 								if (multipleCriiterCounter < (i + 1) * 15) {
-									// System.out.println("Inside Counter");
+									// logger.info("Inside Counter");
 									break;
 								}
 							} else {
 								if (ApplicationStatics.PLAYERMODEL.decrementHealth(1)) {
-									System.out.println("Play smarter, you still have a chance!");
+									logger.info("Play smarter, you still have a chance!");
 								} else {
 									ApplicationStatics.GAME_OVER = true;
 									// Game.getInstance().stop();
@@ -152,10 +155,10 @@ public class MapPanel extends JPanel {
 						((Graphics2D) graphics).setStroke(new BasicStroke(1));
 						graphics.setColor(Color.BLACK);
 						g2.draw(ellipse);
-						// System.out.println("tower:"+
+						// logger.info("tower:"+
 						// PlayerModel.towerModelArray.get(k).towerID+"
 						// xt:"+xt+" yt:"+yt);
-						// System.out.println(PlayerModel.towerModelArray.get(k).getXT()+"
+						// logger.info(PlayerModel.towerModelArray.get(k).getXT()+"
 						// "+ PlayerModel.towerModelArray.get(k).getYT()+" "+
 						// PlayerModel.towerModelArray.get(k).getDT()+" "+
 						// PlayerModel.towerModelArray.get(k).getDT());
@@ -185,6 +188,7 @@ public class MapPanel extends JPanel {
 			}
 
 		} catch (IndexOutOfBoundsException e) {
+			logger.info("Wave Completed");
 			JOptionPane.showMessageDialog(null, "Wave Completed");
 			if (critter.size() == 0 && !ApplicationStatics.GAME_OVER) {
 
@@ -244,7 +248,7 @@ public class MapPanel extends JPanel {
 	public void panelInit() {
 		if (mapModel != null) {
 			ApplicationStatics.PATH_ARRAY1 = mapModel.getMapRoutPathList();
-			// System.out.println("Map Model is not null");
+			// logger.info("Map Model is not null");
 
 			xEntry = ApplicationStatics.PATH_ARRAY1.get(0).y * ApplicationStatics.BLOCK_WIDTH;
 			yEntry = ApplicationStatics.PATH_ARRAY1.get(0).x * ApplicationStatics.BLOCK_HEIGHT;
@@ -256,7 +260,7 @@ public class MapPanel extends JPanel {
 
 			/*
 			 * for (int k = 0; k < ApplicationStatics.PATH_ARRAY1.size(); k +=
-			 * 1) { System.out.println(k + " : x=" +
+			 * 1) { logger.info(k + " : x=" +
 			 * ApplicationStatics.PATH_ARRAY1.get(k).x + " , y=" +
 			 * ApplicationStatics.PATH_ARRAY1.get(k).y); }
 			 */
