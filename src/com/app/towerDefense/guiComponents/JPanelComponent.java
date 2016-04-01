@@ -350,7 +350,7 @@ public class JPanelComponent implements Observer {
 		return panel;
 	}
 
-	public JPanel getLogViewerPanel(String new_log_file_path, E_LogViewerState new_elog_viewer_state)
+	public JPanel getLogViewerPanel(final String new_log_file_path, E_LogViewerState new_elog_viewer_state)
 	{
 		JPanel panel = new JPanel();
 		//Tabs
@@ -365,11 +365,11 @@ public class JPanelComponent implements Observer {
 	    JPanel tabPanelMapPlayersStatistics = new JPanel();
 	    
 	    //TextArea for Displaying log data
-	    JTextArea txtAreaGloble = getJTextArea();
-	    JTextArea txtAreaCurrentSession = getJTextArea();
-	    JTextArea txtAreaTowers = getJTextArea();
-	    JTextArea txtAreaTowersCollection = getJTextArea();
-	    JTextArea txtAreaMapPlayersStatistics = getJTextArea();
+	    final JTextArea txtAreaGloble = getJTextArea();
+	    final JTextArea txtAreaCurrentSession = getJTextArea();
+	    final JTextArea txtAreaTowers = getJTextArea();
+	    final JTextArea txtAreaTowersCollection = getJTextArea();
+	    final JTextArea txtAreaMapPlayersStatistics = getJTextArea();
 		
 	    //Add Scroll bar to tabs	    
 	    tabPanelGloble.add(getJScrollPane(txtAreaGloble));	    
@@ -389,11 +389,35 @@ public class JPanelComponent implements Observer {
 	    jTabbedPane.setSelectedIndex(new_elog_viewer_state.ordinal());
 	    
 	    //Read Logs for Current Opeing Tab
-	    LogReader logReader = new  LogReader(new_log_file_path, new_elog_viewer_state.GlobalLog);
+	    LogReader logReader = new  LogReader(new_log_file_path, new_elog_viewer_state);
 	    txtAreaGloble.setText(logReader.read());
 		
 	  //initialized Tab Change event
-	    addTagChangeListner(jTabbedPane);
+	    //addTagChangeListner(jTabbedPane);
+	    jTabbedPane.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if (e.getSource() instanceof JTabbedPane) {
+                    JTabbedPane pane = (JTabbedPane) e.getSource();
+                    //System.out.println("Selected Tab Name : " + pane.getName()+", Selected paneNo : " + pane.getSelectedIndex());
+                    if(E_LogViewerState.GlobalLog.ordinal()== pane.getSelectedIndex()){
+                    	txtAreaGloble.setText(new  LogReader(new_log_file_path, E_LogViewerState.GlobalLog).read());
+                    }
+                    else if(E_LogViewerState.CurrentSessionLog.ordinal()== pane.getSelectedIndex()){
+                    	txtAreaCurrentSession.setText(new  LogReader(new_log_file_path, E_LogViewerState.CurrentSessionLog).read());
+                    }
+                    else if(E_LogViewerState.TowerLog.ordinal()== pane.getSelectedIndex()){
+                    	txtAreaTowers.setText(new  LogReader(new_log_file_path, E_LogViewerState.TowerLog).read());
+                    }
+                    else if(E_LogViewerState.TowerCollectionLog.ordinal()== pane.getSelectedIndex()){
+                    	txtAreaTowersCollection.setText(new  LogReader(new_log_file_path, E_LogViewerState.TowerCollectionLog).read());
+                    }
+                    else if(E_LogViewerState.MapPlayersStatistics.ordinal()== pane.getSelectedIndex()){
+                    	txtAreaMapPlayersStatistics.setText(new  LogReader(new_log_file_path, E_LogViewerState.MapPlayersStatistics).read());
+                    }                    
+                }
+            }
+        });
 	    
 		return panel;
 	}
@@ -770,7 +794,12 @@ public class JPanelComponent implements Observer {
             public void stateChanged(ChangeEvent e) {
                 if (e.getSource() instanceof JTabbedPane) {
                     JTabbedPane pane = (JTabbedPane) e.getSource();
-                    System.out.println("Selected Tab Name : " + pane.getName()+", Selected paneNo : " + pane.getSelectedIndex());
+                    //System.out.println("Selected Tab Name : " + pane.getName()+", Selected paneNo : " + pane.getSelectedIndex());
+                    /*
+                    if( pane.getSelectedIndex()){
+                    	
+                    }
+                    */
                 }
             }
         });
