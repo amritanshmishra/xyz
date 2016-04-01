@@ -38,20 +38,29 @@ public class LogReader {
 		if(E_LogViewerState.CurrentSessionLog == logReadingState){
 			return parseForCurrentSession();
 		}
+		else if(E_LogViewerState.TowerLog == logReadingState){
+			logResultant= parseForCurrentSession();
+		}
+		else if(E_LogViewerState.TowerCollectionLog == logReadingState){
+			logResultant =  parseForCurrentSession();
+		}
+		else if(E_LogViewerState.MapPlayersStatistics == logReadingState){
+			return parseForCurrentSession();
+		}
 		// logger.info("Function Called read() ");
 		return logResultant;
 	}
+	
 	public String parseForCurrentSession(){
 		logResultant = new MiscellaneousHelper().readFile(file);		
-		//Pattern pattern = Pattern.compile("((.|\n)*)LOG_CURRENT_SESSION_TAG_20160331220328194");
 		Pattern pattern = Pattern.compile("((.|\n)*)"+ApplicationStatics.getLog_Current_Session_Tag());
 	    Matcher matcher = pattern.matcher(logResultant);
-	    int index=1;
 	    while (matcher.find()) {
 	      logResultant = logResultant.substring(matcher.end(),  logResultant.length());      
 	    }
 		return logResultant;
 	}
+	
 	/*
 	public static void main(String new_args[]) {
 	
