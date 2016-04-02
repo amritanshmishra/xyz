@@ -50,7 +50,7 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	private Timer timerSplash;	
 	private boolean showSplashArea;
 	
-	private int xCr, yCr;
+	public int xCr, yCr;
 	
 	
 	/**

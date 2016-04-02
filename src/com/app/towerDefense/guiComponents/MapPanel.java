@@ -92,87 +92,89 @@ public class MapPanel extends JPanel {
 						// logger.info("count : " +
 						// multipleCriiterCounter);
 						for (int i = 0; i < critter.size(); i++) {
-							if (critter.size()>0 && critter.get(i).calculatePath()) {
+							if (critter.size() > 0 && critter.get(i).calculatePath()) {
 								// logger.info("i : " + i + ", size : " +
 								// critter.size());
 
-									// drawing critters
-							new_graphics.drawImage(critter.get(i).getCritterImage(), critter.get(i).getX(),
-									critter.get(i).getY(), 30, 30, null);
+								// drawing critters
+								new_graphics.drawImage(critter.get(i).getCritterImage(), critter.get(i).getX(),
+										critter.get(i).getY(), 30, 30, null);
 
-							// splash effect drawing
-							if (critter.get(i).getShowSplashArea()) {
-								Ellipse2D ellipse2 = new Ellipse2D.Double(critter.get(i).getX() - 27,
-										critter.get(i).getY(), ApplicationStatics.BLOCK_WIDTH,
-										ApplicationStatics.BLOCK_HEIGHT);
-								Graphics2D g3 = (Graphics2D) graphics;
-								((Graphics2D) graphics).setStroke(new BasicStroke(1));
-								graphics.setColor(Color.RED);
-								g3.draw(ellipse2);
-							}
+								// splash effect drawing
+								if (critter.get(i).getShowSplashArea()) {
+									Ellipse2D ellipse2 = new Ellipse2D.Double(critter.get(i).getX() - 27,
+											critter.get(i).getY(), ApplicationStatics.BLOCK_WIDTH,
+											ApplicationStatics.BLOCK_HEIGHT);
+									Graphics2D g3 = (Graphics2D) graphics;
+									((Graphics2D) graphics).setStroke(new BasicStroke(1));
+									graphics.setColor(Color.RED);
+									g3.draw(ellipse2);
+								}
 
-							// critter health bar drawing
-							graphics.setColor(Color.GREEN);
-							((Graphics2D) graphics).setStroke(new BasicStroke(5));
-							graphics.drawLine((critter.get(i)).getHealthBar().x, (critter.get(i)).getHealthBar().y,
-									(critter.get(i)).getHealthBar().xMid, (critter.get(i)).getHealthBar().y);
-							if (critter.get(i).getHealthBar().xMid != critter.get(i).getHealthBar().xEnd) {
-								graphics.setColor(Color.RED);
-								graphics.drawLine((critter.get(i)).getHealthBar().xMid,
-										(critter.get(i)).getHealthBar().y, (critter.get(i)).getHealthBar().xEnd,
-										(critter.get(i)).getHealthBar().y);
-							}
+								// critter health bar drawing
+								graphics.setColor(Color.GREEN);
+								((Graphics2D) graphics).setStroke(new BasicStroke(5));
+								graphics.drawLine((critter.get(i)).getHealthBar().x, (critter.get(i)).getHealthBar().y,
+										(critter.get(i)).getHealthBar().xMid, (critter.get(i)).getHealthBar().y);
+								if (critter.get(i).getHealthBar().xMid != critter.get(i).getHealthBar().xEnd) {
+									graphics.setColor(Color.RED);
+									graphics.drawLine((critter.get(i)).getHealthBar().xMid,
+											(critter.get(i)).getHealthBar().y, (critter.get(i)).getHealthBar().xEnd,
+											(critter.get(i)).getHealthBar().y);
+								}
 
-							if (multipleCriiterCounter < (i + 1) * 15) {
-								// logger.info("Inside Counter");
-								break;
-							}
-						} else {
-							if (ApplicationStatics.PLAYERMODEL.decrementHealth(1)) {
-								logger.info("Play smarter, you still have a chance!");
-								logger.info("Play smarter, you still have a chance!");
+								if (multipleCriiterCounter < (i + 1) * 15) {
+									// logger.info("Inside Counter");
+									break;
+								}
 							} else {
-								ApplicationStatics.GAME_OVER = true;
-								// Game.getInstance().stop();
-								break;
+								if (ApplicationStatics.PLAYERMODEL.decrementHealth(1)) {
+									logger.info("Play smarter, you still have a chance!");
+									logger.info("Play smarter, you still have a chance!");
+								} else {
+									ApplicationStatics.GAME_OVER = true;
+									// Game.getInstance().stop();
+									break;
+								}
+								critter.remove(i);
+								i = 0;
 							}
-							critter.remove(i);
-							i = 0;
-						}
 
 						}
 					}
 
 					// drawing tower range circles
-				for (int k = 0; k < PlayerModel.towerModelArray.size(); k++) {
-					double xt = PlayerModel.towerModelArray.get(k).getXT();
-					double yt = PlayerModel.towerModelArray.get(k).getYT();
-					double dW = PlayerModel.towerModelArray.get(k).getDTW();
-					double dH = PlayerModel.towerModelArray.get(k).getDTH();
-					Ellipse2D ellipse = new Ellipse2D.Double(xt, yt, dW, dH);
-					Graphics2D g2 = (Graphics2D) graphics;
-					((Graphics2D) graphics).setStroke(new BasicStroke(1));
-					graphics.setColor(Color.BLACK);
-					g2.draw(ellipse);
-				}
-
-				multipleCriiterCounter++;
-
-				if (critter.size() == 0 && !ApplicationStatics.GAME_OVER) {
-					if (ApplicationStatics.PLAYERMODEL.getHpPlayer() == 0 || ApplicationStatics.PLAYERMODEL.getGameWave() == 5) {
-						ApplicationStatics.GAME_OVER = true;
-					} else {
-						ApplicationStatics.START_WAVE = false;
-						isInitialCond = true;
-						multipleCriiterCounter = 0;
-						ApplicationStatics.PLAYERMODEL.incGameWave();
+					for (int k = 0; k < PlayerModel.towerModelArray.size(); k++) {
+						double xt = PlayerModel.towerModelArray.get(k).getXT();
+						double yt = PlayerModel.towerModelArray.get(k).getYT();
+						double dW = PlayerModel.towerModelArray.get(k).getDTW();
+						double dH = PlayerModel.towerModelArray.get(k).getDTH();
+						Ellipse2D ellipse = new Ellipse2D.Double(xt, yt, dW, dH);
+						Graphics2D g2 = (Graphics2D) graphics;
+						((Graphics2D) graphics).setStroke(new BasicStroke(1));
+						graphics.setColor(Color.BLACK);
+						g2.draw(ellipse);
 					}
+
+					multipleCriiterCounter++;
+
+					if (critter.size() == 0 && !ApplicationStatics.GAME_OVER) {
+						if (ApplicationStatics.PLAYERMODEL.getHpPlayer() == 0
+								|| ApplicationStatics.PLAYERMODEL.getGameWave() == 5) {
+							ApplicationStatics.GAME_OVER = true;
+						} else {
+							ApplicationStatics.START_WAVE = false;
+							isInitialCond = true;
+							multipleCriiterCounter = 0;
+							ApplicationStatics.PLAYERMODEL.incGameWave();
+						}
+					}
+
 				}
-
 			}
-		}
 
-		 }catch(IndexOutOfBoundsException e){}
+		} catch (IndexOutOfBoundsException e) {
+		}
 		/*
 		 * catch (IndexOutOfBoundsException e) {
 		 * JOptionPane.showMessageDialog(null, "Wave Completed"); if
@@ -182,7 +184,6 @@ public class MapPanel extends JPanel {
 		 * multipleCriiterCounter = 0; //
 		 * ApplicationStatics.PLAYERMODEL.incGameWave(); } }
 		 */
-
 
 	}
 
@@ -206,25 +207,27 @@ public class MapPanel extends JPanel {
 	 */
 	public static void drawLines(int new_tx, int new_ty, int new_cx, int new_cy, String new_tower_types,
 			int new_critterId) {
-		// graphics = (Graphics2D) graphics;
-		if (new_tower_types == "Burner") {
-			graphics.setColor(Color.RED);
-			// ((Graphics2D) graphics).setStroke(new BasicStroke(10));
-		} else if (new_tower_types == "Freezer") {
-			graphics.setColor(Color.BLUE);
-			// ((Graphics2D) graphics).setStroke(new BasicStroke(10));
-		} else if (new_tower_types == "Splasher") {
-			graphics.setColor(Color.YELLOW);
-			// ((Graphics2D) graphics).setStroke(new BasicStroke(10));
-		} else if (new_tower_types == "Shooter") {
-			graphics.setColor(Color.GREEN);
-			// ((Graphics2D) graphics).setStroke(new BasicStroke(10));
-		}
 
-		((Graphics2D) graphics).setStroke(new BasicStroke(3));
-		
-		graphics.drawLine(new_tx, new_ty, new_cx, new_cy);
-	
+		if (graphics != null) {
+			// graphics = (Graphics2D) graphics;
+			if (new_tower_types == "Burner") {
+				graphics.setColor(Color.RED);
+				// ((Graphics2D) graphics).setStroke(new BasicStroke(10));
+			} else if (new_tower_types == "Freezer") {
+				graphics.setColor(Color.BLUE);
+				// ((Graphics2D) graphics).setStroke(new BasicStroke(10));
+			} else if (new_tower_types == "Splasher") {
+				graphics.setColor(Color.YELLOW);
+				// ((Graphics2D) graphics).setStroke(new BasicStroke(10));
+			} else if (new_tower_types == "Shooter") {
+				graphics.setColor(Color.GREEN);
+				// ((Graphics2D) graphics).setStroke(new BasicStroke(10));
+			}
+
+			((Graphics2D) graphics).setStroke(new BasicStroke(3));
+
+			graphics.drawLine(new_tx, new_ty, new_cx, new_cy);
+		}
 	}
 
 	/**

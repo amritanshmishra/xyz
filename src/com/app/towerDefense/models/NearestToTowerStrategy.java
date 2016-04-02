@@ -28,9 +28,11 @@ public class NearestToTowerStrategy implements Strategy {
 
 				int x2 = new_critter.getXCr();
 				int y2 = new_critter.getYCr();
+				
+		//		System.out.println("x0:"+x0+" y0:"+y0+" x1:"+x1+" y1:"+y1+" x2:"+x2+" y2"+y2);
 
-				double d1 = Math.sqrt((x0 - x1) ^ 2 + (y0 - y1) ^ 2);
-				double d2 = Math.sqrt((x0 - x2) ^ 2 + (y0 - y2) ^ 2);
+				double d1 = Math.sqrt(((x0 - x1) < 0 ? -1 * (x0 - x1) : (x0 - x1) ) ^ 2 + ((y0 - y1) < 0 ? -1 * (y0 - y1) : (y0 - y1) ) ^ 2);
+				double d2 = Math.sqrt(((x0 - x2) < 0 ? -1 * (x0 - x2) : (x0 - x2) ) ^ 2 + ((y0 - y2) < 0 ? -1 * (y0 - y2) : (y0 - y2) ) ^ 2);
 		//		System.out.println(
 		//				"cr:" + new_tower.getTargetCritter().getCritterId() + " d1:" + String.format("%.2f", d1)
 		//						+ " cr:" + new_critter.getCritterId() + " d2:" + String.format("%.2f", d2));

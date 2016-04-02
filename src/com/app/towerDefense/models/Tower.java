@@ -53,7 +53,7 @@ public abstract class Tower implements Observer {
 	protected boolean shoot = true; // shoots when value is true
 	CritterType targetCritter;
 
-	int bW, bH; // block width and height
+	public int bW, bH; // block width and height
 	int xMid, yMid;
 
 	/**
