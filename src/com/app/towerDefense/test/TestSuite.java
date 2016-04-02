@@ -25,7 +25,9 @@ import com.app.towerDefense.guisystem.Game;
 			MiscellaneousHelperTest.class,
 			CritterTest.class,
 			JFileChooserComponentTest.class,
-			JMenuBarComponentTest.class
+			JMenuBarComponentTest.class,
+			SpecialEffectsTest.class,
+			StrategyTest.class
 		})
 public class TestSuite {
 
