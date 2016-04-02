@@ -163,10 +163,12 @@ public class MapPanel extends JPanel {
 								|| ApplicationStatics.PLAYERMODEL.getGameWave() == 5) {
 							ApplicationStatics.GAME_OVER = true;
 						} else {
+							logger.info("Wave end.");
 							ApplicationStatics.START_WAVE = false;
 							isInitialCond = true;
 							multipleCriiterCounter = 0;
 							ApplicationStatics.PLAYERMODEL.incGameWave();
+							logger.info("Next Wave : "+ApplicationStatics.PLAYERMODEL.getGameWave()+" Started.");
 						}
 					}
 

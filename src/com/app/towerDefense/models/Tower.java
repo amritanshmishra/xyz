@@ -13,6 +13,8 @@ import java.util.TimerTask;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
+import org.apache.log4j.Logger;
+
 import com.app.towerDefense.guiComponents.MapPanel;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 
@@ -55,6 +57,7 @@ public abstract class Tower implements Observer {
 
 	public int bW, bH; // block width and height
 	int xMid, yMid;
+	final static Logger logger = Logger.getLogger(Tower.class);
 
 	/**
 	 * Constructor
@@ -390,7 +393,7 @@ public abstract class Tower implements Observer {
 			
 			if (shoot) {
 				if (targetCritter.decreaseLife(getTowerPower())) {
-					System.out.println("Tower " + getTowerName() + " id:" + towerID + " shoots critter id:"
+					logger.info("Tower_" + getTowerName() + "_towerID_" + towerID + " shoots critter id:"
 							+ targetCritter.getCritterId() + " damage:" + getTowerPower());
 
 		//			System.out.println("d:"+ (int)Math.sqrt((xMid - targetCritter.getXCr()) ^ 2 + (yMid - targetCritter.getYCr()) ^ 2));

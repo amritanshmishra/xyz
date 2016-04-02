@@ -10,6 +10,9 @@ import java.util.Observable;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import org.apache.log4j.Logger;
+
+import com.app.towerDefense.models.Tower;
 import com.app.towerDefense.models.TowerFactory;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 
@@ -23,6 +26,7 @@ public class TowerShopPanel extends Observable implements ActionListener {
 
 	JPanel panel;
 	JButton[] towerButton = new JButton[4];
+	final static Logger logger = Logger.getLogger(TowerShopPanel.class);
 
 	/**
 	 * Constructor
@@ -83,7 +87,7 @@ public class TowerShopPanel extends Observable implements ActionListener {
 		String tempS = bName.substring(0, bName.length() - 1);
 
 		if (tempS.compareTo("tower") == 0) {
-			System.out.println("Shop Panel: Tower id = " + tempTid);
+			logger.info("Shop Panel: Tower id = " + tempTid);
 
 			ApplicationStatics.SET_TOWER_DESCR_VISIBLE = false;
 			ApplicationStatics.CURRENT_SELECTED_TOWER = tempTid;

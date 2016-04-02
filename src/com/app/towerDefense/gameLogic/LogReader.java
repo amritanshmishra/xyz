@@ -42,11 +42,11 @@ public class LogReader {
 		if(E_LogViewerState.CurrentSessionLog == logReadingState){
 			return parseForCurrentSession();
 		}
-		else if(E_LogViewerState.TowerLog == logReadingState){
-			logResultant= parseForCurrentSession();
+		else if(E_LogViewerState.TowerLog == logReadingState){		
+			return parseLogForTower();
 		}
 		else if(E_LogViewerState.TowerCollectionLog == logReadingState){
-			logResultant =  parseForCurrentSession();
+			logResultant =  parseLogForTowersCollection();
 		}
 		else if(E_LogViewerState.MapPlayersStatistics == logReadingState){
 			return parseForCurrentSession();
@@ -65,27 +65,122 @@ public class LogReader {
 		return logResultant;
 	}
 	
+	public String parseLogForTowersCollection(){
+		// get Current Session Log
+		logResultant = parseForCurrentSession();
+		
+		Pattern pattern = Pattern.compile("(.+Tower.+)", Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(logResultant);
+	    StringBuilder sb = new StringBuilder();
+	    while (matcher.find()) {
+	    	sb.append(matcher.group()+"\n");     
+		}
+	    logResultant = sb.toString();
+		return logResultant;
+	}
+	
+	public String parseLogForTower(){
+		logResultant = parseLogForTowersCollection();
+		Pattern pattern ;
+		if(tower == null){
+			pattern = Pattern.compile("(.+Tower_.+_towerID_.+)", 
+					Pattern.CASE_INSENSITIVE);
+		}
+		else
+			pattern = Pattern.compile("(.+Tower_"+tower.getTowerName()+"_towerID_"+tower.towerID+".+)", 
+				Pattern.CASE_INSENSITIVE);
+	    Matcher matcher = pattern.matcher(logResultant);
+	    StringBuilder sb = new StringBuilder();
+	    while (matcher.find()) {
+	    	sb.append(matcher.group()+"\n");  
+	    }
+	    logResultant = sb.toString();
+		return logResultant;
+	}
+	
 	/*
 	public static void main(String new_args[]) {
 	
 		File file = new File(ApplicationStatics.LOG_File_PATH);
 		String data = new MiscellaneousHelper().readFile(file);
 		
-		Pattern pattern = Pattern.compile("((.|\n)*)LOG_CURRENT_SESSION_TAG_20160331220328194");
-	    Matcher matcher = pattern.matcher(data);
+//		Pattern pattern = Pattern.compile("((.|\n)*)LOG_CURRENT_SESSION_TAG_20160402161505652");
+//	    Matcher matcher = pattern.matcher(data);
+//	    int index=1;
+//	    // check all occurance
+//	    while (matcher.find()) {
+//	      //System.out.println(index++);
+//	      //System.out.println("Start index: " + matcher.start());
+//	      //System.out.println(" End index: " + matcher.end() + " ");
+//	      //System.out.println(matcher.group(1));
+//	      //System.out.println("count : "+matcher.groupCount());
+//	      //System.out.println(data.substring(0,  matcher.end()));
+//	      //data=data.substring(matcher.end(), data.length());
+//	      //System.out.println(data);
+//	    	//++index;	      
+//	    }
+//	    
+//	    
+		//System.out.println(data);
+		//Pattern pattern = Pattern.compile(".+TowerName_Freezer_1_Strat((.|\n)*)TowerName_Freezer_1_End");
+	    //pattern = Pattern.compile("^(\\w+)\\s");
+		String test = "\r\n  User Comments: This is \t a\ta \n test \n\n message \n";
+		
+		//Pattern pattern = Pattern.compile("^.+User Comments:\\s+(.*)", Pattern.DOTALL);
+		//Pattern pattern = Pattern.compile("^(.+)TowerName_Freezer_1_Strat(.*)TowerName_Freezer_1_End", Pattern.DOTALL);
+		
+		//Pattern pattern = Pattern.compile("^(.+)TowerName_Freezer_1_Strat(.*)TowerName_Freezer_1_End", Pattern.DOTALL);
+		
+	    
+		//pattern = Pattern.compile(".*TowerName_Freezer_1_Strat(.|\n).TowerName_Freezer_1_End");
+	      //pattern = Pattern.compile("^(\\S+)$", Pattern.MULTILINE);
+	    //pattern = Pattern.compile("(.*)TowerName_Freezer_1_Strat((.|\n)*)");
+		
+		//Matcher matcher = pattern.matcher(test);		
+		
+		//For TowersCollection
+//		
+//		Pattern pattern = Pattern.compile("(.+Tower.+)", Pattern.CASE_INSENSITIVE);
+//		Matcher matcher = pattern.matcher(data);
+//	    int index=1;
+//	    StringBuilder sb = new StringBuilder();
+//	    while (matcher.find()) {
+//	    	sb.append(matcher.group()+"\n");
+//  
+//	    }
+//	    data = sb.toString();
+	    
+	    //System.out.println("++++++++++++++++++++++++++++++++TOWER COLLECTION++++++++++++++++++++++++++++++++++++++");
+	    //System.out.println(sb.toString());
+	    //System.out.println("\r\n\r\n");
+	    
+	    
+	  //For Towers
+	    //pattern = Pattern.compile("(.+Tower.+)", Pattern.CASE_INSENSITIVE);
+	    
+		//pattern = Pattern.compile("^.+User Comments:\\s+(.*)", Pattern.DOTALL);
+		//TowerName_Freezer_1_Strat(.|\n)+TowerName_Freezer_1_End
+		Pattern pattern = Pattern.compile("(.+Tower_Shooter_towerID_0.+)", 
+				Pattern.CASE_INSENSITIVE);
+	    //(.+TowerName_Freezer_1_Strat)((.|\n)*)(.*TowerName_Freezer_1_End)
+		//Pattern pattern = Pattern.compile(".+TowerName_Freezer_1_Strat(.*)TowerName_Freezer_1_End",Pattern.DOTALL);
+		//Pattern pattern = Pattern.compile("[\\s\\S]*TowerName_Freezer_1_Strat(.*)TowerName_Freezer_1_End",Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(data);
 	    int index=1;
-	    // check all occurance
+	    StringBuilder sb = new StringBuilder();
 	    while (matcher.find()) {
-	      System.out.println(index++);
-	      //System.out.println("Start index: " + matcher.start());
-	      //System.out.println(" End index: " + matcher.end() + " ");
-	      //System.out.println(matcher.group(1));
-	      //System.out.println("count : "+matcher.groupCount());
-	      System.out.println(data.substring(0,  matcher.end()));
-	    	//++index;
-	      
+	    	//sb.append(matcher.group()+"\n");
+	    	System.out.println("Index : "+(index++));
+	    	sb.append(matcher.group()+"\n");
+		    //System.out.println("count : "+matcher.groupCount());
+	
 	    }
-	    //System.out.println(data);
+	    //data = sb.toString();
+	    //System.out.println("++++++++++++++++++++++++++++++++TOWERS++++++++++++++++++++++++++++++++++++++");
+	    System.out.println(sb.toString());
+	    //System.out.println("\r\n\r\n");
+	    
+	    
 	}
 	*/
 
