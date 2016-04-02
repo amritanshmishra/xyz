@@ -124,13 +124,13 @@ public class MapPanel extends JPanel {
 							}
 
 							if (multipleCriiterCounter < (i + 1) * 15) {
-								// System.out.println("Inside Counter");
+								// logger.info("Inside Counter");
 								break;
 							}
 						} else {
 							if (ApplicationStatics.PLAYERMODEL.decrementHealth(1)) {
 								logger.info("Play smarter, you still have a chance!");
-								System.out.println("Play smarter, you still have a chance!");
+								logger.info("Play smarter, you still have a chance!");
 							} else {
 								ApplicationStatics.GAME_OVER = true;
 								// Game.getInstance().stop();

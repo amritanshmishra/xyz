@@ -350,7 +350,7 @@ public class JPanelComponent implements Observer {
 		return panel;
 	}
 
-	public JPanel getLogViewerPanel(final String new_log_file_path, E_LogViewerState new_elog_viewer_state)
+	public JPanel getLogViewerPanel(final String new_log_file_path, E_LogViewerState new_elog_viewer_state, final Tower new_tempTM)
 	{
 		JPanel panel = new JPanel();
 		//Tabs
@@ -376,7 +376,7 @@ public class JPanelComponent implements Observer {
 	    tabPanelCurrentSession.add(getJScrollPane(txtAreaCurrentSession));
 	    tabPanelTowers.add(getJScrollPane(txtAreaTowers));
 	    tabPanelTowersCollection.add(getJScrollPane(txtAreaTowersCollection));
-	    tabPanelMapPlayersStatistics.add(txtAreaMapPlayersStatistics);
+	    tabPanelMapPlayersStatistics.add(getJScrollPane(txtAreaMapPlayersStatistics));
 	    
 	    //add Panels to Tabs
 	    jTabbedPane.addTab(ApplicationStatics.LOG_VIEWER_MODE_GLOBLE, tabPanelGloble);
@@ -389,8 +389,14 @@ public class JPanelComponent implements Observer {
 	    jTabbedPane.setSelectedIndex(new_elog_viewer_state.ordinal());
 	    
 	    //Read Logs for Current Opeing Tab
-	    LogReader logReader = new  LogReader(new_log_file_path, new_elog_viewer_state);
-	    txtAreaGloble.setText(logReader.read());
+	    LogReader logReader = new  LogReader(new_log_file_path, new_elog_viewer_state, new_tempTM);
+	    if(E_LogViewerState.TowerLog == new_elog_viewer_state){	
+	    	txtAreaTowers.setText(logReader.read());
+	    }
+	    else
+	    {
+	    	txtAreaGloble.setText(logReader.read());
+	    }
 		
 	  //initialized Tab Change event
 	    //addTagChangeListner(jTabbedPane);
@@ -399,21 +405,21 @@ public class JPanelComponent implements Observer {
             public void stateChanged(ChangeEvent e) {
                 if (e.getSource() instanceof JTabbedPane) {
                     JTabbedPane pane = (JTabbedPane) e.getSource();
-                    //System.out.println("Selected Tab Name : " + pane.getName()+", Selected paneNo : " + pane.getSelectedIndex());
+                    //logger.info("Selected Tab Name : " + pane.getName()+", Selected paneNo : " + pane.getSelectedIndex());
                     if(E_LogViewerState.GlobalLog.ordinal()== pane.getSelectedIndex()){
-                    	txtAreaGloble.setText(new  LogReader(new_log_file_path, E_LogViewerState.GlobalLog).read());
+                    	txtAreaGloble.setText(new  LogReader(new_log_file_path, E_LogViewerState.GlobalLog, new_tempTM).read());
                     }
                     else if(E_LogViewerState.CurrentSessionLog.ordinal()== pane.getSelectedIndex()){
-                    	txtAreaCurrentSession.setText(new  LogReader(new_log_file_path, E_LogViewerState.CurrentSessionLog).read());
+                    	txtAreaCurrentSession.setText(new  LogReader(new_log_file_path, E_LogViewerState.CurrentSessionLog, new_tempTM).read());
                     }
                     else if(E_LogViewerState.TowerLog.ordinal()== pane.getSelectedIndex()){
-                    	txtAreaTowers.setText(new  LogReader(new_log_file_path, E_LogViewerState.TowerLog).read());
+                    	txtAreaTowers.setText(new  LogReader(new_log_file_path, E_LogViewerState.TowerLog, new_tempTM).read());
                     }
                     else if(E_LogViewerState.TowerCollectionLog.ordinal()== pane.getSelectedIndex()){
-                    	txtAreaTowersCollection.setText(new  LogReader(new_log_file_path, E_LogViewerState.TowerCollectionLog).read());
+                    	txtAreaTowersCollection.setText(new  LogReader(new_log_file_path, E_LogViewerState.TowerCollectionLog, new_tempTM).read());
                     }
                     else if(E_LogViewerState.MapPlayersStatistics.ordinal()== pane.getSelectedIndex()){
-                    	txtAreaMapPlayersStatistics.setText(new  LogReader(new_log_file_path, E_LogViewerState.MapPlayersStatistics).read());
+                    	txtAreaMapPlayersStatistics.setText(new  LogReader(new_log_file_path, E_LogViewerState.MapPlayersStatistics, new_tempTM).read());
                     }                    
                 }
             }
@@ -479,7 +485,7 @@ public class JPanelComponent implements Observer {
 
 				Tower tempTM = TowerFactory.getTower("Shooter");
 
-				System.out.println("x : " + new_x + " , y : " + new_y);
+				logger.info("x : " + new_x + " , y : " + new_y);
 
 				ApplicationStatics.SET_TOWER_DESCR_VISIBLE = false;
 
@@ -504,7 +510,7 @@ public class JPanelComponent implements Observer {
 						ApplicationStatics.HAS_BOUGHT_TOWER = false;
 						setMapButtonsToYellow();
 					} else {
-						System.out.println("Dont have towers");
+						logger.info("Dont have towers");
 					}
 				} else {
 					if (!ApplicationStatics.PLAYERMODEL.towerModelArray
@@ -517,7 +523,7 @@ public class JPanelComponent implements Observer {
 
 							if (new_x == tempTM.getX()
 									&& new_y == tempTM.getY()) {
-								System.out.println("HERE x="
+								logger.info("HERE x="
 										+ tempTM.getTowerName());
 								ApplicationStatics.SET_TOWER_DESCR_VISIBLE = true;
 								bottomGamePanel.towerDescrPanel
@@ -687,7 +693,7 @@ public class JPanelComponent implements Observer {
 	public void setMapButtonsToYellow() {
 
 		String stringMapCoord = "";
-		// System.out.println("inside setMapButtonsToYellow "+
+		// logger.info("inside setMapButtonsToYellow "+
 		// ApplicationStatics.HAS_BOUGHT_TOWER);
 
 		for (int i = 0; i < ApplicationStatics.MAP_BUTTONS.length; i++) {
@@ -794,7 +800,7 @@ public class JPanelComponent implements Observer {
             public void stateChanged(ChangeEvent e) {
                 if (e.getSource() instanceof JTabbedPane) {
                     JTabbedPane pane = (JTabbedPane) e.getSource();
-                    //System.out.println("Selected Tab Name : " + pane.getName()+", Selected paneNo : " + pane.getSelectedIndex());
+                    //logger.info("Selected Tab Name : " + pane.getName()+", Selected paneNo : " + pane.getSelectedIndex());
                     /*
                     if( pane.getSelectedIndex()){
                     	

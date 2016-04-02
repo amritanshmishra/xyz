@@ -15,6 +15,7 @@ import javax.swing.JTextArea;
 
 import com.app.towerDefense.gameLogic.LogReader;
 import com.app.towerDefense.guiComponents.JPanelComponent;
+import com.app.towerDefense.models.Tower;
 import com.app.towerDefense.staticContent.AppilicationEnums.E_LogViewerState;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 /**
@@ -36,7 +37,7 @@ public class LogViewer extends JFrame  {
 	
 	public LogViewer(JFrame new_parent, String new_title, int new_width,
 			int new_height, String new_log_file_path,
-			E_LogViewerState new_elog_viewer_state) {
+			E_LogViewerState new_elog_viewer_state, Tower new_tower) {
 		//Set Window size
 		if (new_parent != null) {
 			Dimension parentSize = new_parent.getSize();
@@ -71,7 +72,7 @@ public class LogViewer extends JFrame  {
 		this.setVisible(true);		
 		
 		//Tabs
-	    getContentPane().add(new JPanelComponent().getLogViewerPanel(new_log_file_path, new_elog_viewer_state));
+	    getContentPane().add(new JPanelComponent().getLogViewerPanel(new_log_file_path, new_elog_viewer_state, new_tower));
 	    
 	}
 }

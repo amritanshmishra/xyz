@@ -27,6 +27,7 @@ public class PlayerModel extends Observable{
 	private String playerName;
 	public static ArrayList<Tower> towerModelArray;
 	final static Logger logger = Logger.getLogger(MapPanel.class);
+	public int lastTowerID=0; 
 
 	/**
 	 * Constructor that initializes default values
@@ -140,7 +141,7 @@ public class PlayerModel extends Observable{
 			break;
 		
 		}
-		tempTM.towerID = towerModelArray.size();
+		tempTM.towerID = lastTowerID++;
 		towerModelArray.add(tempTM);
 
 		ApplicationStatics.HAS_BOUGHT_TOWER = true;

@@ -212,7 +212,8 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 						ApplicationStatics.CHILD_POPUP_WINDOW_WIDTH,
 						ApplicationStatics.CHILD_POPUP_WINDOW_HEIGHT,
 						ApplicationStatics.LOG_File_PATH, 
-						E_LogViewerState.TowerLog);
+						E_LogViewerState.TowerLog,
+						tempTM);
 			}
 		});
 
@@ -265,19 +266,19 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 				if (strategyTowerButton.getText() == "NearToEND") {
 					strategyTowerButton.setText("NearTower");
 					tempTM.setStrategy(new NearestToTowerStrategy());
-					System.out.println("strategy changed to NearTower");
+					logger.info("strategy changed to NearTower");
 				} else if (strategyTowerButton.getText() == "NearTower") {
 					strategyTowerButton.setText("Strongest");
 					tempTM.setStrategy(new StrongestStrategy());
-					System.out.println("strategy changed to Strongest");
+					logger.info("strategy changed to Strongest");
 				} else if (strategyTowerButton.getText() == "Strongest") {
 					strategyTowerButton.setText("Weakest");
 					tempTM.setStrategy(new WeakestStrategy());
-					System.out.println("strategy changed to Weakest");
+					logger.info("strategy changed to Weakest");
 				} else if (strategyTowerButton.getText() == "Weakest") {
 					strategyTowerButton.setText("NearToEND");
 					tempTM.setStrategy(new NearestToEndPointStrategy());
-					System.out.println("strategy changed to NearToEND");
+					logger.info("strategy changed to NearToEND");
 				}
 
 			}

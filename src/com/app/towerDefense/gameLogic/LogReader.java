@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.app.towerDefense.models.Tower;
 import com.app.towerDefense.staticContent.AppilicationEnums.E_LogViewerState;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 import com.app.towerDefense.utilities.MiscellaneousHelper;
@@ -19,16 +20,19 @@ public class LogReader {
 	String logFilePath;
 	String logResultant;
 	E_LogViewerState logReadingState;
+	Tower tower;
 
 	// Log
 	// final static Logger logger = Logger.getLogger(LogReader.class);
 
 	public LogReader(String new_log_file_path,
-			E_LogViewerState new_elog_viewer_state) {
+			E_LogViewerState new_elog_viewer_state,
+			Tower new_tower) {
 		logFilePath = new_log_file_path;
 		file = new File(logFilePath);
 		logReadingState = new_elog_viewer_state;
 		logResultant = "";
+		tower = new_tower;
 		// logger.info("Function Called :- LogReader(new_log_file_path:"+new_log_file_path+", new_elog_viewer_state: "+new_elog_viewer_state+")");
 	}
 

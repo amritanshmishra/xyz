@@ -153,7 +153,7 @@ public class JMenuBarComponent {
 								//ulan
 								ApplicationStatics.BLOCK_WIDTH = gameMapPanel.getWidth() / mapModel.getMapWidth();;
 								ApplicationStatics.BLOCK_HEIGHT = gameMapPanel.getHeight() / mapModel.getMapHeight();
-							//	System.out.println("HERERER: "+ ApplicationStatics.BLOCK_WIDTH);
+							//	logger.info("HERERER: "+ ApplicationStatics.BLOCK_WIDTH);
 								logger.info(String.format(ApplicationStatics.MSG_MAP_FILE_LOADED_SAVED, "Loaded") );
 							} else {
 								logger.info(ApplicationStatics.MSG_IN_VALID_MAP);
@@ -301,7 +301,8 @@ public class JMenuBarComponent {
 							ApplicationStatics.CHILD_POPUP_WINDOW_WIDTH,
 							ApplicationStatics.CHILD_POPUP_WINDOW_HEIGHT,
 							ApplicationStatics.LOG_File_PATH, 
-							E_LogViewerState.GlobalLog);
+							E_LogViewerState.GlobalLog,
+							null);
 				}
 				
 			}
