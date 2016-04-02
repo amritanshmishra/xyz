@@ -11,6 +11,8 @@ public interface Strategy {
 	 * Method whose implementation varies depending on the strategy adopted.
 	 * 
 	 */
-	void execute();
+	void execute(Tower new_tower, CritterType new_critter);
+	
+	public String getStrategyName();
 	
 }

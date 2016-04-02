@@ -27,13 +27,13 @@ public interface CritterType extends Observable {
 	public int getY();
 
 	/**
-	 * Getter method for actualhealth
+	 * Getter method for actual health
 	 * @return critter actual Health
 	 */
 	public int getActualHealth();
 
 	/**
-	 * Getter method for currenthealth
+	 * Getter method for current health
 	 * @return critter Health
 	 */
 	public int getCurrentHealth();
@@ -131,4 +131,40 @@ public interface CritterType extends Observable {
 	 * @return true if splash effect has occurred
 	 */
 	public boolean getShowSplashArea();
+	
+	/**
+	 * get x mid coordinate
+	 * @return x coordinate
+	 */
+	public int getXCr();
+	
+	/**
+	 * gets y mid coordinate
+	 * @return y coordinate
+	 */
+	public int getYCr();
+	
+	/**
+	 * This method returns the critter status
+	 * @return true if alive , false if critter is dead
+	 */
+	public boolean getIsDead();
+	
+	/**
+	 *  This method returns path block number where critter is currently running
+	 * @return block number i
+	 */
+	public int getCurrentBlockI();
+	
+	/**
+	 *  This method returns critter's running direction on x-axis
+	 * @return 1 if right, -1 if left, 0 if no changes on x axis
+	 */
+	public int getDirectionX();
+	
+	/**
+	 * This method returns critter's running direction on y-axis
+	 * @return 1 if bottom, -1 if top, 0 if no changes on y axis
+	 */
+	public int getDirectionY();
 }

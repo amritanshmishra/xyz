@@ -22,7 +22,11 @@ import javax.swing.SwingConstants;
 import org.apache.log4j.Logger;
 
 import com.app.towerDefense.guisystem.LogViewer;
+import com.app.towerDefense.models.NearestToEndPointStrategy;
+import com.app.towerDefense.models.NearestToTowerStrategy;
+import com.app.towerDefense.models.StrongestStrategy;
 import com.app.towerDefense.models.Tower;
+import com.app.towerDefense.models.WeakestStrategy;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 import com.app.towerDefense.staticContent.AppilicationEnums.E_LogViewerState;
 
@@ -259,14 +263,21 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 				logger.info("strategy button was clicked!");
 
 				if (strategyTowerButton.getText() == "NearToEND") {
-					strategyTowerButton.setText("Weakest");
-					tempTM.setSpecialEffect("Weakest");
-				} else if (strategyTowerButton.getText() == "Weakest") {
+					strategyTowerButton.setText("NearTower");
+					tempTM.setStrategy(new NearestToTowerStrategy());
+					System.out.println("strategy changed to NearTower");
+				} else if (strategyTowerButton.getText() == "NearTower") {
 					strategyTowerButton.setText("Strongest");
-					tempTM.setSpecialEffect("Strongest");
+					tempTM.setStrategy(new StrongestStrategy());
+					System.out.println("strategy changed to Strongest");
 				} else if (strategyTowerButton.getText() == "Strongest") {
+					strategyTowerButton.setText("Weakest");
+					tempTM.setStrategy(new WeakestStrategy());
+					System.out.println("strategy changed to Weakest");
+				} else if (strategyTowerButton.getText() == "Weakest") {
 					strategyTowerButton.setText("NearToEND");
-					tempTM.setSpecialEffect("NearToEND");
+					tempTM.setStrategy(new NearestToEndPointStrategy());
+					System.out.println("strategy changed to NearToEND");
 				}
 
 			}
@@ -343,6 +354,7 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 			labelStatsTower[17].setText(Integer.toString((int) (new_tower_models
 					.getTowerUpgradeCost())));
 			sellBuyTowerButton.setText("SELL");
+			strategyTowerButton.setText(tempTM.getStrategy().getStrategyName());
 		
 		} else {
 			labelStatsTower[2].setText("");

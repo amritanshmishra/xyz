@@ -44,7 +44,6 @@ public abstract class Tower implements Observer {
 	protected int towerFireRangeUpgrade;
 	protected int x, y;
 	protected Strategy strategy;
-	protected int isBusy = -1; // if not -1, then tower has a target
 	protected String specialEffect;
 
 	protected double xt, yt, dtw, dth; // x,y coordinates of range circle and
@@ -52,12 +51,18 @@ public abstract class Tower implements Observer {
 
 	protected Timer timer; // timer for shooting
 	protected boolean shoot = true; // shoots when value is true
+	CritterType targetCritter;
+
+	int bW, bH; // block width and height
+	int xMid, yMid;
 
 	/**
 	 * Constructor
 	 */
 	public Tower() {
 		timer = new Timer();
+		bW = ApplicationStatics.BLOCK_WIDTH;
+		bH = ApplicationStatics.BLOCK_HEIGHT;
 	}
 
 	/**
@@ -263,6 +268,10 @@ public abstract class Tower implements Observer {
 	 * @return the value of the tower
 	 */
 	public abstract int getRefund();
+	
+	public Strategy getStrategy(){
+		return strategy;
+	}
 
 	/**
 	 * Plugs in a specific strategy to be used
@@ -272,11 +281,8 @@ public abstract class Tower implements Observer {
 	 */
 	public abstract void setStrategy(Strategy new_strategy);
 
-	/**
-	 * Method that executes a different strategy depending on what strategy was
-	 * plugged in upon instantiation.
-	 */
-	public abstract void executeStrategy();
+	
+	public abstract void executeStrategy(Tower new_tower, CritterType new_critter);
 
 	/**
 	 * update method that called when observable called its function notify
@@ -289,70 +295,20 @@ public abstract class Tower implements Observer {
 	 *            the object
 	 */
 	public void update(Observable new_critter, Object new_x) {
-		if (((BasicCritter) new_critter).isDead == true) {
-			isBusy = -1;
-			shoot = true;
-			// System.out.println("critter null");
-		} else {
 
-			int bW = ApplicationStatics.BLOCK_WIDTH;
-			int bH = ApplicationStatics.BLOCK_HEIGHT;
-
-			int xCr = ((CritterType) new_critter).getX() + bW / 3;
-			int yCr = ((CritterType) new_critter).getY() + bH / 3;
-
-			Ellipse2D ellipse = new Ellipse2D.Double(xt, yt, dtw, dth);
-			if (isBusy == -1 || isBusy == ((CritterType) new_critter).getCritterId()) {
-				// critter is in range of tower
-				if (ellipse.contains(xCr, yCr)) {
-					if (shoot) {
-
-						isBusy = ((CritterType) new_critter).getCritterId();
-
-						if (((CritterType) new_critter).decreaseLife(getTowerPower())) {
-							System.out.println("Tower " + getTowerName() + " id:" + towerID + " shoots critter id:"
-									+ ((CritterType) new_critter).getCritterId() + " damage:" + getTowerPower());
-
-							MapPanel.drawLines(getY() * bW + bW / 2, getX() * bH + bH / 2, xCr, yCr, getTowerName(),
-									((CritterType) new_critter).getCritterId());
-								
-							if (getSpecialEffect() == "Freeze") {
-								((CritterType) new_critter).setCritterImage(ApplicationStatics.IMAGE_PATH_CRITTER_FROZEN);
-								((CritterType) new_critter).slowSpeed();
-							} else if (getSpecialEffect() == "Burn") {
-								((CritterType) new_critter).setCritterImage(ApplicationStatics.IMAGE_PATH_CRITTER_BURN);
-								((CritterType) new_critter).burnHealth(getTowerPower());
-							} else if (getSpecialEffect() == "Splash") {
-						//		((CritterType) new_critter).setCritterImage(ApplicationStatics.IMAGE_PATH_CRITTER_SPLASH);
-								((CritterType) new_critter).splashDamage(getTowerPower());
-							}
-							
-						}
-
-						if (((CritterType) new_critter).killCritter()) {
-							isBusy = -1;
-						}
-
-						
-
-						shoot = false;
-						timer.schedule(new TimerTask() {
-							@Override
-							public void run() {
-								// Your database code here
-								shoot = true;
-							}
-						}, 1500);
-					}
-
-				} else {
-					isBusy = -1;
-
-				}
-
+		Ellipse2D ellipse = new Ellipse2D.Double(xt, yt, dtw, dth);
+		if(targetCritter!=null){
+			if (!ellipse.contains(targetCritter.getXCr(), targetCritter.getYCr()) || targetCritter.getIsDead()) {
+				targetCritter = null;	
 			}
 		}
 
+		// critter is in range of tower
+		if (ellipse.contains(((CritterType) new_critter).getXCr(), ((CritterType) new_critter).getYCr())) {
+
+			this.executeStrategy(this, ((CritterType) new_critter));
+
+		}
 	}
 
 	/*
@@ -383,16 +339,6 @@ public abstract class Tower implements Observer {
 	}
 
 	/**
-	 * This method sets the special effect for the tower
-	 * 
-	 * @param new_str
-	 *            gets special effect name
-	 */
-	public void setSpecialEffect(String new_str) {
-		specialEffect = new_str;
-	}
-
-	/**
 	 * This method calculates the tower range circle area, top left x and y
 	 * coordinates
 	 */
@@ -414,6 +360,10 @@ public abstract class Tower implements Observer {
 		rangeT *= 2;
 		dtw = ApplicationStatics.BLOCK_WIDTH * 3 + ApplicationStatics.BLOCK_WIDTH * rangeT;
 		dth = ApplicationStatics.BLOCK_HEIGHT * 3 + ApplicationStatics.BLOCK_HEIGHT * rangeT;
+		
+		// calculation of mid points of tower button
+		xMid = y*bW - bW/2;
+		yMid = x*bH - bH/2;
 	}
 
 	/**
@@ -434,4 +384,65 @@ public abstract class Tower implements Observer {
 		return dth;
 	}
 
+	public void shoot() {
+		
+		if (targetCritter != null) {
+			
+			if (shoot) {
+				if (targetCritter.decreaseLife(getTowerPower())) {
+					System.out.println("Tower " + getTowerName() + " id:" + towerID + " shoots critter id:"
+							+ targetCritter.getCritterId() + " damage:" + getTowerPower());
+
+		//			System.out.println("d:"+ (int)Math.sqrt((xMid - targetCritter.getXCr()) ^ 2 + (yMid - targetCritter.getYCr()) ^ 2));
+					
+					MapPanel.drawLines(getY() * bW + bW / 2, getX() * bH + bH / 2, targetCritter.getXCr(),
+							targetCritter.getXCr(), getTowerName(), targetCritter.getCritterId());
+				}
+				if (getSpecialEffect() == "Freeze") {
+					targetCritter.setCritterImage(ApplicationStatics.IMAGE_PATH_CRITTER_FROZEN);
+					targetCritter.slowSpeed();
+				} else if (getSpecialEffect() == "Burn") {
+					targetCritter.setCritterImage(ApplicationStatics.IMAGE_PATH_CRITTER_BURN);
+					targetCritter.burnHealth(getTowerPower());
+				} else if (getSpecialEffect() == "Splash") {
+					targetCritter.splashDamage(getTowerPower());
+				}
+
+				shoot = false;
+				timer.schedule(new TimerTask() {
+					@Override
+					public void run() {
+						// Your database code here
+						shoot = true;
+					}
+				}, 500);
+			
+			}
+			
+			if (targetCritter.killCritter()) {
+				targetCritter = null;
+			}
+		}
+		
+		
+		
+	}
+	
+	public CritterType getTargetCritter(){
+		return targetCritter;
+	}
+	
+	public void setTargetCritter(CritterType new_critter){
+		targetCritter = new_critter;
+	}
+	
+	public int getXMid(){
+		return xMid;
+	}
+	
+	public int getYMid(){
+		return yMid;
+	}
+	
+//END
 }

@@ -37,6 +37,7 @@ public class Burner extends Tower{
 		setTowerPowerUpgrade();
 		
 		specialEffect = "Burn";
+		this.setStrategy(new NearestToEndPointStrategy());
 	}
 	
 	@Override
@@ -239,8 +240,8 @@ public class Burner extends Tower{
      * plugged in upon instantiation.
 	 */
 	@Override
-	public void executeStrategy(){
-		this.strategy.execute();
+	public void executeStrategy(Tower new_tower, CritterType new_critter){
+		this.strategy.execute(new_tower, new_critter);
 	}
 
 

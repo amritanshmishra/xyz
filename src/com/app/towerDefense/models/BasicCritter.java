@@ -13,6 +13,7 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
 import javafx.beans.InvalidationListener;
 
 /**
+ * {@inheritDoc}
  * This class is the basic critter that would move on the map Contains different
  * methhods to create and move a critter on the map selected by player
  * 
@@ -35,12 +36,12 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	// decides which direction critter moves
 	private int directionX; 
 	private int directionY;
-	private int i = 0;
+	private int currentBlocki = 0;
 	// x and y of the next path point
 	private int xNext;
 	private int yNext;
 	// map blocks size
-	private int blockW, blockH;
+	public int blockW, blockH;
 
 	private int speed;
 	private int actualSpeed;
@@ -48,6 +49,8 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	private Timer timerBurning;
 	private Timer timerSplash;	
 	private boolean showSplashArea;
+	
+	private int xCr, yCr;
 	
 	
 	/**
@@ -78,25 +81,16 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 
 	}
 
-	/**
-	 * Gets the x co-ordinate for critter
-	 */
 	@Override
 	public int getX() {
 		return x;
 	}
 
-	/**
-	 * Gets the y co-ordinate for critter
-	 */
 	@Override
 	public int getY() {
 		return y;
 	}
 	
-	/**
-	 * This method sets the initial x and y coordinates for the critter
-	 */
 	@Override
 	public void setXY(int new_xEntry, int new_yEntry) {
 		// TODO Auto-generated method stub
@@ -105,49 +99,31 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 		// System.out.println("myX : "+x+" , myY : "+y);
 	}
 
-	/**
-	 * Get actual health of the critter
-	 */
 	@Override
 	public int getActualHealth() {
 		return actualHealth;
 	}
 
-	/**
-	 * Returns the current health of the critter
-	 */
 	@Override
 	public int getCurrentHealth() {
 		return currentHealth;
 	}
 
-	/**
-	 * Returns critter id
-	 */
 	@Override
 	public int getCritterId() {
 		return critterId;
 	}
 	
-	/**
-	 * This method sets the id for the basic critter
-	 */
 	@Override
 	public void setID(int new_id) {
 		critterId = new_id;
 	}
 
-	/**
-	 * This method returns the image used for the critter
-	 */
 	@Override
 	public Image getCritterImage() {
 		return image;
 	}
 	
-	/**
-	 * This method sets the critter image path to new one
-	 */
 	@Override
 	public void setCritterImage(String new_path) {
 		// TODO Auto-generated method stub
@@ -206,9 +182,6 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 
 	}
 	
-	/**
-	 * Calculates the path on which the critter would move
-	 */
 	@Override
 	public boolean calculatePath() {
 
@@ -216,29 +189,29 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 		// (ApplicationStatics.PATH_ARRAY1.size()-1));
 
 		// check if it is the end of the path
-		if (i == ApplicationStatics.PATH_ARRAY1.size() - 1) {
+		if (currentBlocki == ApplicationStatics.PATH_ARRAY1.size() - 1) {
 			return false;
 		}
 
 		// calculate the next x and y coordinates of the next block of the path
-		xNext = ApplicationStatics.PATH_ARRAY1.get(i + 1).y * blockW;
-		yNext = ApplicationStatics.PATH_ARRAY1.get(i + 1).x * blockH;
+		xNext = ApplicationStatics.PATH_ARRAY1.get(currentBlocki + 1).y * blockW;
+		yNext = ApplicationStatics.PATH_ARRAY1.get(currentBlocki + 1).x * blockH;
 		// calculate the critter movement direction
-		directionY = ApplicationStatics.PATH_ARRAY1.get(i + 1).x - ApplicationStatics.PATH_ARRAY1.get(i).x;
-		directionX = ApplicationStatics.PATH_ARRAY1.get(i + 1).y - ApplicationStatics.PATH_ARRAY1.get(i).y;
+		directionY = ApplicationStatics.PATH_ARRAY1.get(currentBlocki + 1).x - ApplicationStatics.PATH_ARRAY1.get(currentBlocki).x;
+		directionX = ApplicationStatics.PATH_ARRAY1.get(currentBlocki + 1).y - ApplicationStatics.PATH_ARRAY1.get(currentBlocki).y;
 
 		// move to next block when conditions satisfy
 		if (directionX == 1 || directionX == -1) {
 			if (x == xNext || x == xNext - 1) {
 				// System.out.println("inside 1 :" + (i++));
-				i++;
+				currentBlocki++;
 				x = xNext;
 			}
 		} else if (directionX == 0) {
 			if (directionY == 1 || directionY == -1) {
 				if (y == yNext || y == yNext - 1) {
 					// System.out.println("inside 2" + (i++));
-					i++;
+					currentBlocki++;
 					y = yNext;
 				}
 			}
@@ -246,6 +219,10 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 		// increment or decrement the x and y coordinates of the critter
 		x += directionX * speed;
 		y += directionY * speed;
+		
+		xCr = x + blockW / 3;
+		yCr = y + blockH / 3;
+
 
 		// notify all observers about a change in x and y
 		setChanged();
@@ -341,6 +318,7 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 			}
 		}, 1450);
 		
+		
 		Ellipse2D ellipse = new Ellipse2D.Double(x - blockW / 2, y - blockH / 2, blockW, blockH);
 		for (int i = 0; i < MapPanel.critter.size(); i++) {
 			if (ellipse.contains(MapPanel.critter.get(i).getX(), MapPanel.critter.get(i).getY())) {
@@ -353,6 +331,42 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 				}
 			}
 		}
+	}
+
+	@Override
+	public int getXCr() {
+		// TODO Auto-generated method stub
+		return xCr;
+	}
+
+	@Override
+	public int getYCr() {
+		// TODO Auto-generated method stub
+		return yCr;
+	}
+
+	@Override
+	public boolean getIsDead() {
+		// TODO Auto-generated method stub
+		return isDead;
+	}
+
+	@Override
+	public int getCurrentBlockI() {
+		// TODO Auto-generated method stub
+		return currentBlocki;
+	}
+
+	@Override
+	public int getDirectionX() {
+		// TODO Auto-generated method stub
+		return directionX;
+	}
+
+	@Override
+	public int getDirectionY() {
+		// TODO Auto-generated method stub
+		return directionY;
 	}
 
 

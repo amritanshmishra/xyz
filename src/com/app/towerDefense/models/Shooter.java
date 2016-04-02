@@ -38,6 +38,7 @@ public class Shooter extends Tower{
 		setTowerPowerUpgrade();
 		
 		specialEffect = "";
+		this.setStrategy(new NearestToEndPointStrategy());
 	}
 	
 	/**
@@ -250,8 +251,8 @@ public class Shooter extends Tower{
      * plugged in upon instantiation.
 	 */
 	@Override
-	public void executeStrategy(){
-		this.strategy.execute();
+	public void executeStrategy(Tower new_tower, CritterType new_critter){
+		this.strategy.execute(new_tower, new_critter);
 	}
 	
 	
