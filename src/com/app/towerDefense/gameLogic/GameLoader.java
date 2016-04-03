@@ -1,4 +1,4 @@
-package com.app.towerDefense.guisystem;
+package com.app.towerDefense.gameLogic;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
