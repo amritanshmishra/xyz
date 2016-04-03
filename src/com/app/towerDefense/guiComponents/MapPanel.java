@@ -16,6 +16,8 @@ import javax.swing.JPanel;
 
 import org.apache.log4j.Logger;
 
+import com.app.towerDefense.gameLogic.GameLoader;
+import com.app.towerDefense.gameLogic.GameSaver;
 import com.app.towerDefense.gameLogic.Map;
 import com.app.towerDefense.models.BasicCritter;
 import com.app.towerDefense.models.CritterFactory;
@@ -172,6 +174,7 @@ public class MapPanel extends JPanel {
 							ApplicationStatics.PLAYERMODEL.incGameWave();
 							new Map().saveMapLog();
 							logger.info("Next Wave : "+ApplicationStatics.PLAYERMODEL.getGameWave()+" Started.");
+							GameSaver gameSaver=  new GameSaver();							
 						}
 					}
 

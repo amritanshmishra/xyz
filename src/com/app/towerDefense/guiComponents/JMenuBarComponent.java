@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 
 import org.apache.log4j.Logger;
 
+import com.app.towerDefense.gameLogic.GameLoader;
 import com.app.towerDefense.gameLogic.Map;
 import com.app.towerDefense.guisystem.Game;
 import com.app.towerDefense.guisystem.LogViewer;
@@ -146,7 +147,8 @@ public class JMenuBarComponent {
 								
 									//ulan
 								ApplicationStatics.GAME_OVER = false;
-
+								GameLoader gameLoader = new GameLoader("Data.txt");
+								
 								// jframe.add(gameMapPanel);
 								new_jframe.getContentPane().add(gameMapPanel,
 										BorderLayout.NORTH);
