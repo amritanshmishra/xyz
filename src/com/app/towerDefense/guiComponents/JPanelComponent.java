@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -402,11 +403,13 @@ public class JPanelComponent implements Observer {
 	    LogReader logReader = new  LogReader(new_log_file_path, new_elog_viewer_state, new_tempTM);
 	    if(E_LogViewerState.TowerLog == new_elog_viewer_state){	
 	    	txtAreaTowers.setText(logReader.read());
+	    	txtAreaTowers.setCaretPosition(txtAreaTowers.getDocument().getLength());
 	    	txtAreaLog= txtAreaTowers;
 	    }
 	    else
 	    {
 	    	txtAreaGloble.setText(logReader.read());
+	    	txtAreaGloble.setCaretPosition(txtAreaGloble.getDocument().getLength());
 	    	txtAreaLog= txtAreaGloble;
 	    }
 		
@@ -421,22 +424,27 @@ public class JPanelComponent implements Observer {
                     //logger.info("Selected Tab Name : " + pane.getName()+", Selected paneNo : " + pane.getSelectedIndex());
                     if(E_LogViewerState.GlobalLog.ordinal()== pane.getSelectedIndex()){
                     	txtAreaGloble.setText(new  LogReader(new_log_file_path, E_LogViewerState.GlobalLog, new_tempTM).read());
+                    	txtAreaGloble.setCaretPosition(txtAreaGloble.getDocument().getLength());
                     	LogViewer.resetLogInfo(txtAreaGloble, new_log_file_path, E_LogViewerState.GlobalLog, new_tempTM);
                     }
                     else if(E_LogViewerState.CurrentSessionLog.ordinal()== pane.getSelectedIndex()){
                     	txtAreaCurrentSession.setText(new  LogReader(new_log_file_path, E_LogViewerState.CurrentSessionLog, new_tempTM).read());
+                    	txtAreaCurrentSession.setCaretPosition(txtAreaCurrentSession.getDocument().getLength());
                     	LogViewer.resetLogInfo(txtAreaCurrentSession, new_log_file_path, E_LogViewerState.CurrentSessionLog, new_tempTM);
                     }
                     else if(E_LogViewerState.TowerLog.ordinal()== pane.getSelectedIndex()){
                     	txtAreaTowers.setText(new  LogReader(new_log_file_path, E_LogViewerState.TowerLog, new_tempTM).read());
+                    	txtAreaTowers.setCaretPosition(txtAreaTowers.getDocument().getLength());
                     	LogViewer.resetLogInfo(txtAreaTowers, new_log_file_path, E_LogViewerState.TowerLog, new_tempTM);
                     }
                     else if(E_LogViewerState.TowerCollectionLog.ordinal()== pane.getSelectedIndex()){
                     	txtAreaTowersCollection.setText(new  LogReader(new_log_file_path, E_LogViewerState.TowerCollectionLog, new_tempTM).read());
+                    	txtAreaTowersCollection.setCaretPosition(txtAreaTowersCollection.getDocument().getLength());
                     	LogViewer.resetLogInfo(txtAreaTowersCollection, new_log_file_path, E_LogViewerState.TowerCollectionLog, new_tempTM);
                     }
                     else if(E_LogViewerState.MapPlayersStatistics.ordinal()== pane.getSelectedIndex()){
                     	txtAreaMapPlayersStatistics.setText(new  LogReader(new_log_file_path, E_LogViewerState.MapPlayersStatistics, new_tempTM).read());
+                    	txtAreaMapPlayersStatistics.setCaretPosition(txtAreaMapPlayersStatistics.getDocument().getLength());
                     	LogViewer.resetLogInfo(txtAreaMapPlayersStatistics, new_log_file_path, E_LogViewerState.MapPlayersStatistics, new_tempTM);
                     } 
                 }
@@ -812,23 +820,8 @@ public class JPanelComponent implements Observer {
 	 */
 	public JScrollPane getJScrollPane(JTextArea new_jtextarea)
 	{
-		return new JScrollPane(new_jtextarea);
-	}
-	
-	public void addTagChangeListner(JTabbedPane jTabbedPane ){
-		jTabbedPane.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                if (e.getSource() instanceof JTabbedPane) {
-                    JTabbedPane pane = (JTabbedPane) e.getSource();
-                    //logger.info("Selected Tab Name : " + pane.getName()+", Selected paneNo : " + pane.getSelectedIndex());
-                    /*
-                    if( pane.getSelectedIndex()){
-                    	
-                    }
-                    */
-                }
-            }
-        });
+		JScrollPane jScrollPane = new JScrollPane(new_jtextarea);
+		jScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		return jScrollPane;
 	}
 }

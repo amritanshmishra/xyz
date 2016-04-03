@@ -1,10 +1,14 @@
 package com.app.towerDefense.gameLogic;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.app.towerDefense.models.MapModel;
+import com.app.towerDefense.models.MapPlayersStatisticsModel;
 import com.app.towerDefense.models.Tower;
 import com.app.towerDefense.staticContent.AppilicationEnums.E_LogViewerState;
 import com.app.towerDefense.staticContent.ApplicationStatics;
@@ -110,15 +114,25 @@ public class LogReader {
 		{
 			File file = new File(ApplicationStatics.MAP_CURRENT_OPENED_FILE_PATH);
 			MapModel mapModel = (new FileStorage()).openMapFile(file);
-			
+
+	        Collections.sort(mapModel.getMapPlayersStatisticsArray(), new Comparator<MapPlayersStatisticsModel>(){
+
+	          public int compare(MapPlayersStatisticsModel m1, MapPlayersStatisticsModel m2)
+	          {
+	             return m2.getWaveNo().compareTo(m1.getWaveNo());
+	          }
+	        });
+	        
 		   int length=mapModel.getMapPlayersStatisticsArray().size();
 		   StringBuilder sb = new StringBuilder(); 
-		   sb.append("PlayerName	Start			waveNo	currentSessionEnd \n");
-		   sb.append("------------------------------------------------------------------\n");
+		   sb.append(" -------------------------------------------------------------------------------------------------\n");
+		   sb.append(" S.No	PLAYER NAME	 START			WAVE NO.	      END \n");
+		   sb.append(" -------------------------------------------------------------------------------------------------\n");
 		   for (int i = 0; i < length; i++) {
-				sb.append(mapModel.getMapPlayersStatisticsArray().get(i).getPlayerName()+"	      ");
-				sb.append(mapModel.getMapPlayersStatisticsArray().get(i).getCurrentSessionStart()+"		");
-				sb.append(mapModel.getMapPlayersStatisticsArray().get(i).getWaveNo()+"	");
+			   	sb.append(" "+(i+1)+"	");
+				sb.append(mapModel.getMapPlayersStatisticsArray().get(i).getPlayerName()+"	         ");
+				sb.append(mapModel.getMapPlayersStatisticsArray().get(i).getCurrentSessionStart()+"	");
+				sb.append(mapModel.getMapPlayersStatisticsArray().get(i).getWaveNo()+"	              ");
 				sb.append(mapModel.getMapPlayersStatisticsArray().get(i).getCurrentSessionEnd()+"\n");
 		   }
 		   logResultant=sb.toString();

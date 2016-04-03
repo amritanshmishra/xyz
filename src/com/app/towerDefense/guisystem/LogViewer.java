@@ -104,6 +104,7 @@ public class LogViewer extends JFrame  {
 	        public void run() {
 	        	if(ApplicationStatics.isLogViewerOpen){
 	        		txtAreaLog.setText(new  LogReader(filePath, elogViewerState, tower).read());
+	        		txtAreaLog.setCaretPosition(txtAreaLog.getDocument().getLength());
 	        	}
 	        	else{
 	        		timer.cancel();
