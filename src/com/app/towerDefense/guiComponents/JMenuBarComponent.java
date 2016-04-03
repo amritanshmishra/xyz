@@ -149,6 +149,7 @@ public class JMenuBarComponent {
 								ApplicationStatics.GAME_OVER = false;
 								GameLoader gameLoader = new GameLoader("Data.txt");
 								
+								
 								// jframe.add(gameMapPanel);
 								new_jframe.getContentPane().add(gameMapPanel,
 										BorderLayout.NORTH);						
@@ -165,9 +166,15 @@ public class JMenuBarComponent {
 								ApplicationStatics.PLAYERMODEL
 										.addObserver(panelComponent);
 								
+								
 								//ulan
 								ApplicationStatics.BLOCK_WIDTH = gameMapPanel.getWidth() / mapModel.getMapWidth();;
 								ApplicationStatics.BLOCK_HEIGHT = gameMapPanel.getHeight() / mapModel.getMapHeight();
+								
+								gameLoader.recalculate();
+								panelComponent.setMapButtonsToYellow();
+								
+								
 							//	logger.info("HERERER: "+ ApplicationStatics.BLOCK_WIDTH);
 								logger.info(String.format(ApplicationStatics.MSG_MAP_FILE_LOADED_SAVED, "Loaded") );
 							} else {

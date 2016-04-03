@@ -31,6 +31,7 @@ public class GameLoader {
 	int gameWave;
 	int lastTowerID;
 	ArrayList<Tower> tempTowerModelArray;
+	String[] dataArray;
 	
 
 	public GameLoader(String new_gamePath) {
@@ -47,7 +48,7 @@ public class GameLoader {
 	
 			String temp = in.readLine();
 			
-			String[] dataArray=temp.split(":");
+			dataArray=temp.split(":");
 			
 			playerName = dataArray[0];
 
@@ -80,6 +81,12 @@ public class GameLoader {
 
 			 ApplicationStatics.PLAYERMODEL = new PlayerModel(playerName, sunCurrency, hpPlayer, gameWave);
 			 ApplicationStatics.PLAYERMODEL.towerModelArray = tempTowerModelArray;
+			 ApplicationStatics.PLAYERMODEL.lastTowerID = lastTowerID;
+			 
+			 System.out.println("HERE lastTowerID:"+ApplicationStatics.PLAYERMODEL.lastTowerID+" read:"+lastTowerID);
+			 
+			// ApplicationStatics.PLAYERMODEL.printAllTowers();
+			
 
 			in.close();
 		} catch (IOException e) {
@@ -87,6 +94,15 @@ public class GameLoader {
 			e.printStackTrace();
 		}
 
+	}
+	
+	
+	public void recalculate(){
+		
+		for(int i=0; i<ApplicationStatics.PLAYERMODEL.towerModelArray.size(); i++){
+			ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).calculateRangeCircleCoordinates();
+		}
+		
 	}
 
 }

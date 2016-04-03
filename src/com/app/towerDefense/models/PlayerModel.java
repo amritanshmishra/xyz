@@ -194,6 +194,7 @@ public class PlayerModel extends Observable{
 	public void printAllTowers() {
 		for (int i = 0; i < towerModelArray.size(); i++) {
 			logger.info(towerModelArray.get(i).getTowerName() + " x="+towerModelArray.get(i).getX() + " y="+towerModelArray.get(i).getY());
+	//		System.out.println(towerModelArray.get(i).getTowerName() + " x="+towerModelArray.get(i).getX() + " y="+towerModelArray.get(i).getY());
 		}
 	}
 	
