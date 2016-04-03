@@ -4,9 +4,11 @@ import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.models.Tower;
 import com.app.towerDefense.staticContent.AppilicationEnums.E_LogViewerState;
 import com.app.towerDefense.staticContent.ApplicationStatics;
+import com.app.towerDefense.utilities.FileStorage;
 import com.app.towerDefense.utilities.MiscellaneousHelper;
 
 /**
@@ -49,7 +51,7 @@ public class LogReader {
 			logResultant =  parseLogForTowersCollection();
 		}
 		else if(E_LogViewerState.MapPlayersStatistics == logReadingState){
-			return parseForCurrentSession();
+			return parseLogForMapPlayerStatistics();
 		}
 		// logger.info("Function Called read() ");
 		return logResultant;
@@ -98,6 +100,36 @@ public class LogReader {
 		return logResultant;
 	}
 	
+	public String parseLogForMapPlayerStatistics(){
+		/*
+		if(ApplicationStatics.MAP_MODEL!= null && 
+		   ApplicationStatics.MAP_MODEL.getMapPlayersStatisticsArray()!= null &&
+		   ApplicationStatics.MAP_MODEL.getMapPlayersStatisticsArray().size() > 0){
+			*/
+		if(ApplicationStatics.MAP_CURRENT_OPENED_FILE_PATH != "")
+		{
+			File file = new File(ApplicationStatics.MAP_CURRENT_OPENED_FILE_PATH);
+			MapModel mapModel = (new FileStorage()).openMapFile(file);
+			
+		   int length=mapModel.getMapPlayersStatisticsArray().size();
+		   StringBuilder sb = new StringBuilder(); 
+		   sb.append("PlayerName	Start			waveNo	currentSessionEnd \n");
+		   sb.append("------------------------------------------------------------------\n");
+		   for (int i = 0; i < length; i++) {
+				sb.append(mapModel.getMapPlayersStatisticsArray().get(i).getPlayerName()+"	      ");
+				sb.append(mapModel.getMapPlayersStatisticsArray().get(i).getCurrentSessionStart()+"		");
+				sb.append(mapModel.getMapPlayersStatisticsArray().get(i).getWaveNo()+"	");
+				sb.append(mapModel.getMapPlayersStatisticsArray().get(i).getCurrentSessionEnd()+"\n");
+		   }
+		   logResultant=sb.toString();
+		}
+		else
+		{
+			logResultant="First load Map.";
+		}
+		return logResultant;
+	}
+	
 	/*
 	public static void main(String new_args[]) {
 	
@@ -120,6 +152,7 @@ public class LogReader {
 //	    	//++index;	      
 //	    }
 //	    
+ * 
 //	    
 		//System.out.println(data);
 		//Pattern pattern = Pattern.compile(".+TowerName_Freezer_1_Strat((.|\n)*)TowerName_Freezer_1_End");

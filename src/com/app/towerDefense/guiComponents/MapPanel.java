@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 
 import org.apache.log4j.Logger;
 
+import com.app.towerDefense.gameLogic.Map;
 import com.app.towerDefense.models.BasicCritter;
 import com.app.towerDefense.models.CritterFactory;
 import com.app.towerDefense.models.CritterType;
@@ -162,12 +163,14 @@ public class MapPanel extends JPanel {
 						if (ApplicationStatics.PLAYERMODEL.getHpPlayer() == 0
 								|| ApplicationStatics.PLAYERMODEL.getGameWave() == 5) {
 							ApplicationStatics.GAME_OVER = true;
+							new Map().saveMapLog();
 						} else {
 							logger.info("Wave end.");
 							ApplicationStatics.START_WAVE = false;
 							isInitialCond = true;
 							multipleCriiterCounter = 0;
 							ApplicationStatics.PLAYERMODEL.incGameWave();
+							new Map().saveMapLog();
 							logger.info("Next Wave : "+ApplicationStatics.PLAYERMODEL.getGameWave()+" Started.");
 						}
 					}
@@ -259,5 +262,5 @@ public class MapPanel extends JPanel {
 
 		}
 	}
-
+	
 }

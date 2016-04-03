@@ -1,10 +1,12 @@
 package com.app.towerDefense.staticContent;
 
 import java.awt.Point;
+import java.nio.channels.FileChannel.MapMode;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 
+import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.models.PlayerModel;
 import com.app.towerDefense.models.Tower;
 
@@ -41,6 +43,8 @@ public class ApplicationStatics {
 	public static int BLOCK_HEIGHT;
 	public static boolean GAME_OVER = false;
 	public static String MAP_SECRECT_TAG="_Team5";
+	public static String MAP_CURRENT_OPENED_FILE_PATH ="";
+	//public static MapModel MAP_MODEL ;
 	/*
 	 * public static final int MAP_ENTRY_POINT=1; public static final int
 	 * MAP_EXIT_POINT=900; public static final int MAP_PATH_POINT=1; public

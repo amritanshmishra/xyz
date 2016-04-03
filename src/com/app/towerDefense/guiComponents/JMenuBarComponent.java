@@ -127,6 +127,17 @@ public class JMenuBarComponent {
 								 * mapModel, new_jframe.getSize(),
 								 * E_MapEditorMode.Open);
 								 */
+								
+								//MapLog code
+								ApplicationStatics.MAP_CURRENT_OPENED_FILE_PATH=file.getAbsolutePath();
+								/*
+								try {
+									ApplicationStatics.MAP_MODEL =mapModel;
+								} catch (CloneNotSupportedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								*/
 								gameMapPanel = (panelComponent)
 										.getMapEditorGridPanel(mapModel,
 												new_jframe.getSize(),

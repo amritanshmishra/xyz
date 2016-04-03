@@ -147,8 +147,7 @@ public class PlayerModel extends Observable{
 		ApplicationStatics.HAS_BOUGHT_TOWER = true;
 		subSunCurrency(tempTM.getTowerCost());
 		
-		//logger.info("Player bought Tower id = " + Integer.toString(new_towerID));
-		logger.info("Player bought Tower id = " + Integer.toString(new_towerID) +", Tower_" + tempTM.getTowerName() + "_towerID_" + tempTM.towerID );
+		logger.info("Player bought Tower = " + Integer.toString(new_towerID) +", Tower_" + tempTM.getTowerName() + "_towerID_" + tempTM.towerID );
 
 		return tempTM;
 	}
@@ -167,7 +166,7 @@ public class PlayerModel extends Observable{
 		} else {
 			int refundTM = towerModelArray.get(new_towerID).getRefund();
 			addSunCurrency(refundTM);
-			logger.info("Player sell Tower id = " + towerModelArray.get(new_towerID).towerID +", Tower_" + towerModelArray.get(new_towerID).getTowerName() + "_towerID_" + towerModelArray.get(new_towerID).towerID );
+			logger.info("Player sell Tower = " + towerModelArray.get(new_towerID).towerID +", Tower_" + towerModelArray.get(new_towerID).getTowerName() + "_towerID_" + towerModelArray.get(new_towerID).towerID );
 			towerModelArray.remove(new_towerID);
 			JFrame frame = new JFrame();
 			JOptionPane.showMessageDialog(frame, "You were refunded = " + Integer.toString(refundTM) + " suns.");
@@ -184,7 +183,7 @@ public class PlayerModel extends Observable{
 	 */
 	public Tower upgradeTower(int new_towerID) {
 		Tower tempTM = towerModelArray.get(new_towerID); 
-		logger.info("Player upgrade Tower id = " + towerModelArray.get(new_towerID).towerID +", Tower_" + towerModelArray.get(new_towerID).getTowerName() + "_towerID_" + towerModelArray.get(new_towerID).towerID );
+		logger.info("Player upgrade Tower = " + towerModelArray.get(new_towerID).towerID +", Tower_" + towerModelArray.get(new_towerID).getTowerName() + "_towerID_" + towerModelArray.get(new_towerID).towerID );
 		tempTM.upgradeTower();
 		return tempTM;
 	}

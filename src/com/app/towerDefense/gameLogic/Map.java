@@ -1,10 +1,14 @@
 package com.app.towerDefense.gameLogic;
 
 import java.awt.Point;
+import java.io.File;
 
 import com.app.towerDefense.models.MapModel;
+import com.app.towerDefense.models.MapPlayersStatisticsModel;
 import com.app.towerDefense.staticContent.AppilicationEnums.E_MapValidationDirecton;
 import com.app.towerDefense.staticContent.ApplicationStatics;
+import com.app.towerDefense.utilities.FileStorage;
+import com.app.towerDefense.utilities.MiscellaneousHelper;
 
 /**
  * This class validates map features(Entry,Exit,Scenery) and map path from the
@@ -407,5 +411,24 @@ public class Map {
 			}
 		}
 		return result;
+	}
+	
+	public void saveMapLog(){
+		
+		if(ApplicationStatics.MAP_CURRENT_OPENED_FILE_PATH != "")
+		{
+			File file = new File(ApplicationStatics.MAP_CURRENT_OPENED_FILE_PATH);
+			MapModel mapModel = (new FileStorage()).openMapFile(file);
+			
+			MapPlayersStatisticsModel mapPlayersStatisticsModel = 
+					new MapPlayersStatisticsModel(ApplicationStatics.GAME_PLAYER_NAME, 
+							ApplicationStatics.getLog_Current_Session_Tag().replace("LOG_CURRENT_SESSION_TAG_", ""), 
+							ApplicationStatics.PLAYERMODEL.getGameWave()+"", 
+							new MiscellaneousHelper().getCurrentDateStr());
+			
+			mapModel.addToMapPlayersStatisticsArray(mapPlayersStatisticsModel);
+			new FileStorage().saveMapFile(file, mapModel);
+			System.out.println("Map Log Saved.");
+		}		
 	}
 }
