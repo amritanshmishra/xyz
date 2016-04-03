@@ -40,20 +40,18 @@ public class GameSaver {
 			int gameWave = ApplicationStatics.PLAYERMODEL.getGameWave();
 			int lastTowerID = ApplicationStatics.PLAYERMODEL.lastTowerID;
 
-			out.println(playerName+"_PLAYERNAME");
-			out.println(hpPlayer+"_HP");
-			out.println(sunCurrency+"_SUNS");
-			out.println(gameWave+"_WAVE");
-			out.println(lastTowerID+"_LASTTOWERID");
-
+			out.print(playerName+":"+hpPlayer+":"+sunCurrency+":"+gameWave+":"+lastTowerID);
+			
 			for (int i = 0; i < ApplicationStatics.PLAYERMODEL.towerModelArray.size(); i++) {
-				out.print("Tower:"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).towerID);
-				out.print(" name:"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).getTowerName());
-				out.print(" level:"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).getTowerlevel());
-				out.print(" x:"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).getX());
-				out.print(" y:"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).getY());
-				out.println(" strategy:"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).getStrategy().getStrategyName());
+				out.print(":"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).towerID);
+				out.print(":"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).getTowerName());
+				out.print(":"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).getTowerlevel());
+				out.print(":"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).getX());
+				out.print(":"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).getY());
+				out.print(":"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).getStrategy().getStrategyName());
 			}
+			
+			
 
 			out.close();
 		} catch (FileNotFoundException e) {
