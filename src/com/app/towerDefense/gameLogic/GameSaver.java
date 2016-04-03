@@ -1,5 +1,6 @@
 package com.app.towerDefense.gameLogic;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -20,19 +21,21 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
 public class GameSaver {
 
 	PrintWriter out;
-
+	File file;
 	/**
 	 * Constructor
 	 */
-	public GameSaver() {
+	public GameSaver(File new_file) {
 		savePlayerData();
+		file=new_file;
 
 	}
 
 	public void savePlayerData() {
 
 		try {
-			out = new PrintWriter("Data.txt");
+			//out = new PrintWriter("Data.txt");
+			out = new PrintWriter(file.getAbsoluteFile());
 
 			String playerName = ApplicationStatics.PLAYERMODEL.getPlayerName();
 			int hpPlayer = ApplicationStatics.PLAYERMODEL.getHpPlayer();

@@ -57,7 +57,7 @@ public class ApplicationStatics {
 	public static final int MAP_Scenery_POINT = 0;
 
 	// Window Titles
-	public static String GAME_PLAYER_NAME = "";
+	//public static String GAME_PLAYER_NAME = "";
 	private static final String TITLE_GAME_WINDOW = "Tower Defence Game by \"Team 5\".";
 	public static final String TITLE_MAP_EDITOR = "MAP EDITOR";
 	public static final String TITLE_LOG_VIEWER = "LOG VIEWER";
@@ -138,8 +138,8 @@ public class ApplicationStatics {
 	 * @return the titleGameWindow
 	 */
 	public static String getTitleGameWindow() {
-		if(GAME_PLAYER_NAME.length() > 0)
-			return TITLE_GAME_WINDOW+". Player :("+GAME_PLAYER_NAME+")";
+		if(ApplicationStatics.PLAYERMODEL.playerName.length() > 0)
+			return TITLE_GAME_WINDOW+". Player :("+ApplicationStatics.PLAYERMODEL.playerName+")";
 		else
 			return TITLE_GAME_WINDOW;
 	}

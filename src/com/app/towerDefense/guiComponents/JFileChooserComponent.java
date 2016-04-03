@@ -30,15 +30,35 @@ public class JFileChooserComponent {
 	public JFileChooser getJFileChooser(E_JFileChooserMode new_fileChooserMode) {
 		fileChooser = new JFileChooser();
 		fileChooser.setCurrentDirectory(new File(System
-				.getProperty("user.home")));
-		if (new_fileChooserMode == E_JFileChooserMode.MapOpen) {
-			fileChooser.setDialogTitle("Tower Defense Select .tdm file");
-		} else {
-			fileChooser.setDialogTitle("Tower Defence Map Save");
-		}
+				.getProperty("user.home")));		
 		fileChooser.setAcceptAllFileFilterUsed(false);
-		fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(
-				"Tower Defence Map", "tdm"));
+		
+		if (new_fileChooserMode == E_JFileChooserMode.MapPlay) {
+			fileChooser.setDialogTitle("Tower Defense Select .tdm file");
+			fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(
+					"Tower Defence Map", "tdm"));
+		}
+		else if (new_fileChooserMode == E_JFileChooserMode.MapOpen) {
+			fileChooser.setDialogTitle("Tower Defense Select .tdm file");
+			fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(
+					"Tower Defence Map", "tdm"));
+		} else if (new_fileChooserMode == E_JFileChooserMode.MapSave) {
+			fileChooser.setDialogTitle("Tower Defence Map Save");
+			fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(
+					"Tower Defence Map", "tdm"));
+		}
+		else if (new_fileChooserMode == E_JFileChooserMode.GameLoad) {
+			fileChooser.setDialogTitle("Tower Defence Game Load");
+			fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(
+					"Tower Defence Map", "tdg"));
+		}
+		else if (new_fileChooserMode == E_JFileChooserMode.GameSave) {
+			fileChooser.setDialogTitle("Tower Defence Game Save");
+			fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(
+					"Tower Defence Map", "tdg"));
+		}
+		
+		
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
 		return fileChooser;

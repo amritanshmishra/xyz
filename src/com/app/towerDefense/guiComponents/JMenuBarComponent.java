@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 import org.apache.log4j.Logger;
 
 import com.app.towerDefense.gameLogic.GameLoader;
+import com.app.towerDefense.gameLogic.GameSaver;
 import com.app.towerDefense.gameLogic.Map;
 import com.app.towerDefense.guisystem.Game;
 import com.app.towerDefense.guisystem.LogViewer;
@@ -115,7 +116,7 @@ public class JMenuBarComponent {
 					logger.info(String.format(ApplicationStatics.MSG_MENU_SELECTED, ApplicationStatics.MENU_FILE, ApplicationStatics.MENU_ITEM_PLAY));
 					ApplicationStatics.START_WAVE = false;
 					JFileChooser fileChooser = new JFileChooserComponent()
-							.getJFileChooser(E_JFileChooserMode.MapOpen);
+							.getJFileChooser(E_JFileChooserMode.MapPlay);
 					int result = fileChooser.showOpenDialog(new_jframe);
 					if (result == JFileChooser.APPROVE_OPTION) {
 						File file = fileChooser.getSelectedFile();
@@ -337,15 +338,23 @@ public class JMenuBarComponent {
 					logger.info(String.format(ApplicationStatics.MSG_MENU_SELECTED, ApplicationStatics.MENU_FILE, ApplicationStatics.MENU_ITEM_LOAD_GAME));
 					System.out.println("ApplicationStatics.START_WAVE :"+ApplicationStatics.START_WAVE);
 					
-					if(!ApplicationStatics.START_WAVE || ApplicationStatics.GAME_OVER){
-							
+					if(!ApplicationStatics.START_WAVE || ApplicationStatics.GAME_OVER){							
+						JFileChooser fileChooser = new JFileChooserComponent()
+						.getJFileChooser(E_JFileChooserMode.GameLoad);
+						int result = fileChooser.showOpenDialog(new_jframe);
+						if (result == JFileChooser.APPROVE_OPTION) {
+							File file = fileChooser.getSelectedFile();
+						}
+						else{
+							logger.info(ApplicationStatics.MSG_NO_FILE_SELECTED);
+							JOptionPane.showMessageDialog(null, ApplicationStatics.MSG_NO_FILE_SELECTED);
+						}
 					}
 					else{
 						JOptionPane.showMessageDialog(null, "Cannot Load Game. Game is running. Please wait end of game wave.");
 						logger.info("Cannot Load Game. Game is running. Please wait end of game wave.");
 					}
 						
-					//ApplicationStatics.GAME_OVER = false;
 				}
 				
 				else if (new_e.getSource().equals(menuItemSaveGame)) {
@@ -359,7 +368,19 @@ public class JMenuBarComponent {
 						logger.info("Cannot save game. Game is running. Please wait end of game wave.");
 					}
 					else if(!ApplicationStatics.START_WAVE && ApplicationStatics.PLAYERMODEL.getGameWave() > 1){
-
+						
+						JFileChooser fileChooser = new JFileChooserComponent()
+						.getJFileChooser(E_JFileChooserMode.GameLoad);
+						int result = fileChooser.showSaveDialog(new_jframe);
+						if (result == JFileChooser.APPROVE_OPTION) {
+							File file = fileChooser.getSelectedFile();
+							GameSaver gameSaver=  new GameSaver(file);
+							JOptionPane.showMessageDialog(null, "Game saved successfully.");
+						}
+						else{
+							logger.info(ApplicationStatics.MSG_NO_FILE_SELECTED);
+							JOptionPane.showMessageDialog(null, ApplicationStatics.MSG_NO_FILE_SELECTED);
+						}
 					}
 					else{
 						JOptionPane.showMessageDialog(null, "Cannot save game on intital wave.");
@@ -463,7 +484,7 @@ public class JMenuBarComponent {
 	 */	
 	public void getPlayerName(){
 		//reset Player Name or remove old player name 
-		ApplicationStatics.GAME_PLAYER_NAME="";
+		ApplicationStatics.PLAYERMODEL.playerName="";
 		JTextField firstName = new JTextField();
 		final JComponent[] jComponentArray = new JComponent[] {
 				new JLabel(ApplicationStatics.MSG_GAME_PLAYER_NAME),
@@ -476,8 +497,10 @@ public class JMenuBarComponent {
 		}
 		else
 		{
-			ApplicationStatics.GAME_PLAYER_NAME= firstName.getText().replaceAll(" ", "_");
-			logger.info(ApplicationStatics.MSG_GAME_PLAYER_NAME+" : "+ApplicationStatics.GAME_PLAYER_NAME);
+			//ApplicationStatics.GAME_PLAYER_NAME= firstName.getText().replaceAll(" ", "_");
+			//ApplicationStatics.PLAYERMODEL.playerName = ApplicationStatics.GAME_PLAYER_NAME;
+			ApplicationStatics.PLAYERMODEL.playerName = firstName.getText().replaceAll(" ", "_");
+			logger.info(ApplicationStatics.MSG_GAME_PLAYER_NAME+" : "+ApplicationStatics.PLAYERMODEL.playerName);
 			Game.getInstance().refreshGameFrameTitle();
 		}
 	}

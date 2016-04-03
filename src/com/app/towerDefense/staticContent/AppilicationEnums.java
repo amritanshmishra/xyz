@@ -39,7 +39,7 @@ public class AppilicationEnums {
 	 * 
 	 */
 	public enum E_JFileChooserMode {
-		MapOpen, MapSave, GameLoad, GameSave
+		MapOpen, MapSave, MapPlay, GameLoad, GameSave
 	}
 	
 	/**

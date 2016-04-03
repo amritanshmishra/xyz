@@ -24,7 +24,7 @@ public class PlayerModel extends Observable{
 	private int sunCurrency;
 	private int hpPlayer;
 	private int gameWave;
-	private String playerName;
+	public String playerName;
 	public static ArrayList<Tower> towerModelArray;
 	final static Logger logger = Logger.getLogger(MapPanel.class);
 	public int lastTowerID=0; 
@@ -33,7 +33,10 @@ public class PlayerModel extends Observable{
 	 * Constructor that initializes default values
 	 */
 	public PlayerModel() {
-		playerName = ApplicationStatics.GAME_PLAYER_NAME;
+		//playerName = ApplicationStatics.GAME_PLAYER_NAME;
+		if(playerName== null){
+			playerName="Defualt";
+		}
 		sunCurrency = 500;
 		hpPlayer = 10;
 		gameWave = 1;

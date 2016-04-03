@@ -174,7 +174,7 @@ public class MapPanel extends JPanel {
 							ApplicationStatics.PLAYERMODEL.incGameWave();
 							new Map().saveMapLog();
 							logger.info("Next Wave : "+ApplicationStatics.PLAYERMODEL.getGameWave()+" Started.");
-							GameSaver gameSaver=  new GameSaver();							
+							//GameSaver gameSaver=  new GameSaver();							
 						}
 					}
 

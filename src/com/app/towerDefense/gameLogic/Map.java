@@ -421,7 +421,7 @@ public class Map {
 			MapModel mapModel = (new FileStorage()).openMapFile(file);
 			
 			MapPlayersStatisticsModel mapPlayersStatisticsModel = 
-					new MapPlayersStatisticsModel(ApplicationStatics.GAME_PLAYER_NAME, 
+					new MapPlayersStatisticsModel(ApplicationStatics.PLAYERMODEL.playerName, 
 							ApplicationStatics.getLog_Current_Session_Tag().replace("LOG_CURRENT_SESSION_TAG_", ""), 
 							ApplicationStatics.PLAYERMODEL.getGameWave()+"", 
 							new MiscellaneousHelper().getCurrentDateStr());
