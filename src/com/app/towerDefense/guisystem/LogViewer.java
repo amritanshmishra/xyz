@@ -1,16 +1,12 @@
 package com.app.towerDefense.guisystem;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Point;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 
 import com.app.towerDefense.gameLogic.LogReader;
@@ -34,6 +30,13 @@ public class LogViewer extends JFrame  {
 	String logFilePath="";
 	static Color colors[] = { Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.BLUE,
 	      Color.MAGENTA };
+	Timer timer;
+	
+	//
+	private static JTextArea txtAreaLog;
+	private static String filePath;
+	private static E_LogViewerState elogViewerState;
+	private static Tower tower;
 	
 	public LogViewer(JFrame new_parent, String new_title, int new_width,
 			int new_height, String new_log_file_path,
@@ -71,8 +74,40 @@ public class LogViewer extends JFrame  {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setVisible(true);		
 		
+		ApplicationStatics.isLogViewerOpen=true;
 		//Tabs
 	    getContentPane().add(new JPanelComponent().getLogViewerPanel(new_log_file_path, new_elog_viewer_state, new_tower));
 	    
+	    addWindowListener(new java.awt.event.WindowAdapter() {
+	        @Override
+	        public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+	        	ApplicationStatics.isLogViewerOpen=false;
+	        	System.out.println(" Frame Closed! ");
+	        }
+	    });
+	    
+	    timer = new Timer();
+	    timer.schedule(new RemindTask(), 0, 1000);
+	    
+	   
 	}
+	public static void resetLogInfo(JTextArea new_txt_area_log, String new_log_file_path,
+			E_LogViewerState new_elog_viewer_state,
+			Tower new_tower){
+		txtAreaLog=new_txt_area_log;
+		filePath =new_log_file_path;
+		elogViewerState =new_elog_viewer_state;
+		tower=new_tower;
+	}
+	
+	 class RemindTask extends TimerTask {
+	        public void run() {
+	        	if(ApplicationStatics.isLogViewerOpen){
+	        		txtAreaLog.setText(new  LogReader(filePath, elogViewerState, tower).read());
+	        	}
+	        	else{
+	        		timer.cancel();
+	        	}
+	        }
+	 }
 }

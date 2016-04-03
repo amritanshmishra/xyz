@@ -151,7 +151,8 @@ public class JMenuBarComponent {
 								
 								// jframe.add(gameMapPanel);
 								new_jframe.getContentPane().add(gameMapPanel,
-										BorderLayout.NORTH);
+										BorderLayout.NORTH);						
+								
 								bottomGamePanel = (BottomGamePanelView) new JPanelComponent()
 										.getGameTowerPanel(new_jframe.getSize());
 								// bottomGamePanel.setMapButtons(panelComponent.getButtons());
@@ -160,6 +161,7 @@ public class JMenuBarComponent {
 								new_jframe.setVisible(true);
 								panelComponent
 										.setBottomGamePanelView(bottomGamePanel);
+								
 								ApplicationStatics.PLAYERMODEL
 										.addObserver(panelComponent);
 								

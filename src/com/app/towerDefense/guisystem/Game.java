@@ -4,17 +4,22 @@ import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Dimension;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 
 import org.apache.log4j.Logger;
 
+import com.app.towerDefense.gameLogic.LogReader;
 import com.app.towerDefense.guiComponents.BottomGamePanelView;
 import com.app.towerDefense.guiComponents.JMenuBarComponent;
 import com.app.towerDefense.guiComponents.JPanelComponent;
 import com.app.towerDefense.models.PlayerModel;
+import com.app.towerDefense.models.Tower;
 import com.app.towerDefense.staticContent.ApplicationStatics;
+import com.app.towerDefense.staticContent.AppilicationEnums.E_LogViewerState;
 import com.app.towerDefense.utilities.MiscellaneousHelper;
 
 //change 1
@@ -48,6 +53,12 @@ public class Game extends Canvas implements Runnable { // change 1
 	// THREAD
 	private Thread thread; // change 1
 	private boolean running = false; // change 1
+	
+	//
+//	private static JTextArea txtAreaLog;
+//	private static String logFilePath;
+//	private static E_LogViewerState elogViewerState;
+//	private static Tower tower;
 
 	
 	/**
@@ -184,12 +195,20 @@ public class Game extends Canvas implements Runnable { // change 1
 	/**
 	 * Drawing on map panel
 	 */
+	@SuppressWarnings("static-access")
 	private void tick() {// change 1
 		//
 
 		if (!ApplicationStatics.GAME_OVER) { // check if game is over
 			// try {
 			if ((panelComponent = jMenuBarComponent.getPanelComponent()) != null) {
+				if(panelComponent.mapPanel == null){
+					try {
+						thread.sleep(500);
+					} catch (InterruptedException e) {
+
+					}
+				}				
 				panelComponent.mapPanel.revalidate();
 				panelComponent.mapPanel.repaint();
 
@@ -232,8 +251,27 @@ public class Game extends Canvas implements Runnable { // change 1
 			Game.getInstance().stop();
 			logger.info("Game over: Result : "+tempStr);
 		}
-
+		
+		//Logger
+		//if(ApplicationStatics.isLogViewerOpen){
+		//	updateLog();
+		//}
 	}
+	
+//	public static void resetLogInfo(JTextArea new_txt_area_log, String new_log_file_path,
+//			E_LogViewerState new_elog_viewer_state,
+//			Tower new_tower){
+//		txtAreaLog=new_txt_area_log;
+//		logFilePath =new_log_file_path;
+//		elogViewerState =new_elog_viewer_state;
+//		tower=new_tower;
+//	}
+//	
+//	public void updateLog(){
+//		if(txtAreaLog!= null){
+//			txtAreaLog.setText(new  LogReader(logFilePath, elogViewerState, tower).read());
+//		}
+//	}
 
 	// END
 }

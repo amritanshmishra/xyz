@@ -27,6 +27,7 @@ import org.apache.log4j.Logger;
 
 import com.app.towerDefense.gameLogic.LogReader;
 import com.app.towerDefense.guisystem.Game;
+import com.app.towerDefense.guisystem.LogViewer;
 import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.models.Tower;
 import com.app.towerDefense.models.TowerFactory;
@@ -222,8 +223,7 @@ public class JPanelComponent implements Observer {
 						ApplicationStatics.PATH_ARRAY.add(j);
 
 						// Click event
-						addButtonClickEvents(mapButtonsGrid2DArray[i][j],
-								new_mapModel);
+						//addButtonClickEvents(mapButtonsGrid2DArray[i][j],new_mapModel);
 						// Right Click Event
 						// addMouseClickOnButtonEvents(b[i][j], i, j, mapModel);
 
@@ -345,11 +345,20 @@ public class JPanelComponent implements Observer {
 			logger.info("MAP Boundary Points : "
 					+ ApplicationStatics.MAP_PATH_BOUNDARY_BUTTONS_NAME);
 			ApplicationStatics.MAP_BUTTONS = mapButtonsGrid2DArray;
+			
 		}
 
 		return panel;
 	}
-
+	
+	/**
+	 * Get UI JPanel for logViewer 
+	 * @param new_log_file_path
+	 * @param new_elog_viewer_state
+	 * @param new_tempTM
+	 * @return JPanel that contains all Log Viewer Data.
+	 */
+	
 	public JPanel getLogViewerPanel(final String new_log_file_path, E_LogViewerState new_elog_viewer_state, final Tower new_tempTM)
 	{
 		JPanel panel = new JPanel();
@@ -389,15 +398,19 @@ public class JPanelComponent implements Observer {
 	    jTabbedPane.setSelectedIndex(new_elog_viewer_state.ordinal());
 	    
 	    //Read Logs for Current Opeing Tab
+	    JTextArea txtAreaLog;
 	    LogReader logReader = new  LogReader(new_log_file_path, new_elog_viewer_state, new_tempTM);
 	    if(E_LogViewerState.TowerLog == new_elog_viewer_state){	
 	    	txtAreaTowers.setText(logReader.read());
+	    	txtAreaLog= txtAreaTowers;
 	    }
 	    else
 	    {
 	    	txtAreaGloble.setText(logReader.read());
+	    	txtAreaLog= txtAreaGloble;
 	    }
 		
+	    
 	  //initialized Tab Change event
 	    //addTagChangeListner(jTabbedPane);
 	    jTabbedPane.addChangeListener(new ChangeListener() {
@@ -408,23 +421,31 @@ public class JPanelComponent implements Observer {
                     //logger.info("Selected Tab Name : " + pane.getName()+", Selected paneNo : " + pane.getSelectedIndex());
                     if(E_LogViewerState.GlobalLog.ordinal()== pane.getSelectedIndex()){
                     	txtAreaGloble.setText(new  LogReader(new_log_file_path, E_LogViewerState.GlobalLog, new_tempTM).read());
+                    	LogViewer.resetLogInfo(txtAreaGloble, new_log_file_path, E_LogViewerState.GlobalLog, new_tempTM);
                     }
                     else if(E_LogViewerState.CurrentSessionLog.ordinal()== pane.getSelectedIndex()){
                     	txtAreaCurrentSession.setText(new  LogReader(new_log_file_path, E_LogViewerState.CurrentSessionLog, new_tempTM).read());
+                    	LogViewer.resetLogInfo(txtAreaCurrentSession, new_log_file_path, E_LogViewerState.CurrentSessionLog, new_tempTM);
                     }
                     else if(E_LogViewerState.TowerLog.ordinal()== pane.getSelectedIndex()){
                     	txtAreaTowers.setText(new  LogReader(new_log_file_path, E_LogViewerState.TowerLog, new_tempTM).read());
+                    	LogViewer.resetLogInfo(txtAreaTowers, new_log_file_path, E_LogViewerState.TowerLog, new_tempTM);
                     }
                     else if(E_LogViewerState.TowerCollectionLog.ordinal()== pane.getSelectedIndex()){
                     	txtAreaTowersCollection.setText(new  LogReader(new_log_file_path, E_LogViewerState.TowerCollectionLog, new_tempTM).read());
+                    	LogViewer.resetLogInfo(txtAreaTowersCollection, new_log_file_path, E_LogViewerState.TowerCollectionLog, new_tempTM);
                     }
                     else if(E_LogViewerState.MapPlayersStatistics.ordinal()== pane.getSelectedIndex()){
                     	txtAreaMapPlayersStatistics.setText(new  LogReader(new_log_file_path, E_LogViewerState.MapPlayersStatistics, new_tempTM).read());
-                    }                    
+                    	LogViewer.resetLogInfo(txtAreaMapPlayersStatistics, new_log_file_path, E_LogViewerState.MapPlayersStatistics, new_tempTM);
+                    } 
                 }
             }
         });
 	    
+	    //Game.getInstance();
+		//
+	    LogViewer.resetLogInfo(txtAreaLog, new_log_file_path, new_elog_viewer_state, new_tempTM);
 		return panel;
 	}
 	
