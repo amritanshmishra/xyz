@@ -34,9 +34,9 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	// current X and Y position of critter
 	private int x, y;
 	// decides which direction critter moves
-	private int directionX; 
-	private int directionY;
-	private int currentBlocki = 0;
+	public int directionX; 
+	public int directionY;
+	public int currentBlocki = 0;
 	// x and y of the next path point
 	private int xNext;
 	private int yNext;
@@ -368,6 +368,5 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 		// TODO Auto-generated method stub
 		return directionY;
 	}
-
 
 }
