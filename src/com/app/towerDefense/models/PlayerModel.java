@@ -33,7 +33,7 @@ public class PlayerModel extends Observable{
 	 * Constructor that initializes default values
 	 */
 	public PlayerModel() {
-		playerName = "defaultName";
+		playerName = ApplicationStatics.GAME_PLAYER_NAME;
 		sunCurrency = 500;
 		hpPlayer = 10;
 		gameWave = 1;

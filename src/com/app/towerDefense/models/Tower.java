@@ -423,7 +423,9 @@ public abstract class Tower implements Observer {
 			}
 			
 			if (targetCritter.killCritter()) {
-				targetCritter = null;
+				logger.info("Tower_" + getTowerName() + "_towerID_" + towerID + " killed critter id:"
+						+ targetCritter.getCritterId());
+				targetCritter = null;				
 			}
 		}
 		
