@@ -31,7 +31,7 @@ public class JFileChooserComponent {
 		fileChooser = new JFileChooser();
 		fileChooser.setCurrentDirectory(new File(System
 				.getProperty("user.home")));
-		if (new_fileChooserMode == E_JFileChooserMode.Open) {
+		if (new_fileChooserMode == E_JFileChooserMode.MapOpen) {
 			fileChooser.setDialogTitle("Tower Defense Select .tdm file");
 		} else {
 			fileChooser.setDialogTitle("Tower Defence Map Save");

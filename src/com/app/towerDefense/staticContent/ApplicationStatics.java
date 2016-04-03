@@ -76,6 +76,8 @@ public class ApplicationStatics {
 	public static final String MENU_ITEM_PLAY = "PLAY";
 	public static final String MENU_ITEM_CREATE_MAP = "CREATE MAP";
 	public static final String MENU_ITEM_OPEN_MAP = "OPEN MAP";
+	public static final String MENU_ITEM_LOAD_GAME = "LOAD GAME";
+	public static final String MENU_ITEM_SAVE_GAME = "SAVE GAME";
 	public static final String MENU_ITEM_ABOUT = "ABOUT";
 	public static final String MENU_ITEM_SAVE = "SAVE";
 	public static final String MENU_ITEM_EXIT = "EXIT";

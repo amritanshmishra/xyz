@@ -40,9 +40,9 @@ public class JFileChooserComponentTest {
 	@Test
 	public void TestGetJFileChooser() {
 		assertNotNull(jFileChooserComponent
-				.getJFileChooser(E_JFileChooserMode.Open));
+				.getJFileChooser(E_JFileChooserMode.MapOpen));
 		assertNotNull(jFileChooserComponent
-				.getJFileChooser(E_JFileChooserMode.Save));
+				.getJFileChooser(E_JFileChooserMode.MapSave));
 	}
 
 	/**
@@ -53,10 +53,10 @@ public class JFileChooserComponentTest {
 	public void TestGetFileChooser() {
 		assertNull(jFileChooserComponent.getFileChooser());
 
-		jFileChooserComponent.getJFileChooser(E_JFileChooserMode.Open);
+		jFileChooserComponent.getJFileChooser(E_JFileChooserMode.MapOpen);
 		assertNotNull(jFileChooserComponent.getFileChooser());
 
-		jFileChooserComponent.getJFileChooser(E_JFileChooserMode.Save);
+		jFileChooserComponent.getJFileChooser(E_JFileChooserMode.MapSave);
 		assertNotNull(jFileChooserComponent.getFileChooser());
 	}
 

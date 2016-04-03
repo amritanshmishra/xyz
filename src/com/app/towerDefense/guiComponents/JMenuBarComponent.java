@@ -79,6 +79,12 @@ public class JMenuBarComponent {
 		final JMenuItem menuItemOpenMap = new JMenuItem(
 				ApplicationStatics.MENU_ITEM_OPEN_MAP);
 		menuFile.add(menuItemOpenMap);
+		final JMenuItem menuItemLoadGame = new JMenuItem(
+				ApplicationStatics.MENU_ITEM_LOAD_GAME);
+		menuFile.add(menuItemLoadGame);
+		final JMenuItem menuItemSaveGame = new JMenuItem(
+				ApplicationStatics.MENU_ITEM_SAVE_GAME);
+		menuFile.add(menuItemSaveGame);
 		final JMenuItem menuItemExit = new JMenuItem(
 				ApplicationStatics.MENU_ITEM_EXIT);
 		menuFile.add(menuItemExit);
@@ -109,7 +115,7 @@ public class JMenuBarComponent {
 					logger.info(String.format(ApplicationStatics.MSG_MENU_SELECTED, ApplicationStatics.MENU_FILE, ApplicationStatics.MENU_ITEM_PLAY));
 					ApplicationStatics.START_WAVE = false;
 					JFileChooser fileChooser = new JFileChooserComponent()
-							.getJFileChooser(E_JFileChooserMode.Open);
+							.getJFileChooser(E_JFileChooserMode.MapOpen);
 					int result = fileChooser.showOpenDialog(new_jframe);
 					if (result == JFileChooser.APPROVE_OPTION) {
 						File file = fileChooser.getSelectedFile();
@@ -274,7 +280,7 @@ public class JMenuBarComponent {
 				} else if (new_e.getSource().equals(menuItemOpenMap)) {
 					logger.info(String.format(ApplicationStatics.MSG_MENU_SELECTED, ApplicationStatics.MENU_FILE, ApplicationStatics.MENU_ITEM_OPEN_MAP));
 					JFileChooser fileChooser = new JFileChooserComponent()
-							.getJFileChooser(E_JFileChooserMode.Open);
+							.getJFileChooser(E_JFileChooserMode.MapOpen);
 					int result = fileChooser.showOpenDialog(new_jframe);
 					if (result == JFileChooser.APPROVE_OPTION) {
 						File file = fileChooser.getSelectedFile();
@@ -327,6 +333,39 @@ public class JMenuBarComponent {
 							null);
 				}
 				
+				else if (new_e.getSource().equals(menuItemLoadGame)) {
+					logger.info(String.format(ApplicationStatics.MSG_MENU_SELECTED, ApplicationStatics.MENU_FILE, ApplicationStatics.MENU_ITEM_LOAD_GAME));
+					System.out.println("ApplicationStatics.START_WAVE :"+ApplicationStatics.START_WAVE);
+					
+					if(!ApplicationStatics.START_WAVE || ApplicationStatics.GAME_OVER){
+							
+					}
+					else{
+						JOptionPane.showMessageDialog(null, "Cannot Load Game. Game is running. Please wait end of game wave.");
+						logger.info("Cannot Load Game. Game is running. Please wait end of game wave.");
+					}
+						
+					//ApplicationStatics.GAME_OVER = false;
+				}
+				
+				else if (new_e.getSource().equals(menuItemSaveGame)) {
+					logger.info(String.format(ApplicationStatics.MSG_MENU_SELECTED, ApplicationStatics.MENU_FILE, ApplicationStatics.MENU_ITEM_SAVE_GAME));
+					System.out.println("ApplicationStatics.START_WAVE :"+ApplicationStatics.START_WAVE);
+					if(ApplicationStatics.GAME_OVER){
+						JOptionPane.showMessageDialog(null, "Cannot save game. Game is over.");
+					}					
+					else if(ApplicationStatics.START_WAVE){
+						JOptionPane.showMessageDialog(null, "Cannot save fame. Game is Running. Please wait end of game wave.");
+						logger.info("Cannot save game. Game is running. Please wait end of game wave.");
+					}
+					else if(!ApplicationStatics.START_WAVE && ApplicationStatics.PLAYERMODEL.getGameWave() > 1){
+
+					}
+					else{
+						JOptionPane.showMessageDialog(null, "Cannot save game on intital wave.");
+						logger.info("Cannot save game on intital wave.");
+					}
+				}
 			}
 
 		}
@@ -336,6 +375,8 @@ public class JMenuBarComponent {
 		menuItemExit.addActionListener(new menuItemAction());
 		menuItemAbout.addActionListener(new menuItemAction());
 		menuItemLogViewer.addActionListener(new menuItemAction());
+		menuItemLoadGame.addActionListener(new menuItemAction());
+		menuItemSaveGame.addActionListener(new menuItemAction());
 		return menuBar;
 	}
 
@@ -375,7 +416,7 @@ public class JMenuBarComponent {
 					}
 					else {
 						JFileChooser fileChooser = new JFileChooserComponent()
-								.getJFileChooser(E_JFileChooserMode.Save);
+								.getJFileChooser(E_JFileChooserMode.MapSave);
 						int result = fileChooser.showSaveDialog(null);
 						if (result == JFileChooser.APPROVE_OPTION) {
 							File file = fileChooser.getSelectedFile();
