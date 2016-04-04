@@ -172,13 +172,13 @@ public class GameLoader {
 				}
 				tempTower.setXY(Integer.parseInt(dataArray[i+3]), Integer.parseInt(dataArray[i+4]));
 				String strStrategy = dataArray[i+5];
-				if(strStrategy=="NearToEND"){
+				if(strStrategy.equalsIgnoreCase("NearToEND")){
 					tempTower.setStrategy(new NearestToEndPointStrategy());
-				}else if(strStrategy=="NearTower"){
+				}else if(strStrategy.equalsIgnoreCase("NearTower")){
 					tempTower.setStrategy(new NearestToTowerStrategy());
-				}else if(strStrategy=="Strongest"){
+				}else if(strStrategy.equalsIgnoreCase("Strongest")){
 					tempTower.setStrategy(new StrongestStrategy());
-				}else if(strStrategy=="Weakest"){
+				}else if(strStrategy.equalsIgnoreCase("Weakest")){
 					tempTower.setStrategy(new WeakestStrategy());
 				}
 				tempTowerModelArray.add(tempTower);
@@ -188,7 +188,7 @@ public class GameLoader {
 			 ApplicationStatics.PLAYERMODEL.towerModelArray = tempTowerModelArray;
 			 ApplicationStatics.PLAYERMODEL.lastTowerID = lastTowerID;
 			 
-			 System.out.println("HERE lastTowerID:"+ApplicationStatics.PLAYERMODEL.lastTowerID+" read:"+lastTowerID);
+		//	 System.out.println("HERE lastTowerID:"+ApplicationStatics.PLAYERMODEL.lastTowerID+" read:"+lastTowerID);
 			 
 			// ApplicationStatics.PLAYERMODEL.printAllTowers();
 			in.close();
