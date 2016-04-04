@@ -50,12 +50,12 @@ public class JFileChooserComponent {
 		else if (new_fileChooserMode == E_JFileChooserMode.GameLoad) {
 			fileChooser.setDialogTitle("Tower Defence Game Load");
 			fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(
-					"Tower Defence Map", "tdg"));
+					"Tower Defence Game", "tdg"));
 		}
 		else if (new_fileChooserMode == E_JFileChooserMode.GameSave) {
 			fileChooser.setDialogTitle("Tower Defence Game Save");
 			fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(
-					"Tower Defence Map", "tdg"));
+					"Tower Defence Game", "tdg"));
 		}
 		
 		

@@ -2,6 +2,8 @@ package com.app.towerDefense.gameLogic;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -20,38 +22,48 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
  */
 public class GameSaver {
 
-	PrintWriter out;
+	//PrintWriter out;
+	FileWriter out;
 	File file;
+	String filePath; 
 	/**
 	 * Constructor
+	 * @throws IOException 
 	 */
-	public GameSaver(File new_file) {
-		savePlayerData();
+	public GameSaver(File new_file) throws IOException {
 		file=new_file;
+		filePath = file.getPath();
+		savePlayerData();		
 
 	}
 
-	public void savePlayerData() {
+	public void savePlayerData() throws IOException {
 
 		try {
 			//out = new PrintWriter("Data.txt");
-			out = new PrintWriter(file.getAbsoluteFile());
+			//out = new PrintWriter(file.getAbsoluteFile());
+			if (!filePath.endsWith(".tdg"))
+				filePath += ".tdg";
+			
+			out = new FileWriter(filePath);
 
-			String playerName = ApplicationStatics.PLAYERMODEL.getPlayerName();
+			//String playerName = ApplicationStatics.PLAYERMODEL.getPlayerName();
+			String playerName = ApplicationStatics.PLAYERMODEL.getPlayerName()+","+ApplicationStatics.MAP_CURRENT_OPENED_FILE_PATH;
 			int hpPlayer = ApplicationStatics.PLAYERMODEL.getHpPlayer();
 			int sunCurrency = ApplicationStatics.PLAYERMODEL.getSunCurrency();
 			int gameWave = ApplicationStatics.PLAYERMODEL.getGameWave();
 			int lastTowerID = ApplicationStatics.PLAYERMODEL.lastTowerID;
 
-			out.print(playerName+":"+hpPlayer+":"+sunCurrency+":"+gameWave+":"+lastTowerID);
+			//out.print(playerName+":"+hpPlayer+":"+sunCurrency+":"+gameWave+":"+lastTowerID);
+			out.write(playerName+";"+hpPlayer+";"+sunCurrency+";"+gameWave+";"+lastTowerID);
 			
 			for (int i = 0; i < ApplicationStatics.PLAYERMODEL.towerModelArray.size(); i++) {
-				out.print(":"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).towerID);
-				out.print(":"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).getTowerName());
-				out.print(":"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).getTowerlevel());
-				out.print(":"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).getX());
-				out.print(":"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).getY());
-				out.print(":"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).getStrategy().getStrategyName());
+				out.write(";"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).towerID);
+				out.write(";"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).getTowerName());
+				out.write(";"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).getTowerlevel());
+				out.write(";"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).getX());
+				out.write(";"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).getY());
+				out.write(";"+ApplicationStatics.PLAYERMODEL.towerModelArray.get(i).getStrategy().getStrategyName());
 			}
 			
 			

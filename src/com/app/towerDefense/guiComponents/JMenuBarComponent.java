@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -45,7 +46,7 @@ public class JMenuBarComponent {
 	private JPanel gameMapPanel;
 
 	private BottomGamePanelView bottomGamePanel;
-	private JPanelComponent panelComponent;
+	private static JPanelComponent panelComponent;
 
 	//Log
 	final static Logger logger = Logger.getLogger(JMenuBarComponent.class);
@@ -112,89 +113,129 @@ public class JMenuBarComponent {
 
 			@Override
 			public void actionPerformed(ActionEvent new_e) {
-				if (new_e.getSource().equals(menuItemPlay)) {
-					logger.info(String.format(ApplicationStatics.MSG_MENU_SELECTED, ApplicationStatics.MENU_FILE, ApplicationStatics.MENU_ITEM_PLAY));
+				if (new_e.getSource().equals(menuItemPlay)  ||new_e.getSource().equals(menuItemLoadGame)) {
+					
+					JFileChooser fileChooser;
 					ApplicationStatics.START_WAVE = false;
-					JFileChooser fileChooser = new JFileChooserComponent()
-							.getJFileChooser(E_JFileChooserMode.MapPlay);
+					GameLoader gameLoader = null;
+					File file;
+					
+					boolean isGamePlay = false;
+					if(new_e.getSource().equals(menuItemPlay)){
+						logger.info(String.format(ApplicationStatics.MSG_MENU_SELECTED, ApplicationStatics.MENU_FILE, ApplicationStatics.MENU_ITEM_PLAY));
+						isGamePlay=true;
+						fileChooser = new JFileChooserComponent()
+						.getJFileChooser(E_JFileChooserMode.MapPlay);
+					}
+					else
+					{
+						logger.info(String.format(ApplicationStatics.MSG_MENU_SELECTED, ApplicationStatics.MENU_FILE, ApplicationStatics.MENU_ITEM_LOAD_GAME));
+						fileChooser = new JFileChooserComponent()
+						.getJFileChooser(E_JFileChooserMode.GameLoad);
+
+					}
 					int result = fileChooser.showOpenDialog(new_jframe);
 					if (result == JFileChooser.APPROVE_OPTION) {
-						File file = fileChooser.getSelectedFile();
-						MapModel mapModel = (new com.app.towerDefense.utilities.FileStorage())
-								.openMapFile(file);
-						logger.info( String.format(ApplicationStatics.MSG_FILE_SELECT, "Map"," Name:"+file.getName()+" "));
-						if (mapModel != null) {
-							if (mapModel.mapSecret.contains(ApplicationStatics.MAP_SECRECT_TAG)) {								
-								getPlayerName();								
-								new_jframe.getContentPane().removeAll();
-								new_jframe.setLayout(new BorderLayout());
-								panelComponent = new JPanelComponent();
-								/*
-								 * gameMapPanel =
-								 * (panelComponent).getMapPlayGridPanel(
-								 * mapModel, new_jframe.getSize(),
-								 * E_MapEditorMode.Open);
-								 */
-								
-								//MapLog code
-								ApplicationStatics.MAP_CURRENT_OPENED_FILE_PATH=file.getAbsolutePath();
-								/*
-								try {
-									ApplicationStatics.MAP_MODEL =mapModel;
-								} catch (CloneNotSupportedException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-								*/
-								gameMapPanel = (panelComponent)
-										.getMapEditorGridPanel(mapModel,
-												new_jframe.getSize(),
-												E_MapEditorMode.Play);
-
-								
-									//ulan
-								ApplicationStatics.GAME_OVER = false;
-								GameLoader gameLoader = new GameLoader("Data.txt");
-								
-								
-								// jframe.add(gameMapPanel);
-								new_jframe.getContentPane().add(gameMapPanel,
-										BorderLayout.NORTH);						
-								
-								bottomGamePanel = (BottomGamePanelView) new JPanelComponent()
-										.getGameTowerPanel(new_jframe.getSize());
-								// bottomGamePanel.setMapButtons(panelComponent.getButtons());
-								new_jframe.getContentPane().add(
-										bottomGamePanel, BorderLayout.SOUTH);
-								new_jframe.setVisible(true);
-								panelComponent
-										.setBottomGamePanelView(bottomGamePanel);
-								
-								ApplicationStatics.PLAYERMODEL
-										.addObserver(panelComponent);
-								
-								
-								//ulan
-								ApplicationStatics.BLOCK_WIDTH = gameMapPanel.getWidth() / mapModel.getMapWidth();;
-								ApplicationStatics.BLOCK_HEIGHT = gameMapPanel.getHeight() / mapModel.getMapHeight();
-								
-								gameLoader.recalculate();
-								panelComponent.setMapButtonsToYellow();
-								
-								
-							//	logger.info("HERERER: "+ ApplicationStatics.BLOCK_WIDTH);
-								logger.info(String.format(ApplicationStatics.MSG_MAP_FILE_LOADED_SAVED, "Loaded") );
-							} else {
-								logger.info(ApplicationStatics.MSG_IN_VALID_MAP);
-								JOptionPane.showMessageDialog(null,
-										ApplicationStatics.MSG_IN_VALID_MAP);
-							}
-
-						} else{
-							logger.info(ApplicationStatics.MSG_UNABLE_TO_TDM_OPEN_FILE);
-							JOptionPane.showMessageDialog(null,
-									ApplicationStatics.MSG_UNABLE_TO_TDM_OPEN_FILE);
+						file = fileChooser.getSelectedFile();
+						
+						if(!isGamePlay){
+							gameLoader =  new GameLoader(file);
+							file = new File(gameLoader.getMapFilePath());
 						}
+						
+						//Check file exist or not
+						if(!file.exists() && !file.isDirectory()) { 
+							//returnMsg="ERROR:Map file not found. \n Please past file on folloing path and then try again. \n Path:"+file.getAbsolutePath();
+							JOptionPane.showMessageDialog(null,
+									"ERROR:Map file not found. \n Please past file on folloing path and then try again. \n Path:"+file.getAbsolutePath());
+						}
+						else
+						{
+							MapModel mapModel = (new com.app.towerDefense.utilities.FileStorage())
+									.openMapFile(file);
+							logger.info( String.format(ApplicationStatics.MSG_FILE_SELECT, "Map"," Name:"+file.getName()+" "));
+							if (mapModel != null) {
+								if (mapModel.mapSecret.contains(ApplicationStatics.MAP_SECRECT_TAG)) {		
+									//loadGamePlayGrid(new_jframe, mapModel, file, true);
+									if(isGamePlay)
+									getPlayerName();
+									
+									new_jframe.getContentPane().removeAll();
+									new_jframe.setLayout(new BorderLayout());
+									panelComponent = new JPanelComponent();
+									/*
+									 * gameMapPanel =
+									 * (panelComponent).getMapPlayGridPanel(
+									 * mapModel, new_jframe.getSize(),
+									 * E_MapEditorMode.Open);
+									 */
+									
+									//MapLog code
+									ApplicationStatics.MAP_CURRENT_OPENED_FILE_PATH=file.getAbsolutePath();
+									/*
+									try {
+										ApplicationStatics.MAP_MODEL =mapModel;
+									} catch (CloneNotSupportedException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									*/
+									gameMapPanel = (panelComponent)
+											.getMapEditorGridPanel(mapModel,
+													new_jframe.getSize(),
+													E_MapEditorMode.Play);
+
+									
+										//ulan
+									ApplicationStatics.GAME_OVER = false;
+									//GameLoader gameLoader = new GameLoader("Data.txt");
+									gameLoader.load();
+									
+									
+									// jframe.add(gameMapPanel);
+									new_jframe.getContentPane().add(gameMapPanel,
+											BorderLayout.NORTH);						
+									
+									bottomGamePanel = (BottomGamePanelView) new JPanelComponent()
+											.getGameTowerPanel(new_jframe.getSize());
+									// bottomGamePanel.setMapButtons(panelComponent.getButtons());
+									new_jframe.getContentPane().add(
+											bottomGamePanel, BorderLayout.SOUTH);
+									new_jframe.setVisible(true);
+									panelComponent
+											.setBottomGamePanelView(bottomGamePanel);
+									
+									ApplicationStatics.PLAYERMODEL
+											.addObserver(panelComponent);
+									
+									
+									//ulan
+									ApplicationStatics.BLOCK_WIDTH = gameMapPanel.getWidth() / mapModel.getMapWidth();;
+									ApplicationStatics.BLOCK_HEIGHT = gameMapPanel.getHeight() / mapModel.getMapHeight();
+									
+									if(!isGamePlay){
+										gameLoader.recalculate();
+									}
+
+									panelComponent.setMapButtonsToYellow();
+									
+									
+								//	logger.info("HERERER: "+ ApplicationStatics.BLOCK_WIDTH);
+									logger.info(String.format(ApplicationStatics.MSG_MAP_FILE_LOADED_SAVED, "Loaded") );
+								} else {
+									logger.info(ApplicationStatics.MSG_IN_VALID_MAP);
+									JOptionPane.showMessageDialog(null,
+											ApplicationStatics.MSG_IN_VALID_MAP);
+								}
+
+							} else{
+								logger.info(ApplicationStatics.MSG_UNABLE_TO_TDM_OPEN_FILE);
+								JOptionPane.showMessageDialog(null,
+										ApplicationStatics.MSG_UNABLE_TO_TDM_OPEN_FILE);
+							}
+						}
+						
+
 					} else {
 						logger.info(ApplicationStatics.MSG_NO_FILE_SELECTED);
 						JOptionPane.showMessageDialog(null, ApplicationStatics.MSG_NO_FILE_SELECTED);
@@ -333,7 +374,7 @@ public class JMenuBarComponent {
 							E_LogViewerState.GlobalLog,
 							null);
 				}
-				
+				/*
 				else if (new_e.getSource().equals(menuItemLoadGame)) {
 					logger.info(String.format(ApplicationStatics.MSG_MENU_SELECTED, ApplicationStatics.MENU_FILE, ApplicationStatics.MENU_ITEM_LOAD_GAME));
 					System.out.println("ApplicationStatics.START_WAVE :"+ApplicationStatics.START_WAVE);
@@ -344,6 +385,15 @@ public class JMenuBarComponent {
 						int result = fileChooser.showOpenDialog(new_jframe);
 						if (result == JFileChooser.APPROVE_OPTION) {
 							File file = fileChooser.getSelectedFile();
+							//GameLoader gameLoader = null;
+							//try {
+								//gameLoader = new GameLoader(file, new_jframe, this.);
+								//gameLoader.recalculate();
+								//JOptionPane.showMessageDialog(null, "Game loaded successfully.");
+							//} catch (Exception e) {
+							//	JOptionPane.showMessageDialog(null, e.getMessage());
+							//}
+							Game.reloadGame(file, new_jframe);
 						}
 						else{
 							logger.info(ApplicationStatics.MSG_NO_FILE_SELECTED);
@@ -356,7 +406,7 @@ public class JMenuBarComponent {
 					}
 						
 				}
-				
+				*/
 				else if (new_e.getSource().equals(menuItemSaveGame)) {
 					logger.info(String.format(ApplicationStatics.MSG_MENU_SELECTED, ApplicationStatics.MENU_FILE, ApplicationStatics.MENU_ITEM_SAVE_GAME));
 					System.out.println("ApplicationStatics.START_WAVE :"+ApplicationStatics.START_WAVE);
@@ -374,8 +424,15 @@ public class JMenuBarComponent {
 						int result = fileChooser.showSaveDialog(new_jframe);
 						if (result == JFileChooser.APPROVE_OPTION) {
 							File file = fileChooser.getSelectedFile();
-							GameSaver gameSaver=  new GameSaver(file);
-							JOptionPane.showMessageDialog(null, "Game saved successfully.");
+							try {
+								GameSaver gameSaver=  new GameSaver(file);
+								JOptionPane.showMessageDialog(null, "Game saved successfully.");
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								//e.printStackTrace();
+								JOptionPane.showMessageDialog(null, e.getMessage());
+							}
+							
 						}
 						else{
 							logger.info(ApplicationStatics.MSG_NO_FILE_SELECTED);
@@ -478,7 +535,7 @@ public class JMenuBarComponent {
 		menuBar.add(menuFile);
 		return menuBar;
 	}
-	
+
 	/**
 	 * this function Prompt user to enter Player Name
 	 */	

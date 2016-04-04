@@ -3,6 +3,7 @@ package com.app.towerDefense.guisystem;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Dimension;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,6 +13,7 @@ import javax.swing.JTextArea;
 
 import org.apache.log4j.Logger;
 
+import com.app.towerDefense.gameLogic.GameLoader;
 import com.app.towerDefense.gameLogic.LogReader;
 import com.app.towerDefense.guiComponents.BottomGamePanelView;
 import com.app.towerDefense.guiComponents.JMenuBarComponent;
@@ -44,7 +46,7 @@ public class Game extends Canvas implements Runnable { // change 1
 	private int height;
 	private String title;
 
-	private JMenuBarComponent jMenuBarComponent;
+	private static JMenuBarComponent jMenuBarComponent;
 	private JMenuBar gameJMenuBar;
 	private BottomGamePanelView bottomGamePanel;
 	private JPanelComponent panelComponent;
@@ -54,12 +56,6 @@ public class Game extends Canvas implements Runnable { // change 1
 	private Thread thread; // change 1
 	private boolean running = false; // change 1
 	
-	//
-//	private static JTextArea txtAreaLog;
-//	private static String logFilePath;
-//	private static E_LogViewerState elogViewerState;
-//	private static Tower tower;
-
 	
 	/**
 	 * Constructor of the Game Class
@@ -251,26 +247,9 @@ public class Game extends Canvas implements Runnable { // change 1
 			logger.info("Game over: Result : "+tempStr);
 		}
 		
-		//Logger
-		//if(ApplicationStatics.isLogViewerOpen){
-		//	updateLog();
-		//}
+
 	}
 	
-//	public static void resetLogInfo(JTextArea new_txt_area_log, String new_log_file_path,
-//			E_LogViewerState new_elog_viewer_state,
-//			Tower new_tower){
-//		txtAreaLog=new_txt_area_log;
-//		logFilePath =new_log_file_path;
-//		elogViewerState =new_elog_viewer_state;
-//		tower=new_tower;
-//	}
-//	
-//	public void updateLog(){
-//		if(txtAreaLog!= null){
-//			txtAreaLog.setText(new  LogReader(logFilePath, elogViewerState, tower).read());
-//		}
-//	}
 
 	// END
 }
