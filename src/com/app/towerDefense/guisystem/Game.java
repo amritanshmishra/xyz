@@ -71,11 +71,10 @@ public class Game extends Canvas implements Runnable { // change 1
 
 		// game frame settings		
 		width = ApplicationStatics.WINDOW_WIDTH;
-		height = ApplicationStatics.WINDOW_HEIGHT;
+		height = ApplicationStatics.WINDOW_HEIGHT;		
+		ApplicationStatics.PLAYERMODEL = new PlayerModel();
 		title = ApplicationStatics.getTitleGameWindow();
 		
-		ApplicationStatics.PLAYERMODEL = new PlayerModel();
-
 		frame = new JFrame();
 		frame.setTitle(title);
 		frame.setPreferredSize(new Dimension(width, height));
