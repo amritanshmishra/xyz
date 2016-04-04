@@ -7,33 +7,51 @@ import org.junit.*;
 import com.app.towerDefense.guiComponents.MapPanel;
 import com.app.towerDefense.models.BasicCritter;
 import com.app.towerDefense.models.MapModel;
-
+/**
+ * This Test class checks if the Special Effects that were implemented in the project work as intended 
+ * @author usbaitass
+ *
+ */
 public class SpecialEffectsTest {
 
 	BasicCritter critter;
-	
+	/**
+	 * Runs before all test cases
+	 */
 	@BeforeClass
 	public static void beforeClass() {
 		System.out.println("Entered Testing SpecialEffectsTest Class");
 	}
 
+	/**
+	 * Runs after all test cases are completed
+	 */
 	@AfterClass
 	public static void AfterClass() {
 		System.out.println("Left Testing SpecialEffectsTest Class");
 	}
 
+	/**
+	 * Initialize the variables before each test case
+	 */
 	@Before
 	public void before() {
 		critter = new BasicCritter(1);
 		System.out.print("inside");
 	}
 
+	/**
+	 * Delete variables after each test case execution
+	 */
 	@After
 	public void after() {
 		critter = null;
 		System.out.println("outside");
 	}
 
+	/**
+	 * Test case that checks if the freezing towers slow effect works properly
+	 */
 	@Test
 	public void testSlowSpeed() {
 		System.out.println(" testSlowSpeed()");
@@ -46,6 +64,9 @@ public class SpecialEffectsTest {
 
 	}
 
+	/**
+	 * Test case that checks if burning towers burn effect works properly
+	 */
 	@Test
 	public void testBurnHealth() {
 		System.out.println(" testBurnHealth()");
@@ -70,6 +91,9 @@ public class SpecialEffectsTest {
 		}
 	}
 
+	/**
+	 * Test case that checks if splash damage is applied properly
+	 */
 	@Test
 	public void testSplashDamage() {
 		System.out.println(" testSplashDamage()");
