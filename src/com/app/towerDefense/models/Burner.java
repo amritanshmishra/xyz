@@ -42,32 +42,26 @@ public class Burner extends Tower{
 	
 	@Override
 	public String getTowerName() {
-	
 		return super.towerName;
 	}
 
 	@Override
 	public void setTowerName() {
-		
 		super.towerName="Burner";
-		
 	}
 
 	@Override
 	public int getTowerFireRangeUpgrade() {
-		
 		return super.towerFireRangeUpgrade;
 	}
 
 	@Override
 	public void setTowerFireRangeUpgrade() {
 		super.towerFireRangeUpgrade=0;
-		
 	}
 
 	@Override
 	public int getTowerRange() {
-		
 		return super.towerRange;
 	}
 
@@ -84,12 +78,10 @@ public class Burner extends Tower{
 	@Override
 	public void setTowerPower() {
 		super.towerPower=1;
-		
 	}
 
 	@Override
 	public int getTowerFireRate() {
-		
 		return super.towerFireRate;
 	}
 
@@ -106,18 +98,15 @@ public class Burner extends Tower{
 	@Override
 	public void setTowerCost() {
 		super.towerCost=60;
-		
 	}
 
 	@Override
 	public int getTowerlevel() {
-		
 		return super.towerlevel;
 	}
 
 	@Override
 	public void setTowerlevel() {
-		
 		super.towerlevel = 1;
 	}
 
@@ -129,8 +118,6 @@ public class Burner extends Tower{
 	@Override
 	public void setTowerImage() {
 	 super.towerImage=	new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_TOWER3);
-					
-		
 	}
 
 	@Override
@@ -140,8 +127,7 @@ public class Burner extends Tower{
 
 	@Override
 	public void setTowerCordinate() {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
 
 	@Override
@@ -151,25 +137,21 @@ public class Burner extends Tower{
 
 	@Override
 	public void setTowerUpgradeCost() {
-		super.towerUpgradeCost=30;
-		
+		super.towerUpgradeCost=30;	
 	}
 
 	@Override
 	public int getTowerlevelUpgrade() {
-		
 		return super.towerlevelUpgrade;
 	}
 
 	@Override
 	public void setTowerlevelUpgrade() {
 		super.towerlevelUpgrade=1;
-		
 	}
 
 	@Override
 	public int getTowerPowerUpgrade() {
-		
 		return super.towerPowerUpgrade;
 	}
 
@@ -180,7 +162,6 @@ public class Burner extends Tower{
 
 	@Override
 	public int getTowerFireRateUpgrade() {
-		
 		return super.towerFireRateUpgrade;
 	}
 
@@ -197,8 +178,7 @@ public class Burner extends Tower{
 	}
 
 	@Override
-	public int getY() {
-		
+	public int getY() {	
 		return super.y;
 	}
 
@@ -218,12 +198,10 @@ public class Burner extends Tower{
 		super.towerPower=getTowerPower()+getTowerPowerUpgrade();
 		
 		super.calculateRangeCircleCoordinates();
-		
 	}
 
 	@Override
 	public int getRefund() {
-		
 		return getTowerCost()/2;
 	}
 
@@ -244,5 +222,5 @@ public class Burner extends Tower{
 		this.strategy.execute(new_tower, new_critter);
 	}
 
-
+//END
 }

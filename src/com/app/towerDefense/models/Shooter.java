@@ -47,32 +47,26 @@ public class Shooter extends Tower{
 	 */
 	@Override
 	public String getTowerName() {
-	
 		return super.towerName;
 	}
 
 	@Override
-	public void setTowerName() {
-		
+	public void setTowerName() {	
 		super.towerName="Shooter";
-		
 	}
 
 	@Override
 	public int getTowerFireRangeUpgrade() {
-		
 		return super.towerFireRangeUpgrade;
 	}
 
 	@Override
 	public void setTowerFireRangeUpgrade() {
 		super.towerFireRangeUpgrade=25;
-		
 	}
 
 	@Override
-	public int getTowerRange() {
-		
+	public int getTowerRange() {	
 		return super.towerRange;
 	}
 
@@ -88,13 +82,11 @@ public class Shooter extends Tower{
 
 	@Override
 	public void setTowerPower() {
-		super.towerPower=1;
-		
+		super.towerPower=1;	
 	}
 
 	@Override
 	public int getTowerFireRate() {
-		
 		return super.towerFireRate;
 	}
 
@@ -115,14 +107,12 @@ public class Shooter extends Tower{
 	}
 
 	@Override
-	public int getTowerlevel() {
-		
+	public int getTowerlevel() {	
 		return super.towerlevel;
 	}
 
 	@Override
 	public void setTowerlevel() {
-		
 		super.towerlevel = 1;
 	}
 
@@ -134,8 +124,6 @@ public class Shooter extends Tower{
 	@Override
 	public void setTowerImage() {
 	 super.towerImage=	new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_TOWER1);
-		
-		
 	}
 
 	@Override
@@ -146,7 +134,6 @@ public class Shooter extends Tower{
 	@Override
 	public void setTowerCordinate() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -157,24 +144,20 @@ public class Shooter extends Tower{
 	@Override
 	public void setTowerUpgradeCost() {
 		super.towerUpgradeCost=10;
-		
 	}
 
 	@Override
 	public int getTowerlevelUpgrade() {
-		
 		return super.towerlevelUpgrade;
 	}
 
 	@Override
 	public void setTowerlevelUpgrade() {
-		super.towerlevelUpgrade=1;
-		
+		super.towerlevelUpgrade=1;	
 	}
 
 	@Override
 	public int getTowerPowerUpgrade() {
-		
 		return super.towerPowerUpgrade;
 	}
 
@@ -189,26 +172,21 @@ public class Shooter extends Tower{
 
 	@Override
 	public int getTowerFireRateUpgrade() {
-		
 		return super.towerFireRateUpgrade;
 	}
 
 	@Override
 	public void setTowerFireRateUpgrade() {
 		super.towerFireRateUpgrade=0;
-		
 	}
 
-
 	@Override
-	public int getX() {
-		
+	public int getX() {	
 		return super.x;
 	}
 
 	@Override
 	public int getY() {
-		
 		return super.y;
 	}
 	
@@ -221,7 +199,6 @@ public class Shooter extends Tower{
 
 	@Override
 	public void upgradeTower() {
-		
 		super.towerFireRate=getTowerFireRate() + getTowerFireRateUpgrade();
 		super.towerCost=getTowerCost()+getTowerUpgradeCost();
 		super.towerRange=getTowerRange()+getTowerFireRangeUpgrade();
@@ -234,7 +211,6 @@ public class Shooter extends Tower{
 	
 	@Override
 	public int getRefund() {
-		
 		return getTowerCost()/2;
 	}
 	
@@ -255,5 +231,5 @@ public class Shooter extends Tower{
 		this.strategy.execute(new_tower, new_critter);
 	}
 	
-	
+//END	
 }

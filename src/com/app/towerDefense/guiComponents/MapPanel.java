@@ -163,7 +163,7 @@ public class MapPanel extends JPanel {
 
 					if (critter.size() == 0 && !ApplicationStatics.GAME_OVER) {
 						if (ApplicationStatics.PLAYERMODEL.getHpPlayer() == 0
-								|| ApplicationStatics.PLAYERMODEL.getGameWave() == 5) {
+								|| ApplicationStatics.PLAYERMODEL.getGameWave() == 50) {
 							ApplicationStatics.GAME_OVER = true;
 							new Map().saveMapLog();
 						} else {

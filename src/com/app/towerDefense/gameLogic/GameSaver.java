@@ -37,6 +37,10 @@ public class GameSaver {
 
 	}
 
+	/**
+	 * This method opens the file path directory and saves the game there
+	 * @throws IOException
+	 */
 	public void savePlayerData() throws IOException {
 
 		try {

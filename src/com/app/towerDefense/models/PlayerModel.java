@@ -53,7 +53,7 @@ public class PlayerModel extends Observable{
 	 * @param new_hpPlayer
 	 *            Player health status
 	 * @param new_gameWave
-	 *            Game wave status
+	 *            Game wave level
 	 */
 	public PlayerModel(String new_playerName, int new_sunCurrency, int new_hpPlayer, int new_gameWave) {
 		playerName = new_playerName;
@@ -238,5 +238,5 @@ public class PlayerModel extends Observable{
 
 	
 
-	// END
+// END
 }

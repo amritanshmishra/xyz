@@ -128,8 +128,7 @@ public class Freezer extends Tower {
 
 		@Override
 		public void setTowerCordinate() {
-			// TODO Auto-generated method stub
-			
+			// TODO Auto-generated method stub	
 		}
 
 		@Override
@@ -224,5 +223,5 @@ public class Freezer extends Tower {
 			this.strategy.execute(new_tower, new_critter);
 		}
 	
-
+//END
 }

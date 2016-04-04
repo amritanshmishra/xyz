@@ -10,7 +10,9 @@ import java.util.Observer;
  *
  */
 public class CritterHealthBar implements Observer{
+	
 	public int x, y, xMid, xEnd;	
+	
 	/**
 	 * Constructor
 	 */
@@ -29,8 +31,5 @@ public class CritterHealthBar implements Observer{
 		xEnd = x+cr.getActualHealth();
 	}
 	
-	
-	
-	
-	
+//END	
 }

@@ -27,9 +27,7 @@ public class StrongestStrategy implements Strategy{
 			new_tower.setTargetCritter(new_critter);
 		}
 
-		new_tower.shoot();
-		
-		
+		new_tower.shoot();	
 	}
 
 	@Override

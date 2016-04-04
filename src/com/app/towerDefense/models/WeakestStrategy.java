@@ -22,15 +22,13 @@ public class WeakestStrategy implements Strategy{
 			if(new_tower.getTargetCritter().getCurrentHealth()>new_critter.getCurrentHealth() && new_tower.getTargetCritter().getCritterId() != new_critter.getCritterId()){
 			
 				new_tower.setTargetCritter(new_critter);
-				System.out.println("inside weakest towerID:"+ new_tower.getTowerName() +" critter ID:"+new_critter.getCritterId());
+		//		System.out.println("inside weakest towerID:"+ new_tower.getTowerName() +" critter ID:"+new_critter.getCritterId());
 			}
 			
 		} else {
 			new_tower.setTargetCritter(new_critter);
 		}
-		
-	//	System.out.println("asdad");
-
+	
 		new_tower.shoot();
 	}
 

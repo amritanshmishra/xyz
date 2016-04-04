@@ -37,21 +37,13 @@ public class NearestToEndPointStrategy implements Strategy{
 						if(new_tower.getTargetCritter().getY() > new_critter.getY()){
 							new_tower.setTargetCritter(new_critter);
 						}
-					}
-					
-				}
-				
-				
-				
+					}	
+				}		
 			}
 		} else {
 			new_tower.setTargetCritter(new_critter);
 		}
-
 		new_tower.shoot();
-
-		
-		
 	}
 
 	@Override

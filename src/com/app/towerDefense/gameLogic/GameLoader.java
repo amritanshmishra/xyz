@@ -45,6 +45,10 @@ public class GameLoader {
 	final static Logger logger = Logger.getLogger(GameLoader.class);
 	//JFrame jframe;
 	
+	/**
+	 * Constructor of GameLoader that takes the file path as a parameter
+	 * @param new_file file path
+	 */
 	public GameLoader(File new_file){
 		fileGameLoad = new_file;
 		//jframe=new_jframe;
@@ -136,6 +140,10 @@ public class GameLoader {
 
 	}
 	
+	/**
+	 * This method is called when user selects the game to load
+	 * it reads the data from a file and loads the game as it was saved
+	 */
 	public void load(){
 		try {
 			//in = new BufferedReader(new FileReader(new_gamePath));
@@ -223,6 +231,10 @@ public class GameLoader {
 	
 	}
 	
+	/**
+	 * This method selects the map path from data that was read from load()
+	 * @return map path string
+	 */
 	public String getMapFilePath(){
 		String returnMsg="";
 		try {
@@ -246,6 +258,9 @@ public class GameLoader {
 		return returnMsg;
 	}
 	
+	/**
+	 * This method recalculates the towers range based on their given location
+	 */
 	public void recalculate(){
 		
 		for(int i=0; i<ApplicationStatics.PLAYERMODEL.towerModelArray.size(); i++){
@@ -253,5 +268,6 @@ public class GameLoader {
 		}
 		
 	}
-
+	
+//END
 }

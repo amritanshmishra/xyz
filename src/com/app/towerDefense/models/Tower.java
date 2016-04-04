@@ -11,14 +11,12 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 
 import org.apache.log4j.Logger;
 
 import com.app.towerDefense.guiComponents.MapPanel;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 
-import javafx.scene.shape.Circle;
 
 /**
  * Tower abstract class is the super-typer of all types of objects produced by
@@ -58,6 +56,9 @@ public abstract class Tower implements Observer {
 	public int bW, bH; // block width and height
 	int xMid, yMid;
 	final static Logger logger = Logger.getLogger(Tower.class);
+
+	long curT = 0; // temporary variable
+	int prevCritterID = 0; // previous target critter id
 
 	/**
 	 * Constructor
@@ -272,6 +273,10 @@ public abstract class Tower implements Observer {
 	 */
 	public abstract int getRefund();
 	
+	/**
+	 * This method returns current tower strategy
+	 * @return strategy object
+	 */
 	public Strategy getStrategy(){
 		return strategy;
 	}
@@ -284,7 +289,11 @@ public abstract class Tower implements Observer {
 	 */
 	public abstract void setStrategy(Strategy new_strategy);
 
-	
+	/**
+	 * This method executes the target selection based on strategy assigned
+	 * @param new_tower current tower
+	 * @param new_critter critter that in range of the tower
+	 */
 	public abstract void executeStrategy(Tower new_tower, CritterType new_critter);
 
 	/**
@@ -387,9 +396,9 @@ public abstract class Tower implements Observer {
 		return dth;
 	}
 
-	
-	long curT = 0;
-	int prevCritterID = 0;
+	/**
+	 * This method shoots the target critter and initiates the bullet drawing
+	 */
 	public void shoot() {
 		
 		if (targetCritter != null) {
@@ -399,9 +408,7 @@ public abstract class Tower implements Observer {
 					logger.info("Tower_" + getTowerName() + "_towerID_" + towerID + " shoots critter id:"
 							+ targetCritter.getCritterId() + " damage:" + getTowerPower());
 
-		//			System.out.println("d:"+ (int)Math.sqrt((xMid - targetCritter.getXCr()) ^ 2 + (yMid - targetCritter.getYCr()) ^ 2));
-					
-					
+		//			System.out.println("d:"+ (int)Math.sqrt((xMid - targetCritter.getXCr()) ^ 2 + (yMid - targetCritter.getYCr()) ^ 2));				
 					
 			//		MapPanel.drawLines(getY() * bW + bW / 2, getX() * bH + bH / 2, targetCritter.getXCr(),
 			//				targetCritter.getXCr(), getTowerName(), targetCritter.getCritterId());
@@ -415,9 +422,7 @@ public abstract class Tower implements Observer {
 				} else if (getSpecialEffect() == "Splash") {
 					targetCritter.splashDamage(getTowerPower());
 				}
-
-				
-				
+		
 				shoot = false;
 				curT = System.currentTimeMillis();
 				prevCritterID = targetCritter.getCritterId();
@@ -435,30 +440,43 @@ public abstract class Tower implements Observer {
 				MapPanel.drawLines(getY() * bW + bW / 2, getX() * bH + bH / 2, targetCritter.getXCr(),
 										targetCritter.getYCr(), getTowerName(), targetCritter.getCritterId());
 			}
-			
+			// delete critter from static critter arraylist if it gets killed by the tower
 			if (targetCritter.killCritter()) {
 				logger.info("Tower_" + getTowerName() + "_towerID_" + towerID + " killed critter id:"
 						+ targetCritter.getCritterId());
 				targetCritter = null;				
 			}
 		}
-		
-		
-		
 	}
 	
+	/**
+	 * This method returns the targeted critter object
+	 * @return critter object
+	 */
 	public CritterType getTargetCritter(){
 		return targetCritter;
 	}
 	
+	/**
+	 * This method assigns the the target critter to a tower
+	 * @param new_critter
+	 */
 	public void setTargetCritter(CritterType new_critter){
 		targetCritter = new_critter;
 	}
 	
+	/**
+	 * This method returns the middle x point of a tower button on the map
+	 * @return x middle coordinate
+	 */
 	public int getXMid(){
 		return xMid;
 	}
 	
+	/**
+	 * This method returns the middle y point of a tower button on the map
+	 * @return y middle coordinate
+	 */
 	public int getYMid(){
 		return yMid;
 	}

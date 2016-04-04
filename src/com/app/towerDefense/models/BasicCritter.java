@@ -50,6 +50,7 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	private Timer timerSplash;	
 	private boolean showSplashArea;
 	
+	// middle points of image critter on the map
 	public int xCr, yCr;
 	
 	
@@ -80,7 +81,7 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 		this.addObserver(healthBar);
 
 	}
-
+	
 	@Override
 	public int getX() {
 		return x;

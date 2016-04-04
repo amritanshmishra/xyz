@@ -18,7 +18,7 @@ public class TowerFactory {
 	/**
 	 *This method allows as to create a variation of towers based on the name of the tower parsed to it as parameter 
 	 * @param new_towerName is the name of the tower(Burner,Freezer,Shooter,Splasher) for which the tower is created
-	 * @return a Tower
+	 * @return a Tower name
 	 */
 	static public Tower getTower(String new_towerName)
 	{
