@@ -347,8 +347,8 @@ public abstract class Tower implements Observer {
 	 */
 	public void calculateRangeCircleCoordinates() {
 
-		int bW = ApplicationStatics.BLOCK_WIDTH;
-		int bH = ApplicationStatics.BLOCK_HEIGHT;
+		bW = ApplicationStatics.BLOCK_WIDTH;
+		bH = ApplicationStatics.BLOCK_HEIGHT;
 		// System.out.println("BWBH "+bW+" "+bH);
 
 		double rangeT = (double) getTowerRange() / 100 - 1;
@@ -387,6 +387,8 @@ public abstract class Tower implements Observer {
 		return dth;
 	}
 
+	
+	long curT = 0;
 	public void shoot() {
 		
 		if (targetCritter != null) {
@@ -398,8 +400,10 @@ public abstract class Tower implements Observer {
 
 		//			System.out.println("d:"+ (int)Math.sqrt((xMid - targetCritter.getXCr()) ^ 2 + (yMid - targetCritter.getYCr()) ^ 2));
 					
-					MapPanel.drawLines(getY() * bW + bW / 2, getX() * bH + bH / 2, targetCritter.getXCr(),
-							targetCritter.getXCr(), getTowerName(), targetCritter.getCritterId());
+					
+					
+			//		MapPanel.drawLines(getY() * bW + bW / 2, getX() * bH + bH / 2, targetCritter.getXCr(),
+			//				targetCritter.getXCr(), getTowerName(), targetCritter.getCritterId());
 				}
 				if (getSpecialEffect() == "Freeze") {
 					targetCritter.setCritterImage(ApplicationStatics.IMAGE_PATH_CRITTER_FROZEN);
@@ -411,15 +415,23 @@ public abstract class Tower implements Observer {
 					targetCritter.splashDamage(getTowerPower());
 				}
 
+				
+				
 				shoot = false;
+				curT = System.currentTimeMillis();
 				timer.schedule(new TimerTask() {
 					@Override
 					public void run() {
 						// Your database code here
 						shoot = true;
 					}
-				}, 500);
+				}, 1000);
 			
+			}
+			
+			if(!shoot && System.currentTimeMillis()-curT < 300){
+				MapPanel.drawLines(getY() * bW + bW / 2, getX() * bH + bH / 2, targetCritter.getXCr(),
+										targetCritter.getYCr(), getTowerName(), targetCritter.getCritterId());
 			}
 			
 			if (targetCritter.killCritter()) {

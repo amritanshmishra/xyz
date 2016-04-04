@@ -233,8 +233,11 @@ public class MapPanel extends JPanel {
 			}
 
 			((Graphics2D) graphics).setStroke(new BasicStroke(3));
-
+			
 			graphics.drawLine(new_tx, new_ty, new_cx, new_cy);
+						
+		//	System.out.println("mnmn= "+new_tx+" "+ new_ty+" "+ new_cx+" "+ new_cy);
+			
 		}
 	}
 
