@@ -389,6 +389,7 @@ public abstract class Tower implements Observer {
 
 	
 	long curT = 0;
+	int prevCritterID = 0;
 	public void shoot() {
 		
 		if (targetCritter != null) {
@@ -419,6 +420,7 @@ public abstract class Tower implements Observer {
 				
 				shoot = false;
 				curT = System.currentTimeMillis();
+				prevCritterID = targetCritter.getCritterId();
 				timer.schedule(new TimerTask() {
 					@Override
 					public void run() {
@@ -429,7 +431,7 @@ public abstract class Tower implements Observer {
 			
 			}
 			
-			if(!shoot && System.currentTimeMillis()-curT < 300){
+			if(!shoot && System.currentTimeMillis()-curT < 300 && prevCritterID == targetCritter.getCritterId()){
 				MapPanel.drawLines(getY() * bW + bW / 2, getX() * bH + bH / 2, targetCritter.getXCr(),
 										targetCritter.getYCr(), getTowerName(), targetCritter.getCritterId());
 			}
