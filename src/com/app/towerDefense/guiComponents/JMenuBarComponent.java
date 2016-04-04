@@ -189,7 +189,7 @@ public class JMenuBarComponent {
 										//ulan
 									ApplicationStatics.GAME_OVER = false;
 									//GameLoader gameLoader = new GameLoader("Data.txt");
-									gameLoader.load();
+									if(gameLoader!=null)gameLoader.load();
 									
 									
 									// jframe.add(gameMapPanel);
