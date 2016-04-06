@@ -4,6 +4,7 @@
 package com.app.towerDefense.models;
 
 /**
+ * 
  * @author Sajjad Ashraf
  *
  */
@@ -15,7 +16,7 @@ public class MapPlayersStatisticsModel {
 	String currentSessionEnd; 
 
 	/**
-	 * 
+	 * Constructor for MapPlayersStatisticsModel
 	 */
 	public MapPlayersStatisticsModel() {
 		
@@ -24,6 +25,7 @@ public class MapPlayersStatisticsModel {
 	
 
 	/**
+	 * Constructor for MapPlayersStatisticsModel
 	 * @param new_playerName
 	 * @param new_currentSessionStart
 	 * @param new_waveNo
@@ -40,6 +42,7 @@ public class MapPlayersStatisticsModel {
 	}
 
 	/**
+	 * This method gets the Player name
 	 * @return the playerName
 	 */
 	public String getPlayerName() {
@@ -47,6 +50,7 @@ public class MapPlayersStatisticsModel {
 	}
 
 	/**
+	 * This method sets the player name
 	 * @param playerName the playerName to set
 	 */
 	public void setPlayerName(String playerName) {
@@ -54,6 +58,7 @@ public class MapPlayersStatisticsModel {
 	}
 
 	/**
+	 * This method gets the current session start value
 	 * @return the currentSessionStart
 	 */
 	public String getCurrentSessionStart() {
@@ -61,6 +66,7 @@ public class MapPlayersStatisticsModel {
 	}
 
 	/**
+	 * This method sets the current session start value
 	 * @param currentSessionStart the currentSessionStart to set
 	 */
 	public void setCurrentSessionStart(String currentSessionStart) {
@@ -68,6 +74,7 @@ public class MapPlayersStatisticsModel {
 	}
 
 	/**
+	 * This method gets the waveNo
 	 * @return the waveNo
 	 */
 	public String getWaveNo() {
@@ -75,6 +82,7 @@ public class MapPlayersStatisticsModel {
 	}
 
 	/**
+	 * This method sets the waveNo
 	 * @param waveNo the waveNo to set
 	 */
 	public void setWaveNo(String waveNo) {
@@ -82,6 +90,7 @@ public class MapPlayersStatisticsModel {
 	}
 
 	/**
+	 * This method gets the current session end value
 	 * @return the currentSessionEtart
 	 */
 	public String getCurrentSessionEnd() {
@@ -89,6 +98,7 @@ public class MapPlayersStatisticsModel {
 	}
 
 	/**
+	 * This method sets current session end value
 	 * @param currentSessionEtart the currentSessionEtart to set
 	 */
 	public void setCurrentSessionEnd(String currentSessionEtart) {

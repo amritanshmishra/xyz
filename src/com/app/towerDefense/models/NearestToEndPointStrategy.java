@@ -3,7 +3,7 @@ package com.app.towerDefense.models;
  * This class is one of the strategies:
  * where tower targets the critter which is nearest to end point
  * @author usbaitass
- *
+ *{@inheritDoc}
  */
 public class NearestToEndPointStrategy implements Strategy{
 

@@ -3,7 +3,7 @@ package com.app.towerDefense.models;
  * This class is one of the strategies:
  * where tower targets the weakest critter in fire range.
  * @author usbaitass
- *
+ * {@inheritDoc}
  */
 public class WeakestStrategy implements Strategy{
 

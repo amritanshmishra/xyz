@@ -135,6 +135,7 @@ public class ApplicationStatics {
 	
 	// Window Titles
 	/**
+	 * This method gets the game window title
 	 * @return the titleGameWindow
 	 */
 	public static String getTitleGameWindow() {
@@ -146,6 +147,7 @@ public class ApplicationStatics {
 
 	//Logs
 	/**
+	 * This method gets the current log session tag
 	 * @return the lOG_CURRENT_SESSION_TAG
 	 */
 	public static String getLog_Current_Session_Tag() {
@@ -153,6 +155,7 @@ public class ApplicationStatics {
 	}
 
 	/**
+	 * This method sets the log current session tag
 	 * @param lOG_CURRENT_SESSION_TAG the lOG_CURRENT_SESSION_TAG to set
 	 */
 	public static void setLog_Current_Session_Tag(String new_session) {
@@ -160,6 +163,7 @@ public class ApplicationStatics {
 	}
 
 	/**
+	 * This method gets log tower tag
 	 * @return the lOG_TOWE_TAG
 	 */
 	public static String getLog_Tower_Tag() {
@@ -167,6 +171,7 @@ public class ApplicationStatics {
 	}
 
 	/**
+	 * This method sets a log tower tag
 	 * @param lOG_TOWE_TAG the lOG_TOWE_TAG to set
 	 */
 	public static void setLog_Tower_Tag(String new_session) {

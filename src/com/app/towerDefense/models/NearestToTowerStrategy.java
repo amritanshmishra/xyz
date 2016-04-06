@@ -7,7 +7,7 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
  * nearest to end tower
  * 
  * @author usbaitass
- *
+ *{@inheritDoc}
  */
 public class NearestToTowerStrategy implements Strategy {
 

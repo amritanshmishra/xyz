@@ -65,6 +65,7 @@ public class PlayerModel extends Observable{
 	}
 
 	/**
+	 * The method gets sumCurrency
 	 * @return amount of sun currency Player has.
 	 */
 	public int getSunCurrency() {
@@ -96,6 +97,7 @@ public class PlayerModel extends Observable{
 	}
 
 	/**
+	 * This method gets the health of a player
 	 * @return amount of health Player has.
 	 */
 	public int getHpPlayer() {
@@ -103,7 +105,7 @@ public class PlayerModel extends Observable{
 	}
 
 	/**
-	 * 
+	 * This method gets the game wave
 	 * @return current game level
 	 */
 	public int getGameWave() {
@@ -111,7 +113,7 @@ public class PlayerModel extends Observable{
 	}
 
 	/**
-	 * 
+	 * This method gets the player name
 	 * @return Name of the Player
 	 */
 	public String getPlayerName() {

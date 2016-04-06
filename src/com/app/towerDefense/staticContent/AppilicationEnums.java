@@ -43,7 +43,7 @@ public class AppilicationEnums {
 	}
 	
 	/**
-	 * Enumerators to express the Log Viewver State
+	 * Enumerators to express the Log Viewer State
 	 * 
 	 */
 	public enum E_LogViewerState {
