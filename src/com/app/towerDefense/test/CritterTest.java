@@ -63,7 +63,6 @@ public class CritterTest {
 	@Test
 	public void testFactoryInstanceCreation() {
 		assertNotNull(basicCritter);
-		assertNotNull(advancedCritter);
 		Assert.assertTrue(basicCritter instanceof BasicCritter);
 	
 	}

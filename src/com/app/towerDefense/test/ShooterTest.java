@@ -45,10 +45,10 @@ public class ShooterTest {
 		int towerRange = 100;
 		int towerFireRate = 1;
 		int towerCost = 20;
-		int towerFireRateUpgrade = 1;
+		int towerFireRateUpgrade = 0;
 		int towerLevelUpgrade = 1;
 		int towerUpgradeCost = 10;
-		int towerFireRangeUpgrade = 1;
+		int towerFireRangeUpgrade = 25;
 		int towerPowerUpgrade = 1;
 		String towerName = "Shooter";
 		// Change towerImagePath
