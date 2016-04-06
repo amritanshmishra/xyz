@@ -26,7 +26,6 @@ public class JFileChooserComponent {
 	 *            behave accordingly.
 	 * @return a file
 	 */
-
 	public JFileChooser getJFileChooser(E_JFileChooserMode new_fileChooserMode) {
 		fileChooser = new JFileChooser();
 		fileChooser.setCurrentDirectory(new File(System

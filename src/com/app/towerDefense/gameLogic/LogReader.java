@@ -28,9 +28,12 @@ public class LogReader {
 	E_LogViewerState logReadingState;
 	Tower tower;
 
-	// Log
-	// final static Logger logger = Logger.getLogger(LogReader.class);
-
+	/**
+	 * Constructor for LogReader
+	 * @param new_log_file_path Path to the log file
+	 * @param new_elog_viewer_state LogViewerState that is CurrentSessionLog,TowerCollectionLog,
+	 * @param new_tower Tower to view
+	 */
 	public LogReader(String new_log_file_path,
 			E_LogViewerState new_elog_viewer_state,
 			Tower new_tower) {
@@ -42,6 +45,10 @@ public class LogReader {
 		// logger.info("Function Called :- LogReader(new_log_file_path:"+new_log_file_path+", new_elog_viewer_state: "+new_elog_viewer_state+")");
 	}
 
+	/**
+	 * This method reads the tower log 
+	 * @return parse for current session be it sessionlog, towerlog, towercollectionlog,MapPlayersStatistics
+	 */
 	public String read() {
 		logResultant = new MiscellaneousHelper().readFile(file);
 		
@@ -61,6 +68,10 @@ public class LogReader {
 		return logResultant;
 	}
 	
+	/**
+	 * This method gets the current session log 
+	 * @return the log current session
+	 */
 	public String parseForCurrentSession(){
 		logResultant = new MiscellaneousHelper().readFile(file);		
 		Pattern pattern = Pattern.compile("((.|\n)*)"+ApplicationStatics.getLog_Current_Session_Tag());
@@ -71,6 +82,10 @@ public class LogReader {
 		return logResultant;
 	}
 	
+	/**
+	 * This method gets the log for all the tower collection
+	 * @return log for towerCollection
+	 */
 	public String parseLogForTowersCollection(){
 		// get Current Session Log
 		logResultant = parseForCurrentSession();
@@ -85,6 +100,10 @@ public class LogReader {
 		return logResultant;
 	}
 	
+	/**
+	 * This method gets the tower log
+	 * @return the log for a tower
+	 */
 	public String parseLogForTower(){
 		logResultant = parseLogForTowersCollection();
 		Pattern pattern ;
@@ -104,6 +123,10 @@ public class LogReader {
 		return logResultant;
 	}
 	
+	/**
+	 * This method gets the Map Player Statistics
+	 * @return the log for the Map Player statistics
+	 */
 	public String parseLogForMapPlayerStatistics(){
 		/*
 		if(ApplicationStatics.MAP_MODEL!= null && 

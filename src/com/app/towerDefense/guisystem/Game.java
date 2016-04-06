@@ -93,7 +93,9 @@ public class Game extends Canvas implements Runnable { // change 1
 
 	}
 	
-	
+	/**
+	 * This method refreshes the game frame Title
+	 */
 	public void refreshGameFrameTitle()
 	{
 		title = ApplicationStatics.getTitleGameWindow();

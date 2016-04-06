@@ -358,8 +358,7 @@ public class JPanelComponent implements Observer {
 	 * @param new_elog_viewer_state
 	 * @param new_tempTM
 	 * @return JPanel that contains all Log Viewer Data.
-	 */
-	
+	 */	
 	public JPanel getLogViewerPanel(final String new_log_file_path, E_LogViewerState new_elog_viewer_state, final Tower new_tempTM)
 	{
 		JPanel panel = new JPanel();

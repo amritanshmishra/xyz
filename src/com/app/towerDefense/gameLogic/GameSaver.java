@@ -39,9 +39,9 @@ public class GameSaver {
 
 	/**
 	 * This method opens the file path directory and saves the game there
-	 * @throws IOException
+	 * 
 	 */
-	public void savePlayerData() throws IOException {
+	public void savePlayerData()  {
 
 		try {
 			//out = new PrintWriter("Data.txt");
@@ -73,8 +73,9 @@ public class GameSaver {
 			
 
 			out.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+		}
+		catch(IOException e)
+		{
 			e.printStackTrace();
 		}
 

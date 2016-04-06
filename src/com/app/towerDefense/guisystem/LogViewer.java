@@ -22,9 +22,6 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
  */
 public class LogViewer extends JFrame  {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	E_LogViewerState eLogViewerState;
 	String logFilePath="";
@@ -38,6 +35,16 @@ public class LogViewer extends JFrame  {
 	private static E_LogViewerState elogViewerState;
 	private static Tower tower;
 	
+	/**
+	 * Constructor for the LogViewer
+	 * @param new_parent the GameFrame
+	 * @param new_title game title
+	 * @param new_width frame width
+	 * @param new_height frame height
+	 * @param new_log_file_path file path of log
+	 * @param new_elog_viewer_state LogViewerState
+	 * @param new_tower tower
+	 */
 	public LogViewer(JFrame new_parent, String new_title, int new_width,
 			int new_height, String new_log_file_path,
 			E_LogViewerState new_elog_viewer_state, Tower new_tower) {
@@ -91,6 +98,14 @@ public class LogViewer extends JFrame  {
 	    
 	   
 	}
+	
+	/**
+	 * This method resets log Info
+	 * @param new_txt_area_log textArea
+	 * @param new_log_file_path log file path
+	 * @param new_elog_viewer_state E_LogViewerState
+	 * @param new_tower tower
+	 */
 	public static void resetLogInfo(JTextArea new_txt_area_log, String new_log_file_path,
 			E_LogViewerState new_elog_viewer_state,
 			Tower new_tower){
@@ -100,6 +115,11 @@ public class LogViewer extends JFrame  {
 		tower=new_tower;
 	}
 	
+	/**
+	 * This method schedules a task to writing to TextArea by a timer
+	 * @author George Ekow-daniels
+	 *{@inheritDoc}
+	 */
 	 class RemindTask extends TimerTask {
 	        public void run() {
 	        	if(ApplicationStatics.isLogViewerOpen){
