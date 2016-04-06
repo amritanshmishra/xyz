@@ -124,12 +124,16 @@ public class MiscellaneousHelper {
 	 * @param new_format
 	 * @return
 	 */
-	
 	public String getCurrentDateStr(String new_format)
 	{
 		return new SimpleDateFormat(new_format).format(new Date());
 	}
 	
+	/**
+	 * This method reads a file
+	 * @param new_file file to read
+	 * @return the data in the file
+	 */
 	public String readFile(File new_file)
 	{
 		try {

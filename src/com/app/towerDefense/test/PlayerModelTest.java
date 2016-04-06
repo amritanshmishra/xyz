@@ -50,8 +50,6 @@ public class PlayerModelTest {
 		int hpPlayer = 10;
 		int gameWave = 1;
 
-		//assertEquals(playerName, playerModel.getPlayerName());
-
 		assertEquals(sunCurrency, playerModel.getSunCurrency());
 
 		assertEquals(hpPlayer, playerModel.getHpPlayer());
@@ -89,9 +87,6 @@ public class PlayerModelTest {
 
 	/**
 	 * Test buyTower method.
-	 *
-	 *
-	 *
 	 */
 	@Test
 	public void buyTowerTest() {

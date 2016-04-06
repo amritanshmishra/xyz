@@ -36,7 +36,6 @@ public class JFileChooserComponentTest {
 	 * Run Unit Test TestGetJFileChooser IT gives you JFileChooser Save or Open
 	 * mode according to provided input
 	 */
-
 	@Test
 	public void TestGetJFileChooser() {
 		assertNotNull(jFileChooserComponent
@@ -48,7 +47,6 @@ public class JFileChooserComponentTest {
 	/**
 	 * Run Unit Test TestGetFileChooser return the fileChooser
 	 */
-
 	@Test
 	public void TestGetFileChooser() {
 		assertNull(jFileChooserComponent.getFileChooser());
