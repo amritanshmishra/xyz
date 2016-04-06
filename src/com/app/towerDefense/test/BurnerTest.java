@@ -41,15 +41,15 @@ public class BurnerTest {
 	public void test() {
 
 		int towerLevel = 1;
-		int towerPower = 2;
-		int towerRange = 1;
+		int towerPower = 1;
+		int towerRange = 100;
 		int towerFireRate = 1;
 		int towerCost = 60;
-		int towerFireRateUpgrade = 1;
+		int towerFireRateUpgrade = 0;
 		int towerLevelUpgrade = 1;
 		int towerUpgradeCost = 30;
-		int towerFireRangeUpgrade = 1;
-		int towerPowerUpgrade = 2;
+		int towerFireRangeUpgrade = 0;
+		int towerPowerUpgrade = 1;
 		String towerName = "Burner";
 		// Change towerImagePath
 

@@ -42,7 +42,7 @@ public class ShooterTest {
 
 		int towerLevel = 1;
 		int towerPower = 1;
-		int towerRange = 1;
+		int towerRange = 100;
 		int towerFireRate = 1;
 		int towerCost = 20;
 		int towerFireRateUpgrade = 1;
