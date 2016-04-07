@@ -195,8 +195,6 @@ public class MapPanel extends JPanel {
 	 *            critter y coordinate
 	 * @param new_tower_types
 	 *            tower type number
-	 * @param new_isdied
-	 *            true if tower is busy with critter
 	 * @param new_critterId
 	 *            current critter id
 	 */

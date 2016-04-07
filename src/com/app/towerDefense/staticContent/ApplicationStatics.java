@@ -154,7 +154,7 @@ public class ApplicationStatics {
 	/**
 	 * This method sets the log current session tag
 	 * 
-	 * @param lOG_CURRENT_SESSION_TAG
+	 * @param new_session
 	 *            the lOG_CURRENT_SESSION_TAG to set
 	 */
 	public static void setLog_Current_Session_Tag(String new_session) {
@@ -173,7 +173,7 @@ public class ApplicationStatics {
 	/**
 	 * This method sets a log tower tag
 	 * 
-	 * @param lOG_TOWE_TAG
+	 * @param new_session
 	 *            the lOG_TOWE_TAG to set
 	 */
 	public static void setLog_Tower_Tag(String new_session) {

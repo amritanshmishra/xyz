@@ -301,10 +301,10 @@ public class JPanelComponent implements Observer {
 	/**
 	 * Get UI JPanel for logViewer
 	 * 
-	 * @param new_log_file_path
-	 * @param new_elog_viewer_state
-	 * @param new_tempTM
-	 * @return JPanel that contains all Log Viewer Data.
+	 * @param new_log_file_path file path
+	 * @param new_elog_viewer_state enum
+	 * @param new_tempTM temp
+	 * @return JPanel that contains all Log Viewer Data. log view data
 	 */
 	public JPanel getLogViewerPanel(final String new_log_file_path, E_LogViewerState new_elog_viewer_state,
 			final Tower new_tempTM) {

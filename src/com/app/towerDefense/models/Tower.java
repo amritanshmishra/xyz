@@ -458,7 +458,7 @@ public abstract class Tower implements Observer {
 	/**
 	 * This method assigns the the target critter to a tower
 	 * 
-	 * @param new_critter
+	 * @param new_critter new critter
 	 */
 	public void setTargetCritter(CritterType new_critter) {
 		targetCritter = new_critter;

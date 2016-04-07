@@ -110,7 +110,7 @@ public class Game extends Canvas implements Runnable { // change 1
 	}
 
 	/**
-	 * Game loop--> updates the game. This method runs the thread
+	 * Game loop - updates the game. This method runs the thread
 	 */
 	@Override
 	public void run() {

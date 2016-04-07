@@ -19,8 +19,8 @@ public class GameSaver {
 
 	/**
 	 * Constructor
-	 * 
-	 * @throws IOException
+	 * @param new_file new file
+	 * @throws IOException file may not be at location
 	 */
 	public GameSaver(File new_file) throws IOException {
 		file = new_file;

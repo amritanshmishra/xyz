@@ -170,7 +170,7 @@ public class LogReader {
 	/**
 	 * the file to set
 	 * 
-	 * @param new_file
+	 * @param new_file new file
 	 * 
 	 */
 	public void setFile(File new_file) {
@@ -189,7 +189,7 @@ public class LogReader {
 	/**
 	 * sets the path for log file
 	 * 
-	 * @param new_logFilePath
+	 * @param new_logFilePath log file path
 	 * 
 	 */
 	public void setLogFilePath(String new_logFilePath) {
@@ -208,7 +208,7 @@ public class LogReader {
 	/**
 	 * sets the logResultant
 	 * 
-	 * @param new_logResultant
+	 * @param new_logResultant log resultant
 	 * 
 	 */
 	public void setLogResultant(String new_logResultant) {
@@ -227,7 +227,7 @@ public class LogReader {
 	/**
 	 * sets the log Reading State
 	 * 
-	 * @param new_logReadingState
+	 * @param new_logReadingState log read state
 	 * 
 	 */
 	public void setLogReadingState(E_LogViewerState new_logReadingState) {
@@ -246,7 +246,7 @@ public class LogReader {
 	/**
 	 * sets the tower object
 	 * 
-	 * @param new_tower
+	 * @param new_tower tower
 	 * 
 	 */
 	public void setTower(Tower new_tower) {

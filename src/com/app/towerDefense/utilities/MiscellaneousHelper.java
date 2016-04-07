@@ -117,8 +117,8 @@ public class MiscellaneousHelper {
 	 * This method return date in string form. The date format is depend upon
 	 * the input Provied by user.
 	 * 
-	 * @param new_format
-	 * @return
+	 * @param new_format new format
+	 * @return date 
 	 */
 	public String getCurrentDateStr(String new_format) {
 		return new SimpleDateFormat(new_format).format(new Date());

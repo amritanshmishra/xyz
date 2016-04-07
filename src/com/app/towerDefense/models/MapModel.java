@@ -302,7 +302,7 @@ public class MapModel implements Cloneable {
 	}
 
 	/**
-	 * @param mapPlayersStatisticsArray
+	 * @param new_mapPlayersStatisticsModel
 	 *            the mapPlayersStatisticsArray to set
 	 */
 	public void addToMapPlayersStatisticsArray(MapPlayersStatisticsModel new_mapPlayersStatisticsModel) {

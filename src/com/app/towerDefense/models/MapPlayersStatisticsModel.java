@@ -25,10 +25,10 @@ public class MapPlayersStatisticsModel {
 	/**
 	 * Constructor for MapPlayersStatisticsModel
 	 * 
-	 * @param new_playerName
-	 * @param new_currentSessionStart
-	 * @param new_waveNo
-	 * @param new_currentSessionEnd
+	 * @param new_playerName player name
+	 * @param new_currentSessionStart current session
+	 * @param new_waveNo wave number
+	 * @param new_currentSessionEnd current session
 	 */
 	public MapPlayersStatisticsModel(String new_playerName, String new_currentSessionStart, String new_waveNo,
 			String new_currentSessionEnd) {

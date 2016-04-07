@@ -270,3 +270,88 @@
 2016-04-07 15:22:39 INFO  MapPanel:155 - Player bought Tower = 0, Tower_Shooter_towerID_0
 2016-04-07 15:22:39 INFO  MapPanel:155 - Player bought Tower = 0, Tower_Shooter_towerID_0
 2016-04-07 15:22:39 INFO  MapPanel:155 - Player bought Tower = 0, Tower_Shooter_towerID_0
+2016-04-07 16:12:19 INFO  MapPanel:158 - Player bought Tower = 1, Tower_Freezer_towerID_0
+2016-04-07 16:12:25 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 16:12:26 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 16:12:27 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:2 damage:1
+2016-04-07 16:12:27 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 16:12:28 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:3 damage:1
+2016-04-07 16:12:28 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 16:12:29 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:2 damage:1
+2016-04-07 16:12:29 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 16:12:30 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 16:12:30 INFO  MapPanel:158 - Player bought Tower = 0, Tower_Shooter_towerID_0
+2016-04-07 16:12:31 INFO  MapPanel:158 - Player bought Tower = 0, Tower_Shooter_towerID_0
+2016-04-07 16:12:31 INFO  MapPanel:158 - Player bought Tower = 0, Tower_Shooter_towerID_0
+2016-04-07 16:12:31 INFO  MapPanel:158 - Player bought Tower = 1, Tower_Freezer_towerID_0
+2016-04-07 16:12:31 INFO  MapPanel:158 - Player bought Tower = 2, Tower_Burner_towerID_1
+2016-04-07 16:12:31 INFO  MapPanel:158 - Player bought Tower = 1, Tower_Freezer_towerID_0
+2016-04-07 16:12:31 INFO  MapPanel:158 - Player bought Tower = 2, Tower_Burner_towerID_1
+2016-04-07 16:27:09 INFO  MapPanel:158 - Player bought Tower = 1, Tower_Freezer_towerID_0
+2016-04-07 16:27:15 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 16:27:16 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:2 damage:1
+2016-04-07 16:27:16 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 16:27:17 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 16:27:18 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:2 damage:1
+2016-04-07 16:27:18 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 16:27:19 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:3 damage:1
+2016-04-07 16:27:19 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 16:27:20 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 16:27:20 INFO  MapPanel:158 - Player bought Tower = 0, Tower_Shooter_towerID_0
+2016-04-07 16:27:21 INFO  MapPanel:158 - Player bought Tower = 0, Tower_Shooter_towerID_0
+2016-04-07 16:27:21 INFO  MapPanel:158 - Player bought Tower = 0, Tower_Shooter_towerID_0
+2016-04-07 16:27:21 INFO  MapPanel:158 - Player bought Tower = 1, Tower_Freezer_towerID_0
+2016-04-07 16:27:21 INFO  MapPanel:158 - Player bought Tower = 2, Tower_Burner_towerID_1
+2016-04-07 16:27:21 INFO  MapPanel:158 - Player bought Tower = 1, Tower_Freezer_towerID_0
+2016-04-07 16:27:21 INFO  MapPanel:158 - Player bought Tower = 2, Tower_Burner_towerID_1
+2016-04-07 16:49:52 INFO  MapPanel:158 - Player bought Tower = 1, Tower_Freezer_towerID_0
+2016-04-07 16:49:58 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 16:49:59 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:2 damage:1
+2016-04-07 16:49:59 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 16:50:00 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 16:50:00 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 16:50:01 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 16:50:02 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:2 damage:1
+2016-04-07 16:50:02 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 16:50:03 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:3 damage:1
+2016-04-07 16:50:03 INFO  MapPanel:158 - Player bought Tower = 0, Tower_Shooter_towerID_0
+2016-04-07 16:50:04 INFO  MapPanel:158 - Player bought Tower = 0, Tower_Shooter_towerID_0
+2016-04-07 16:50:04 INFO  MapPanel:158 - Player bought Tower = 0, Tower_Shooter_towerID_0
+2016-04-07 16:50:04 INFO  MapPanel:158 - Player bought Tower = 1, Tower_Freezer_towerID_0
+2016-04-07 16:50:04 INFO  MapPanel:158 - Player bought Tower = 2, Tower_Burner_towerID_1
+2016-04-07 16:50:04 INFO  MapPanel:158 - Player bought Tower = 1, Tower_Freezer_towerID_0
+2016-04-07 16:50:04 INFO  MapPanel:158 - Player bought Tower = 2, Tower_Burner_towerID_1
+2016-04-07 17:10:36 INFO  MapPanel:158 - Player bought Tower = 1, Tower_Freezer_towerID_0
+2016-04-07 17:10:42 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 17:10:43 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 17:10:44 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:2 damage:1
+2016-04-07 17:10:44 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 17:10:45 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:3 damage:1
+2016-04-07 17:10:45 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 17:10:46 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 17:10:46 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 17:10:48 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:2 damage:1
+2016-04-07 17:10:48 INFO  MapPanel:158 - Player bought Tower = 0, Tower_Shooter_towerID_0
+2016-04-07 17:10:48 INFO  MapPanel:158 - Player bought Tower = 0, Tower_Shooter_towerID_0
+2016-04-07 17:10:48 INFO  MapPanel:158 - Player bought Tower = 1, Tower_Freezer_towerID_0
+2016-04-07 17:10:48 INFO  MapPanel:158 - Player bought Tower = 2, Tower_Burner_towerID_1
+2016-04-07 17:10:48 INFO  MapPanel:158 - Player bought Tower = 1, Tower_Freezer_towerID_0
+2016-04-07 17:10:48 INFO  MapPanel:158 - Player bought Tower = 2, Tower_Burner_towerID_1
+2016-04-07 17:11:57 INFO  Game:53 - LOG_CURRENT_SESSION_TAG_20160407171157340
+2016-04-07 17:11:59 INFO  Game:75 - Game Loaded!!
+2016-04-07 17:12:09 INFO  MapPanel:158 - Player bought Tower = 1, Tower_Freezer_towerID_0
+2016-04-07 17:12:14 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 17:12:15 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 17:12:16 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:2 damage:1
+2016-04-07 17:12:16 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 17:12:17 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:3 damage:1
+2016-04-07 17:12:17 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 17:12:18 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:2 damage:1
+2016-04-07 17:12:18 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 17:12:19 INFO  Tower:410 - Tower_Shooter_towerID_1 shoots critter id:1 damage:1
+2016-04-07 17:12:19 INFO  MapPanel:158 - Player bought Tower = 0, Tower_Shooter_towerID_0
+2016-04-07 17:12:20 INFO  MapPanel:158 - Player bought Tower = 0, Tower_Shooter_towerID_0
+2016-04-07 17:12:20 INFO  MapPanel:158 - Player bought Tower = 1, Tower_Freezer_towerID_0
+2016-04-07 17:12:20 INFO  MapPanel:158 - Player bought Tower = 2, Tower_Burner_towerID_1
+2016-04-07 17:12:20 INFO  MapPanel:158 - Player bought Tower = 1, Tower_Freezer_towerID_0
+2016-04-07 17:12:20 INFO  MapPanel:158 - Player bought Tower = 2, Tower_Burner_towerID_1
