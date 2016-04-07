@@ -46,8 +46,7 @@ public class MiscellaneousHelper {
 	 *            characters to be removed
 	 * @return string the result
 	 */
-	public String RemoveCharacterFromStrartorLeft(String new_inputString,
-			String new_characters) {
+	public String RemoveCharacterFromStrartorLeft(String new_inputString, String new_characters) {
 		return new_inputString.replaceAll("^" + new_characters + "+", "");
 		// return InputString.replaceAll("^0+(?!$)", "");
 	}
@@ -61,8 +60,7 @@ public class MiscellaneousHelper {
 	 *            characters to be removed
 	 * @return string the result
 	 */
-	public String RemoveCharacterFromEndorRight(String new_inputString,
-			String new_characters) {
+	public String RemoveCharacterFromEndorRight(String new_inputString, String new_characters) {
 		return new_inputString.replaceAll("\\" + new_characters + "+$", "");
 	}
 
@@ -75,10 +73,8 @@ public class MiscellaneousHelper {
 	 *            characters to be removed
 	 * @return string the result
 	 */
-	public String RemoveCharacterFromBothEnd(String new_inputString,
-			String new_characters) {
-		return new_inputString.replaceAll("^\\" + new_characters + "+|\\"
-				+ new_characters + "+$", "");
+	public String RemoveCharacterFromBothEnd(String new_inputString, String new_characters) {
+		return new_inputString.replaceAll("^\\" + new_characters + "+|\\" + new_characters + "+$", "");
 	}
 
 	/**
@@ -107,45 +103,42 @@ public class MiscellaneousHelper {
 		return new String(valueDecoded);
 
 	}
-	
-	
+
 	/**
-	 * This method return date in string form in Format 'yyyyMMddHHmmssSSS' 
+	 * This method return date in string form in Format 'yyyyMMddHHmmssSSS'
 	 * 
 	 * @return string date
 	 */
-	public String getCurrentDateStr()
-	{
+	public String getCurrentDateStr() {
 		return new SimpleDateFormat(ApplicationStatics.DATE_FORMAT_DEFAULT).format(new Date());
 	}
-	
+
 	/**
-	 * This method return date in string form. The date format is depend upon the input Provied by user.
+	 * This method return date in string form. The date format is depend upon
+	 * the input Provied by user.
+	 * 
 	 * @param new_format
 	 * @return
 	 */
-	public String getCurrentDateStr(String new_format)
-	{
+	public String getCurrentDateStr(String new_format) {
 		return new SimpleDateFormat(new_format).format(new Date());
 	}
-	
+
 	/**
 	 * This method reads a file
-	 * @param new_file file to read
+	 * 
+	 * @param new_file
+	 *            file to read
 	 * @return the data in the file
 	 */
-	public String readFile(File new_file)
-	{
+	public String readFile(File new_file) {
 		try {
-			return new String(Files.readAllBytes(Paths.get(new_file
-					.getPath())));
+			return new String(Files.readAllBytes(Paths.get(new_file.getPath())));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
-	
-	
+
 }
