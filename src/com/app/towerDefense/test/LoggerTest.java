@@ -41,18 +41,4 @@ public class LoggerTest {
 
 	}
 
-	/**
-	 * Testcase for checking if tower purchased was log
-	 */
-	@Test
-	public void buyTowerlogTest() {
-		player.buyTower(0);
-		tower1 = PlayerModel.towerModelArray.get(0);
-		e_logViewState = E_LogViewerState.TowerLog;
-		lr = new LogReader(ApplicationStatics.LOG_File_PATH, e_logViewState, tower1);
-		String output = new LogReader(ApplicationStatics.LOG_File_PATH, e_logViewState.TowerLog,
-				PlayerModel.towerModelArray.get(0)).read();
-		System.out.println(output);
-	}
-
 }
