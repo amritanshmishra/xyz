@@ -38,12 +38,10 @@ public class CritterTest {
 	int actualHealth = 10;
 	int currentHealth = 10;
 	int critterId = 10;
-	Image critterImage = new ImageIcon(ApplicationStatics.IMAGE_PATH_CRITTER)
-			.getImage();
+	Image critterImage = new ImageIcon(ApplicationStatics.IMAGE_PATH_CRITTER).getImage();
 	MapModel mapModel;
-//	File file = new File("testfiles\\abc.tdm"); // for Windows OS
 	File file = new File("testfiles/abc.tdm"); // for Mac OS
-	
+
 	BasicCritter critter;
 
 	/**
@@ -51,11 +49,9 @@ public class CritterTest {
 	 */
 	@Before
 	public void critterTestCase() {
-		System.out
-				.println("@BeforeClass - oneTimeSetUp-Creating object of class BasicCritter & AdvancedCritter");
+		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class BasicCritter & AdvancedCritter");
 		basicCritter = CritterFactory.getCritterfromFactory("BasicCritter");
-		advancedCritter = CritterFactory
-				.getCritterfromFactory("AdvancedCritter");
+		advancedCritter = CritterFactory.getCritterfromFactory("AdvancedCritter");
 		basicCritter.setID(critterId);
 	}
 
@@ -66,7 +62,7 @@ public class CritterTest {
 	public void testFactoryInstanceCreation() {
 		assertNotNull(basicCritter);
 		Assert.assertTrue(basicCritter instanceof BasicCritter);
-	
+
 	}
 
 	/**
@@ -79,18 +75,6 @@ public class CritterTest {
 		assertEquals(basicCritter.getCritterId(), critterId);
 		assertEquals(basicCritter.getCritterImage(), critterImage);
 	}
-
-	/**
-	 * Test case for setting block parameters
-	 */
-	/*@Test
-	public void testSetBlocksParams() {
-
-		basicCritter.setBlocksParams(400, 300);
-
-		assertEquals(400, basicCritter.getBlockW());
-		assertEquals(300, basicCritter.getBlockH());
-	}*/
 
 	/**
 	 * Test case for x and y co-rdinates for critters
@@ -110,8 +94,6 @@ public class CritterTest {
 	public void testCalculateCritterPath() {
 		boolean isException = true;
 		basicCritter.setXY(6, 6);
-	//	basicCritter.setBlocksParams(400, 300);
-
 		mapModel = (new FileStorage()).openMapFile(file);
 		ApplicationStatics.PATH_ARRAY1 = mapModel.getMapRoutPathList();
 
@@ -123,8 +105,7 @@ public class CritterTest {
 		}
 		assertFalse(isException);
 	}
-	
-	
+
 	/**
 	 * Test case to check whether basic critter health is correct based on wave
 	 * level
@@ -201,7 +182,7 @@ public class CritterTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		// Add additional tear down code here
+
 		System.out.println("@AfterClass - oneTimeTearDown");
 		basicCritter = null;
 		critterImage = null;

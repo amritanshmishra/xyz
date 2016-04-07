@@ -176,7 +176,7 @@ public class StrategyTest {
 			assertEquals(10, critter2.getCurrentHealth());
 
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}
@@ -272,7 +272,7 @@ public class StrategyTest {
 			assertEquals(9, critter2.getCurrentHealth());
 
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}
@@ -346,7 +346,7 @@ public class StrategyTest {
 			assertEquals(9, critter3.getCurrentHealth());
 
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}

@@ -29,8 +29,7 @@ public class SplasherTest {
 	 */
 	@Before
 	public void splasherTestCase() {
-		System.out
-				.println("@BeforeClass - oneTimeSetUp-Creating object of class Splasher");
+		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class Splasher");
 		splasher = TowerFactory.getTower("Splasher");
 	}
 
@@ -51,7 +50,6 @@ public class SplasherTest {
 		int towerFireRangeUpgrade = 25;
 		int towerPowerUpgrade = 0;
 		String towerName = "Splasher";
-		// Change towerImagePath
 
 		assertNotNull(splasher);
 
@@ -89,7 +87,7 @@ public class SplasherTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		// Add additional tear down code here
+
 		System.out.println("@AfterClass - oneTimeTearDown");
 		splasher = null;
 		assertNull(splasher);

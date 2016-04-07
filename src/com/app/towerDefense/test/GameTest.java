@@ -12,7 +12,6 @@ import com.app.towerDefense.guisystem.Game;
  * The class <code>GameTest</code> contains tests for the class
  * <code>{@link Game}</code>.
  * 
- * 
  * @author Sajjad Ashraf
  * @version 1.0
  */
@@ -24,12 +23,11 @@ public class GameTest {
 	 */
 	@Before
 	public void beforeTestCase() {
-		System.out
-				.println("@BeforeClass - oneTimeSetUp-Creating object of class Map");
+		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class Game");
 	}
 
 	/**
-	 * Run Unit Test game Instance to Check Singleton Object is created or not
+	 * Test game Instance to Check Singleton Object is created or not
 	 */
 	@Test
 	public void testGameInstance() {
@@ -54,7 +52,7 @@ public class GameTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		// Add additional tear down code here
+
 		System.out.println("@AfterClass - oneTimeTearDown");
 
 	}

@@ -29,8 +29,7 @@ public class BurnerTest {
 	 */
 	@Before
 	public void burnerTestCase() {
-		System.out
-				.println("@BeforeClass - oneTimeSetUp-Creating object of class Burner");
+		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class Burner");
 		burner = TowerFactory.getTower("Burner");
 	}
 
@@ -51,7 +50,6 @@ public class BurnerTest {
 		int towerFireRangeUpgrade = 0;
 		int towerPowerUpgrade = 1;
 		String towerName = "Burner";
-		// Change towerImagePath
 
 		assertNotNull(burner);
 
@@ -85,11 +83,9 @@ public class BurnerTest {
 	 * @throws Exception
 	 *             if the clean-up fails for some reason
 	 * 
-	 * 
 	 */
 	@After
 	public void tearDown() throws Exception {
-		// Add additional tear down code here
 		System.out.println("@AfterClass - oneTimeTearDown");
 		burner = null;
 		assertNull(burner);

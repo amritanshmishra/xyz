@@ -7,14 +7,18 @@ import org.junit.*;
 import com.app.towerDefense.guiComponents.MapPanel;
 import com.app.towerDefense.models.BasicCritter;
 import com.app.towerDefense.models.MapModel;
+
 /**
- * This Test class checks if the Special Effects that were implemented in the project work as intended 
+ * This Test class checks if the Special Effects that were implemented in the
+ * project work as intended
+ * 
  * @author usbaitass
  *
  */
 public class SpecialEffectsTest {
 
 	BasicCritter critter;
+
 	/**
 	 * Runs before all test cases
 	 */
@@ -86,7 +90,7 @@ public class SpecialEffectsTest {
 			thread.join();
 
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}

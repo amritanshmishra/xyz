@@ -1,14 +1,14 @@
 package com.app.towerDefense.test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
+
+import java.io.File;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.app.towerDefense.staticContent.ApplicationStatics;
 import com.app.towerDefense.utilities.MiscellaneousHelper;
 
 /**
@@ -91,6 +91,41 @@ public class MiscellaneousHelperTest {
 	public void testDecodeBase64() {
 		assertEquals("hello", miscellaneousHelper.DecodeBase64("aGVsbG8="));
 	}
+	
+	/**
+	 * 
+	 * Run Unit Test Get Current Data with Default date format as String.
+	 */
+	@Test
+	public void testGetCurrentDateStr() {
+		assertNotNull(miscellaneousHelper.getCurrentDateStr());
+	}
+	
+	/**
+	 * 
+	 * Run Unit Test Get Current Data with Input date format as String.
+	 */
+	@Test
+	public void testGetCurrentDateStrInputDateFormat() {
+		assertNotNull(miscellaneousHelper.getCurrentDateStr("yyyyMMdd"));
+	}
+	
+	/**
+	 * 
+	 * Run Unit Test Read File.
+	 */
+	@Test
+	public void testReadFile() {
+		if(System.getProperty("os.name").contains("Windows"))
+		{
+			assertNotNull(miscellaneousHelper.readFile(new File("testfiles/gameLog.log")));
+		}
+		else
+		{
+			assertNotNull(miscellaneousHelper.readFile(new File("testfiles/gameLog.log")));
+		}
+		
+	}
 
 	
 	/**
@@ -111,3 +146,4 @@ public class MiscellaneousHelperTest {
 	}
 
 }
+

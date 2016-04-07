@@ -29,8 +29,7 @@ public class FreezerTest {
 	 */
 	@Before
 	public void freezerTestCase() {
-		System.out
-				.println("@BeforeClass - oneTimeSetUp-Creating object of class Freezer");
+		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class Freezer");
 		freezer = TowerFactory.getTower("Freezer");
 	}
 
@@ -51,7 +50,6 @@ public class FreezerTest {
 		int towerFireRangeUpgrade = 25;
 		int towerPowerUpgrade = 0;
 		String towerName = "Freezer";
-		// Change towerImagePath
 
 		assertNotNull(freezer);
 
@@ -89,7 +87,6 @@ public class FreezerTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		// Add additional tear down code here
 		System.out.println("@AfterClass - oneTimeTearDown");
 		freezer = null;
 		assertNull(freezer);

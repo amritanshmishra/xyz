@@ -26,24 +26,19 @@ public class MapTest {
 
 	Map map;
 	MapModel mapModel;
-	File file ;
-
+	File file;
 
 	/**
 	 * Test case Initialization for MapTest
 	 */
 	@Before
 	public void towerModel1TestCase() {
-		if(System.getProperty("os.name").contains("Windows"))
-		{
-			 file = new File("testfiles\\abc.tdm");//for Windows OS
+		if (System.getProperty("os.name").contains("Windows")) {
+			file = new File("testfiles\\abc.tdm");// for Windows OS
+		} else {
+			file = new File("testfiles/abc.tdm"); // for Mac OSX
 		}
-		else
-		{
-			file= new File("testfiles/abc.tdm"); //for Mac OSX
-		}
-		System.out
-				.println("@BeforeClass - oneTimeSetUp-Creating object of class Map");
+		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class Map");
 		map = new Map();
 		mapModel = new MapModel();
 	}
@@ -93,7 +88,6 @@ public class MapTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		// Add additional tear down code here
 		System.out.println("@AfterClass - oneTimeTearDown");
 		mapModel = null;
 		map = null;
