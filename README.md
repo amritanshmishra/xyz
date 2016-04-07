@@ -1,4 +1,23 @@
-# xyz
+1. You can run the application by running 
+
+:::  /src/com/app/towerDefense/guisystem/game.java
+
+
+2. Github repository
+
+::: https://github.com/amritanshmishra/xyz
+
+3. Java document 
+
+::: javadoc is in xyz-Build3 doc folder
+
+NB: Classes that extend and implement abstract methods inherit their java doc through the use of {@inheritDoc} at the top of the class (class java doc);
+
+4. Coding standards are in the design document
+
+5. To run the tests, run the TestSuite.java
+
+Team 5
 
 How to play the game?
 When the game starts:
