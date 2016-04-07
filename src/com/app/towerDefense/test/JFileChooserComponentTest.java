@@ -27,8 +27,7 @@ public class JFileChooserComponentTest {
 	 */
 	@Before
 	public void beforeTestCase() {
-		System.out
-				.println("@BeforeClass - oneTimeSetUp-Creating object of class Map");
+		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class JFileChooserComponent");
 		jFileChooserComponent = new JFileChooserComponent();
 	}
 
@@ -38,10 +37,8 @@ public class JFileChooserComponentTest {
 	 */
 	@Test
 	public void TestGetJFileChooser() {
-		assertNotNull(jFileChooserComponent
-				.getJFileChooser(E_JFileChooserMode.MapOpen));
-		assertNotNull(jFileChooserComponent
-				.getJFileChooser(E_JFileChooserMode.MapSave));
+		assertNotNull(jFileChooserComponent.getJFileChooser(E_JFileChooserMode.MapOpen));
+		assertNotNull(jFileChooserComponent.getJFileChooser(E_JFileChooserMode.MapSave));
 	}
 
 	/**
@@ -68,7 +65,6 @@ public class JFileChooserComponentTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		// Add additional tear down code here
 		System.out.println("@AfterClass - oneTimeTearDown");
 
 	}

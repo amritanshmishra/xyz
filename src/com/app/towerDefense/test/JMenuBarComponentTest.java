@@ -33,8 +33,7 @@ public class JMenuBarComponentTest {
 	 */
 	@Before
 	public void beforeTestCase() {
-		System.out
-				.println("@BeforeClass - oneTimeSetUp-Creating object of class Map");
+		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class JMenuBarComponent");
 		jMenuBarComponent = new JMenuBarComponent();
 	}
 
@@ -74,8 +73,7 @@ public class JMenuBarComponentTest {
 		frame.setMinimumSize(new Dimension(width, height));
 		frame.getContentPane().removeAll();
 
-		JMenuBar jMenubar = jMenuBarComponent.getMapEditorJMenuBar(
-				new MapModel(), frame);
+		JMenuBar jMenubar = jMenuBarComponent.getMapEditorJMenuBar(new MapModel(), frame);
 		assertNotNull(jMenubar);
 	}
 
@@ -89,7 +87,6 @@ public class JMenuBarComponentTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		// Add additional tear down code here
 		System.out.println("@AfterClass - oneTimeTearDown");
 		jMenuBarComponent = null;
 		assertNull(jMenuBarComponent);

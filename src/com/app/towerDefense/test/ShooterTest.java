@@ -29,8 +29,7 @@ public class ShooterTest {
 	 */
 	@Before
 	public void shooterTestCase() {
-		System.out
-				.println("@BeforeClass - oneTimeSetUp-Creating object of class Shooter");
+		System.out.println("@BeforeClass - oneTimeSetUp-Creating object of class Shooter");
 		shooter = TowerFactory.getTower("Shooter");
 	}
 
@@ -51,7 +50,6 @@ public class ShooterTest {
 		int towerFireRangeUpgrade = 25;
 		int towerPowerUpgrade = 1;
 		String towerName = "Shooter";
-		// Change towerImagePath
 
 		assertNotNull(shooter);
 
@@ -89,7 +87,7 @@ public class ShooterTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		// Add additional tear down code here
+
 		System.out.println("@AfterClass - oneTimeTearDown");
 		shooter = null;
 		assertNull(shooter);

@@ -20,6 +20,7 @@ import com.app.towerDefense.models.WeakestStrategy;
 
 /**
  * This class test the GameSaver.class
+ * 
  * @author usbaitass
  *
  */
@@ -28,7 +29,6 @@ public class GameSaverTest {
 	FileWriter out;
 	BufferedReader in;
 	String filePath;
-
 	PlayerModel player;
 
 	/**
@@ -70,23 +70,18 @@ public class GameSaverTest {
 		assertNotNull(player.towerModelArray.get(1));
 
 		// first we write data to the file
-
 		filePath = "testfiles/game.tdg";
 
 		if (!filePath.endsWith(".tdg"))
 			filePath += ".tdg";
-
 		try {
 			out = new FileWriter(filePath);
-
 			String playerName = player.getPlayerName() + "," + filePath;
 			int hpPlayer = player.getHpPlayer();
 			int sunCurrency = player.getSunCurrency();
 			int gameWave = player.getGameWave();
 			int lastTowerID = player.lastTowerID;
-
 			out.write(playerName + ";" + hpPlayer + ";" + sunCurrency + ";" + gameWave + ";" + lastTowerID);
-
 			for (int i = 0; i < player.towerModelArray.size(); i++) {
 				out.write(";" + player.towerModelArray.get(i).towerID);
 				out.write(";" + player.towerModelArray.get(i).getTowerName());
@@ -97,10 +92,8 @@ public class GameSaverTest {
 			}
 
 			out.close();
-
 			// then we read it and check if the written data is same as the data
 			// in memory
-
 			in = new BufferedReader(new FileReader(filePath));
 
 			String temp = in.readLine();
@@ -134,14 +127,13 @@ public class GameSaverTest {
 				} else if (strStrategy.equalsIgnoreCase("Weakest")) {
 					tempTower.setStrategy(new WeakestStrategy());
 				}
-				assertEquals(player.towerModelArray.get(i%5).getTowerName(),tempTower.getTowerName());
-				assertEquals(player.towerModelArray.get(i%5).getTowerlevel(),tempTower.getTowerlevel());
+				assertEquals(player.towerModelArray.get(i % 5).getTowerName(), tempTower.getTowerName());
+				assertEquals(player.towerModelArray.get(i % 5).getTowerlevel(), tempTower.getTowerlevel());
 			}
 
 			in.close();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
