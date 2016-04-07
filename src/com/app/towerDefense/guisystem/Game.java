@@ -3,28 +3,16 @@ package com.app.towerDefense.guisystem;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Dimension;
-import java.io.File;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
-
 import org.apache.log4j.Logger;
-
-import com.app.towerDefense.gameLogic.GameLoader;
-import com.app.towerDefense.gameLogic.LogReader;
 import com.app.towerDefense.guiComponents.BottomGamePanelView;
 import com.app.towerDefense.guiComponents.JMenuBarComponent;
 import com.app.towerDefense.guiComponents.JPanelComponent;
 import com.app.towerDefense.models.PlayerModel;
-import com.app.towerDefense.models.Tower;
 import com.app.towerDefense.staticContent.ApplicationStatics;
-import com.app.towerDefense.staticContent.AppilicationEnums.E_LogViewerState;
 import com.app.towerDefense.utilities.MiscellaneousHelper;
-
-//change 1
 
 /**
  * 
@@ -37,9 +25,9 @@ public class Game extends Canvas implements Runnable { // change 1
 
 	private static final long serialVersionUID = 1324355855108644765L;
 
-	//Log
+	// Added logging function
 	final static Logger logger = Logger.getLogger(Game.class);
-	
+
 	private static Game instance = new Game();
 
 	private int width;
@@ -53,24 +41,23 @@ public class Game extends Canvas implements Runnable { // change 1
 	private JFrame frame;
 
 	// THREAD
-	private Thread thread; // change 1
-	private boolean running = false; // change 1
-	
-	
+	private Thread thread;
+	private boolean running = false;
+
 	/**
 	 * Constructor of the Game Class
 	 */
 	private Game() {
-		// logs
+		// Added logging function
 		ApplicationStatics.setLog_Current_Session_Tag(new MiscellaneousHelper().getCurrentDateStr());
 		logger.info(ApplicationStatics.getLog_Current_Session_Tag());
 
-		// game frame settings		
+		// Game frame settings
 		width = ApplicationStatics.WINDOW_WIDTH;
-		height = ApplicationStatics.WINDOW_HEIGHT;		
+		height = ApplicationStatics.WINDOW_HEIGHT;
 		ApplicationStatics.PLAYERMODEL = new PlayerModel();
 		title = ApplicationStatics.getTitleGameWindow();
-		
+
 		frame = new JFrame();
 		frame.setTitle(title);
 		frame.setPreferredSize(new Dimension(width, height));
@@ -86,18 +73,13 @@ public class Game extends Canvas implements Runnable { // change 1
 		frame.setJMenuBar(gameJMenuBar);
 		frame.setVisible(true);
 		logger.info("Game Loaded!!");
-		// -- creating new Player
-
-		// panelComponent = jMenuBarComponent.getPanelComponent();
-		// bottomGamePanel = jMenuBarComponent.getBottomPanel();
 
 	}
-	
+
 	/**
 	 * This method refreshes the game frame Title
 	 */
-	public void refreshGameFrameTitle()
-	{
+	public void refreshGameFrameTitle() {
 		title = ApplicationStatics.getTitleGameWindow();
 		frame.setTitle(title);
 	}
@@ -128,18 +110,16 @@ public class Game extends Canvas implements Runnable { // change 1
 	}
 
 	/**
-	 * GAME LOOP , updates the game. This method runs the thread
+	 * Game loop--> updates the game. This method runs the thread
 	 */
 	@Override
-	// change 1
 	public void run() {
-		// TODO Auto-generated method stub
 		long lastTime = System.nanoTime();
 		double amountOfTicks = 50.0; // Game speed 5.0
 		double ns = 1000000000 / amountOfTicks;
 		double delta = 0;
 		long timer = System.currentTimeMillis();
-		// int frames = 0;
+
 		while (running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
@@ -152,12 +132,8 @@ public class Game extends Canvas implements Runnable { // change 1
 				}
 				delta--;
 			}
-			// frames++;
-
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
-				// System.out.println("FPS: " + frames);
-				// frames = 0;
 			}
 		}
 		stop();
@@ -167,7 +143,7 @@ public class Game extends Canvas implements Runnable { // change 1
 	/**
 	 * This method starts the thread
 	 */
-	public synchronized void start() {// change 1
+	public synchronized void start() {
 		thread = new Thread(this);
 		running = true;
 		thread.start();
@@ -176,11 +152,9 @@ public class Game extends Canvas implements Runnable { // change 1
 	/**
 	 * This method stops the thread
 	 */
-	public synchronized void stop() {// change 1
+	public synchronized void stop() {
 		try {
 			thread.join(0); // stops the thread
-			// thread.stop();
-			// thread.join(0);
 			System.out.println("Game loop is stopped.");
 			running = false;
 		} catch (Exception e) {
@@ -193,65 +167,50 @@ public class Game extends Canvas implements Runnable { // change 1
 	 * Drawing on map panel
 	 */
 	@SuppressWarnings("static-access")
-	private void tick() {// change 1
-		//
+	private void tick() {
 
 		if (!ApplicationStatics.GAME_OVER) { // check if game is over
-			// try {
+
 			if ((panelComponent = jMenuBarComponent.getPanelComponent()) != null) {
-				if(panelComponent.mapPanel == null){
+				if (panelComponent.mapPanel == null) {
 					try {
 						thread.sleep(500);
 					} catch (InterruptedException e) {
 
 					}
-				}				
+				}
 				panelComponent.mapPanel.revalidate();
 				panelComponent.mapPanel.repaint();
 
 				bottomGamePanel = jMenuBarComponent.getBottomPanel();
 
-				if (ApplicationStatics.START_WAVE && bottomGamePanel != null) { // check
-																				// if
-																				// wave
-																				// is
-																				// started
+				if (ApplicationStatics.START_WAVE && bottomGamePanel != null) {
 					bottomGamePanel.towerShopPanel.enableTowerButtons(false);
 					bottomGamePanel.towerDescrPanel.enableButtons(false);
 					bottomGamePanel.infoPanel.startWaveButton.setEnabled(false);
-				} else if (!ApplicationStatics.START_WAVE
-						&& bottomGamePanel != null) {
+				} else if (!ApplicationStatics.START_WAVE && bottomGamePanel != null) {
 					bottomGamePanel.towerShopPanel.enableTowerButtons(true);
 					bottomGamePanel.towerDescrPanel.enableButtons(true);
 					bottomGamePanel.infoPanel.startWaveButton.setEnabled(true);
 				}
 			}
 
-			// } catch (Exception e) {
-			// catching exception when program still has not created play
-			// mode map
-			// }
 		} else {
-		//	System.out.println("Game over");
-		//	System.out.println("Game over : " + ApplicationStatics.GAME_OVER);
-		//	System.out.println("Start wave : " + ApplicationStatics.START_WAVE);
-			
+
 			String tempStr = "";
-			if(ApplicationStatics.PLAYERMODEL.getHpPlayer()<=0){
+			if (ApplicationStatics.PLAYERMODEL.getHpPlayer() <= 0) {
 				tempStr = "You lose, game over!";
-			}else{
+			} else {
 				tempStr = "You win!";
 			}
 			JFrame frame = new JFrame();
-			
+
 			JOptionPane.showMessageDialog(frame, tempStr);
 			Game.getInstance().stop();
-			logger.info("Game over: Result : "+tempStr);
+			logger.info("Game over: Result : " + tempStr);
 		}
-		
 
 	}
-	
 
 	// END
 }
