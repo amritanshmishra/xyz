@@ -28,7 +28,9 @@ import com.app.towerDefense.guisystem.Game;
 			JMenuBarComponentTest.class,
 			SpecialEffectsTest.class,
 			StrategyTest.class,
-			LogReaderTest.class
+			LogReaderTest.class,
+			LoggerTest.class,
+			GameLoaderTest.class
 		})
 public class TestSuite {
 
