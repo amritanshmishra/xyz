@@ -1,6 +1,5 @@
 package com.app.towerDefense.models;
 
-
 import java.awt.Dimension;
 
 import javax.swing.Icon;
@@ -9,20 +8,18 @@ import javax.swing.ImageIcon;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 
 /**
- * {@inheritDoc}
- * This class create a Shooter tower from the tower class .
+ * {@inheritDoc} This class create a Shooter tower from the tower class .
+ * 
  * @author George Ekow-Daniels
  * @see Tower
  *
  */
-public class Shooter extends Tower{
+public class Shooter extends Tower {
 
 	/**
-	 * Constructor for the Shooter Tower
-	 * This initiates the values for the tower
+	 * Constructor for the Shooter Tower This initiates the values for the tower
 	 */
-	public Shooter()
-	{
+	public Shooter() {
 		setTowerName();
 		setTowerImage();
 		setTowerCost();
@@ -30,20 +27,19 @@ public class Shooter extends Tower{
 		setTowerPower();
 		setTowerRange();
 		setTowerFireRate();
-		
+
 		setTowerUpgradeCost();
 		setTowerlevelUpgrade();
 		setTowerFireRangeUpgrade();
 		setTowerFireRateUpgrade();
 		setTowerPowerUpgrade();
-		
+
 		specialEffect = "";
 		this.setStrategy(new NearestToEndPointStrategy());
 	}
-	
+
 	/**
-	 * {@inheritDoc}
-	 * This method implements the getTowerName() in Tower Class
+	 * {@inheritDoc} This method implements the getTowerName() in Tower Class
 	 */
 	@Override
 	public String getTowerName() {
@@ -51,8 +47,8 @@ public class Shooter extends Tower{
 	}
 
 	@Override
-	public void setTowerName() {	
-		super.towerName="Shooter";
+	public void setTowerName() {
+		super.towerName = "Shooter";
 	}
 
 	@Override
@@ -62,17 +58,17 @@ public class Shooter extends Tower{
 
 	@Override
 	public void setTowerFireRangeUpgrade() {
-		super.towerFireRangeUpgrade=25;
+		super.towerFireRangeUpgrade = 25;
 	}
 
 	@Override
-	public int getTowerRange() {	
+	public int getTowerRange() {
 		return super.towerRange;
 	}
 
 	@Override
 	public void setTowerRange() {
-		super.towerRange=100;
+		super.towerRange = 100;
 	}
 
 	@Override
@@ -82,7 +78,7 @@ public class Shooter extends Tower{
 
 	@Override
 	public void setTowerPower() {
-		super.towerPower=1;	
+		super.towerPower = 1;
 	}
 
 	@Override
@@ -92,7 +88,7 @@ public class Shooter extends Tower{
 
 	@Override
 	public void setTowerFireRate() {
-		super.towerFireRate=1;
+		super.towerFireRate = 1;
 	}
 
 	@Override
@@ -102,12 +98,12 @@ public class Shooter extends Tower{
 
 	@Override
 	public void setTowerCost() {
-		super.towerCost=20;
-		
+		super.towerCost = 20;
+
 	}
 
 	@Override
-	public int getTowerlevel() {	
+	public int getTowerlevel() {
 		return super.towerlevel;
 	}
 
@@ -123,7 +119,7 @@ public class Shooter extends Tower{
 
 	@Override
 	public void setTowerImage() {
-	 super.towerImage=	new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_TOWER1);
+		super.towerImage = new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_TOWER1);
 	}
 
 	@Override
@@ -143,7 +139,7 @@ public class Shooter extends Tower{
 
 	@Override
 	public void setTowerUpgradeCost() {
-		super.towerUpgradeCost=10;
+		super.towerUpgradeCost = 10;
 	}
 
 	@Override
@@ -153,7 +149,7 @@ public class Shooter extends Tower{
 
 	@Override
 	public void setTowerlevelUpgrade() {
-		super.towerlevelUpgrade=1;	
+		super.towerlevelUpgrade = 1;
 	}
 
 	@Override
@@ -163,10 +159,10 @@ public class Shooter extends Tower{
 
 	@Override
 	public void setTowerPowerUpgrade() {
-		if(towerlevel%2==1){
-			super.towerPowerUpgrade=1;
-		}else{
-			super.towerPowerUpgrade=0;
+		if (towerlevel % 2 == 1) {
+			super.towerPowerUpgrade = 1;
+		} else {
+			super.towerPowerUpgrade = 0;
 		}
 	}
 
@@ -177,11 +173,11 @@ public class Shooter extends Tower{
 
 	@Override
 	public void setTowerFireRateUpgrade() {
-		super.towerFireRateUpgrade=0;
+		super.towerFireRateUpgrade = 0;
 	}
 
 	@Override
-	public int getX() {	
+	public int getX() {
 		return super.x;
 	}
 
@@ -189,7 +185,7 @@ public class Shooter extends Tower{
 	public int getY() {
 		return super.y;
 	}
-	
+
 	@Override
 	public void setXY(int new_x, int new_y) {
 		x = new_x;
@@ -199,37 +195,37 @@ public class Shooter extends Tower{
 
 	@Override
 	public void upgradeTower() {
-		super.towerFireRate=getTowerFireRate() + getTowerFireRateUpgrade();
-		super.towerCost=getTowerCost()+getTowerUpgradeCost();
-		super.towerRange=getTowerRange()+getTowerFireRangeUpgrade();
-		super.towerlevel= getTowerlevel()+getTowerlevelUpgrade();
-		super.towerPower=getTowerPower()+getTowerPowerUpgrade();
-		
+		super.towerFireRate = getTowerFireRate() + getTowerFireRateUpgrade();
+		super.towerCost = getTowerCost() + getTowerUpgradeCost();
+		super.towerRange = getTowerRange() + getTowerFireRangeUpgrade();
+		super.towerlevel = getTowerlevel() + getTowerlevelUpgrade();
+		super.towerPower = getTowerPower() + getTowerPowerUpgrade();
+
 		super.calculateRangeCircleCoordinates();
 		setTowerPowerUpgrade();
 	}
-	
+
 	@Override
 	public int getRefund() {
-		return getTowerCost()/2;
+		return getTowerCost() / 2;
 	}
-	
+
 	/**
-	 * Plugs in a specific strategy to be used 
+	 * Plugs in a specific strategy to be used
 	 */
 	@Override
-	public void setStrategy(Strategy new_strategy){
+	public void setStrategy(Strategy new_strategy) {
 		super.strategy = new_strategy;
 	}
 
 	/**
-	 * Method that executes a different strategy depending on what strategy was 
-     * plugged in upon instantiation.
+	 * Method that executes a different strategy depending on what strategy was
+	 * plugged in upon instantiation.
 	 */
 	@Override
-	public void executeStrategy(Tower new_tower, CritterType new_critter){
+	public void executeStrategy(Tower new_tower, CritterType new_critter) {
 		this.strategy.execute(new_tower, new_critter);
 	}
-	
-//END	
+
+	// END
 }

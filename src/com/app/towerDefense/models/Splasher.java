@@ -28,13 +28,11 @@ public class Splasher extends Tower {
 		setTowerPower();
 		setTowerRange();
 		setTowerFireRate();
-
 		setTowerUpgradeCost();
 		setTowerlevelUpgrade();
 		setTowerFireRangeUpgrade();
 		setTowerFireRateUpgrade();
 		setTowerPowerUpgrade();
-
 		specialEffect = "Splash";
 		this.setStrategy(new NearestToEndPointStrategy());
 	}
@@ -218,5 +216,5 @@ public class Splasher extends Tower {
 	public void executeStrategy(Tower new_tower, CritterType new_critter) {
 		this.strategy.execute(new_tower, new_critter);
 	}
-//END
+	// END
 }

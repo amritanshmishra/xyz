@@ -1,6 +1,5 @@
 package com.app.towerDefense.models;
 
-
 import java.awt.Dimension;
 
 import javax.swing.Icon;
@@ -9,19 +8,17 @@ import javax.swing.ImageIcon;
 import com.app.towerDefense.staticContent.ApplicationStatics;
 
 /**
- * {@inheritDoc}
- * This class create a burner tower from the Tower Class.
+ * {@inheritDoc} This class create a burner tower from the Tower Class.
+ * 
  * @author George Ekow-Daniels
  *
  */
-public class Burner extends Tower{
-	
+public class Burner extends Tower {
+
 	/**
-	 * Constructor for the Burner Tower
-	 * This initiates the values for the tower
+	 * Constructor for the Burner Tower This initiates the values for the tower
 	 */
-	public Burner()
-	{
+	public Burner() {
 		setTowerName();
 		setTowerImage();
 		setTowerCost();
@@ -29,17 +26,17 @@ public class Burner extends Tower{
 		setTowerPower();
 		setTowerRange();
 		setTowerFireRate();
-		
+
 		setTowerUpgradeCost();
 		setTowerlevelUpgrade();
 		setTowerFireRangeUpgrade();
 		setTowerFireRateUpgrade();
 		setTowerPowerUpgrade();
-		
+
 		specialEffect = "Burn";
 		this.setStrategy(new NearestToEndPointStrategy());
 	}
-	
+
 	@Override
 	public String getTowerName() {
 		return super.towerName;
@@ -47,7 +44,7 @@ public class Burner extends Tower{
 
 	@Override
 	public void setTowerName() {
-		super.towerName="Burner";
+		super.towerName = "Burner";
 	}
 
 	@Override
@@ -57,7 +54,7 @@ public class Burner extends Tower{
 
 	@Override
 	public void setTowerFireRangeUpgrade() {
-		super.towerFireRangeUpgrade=0;
+		super.towerFireRangeUpgrade = 0;
 	}
 
 	@Override
@@ -67,7 +64,7 @@ public class Burner extends Tower{
 
 	@Override
 	public void setTowerRange() {
-		super.towerRange=100;
+		super.towerRange = 100;
 	}
 
 	@Override
@@ -77,7 +74,7 @@ public class Burner extends Tower{
 
 	@Override
 	public void setTowerPower() {
-		super.towerPower=1;
+		super.towerPower = 1;
 	}
 
 	@Override
@@ -87,7 +84,7 @@ public class Burner extends Tower{
 
 	@Override
 	public void setTowerFireRate() {
-		super.towerFireRate=1;
+		super.towerFireRate = 1;
 	}
 
 	@Override
@@ -97,7 +94,7 @@ public class Burner extends Tower{
 
 	@Override
 	public void setTowerCost() {
-		super.towerCost=60;
+		super.towerCost = 60;
 	}
 
 	@Override
@@ -117,7 +114,7 @@ public class Burner extends Tower{
 
 	@Override
 	public void setTowerImage() {
-	 super.towerImage=	new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_TOWER3);
+		super.towerImage = new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_TOWER3);
 	}
 
 	@Override
@@ -127,7 +124,7 @@ public class Burner extends Tower{
 
 	@Override
 	public void setTowerCordinate() {
-		// TODO Auto-generated method stub	
+		// TODO Auto-generated method stub
 	}
 
 	@Override
@@ -137,7 +134,7 @@ public class Burner extends Tower{
 
 	@Override
 	public void setTowerUpgradeCost() {
-		super.towerUpgradeCost=30;	
+		super.towerUpgradeCost = 30;
 	}
 
 	@Override
@@ -147,7 +144,7 @@ public class Burner extends Tower{
 
 	@Override
 	public void setTowerlevelUpgrade() {
-		super.towerlevelUpgrade=1;
+		super.towerlevelUpgrade = 1;
 	}
 
 	@Override
@@ -157,7 +154,7 @@ public class Burner extends Tower{
 
 	@Override
 	public void setTowerPowerUpgrade() {
-		super.towerPowerUpgrade=1;
+		super.towerPowerUpgrade = 1;
 	}
 
 	@Override
@@ -167,60 +164,58 @@ public class Burner extends Tower{
 
 	@Override
 	public void setTowerFireRateUpgrade() {
-		super.towerFireRateUpgrade=0;
+		super.towerFireRateUpgrade = 0;
 	}
-
 
 	@Override
 	public int getX() {
-		// TODO Auto-generated method stub
 		return super.x;
 	}
 
 	@Override
-	public int getY() {	
+	public int getY() {
 		return super.y;
 	}
 
 	@Override
 	public void setXY(int new_x, int new_y) {
-		super.x=new_x;
+		super.x = new_x;
 		super.y = new_y;
 		calculateRangeCircleCoordinates();
 	}
 
 	@Override
 	public void upgradeTower() {
-		super.towerFireRate=getTowerFireRate() + getTowerFireRateUpgrade();
-		super.towerCost=getTowerCost()+getTowerUpgradeCost();
-		super.towerRange=getTowerRange()+getTowerFireRangeUpgrade();
-		super.towerlevel= getTowerlevel()+getTowerlevelUpgrade();
-		super.towerPower=getTowerPower()+getTowerPowerUpgrade();
-		
+		super.towerFireRate = getTowerFireRate() + getTowerFireRateUpgrade();
+		super.towerCost = getTowerCost() + getTowerUpgradeCost();
+		super.towerRange = getTowerRange() + getTowerFireRangeUpgrade();
+		super.towerlevel = getTowerlevel() + getTowerlevelUpgrade();
+		super.towerPower = getTowerPower() + getTowerPowerUpgrade();
+
 		super.calculateRangeCircleCoordinates();
 	}
 
 	@Override
 	public int getRefund() {
-		return getTowerCost()/2;
+		return getTowerCost() / 2;
 	}
 
 	/**
-	 * Plugs in a specific strategy to be used 
+	 * Plugs in a specific strategy to be used
 	 */
 	@Override
-	public void setStrategy(Strategy new_strategy){
+	public void setStrategy(Strategy new_strategy) {
 		super.strategy = new_strategy;
 	}
 
 	/**
-	 * Method that executes a different strategy depending on what strategy was 
-     * plugged in upon instantiation.
+	 * Method that executes a different strategy depending on what strategy was
+	 * plugged in upon instantiation.
 	 */
 	@Override
-	public void executeStrategy(Tower new_tower, CritterType new_critter){
+	public void executeStrategy(Tower new_tower, CritterType new_critter) {
 		this.strategy.execute(new_tower, new_critter);
 	}
 
-//END
+	// END
 }

@@ -13,9 +13,9 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
 import javafx.beans.InvalidationListener;
 
 /**
- * {@inheritDoc}
- * This class is the basic critter that would move on the map Contains different
- * methhods to create and move a critter on the map selected by player
+ * {@inheritDoc} This class is the basic critter that would move on the map
+ * Contains different methhods to create and move a critter on the map selected
+ * by player
  * 
  * @author Amritansh Mishra
  *
@@ -34,7 +34,7 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	// current X and Y position of critter
 	private int x, y;
 	// decides which direction critter moves
-	public int directionX; 
+	public int directionX;
 	public int directionY;
 	public int currentBlocki = 0;
 	// x and y of the next path point
@@ -47,31 +47,32 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	private int actualSpeed;
 	private Timer timerFreezing;
 	private Timer timerBurning;
-	private Timer timerSplash;	
+	private Timer timerSplash;
 	private boolean showSplashArea;
-	
+
 	// middle points of image critter on the map
 	public int xCr, yCr;
-	
-	
+
 	/**
 	 * Constructor of a critter based on the wave level parameter
-	 * @param new_waveLevel wave level parameter
+	 * 
+	 * @param new_waveLevel
+	 *            wave level parameter
 	 */
 	public BasicCritter(int new_waveLevel) {
-		currentPath = ApplicationStatics.IMAGE_PATH_MAP_CRITTER1;	
+		currentPath = ApplicationStatics.IMAGE_PATH_MAP_CRITTER1;
 		image = new ImageIcon(currentPath).getImage();
-		
-		int multiplier = (new_waveLevel-1)/3+1;
-		actualHealth = 10*multiplier;
+
+		int multiplier = (new_waveLevel - 1) / 3 + 1;
+		actualHealth = 10 * multiplier;
 		currentHealth = actualHealth;
-		actualSpeed = (new_waveLevel-1)/5+2;
+		actualSpeed = (new_waveLevel - 1) / 5 + 2;
 		speed = actualSpeed;
-		value = actualHealth/2+actualSpeed;
+		value = actualHealth / 2 + actualSpeed;
 
 		blockW = ApplicationStatics.BLOCK_WIDTH;
 		blockH = ApplicationStatics.BLOCK_HEIGHT;
-		
+
 		timerFreezing = new Timer();
 		timerBurning = new Timer();
 		timerSplash = new Timer();
@@ -81,7 +82,7 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 		this.addObserver(healthBar);
 
 	}
-	
+
 	@Override
 	public int getX() {
 		return x;
@@ -91,13 +92,12 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	public int getY() {
 		return y;
 	}
-	
+
 	@Override
 	public void setXY(int new_xEntry, int new_yEntry) {
-		// TODO Auto-generated method stub
 		x = new_xEntry;
 		y = new_yEntry;
-		// System.out.println("myX : "+x+" , myY : "+y);
+
 	}
 
 	@Override
@@ -114,7 +114,7 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	public int getCritterId() {
 		return critterId;
 	}
-	
+
 	@Override
 	public void setID(int new_id) {
 		critterId = new_id;
@@ -124,16 +124,16 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	public Image getCritterImage() {
 		return image;
 	}
-	
+
 	@Override
 	public void setCritterImage(String new_path) {
-		// TODO Auto-generated method stub
+
 		if (ApplicationStatics.IMAGE_PATH_MAP_CRITTER1 == currentPath) {
 			image = new ImageIcon(new_path).getImage();
 			currentPath = new_path;
 		}
 	}
-	
+
 	/**
 	 * This method returns the money value of a critter when it dies.
 	 * 
@@ -142,7 +142,7 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	public int getValue() {
 		return value;
 	}
-	
+
 	/**
 	 * This method returns the critter speed
 	 * 
@@ -151,29 +151,29 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 	public int getSpeed() {
 		return speed;
 	}
-	
+
 	/**
 	 * This method sets the critter speed to original value
 	 */
 	public void setToNormalSpeed() {
 		speed = actualSpeed;
 	}
-	
+
 	@Override
 	public CritterHealthBar getHealthBar() {
-		// TODO Auto-generated method stub
+
 		return healthBar;
 	}
 
 	@Override
 	public boolean getShowSplashArea() {
-		// TODO Auto-generated method stub
+
 		return showSplashArea;
 	}
-	
+
 	@Override
-	public void addListener(InvalidationListener arg0) {
-		// TODO Auto-generated method stub
+	public void addListener(InvalidationListener new_arg0) {
+		// Not needed
 
 	}
 
@@ -182,7 +182,7 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	@Override
 	public boolean calculatePath() {
 
@@ -198,8 +198,10 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 		xNext = ApplicationStatics.PATH_ARRAY1.get(currentBlocki + 1).y * blockW;
 		yNext = ApplicationStatics.PATH_ARRAY1.get(currentBlocki + 1).x * blockH;
 		// calculate the critter movement direction
-		directionY = ApplicationStatics.PATH_ARRAY1.get(currentBlocki + 1).x - ApplicationStatics.PATH_ARRAY1.get(currentBlocki).x;
-		directionX = ApplicationStatics.PATH_ARRAY1.get(currentBlocki + 1).y - ApplicationStatics.PATH_ARRAY1.get(currentBlocki).y;
+		directionY = ApplicationStatics.PATH_ARRAY1.get(currentBlocki + 1).x
+				- ApplicationStatics.PATH_ARRAY1.get(currentBlocki).x;
+		directionX = ApplicationStatics.PATH_ARRAY1.get(currentBlocki + 1).y
+				- ApplicationStatics.PATH_ARRAY1.get(currentBlocki).y;
 
 		// move to next block when conditions satisfy
 		if (directionX == 1 || directionX == -1) {
@@ -220,10 +222,9 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 		// increment or decrement the x and y coordinates of the critter
 		x += directionX * speed;
 		y += directionY * speed;
-		
+
 		xCr = x + blockW / 3;
 		yCr = y + blockH / 3;
-
 
 		// notify all observers about a change in x and y
 		setChanged();
@@ -245,7 +246,6 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 		return true;
 	}
 
-
 	/**
 	 * This method slows the speed of critter movement
 	 */
@@ -262,7 +262,6 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 		}, 1450);
 
 	}
-
 
 	/**
 	 * This method burns the critter for the same amount after taking the damage
@@ -310,7 +309,7 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 		// TODO Auto-generated method stub
 
 		showSplashArea = true;
-		
+
 		timerSplash.schedule(new TimerTask() {
 			@Override
 			public void run() {
@@ -318,8 +317,7 @@ public class BasicCritter extends java.util.Observable implements CritterType {
 				showSplashArea = false;
 			}
 		}, 1450);
-		
-		
+
 		Ellipse2D ellipse = new Ellipse2D.Double(x - blockW / 2, y - blockH / 2, blockW, blockH);
 		for (int i = 0; i < MapPanel.critter.size(); i++) {
 			if (ellipse.contains(MapPanel.critter.get(i).getX(), MapPanel.critter.get(i).getY())) {

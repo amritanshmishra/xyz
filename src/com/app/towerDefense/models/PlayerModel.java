@@ -19,7 +19,7 @@ import com.app.towerDefense.staticContent.ApplicationStatics;
  *         hp, gameWave, player name and his Towers.
  * 
  */
-public class PlayerModel extends Observable{
+public class PlayerModel extends Observable {
 
 	private int sunCurrency;
 	private int hpPlayer;
@@ -27,15 +27,14 @@ public class PlayerModel extends Observable{
 	public String playerName;
 	public static ArrayList<Tower> towerModelArray;
 	final static Logger logger = Logger.getLogger(MapPanel.class);
-	public int lastTowerID=0; 
+	public int lastTowerID = 0;
 
 	/**
 	 * Constructor that initializes default values
 	 */
 	public PlayerModel() {
-		//playerName = ApplicationStatics.GAME_PLAYER_NAME;
-		if(playerName== null){
-			playerName="Defualt";
+		if (playerName == null) {
+			playerName = "Defualt";
 		}
 		sunCurrency = 500;
 		hpPlayer = 10;
@@ -61,11 +60,12 @@ public class PlayerModel extends Observable{
 		hpPlayer = new_hpPlayer;
 		gameWave = new_gameWave;
 		towerModelArray = new ArrayList<Tower>();
-		
+
 	}
 
 	/**
-	 * The method gets sumCurrency
+	 * The method gets suNCurrency
+	 * 
 	 * @return amount of sun currency Player has.
 	 */
 	public int getSunCurrency() {
@@ -98,6 +98,7 @@ public class PlayerModel extends Observable{
 
 	/**
 	 * This method gets the health of a player
+	 * 
 	 * @return amount of health Player has.
 	 */
 	public int getHpPlayer() {
@@ -106,6 +107,7 @@ public class PlayerModel extends Observable{
 
 	/**
 	 * This method gets the game wave
+	 * 
 	 * @return current game level
 	 */
 	public int getGameWave() {
@@ -114,6 +116,7 @@ public class PlayerModel extends Observable{
 
 	/**
 	 * This method gets the player name
+	 * 
 	 * @return Name of the Player
 	 */
 	public String getPlayerName() {
@@ -130,7 +133,7 @@ public class PlayerModel extends Observable{
 	 */
 	public Tower buyTower(int new_towerID) {
 		Tower tempTM = null;
-		
+
 		switch (new_towerID) {
 		case 0:
 			tempTM = TowerFactory.getTower("Shooter");
@@ -144,15 +147,16 @@ public class PlayerModel extends Observable{
 		case 3:
 			tempTM = TowerFactory.getTower("Splasher");
 			break;
-		
+
 		}
 		tempTM.towerID = lastTowerID++;
 		towerModelArray.add(tempTM);
 
 		ApplicationStatics.HAS_BOUGHT_TOWER = true;
 		subSunCurrency(tempTM.getTowerCost());
-		
-		logger.info("Player bought Tower = " + Integer.toString(new_towerID) +", Tower_" + tempTM.getTowerName() + "_towerID_" + tempTM.towerID );
+
+		logger.info("Player bought Tower = " + Integer.toString(new_towerID) + ", Tower_" + tempTM.getTowerName()
+				+ "_towerID_" + tempTM.towerID);
 
 		return tempTM;
 	}
@@ -171,7 +175,9 @@ public class PlayerModel extends Observable{
 		} else {
 			int refundTM = towerModelArray.get(new_towerID).getRefund();
 			addSunCurrency(refundTM);
-			logger.info("Player sell Tower = " + towerModelArray.get(new_towerID).towerID +", Tower_" + towerModelArray.get(new_towerID).getTowerName() + "_towerID_" + towerModelArray.get(new_towerID).towerID );
+			logger.info("Player sell Tower = " + towerModelArray.get(new_towerID).towerID + ", Tower_"
+					+ towerModelArray.get(new_towerID).getTowerName() + "_towerID_"
+					+ towerModelArray.get(new_towerID).towerID);
 			towerModelArray.remove(new_towerID);
 			JFrame frame = new JFrame();
 			JOptionPane.showMessageDialog(frame, "You were refunded = " + Integer.toString(refundTM) + " suns.");
@@ -187,8 +193,10 @@ public class PlayerModel extends Observable{
 	 * @return Tower model with upgraded attributes
 	 */
 	public Tower upgradeTower(int new_towerID) {
-		Tower tempTM = towerModelArray.get(new_towerID); 
-		logger.info("Player upgrade Tower = " + towerModelArray.get(new_towerID).towerID +", Tower_" + towerModelArray.get(new_towerID).getTowerName() + "_towerID_" + towerModelArray.get(new_towerID).towerID );
+		Tower tempTM = towerModelArray.get(new_towerID);
+		logger.info("Player upgrade Tower = " + towerModelArray.get(new_towerID).towerID + ", Tower_"
+				+ towerModelArray.get(new_towerID).getTowerName() + "_towerID_"
+				+ towerModelArray.get(new_towerID).towerID);
 		tempTM.upgradeTower();
 		return tempTM;
 	}
@@ -198,47 +206,52 @@ public class PlayerModel extends Observable{
 	 */
 	public void printAllTowers() {
 		for (int i = 0; i < towerModelArray.size(); i++) {
-			logger.info(towerModelArray.get(i).getTowerName() + " x="+towerModelArray.get(i).getX() + " y="+towerModelArray.get(i).getY());
-	//		System.out.println(towerModelArray.get(i).getTowerName() + " x="+towerModelArray.get(i).getX() + " y="+towerModelArray.get(i).getY());
+			logger.info(towerModelArray.get(i).getTowerName() + " x=" + towerModelArray.get(i).getX() + " y="
+					+ towerModelArray.get(i).getY());
+			// System.out.println(towerModelArray.get(i).getTowerName() + "
+			// x="+towerModelArray.get(i).getX() + "
+			// y="+towerModelArray.get(i).getY());
 		}
 	}
-	
+
 	/**
 	 * This method gets the tower array
+	 * 
 	 * @return the tower model array list
 	 */
-	public ArrayList<Tower> getTowerModelArray(){
+	public ArrayList<Tower> getTowerModelArray() {
 		return towerModelArray;
-	} 
-	
+	}
+
 	/**
 	 * This method substracts hit points from player current health points
-	 * @param new_n hit points to be substracted
+	 * 
+	 * @param new_n
+	 *            hit points to be substracted
 	 * @return true if player is still has health
 	 */
-	public boolean decrementHealth(int new_n){
+	public boolean decrementHealth(int new_n) {
 		hpPlayer -= new_n;
 		logger.info("Critter reached the Exit: -1 from Hit Points!");
 		setChanged();
 		notifyObservers();
-		if(hpPlayer <= 0){
-		//	JFrame frame = new JFrame();
+		if (hpPlayer <= 0) {
+			// JFrame frame = new JFrame();
 			logger.info("Hit Points reached zero.");
-		//	JOptionPane.showMessageDialog(frame,"You are dead.");
+			// JOptionPane.showMessageDialog(frame,"You are dead.");
 			return false;
 		}
 		return true;
 	}
+
 	/**
 	 * this method increment game wave and alert observers about the changes
 	 */
-	public void incGameWave(){
+	public void incGameWave() {
 		gameWave++;
 		setChanged();
 		notifyObservers();
 	}
 
-	
-
-// END
+	// END
 }
