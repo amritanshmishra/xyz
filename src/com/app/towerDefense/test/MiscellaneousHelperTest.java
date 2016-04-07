@@ -1,14 +1,14 @@
 package com.app.towerDefense.test;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import java.io.File;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.app.towerDefense.staticContent.ApplicationStatics;
 import com.app.towerDefense.utilities.MiscellaneousHelper;
 
 /**
@@ -138,7 +138,6 @@ public class MiscellaneousHelperTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		// Add additional tear down code here
 		System.out.println("@AfterClass - oneTimeTearDown");
 		miscellaneousHelper = null;
 		assertNull(miscellaneousHelper);
