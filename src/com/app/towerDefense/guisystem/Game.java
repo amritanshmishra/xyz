@@ -115,7 +115,7 @@ public class Game extends Canvas implements Runnable { // change 1
 	@Override
 	public void run() {
 		long lastTime = System.nanoTime();
-		double amountOfTicks = 50.0; // Game speed 5.0
+		double amountOfTicks = 20.0; // Game speed 5.0
 		double ns = 1000000000 / amountOfTicks;
 		double delta = 0;
 		long timer = System.currentTimeMillis();
