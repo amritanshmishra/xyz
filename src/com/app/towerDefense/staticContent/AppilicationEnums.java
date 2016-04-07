@@ -41,7 +41,7 @@ public class AppilicationEnums {
 	public enum E_JFileChooserMode {
 		MapOpen, MapSave, MapPlay, GameLoad, GameSave
 	}
-	
+
 	/**
 	 * Enumerators to express the Log Viewer State
 	 * 

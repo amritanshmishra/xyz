@@ -1,12 +1,8 @@
 package com.app.towerDefense.staticContent;
 
 import java.awt.Point;
-import java.nio.channels.FileChannel.MapMode;
 import java.util.ArrayList;
-
 import javax.swing.JButton;
-
-import com.app.towerDefense.models.MapModel;
 import com.app.towerDefense.models.PlayerModel;
 import com.app.towerDefense.models.Tower;
 
@@ -42,9 +38,9 @@ public class ApplicationStatics {
 	public static int BLOCK_WIDTH;
 	public static int BLOCK_HEIGHT;
 	public static boolean GAME_OVER = false;
-	public static String MAP_SECRECT_TAG="_Team5";
-	public static String MAP_CURRENT_OPENED_FILE_PATH ="";
-	//public static MapModel MAP_MODEL ;
+	public static String MAP_SECRECT_TAG = "_Team5";
+	public static String MAP_CURRENT_OPENED_FILE_PATH = "";
+	// public static MapModel MAP_MODEL ;
 	/*
 	 * public static final int MAP_ENTRY_POINT=1; public static final int
 	 * MAP_EXIT_POINT=900; public static final int MAP_PATH_POINT=1; public
@@ -57,12 +53,12 @@ public class ApplicationStatics {
 	public static final int MAP_Scenery_POINT = 0;
 
 	// Window Titles
-	//public static String GAME_PLAYER_NAME = "";
+	// public static String GAME_PLAYER_NAME = "";
 	private static final String TITLE_GAME_WINDOW = "Tower Defence Game by \"Team 5\".";
 	public static final String TITLE_MAP_EDITOR = "MAP EDITOR";
 	public static final String TITLE_LOG_VIEWER = "LOG VIEWER";
 	public static final String MAP_MODE_CREATE = "(CREATE)";
-	public static final String MAP_MODE_OPEN = "(OPEN)";	
+	public static final String MAP_MODE_OPEN = "(OPEN)";
 	public static final String LOG_VIEWER_MODE_GLOBLE = "GLOBLE";
 	public static final String LOG_VIEWER_MODE_CURRENT_SESSION = "CURRENT SESSION";
 	public static final String LOG_VIEWER_MODE_TOWERS = "TOWERS";
@@ -82,16 +78,15 @@ public class ApplicationStatics {
 	public static final String MENU_ITEM_SAVE = "SAVE";
 	public static final String MENU_ITEM_EXIT = "EXIT";
 	public static final String MENU_ITEM_LOG_VIEWER = "LOG VIEWER ";
-	
-	//Logs
+
+	// Logs
 	private static String LOG_CURRENT_SESSION_TAG = "";
 	private static String LOG_TOWE_TAG = "";
 	public static String LOG_File_PATH = "log\\gameLog.log";
 	public static String LOG_File_PATH_iPhone = "log\\gameLog.log";
-	public static boolean isLogViewerOpen=false;
-	//Date
-	public static final String DATE_FORMAT_DEFAULT="yyyyMMddHHmmssSSS";
-	
+	public static boolean isLogViewerOpen = false;
+	// Date
+	public static final String DATE_FORMAT_DEFAULT = "yyyyMMddHHmmssSSS";
 
 	// -- Images Paths
 	public static final String IMAGE_PATH_GAME_BK = "images/gameBk.png";
@@ -111,14 +106,14 @@ public class ApplicationStatics {
 	public static final String IMAGE_PATH_CRITTER_FROZEN = "images/freeze.gif";
 	public static final String IMAGE_PATH_CRITTER_BURN = "images/burn.gif";
 	public static final String IMAGE_PATH_CRITTER_SPLASH = "images/splash.gif";
-	
-	//Popup Title
-	public static final String TITLE_MSG_SET_SIZE_OF_MAP= "SET SIZE OF MAP";
-	
-	//Status
-	public static final String STATUS_SUCCESS= "SUCCESS";
-	
-	//Prompt Messages
+
+	// Popup Title
+	public static final String TITLE_MSG_SET_SIZE_OF_MAP = "SET SIZE OF MAP";
+
+	// Status
+	public static final String STATUS_SUCCESS = "SUCCESS";
+
+	// Prompt Messages
 	public static final String MSG_IN_VALID_MAP = "In valid map file.";
 	public static final String MSG_UNABLE_TO_TDM_OPEN_FILE = "Unable to .tdm open file";
 	public static final String MSG_NO_FILE_SELECTED = "No file selected";
@@ -130,25 +125,26 @@ public class ApplicationStatics {
 	public static final String MSG_CLOSING_GAME_APPLICATION = "Closing game application.";
 	public static final String MSG_MENU_SELECTED = "Breadcrumbs Menu Selected: %s > %s.";
 	public static final String MSG_GAME_PLAYER_NAME = "Game Player Name";
-	
-	
-	//Getter and Setter Sections
-	
+
+	// Getter and Setter Sections
+
 	// Window Titles
 	/**
 	 * This method gets the game window title
+	 * 
 	 * @return the titleGameWindow
 	 */
 	public static String getTitleGameWindow() {
-		if(ApplicationStatics.PLAYERMODEL.playerName.length() > 0)
-			return TITLE_GAME_WINDOW+". Player :("+ApplicationStatics.PLAYERMODEL.playerName+")";
+		if (ApplicationStatics.PLAYERMODEL.playerName.length() > 0)
+			return TITLE_GAME_WINDOW + ". Player :(" + ApplicationStatics.PLAYERMODEL.playerName + ")";
 		else
 			return TITLE_GAME_WINDOW;
 	}
 
-	//Logs
+	// Added log logic
 	/**
 	 * This method gets the current log session tag
+	 * 
 	 * @return the lOG_CURRENT_SESSION_TAG
 	 */
 	public static String getLog_Current_Session_Tag() {
@@ -157,14 +153,17 @@ public class ApplicationStatics {
 
 	/**
 	 * This method sets the log current session tag
-	 * @param lOG_CURRENT_SESSION_TAG the lOG_CURRENT_SESSION_TAG to set
+	 * 
+	 * @param lOG_CURRENT_SESSION_TAG
+	 *            the lOG_CURRENT_SESSION_TAG to set
 	 */
 	public static void setLog_Current_Session_Tag(String new_session) {
-		LOG_CURRENT_SESSION_TAG = "LOG_CURRENT_SESSION_TAG_"+new_session;
+		LOG_CURRENT_SESSION_TAG = "LOG_CURRENT_SESSION_TAG_" + new_session;
 	}
 
 	/**
 	 * This method gets log tower tag
+	 * 
 	 * @return the lOG_TOWE_TAG
 	 */
 	public static String getLog_Tower_Tag() {
@@ -173,12 +172,12 @@ public class ApplicationStatics {
 
 	/**
 	 * This method sets a log tower tag
-	 * @param lOG_TOWE_TAG the lOG_TOWE_TAG to set
+	 * 
+	 * @param lOG_TOWE_TAG
+	 *            the lOG_TOWE_TAG to set
 	 */
 	public static void setLog_Tower_Tag(String new_session) {
 		LOG_TOWE_TAG = new_session;
 	}
-	
-	
-	
+
 }
