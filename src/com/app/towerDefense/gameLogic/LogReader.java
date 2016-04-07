@@ -65,6 +65,7 @@ public class LogReader {
 			return parseLogForMapPlayerStatistics();
 		}
 		// logger.info("Function Called read() ");
+		System.out.print("Length : "+logResultant.length());
 		return logResultant;
 	}
 	
@@ -79,7 +80,6 @@ public class LogReader {
 	    while (matcher.find()) {
 	      logResultant = logResultant.substring(matcher.end(),  logResultant.length());      
 	    }
-	    System.out.print("Length : "+logResultant.length());
 		return logResultant;
 	}
 	
@@ -121,7 +121,7 @@ public class LogReader {
 	    	sb.append(matcher.group()+"\n");  
 	    }
 	    logResultant = sb.toString();
-		return logResultant;
+	    return logResultant;
 	}
 	
 	/**
