@@ -30,7 +30,8 @@ import com.app.towerDefense.guisystem.Game;
 			StrategyTest.class,
 			LogReaderTest.class,
 			LoggerTest.class,
-			GameLoaderTest.class
+			GameLoaderTest.class,
+			GameSaverTest.class
 		})
 public class TestSuite {
 

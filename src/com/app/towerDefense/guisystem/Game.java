@@ -60,7 +60,7 @@ public class Game extends Canvas implements Runnable { // change 1
 	/**
 	 * Constructor of the Game Class
 	 */
-	public Game() {
+	private Game() {
 		// logs
 		ApplicationStatics.setLog_Current_Session_Tag(new MiscellaneousHelper().getCurrentDateStr());
 		logger.info(ApplicationStatics.getLog_Current_Session_Tag());
@@ -135,7 +135,7 @@ public class Game extends Canvas implements Runnable { // change 1
 	public void run() {
 		// TODO Auto-generated method stub
 		long lastTime = System.nanoTime();
-		double amountOfTicks = 20.0; // Game speed 5.0
+		double amountOfTicks = 50.0; // Game speed 5.0
 		double ns = 1000000000 / amountOfTicks;
 		double delta = 0;
 		long timer = System.currentTimeMillis();

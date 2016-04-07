@@ -365,14 +365,29 @@ public class JMenuBarComponent {
 				}
 				else if (new_e.getSource().equals(menuItemLogViewer)) {
 					logger.info(String.format(ApplicationStatics.MSG_MENU_SELECTED, ApplicationStatics.MENU_VIEW, ApplicationStatics.MENU_ITEM_LOG_VIEWER));
-					new LogViewer(
-							new_jframe,
-							ApplicationStatics.TITLE_LOG_VIEWER,
-							ApplicationStatics.CHILD_POPUP_WINDOW_WIDTH,
-							ApplicationStatics.CHILD_POPUP_WINDOW_HEIGHT,
-							ApplicationStatics.LOG_File_PATH, 
-							E_LogViewerState.GlobalLog,
-							null);
+					if(System.getProperty("os.name").contains("Windows"))
+					{
+						new LogViewer(
+								new_jframe,
+								ApplicationStatics.TITLE_LOG_VIEWER,
+								ApplicationStatics.CHILD_POPUP_WINDOW_WIDTH,
+								ApplicationStatics.CHILD_POPUP_WINDOW_HEIGHT,
+								ApplicationStatics.LOG_File_PATH, 
+								E_LogViewerState.GlobalLog,
+								null);
+					}
+					else
+					{
+						new LogViewer(
+								new_jframe,
+								ApplicationStatics.TITLE_LOG_VIEWER,
+								ApplicationStatics.CHILD_POPUP_WINDOW_WIDTH,
+								ApplicationStatics.CHILD_POPUP_WINDOW_HEIGHT,
+								ApplicationStatics.LOG_File_PATH_iPhone, 
+								E_LogViewerState.GlobalLog,
+								null);
+					}
+
 				}
 				/*
 				else if (new_e.getSource().equals(menuItemLoadGame)) {

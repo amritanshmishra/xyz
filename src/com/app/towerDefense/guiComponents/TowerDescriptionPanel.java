@@ -206,14 +206,28 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 			public void actionPerformed(ActionEvent e) {
 			
 				logger.info("Tower log button was clicked.");
-				new LogViewer(
-						null,
-						ApplicationStatics.TITLE_LOG_VIEWER,
-						ApplicationStatics.CHILD_POPUP_WINDOW_WIDTH,
-						ApplicationStatics.CHILD_POPUP_WINDOW_HEIGHT,
-						ApplicationStatics.LOG_File_PATH, 
-						E_LogViewerState.TowerLog,
-						tempTM);
+				if(System.getProperty("os.name").contains("Windows"))
+				{
+					new LogViewer(
+							null,
+							ApplicationStatics.TITLE_LOG_VIEWER,
+							ApplicationStatics.CHILD_POPUP_WINDOW_WIDTH,
+							ApplicationStatics.CHILD_POPUP_WINDOW_HEIGHT,
+							ApplicationStatics.LOG_File_PATH, 
+							E_LogViewerState.TowerLog,
+							tempTM);
+				}
+				else
+				{
+					new LogViewer(
+							null,
+							ApplicationStatics.TITLE_LOG_VIEWER,
+							ApplicationStatics.CHILD_POPUP_WINDOW_WIDTH,
+							ApplicationStatics.CHILD_POPUP_WINDOW_HEIGHT,
+							ApplicationStatics.LOG_File_PATH_iPhone, 
+							E_LogViewerState.TowerLog,
+							tempTM);
+				};
 			}
 		});
 

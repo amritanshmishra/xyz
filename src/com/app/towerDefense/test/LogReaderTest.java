@@ -49,7 +49,7 @@ public class LogReaderTest {
 		else
 		{
 			file= new File("testfiles/gameLog.log"); //for Mac OSX
-			ApplicationStatics.MAP_CURRENT_OPENED_FILE_PATH="testfiles//Map_10_8_MapPlayerStatisticsTest.tdm";
+			ApplicationStatics.MAP_CURRENT_OPENED_FILE_PATH="testfiles/Map_10_8_MapPlayerStatisticsTest.tdm";
 		}
 
 		logReadingState=E_LogViewerState.GlobalLog;

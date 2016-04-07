@@ -87,6 +87,7 @@ public class ApplicationStatics {
 	private static String LOG_CURRENT_SESSION_TAG = "";
 	private static String LOG_TOWE_TAG = "";
 	public static String LOG_File_PATH = "log\\gameLog.log";
+	public static String LOG_File_PATH_iPhone = "log\\gameLog.log";
 	public static boolean isLogViewerOpen=false;
 	//Date
 	public static final String DATE_FORMAT_DEFAULT="yyyyMMddHHmmssSSS";

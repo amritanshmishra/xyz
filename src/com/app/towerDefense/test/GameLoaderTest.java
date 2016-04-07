@@ -116,9 +116,26 @@ public class GameLoaderTest {
 		player = new PlayerModel(playerName, sunCurrency, hpPlayer, gameWave);
 		player.towerModelArray = tempTowerModelArray;
 		player.lastTowerID = lastTowerID;
-		 
-		 assertEquals(player.getPlayerName(), playerName);
 		
+		assertNotNull(mapFilePath);
+		
+		assertTrue(playerName != null);
+		assertNotNull(sunCurrency);
+		assertNotNull(hpPlayer);
+		assertNotNull(gameWave);
+		
+		assertEquals(player.getPlayerName(), playerName);
+		assertEquals(player.getSunCurrency(), sunCurrency);
+		assertEquals(player.getHpPlayer(), hpPlayer);
+		assertEquals(player.getGameWave(), gameWave);
+		
+		
+		assertTrue(!tempTowerModelArray.isEmpty());
+		assertEquals(player.towerModelArray, tempTowerModelArray);
+		for(int i=0; i<player.towerModelArray.size(); i++){
+			assertEquals(player.towerModelArray.get(i).towerID, tempTowerModelArray.get(i).towerID);
+			assertEquals(player.towerModelArray.get(i).getTowerlevel(), tempTowerModelArray.get(i).getTowerlevel());
+		}
 	}
 
 }
