@@ -79,6 +79,7 @@ public class LogReader {
 	    while (matcher.find()) {
 	      logResultant = logResultant.substring(matcher.end(),  logResultant.length());      
 	    }
+	    System.out.print("Length : "+logResultant.length());
 		return logResultant;
 	}
 	
@@ -166,6 +167,80 @@ public class LogReader {
 		}
 		return logResultant;
 	}
+
+	/**
+	 * @return the file
+	 */
+	public File getFile() {
+		return file;
+	}
+
+	/**
+	 * @param file the file to set
+	 */
+	public void setFile(File file) {
+		this.file = file;
+	}
+
+	/**
+	 * @return the logFilePath
+	 */
+	public String getLogFilePath() {
+		return logFilePath;
+	}
+
+	/**
+	 * @param logFilePath the logFilePath to set
+	 */
+	public void setLogFilePath(String logFilePath) {
+		this.logFilePath = logFilePath;
+	}
+
+	/**
+	 * @return the logResultant
+	 */
+	public String getLogResultant() {
+		return logResultant;
+	}
+
+	/**
+	 * @param logResultant the logResultant to set
+	 */
+	public void setLogResultant(String logResultant) {
+		this.logResultant = logResultant;
+	}
+
+	/**
+	 * @return the logReadingState
+	 */
+	public E_LogViewerState getLogReadingState() {
+		return logReadingState;
+	}
+
+	/**
+	 * @param logReadingState the logReadingState to set
+	 */
+	public void setLogReadingState(E_LogViewerState logReadingState) {
+		this.logReadingState = logReadingState;
+	}
+
+	/**
+	 * @return the tower
+	 */
+	public Tower getTower() {
+		return tower;
+	}
+
+	/**
+	 * @param tower the tower to set
+	 */
+	public void setTower(Tower tower) {
+		this.tower = tower;
+	}
+	
+	
+	
+	
 	
 	/*
 	public static void main(String new_args[]) {
