@@ -43,6 +43,8 @@ public class CritterTest {
 	MapModel mapModel;
 //	File file = new File("testfiles\\abc.tdm"); // for Windows OS
 	File file = new File("testfiles/abc.tdm"); // for Mac OS
+	
+	BasicCritter critter;
 
 	/**
 	 * Test case Initialization for CritterTest
@@ -120,6 +122,73 @@ public class CritterTest {
 			isException = true;
 		}
 		assertFalse(isException);
+	}
+	
+	
+	/**
+	 * Test case to check whether basic critter health is correct based on wave
+	 * level
+	 */
+	@Test
+	public void testBasicCritterHealth() {
+		// wave 1
+		critter = new BasicCritter(1);
+		assertNotNull(critter);
+		assertEquals(10, critter.getActualHealth());
+		critter = null;
+		// wave 3
+		critter = new BasicCritter(3);
+		assertNotNull(critter);
+		assertEquals(10, critter.getActualHealth());
+		critter = null;
+		// wave 4
+		critter = new BasicCritter(4);
+		assertNotNull(critter);
+		assertEquals(20, critter.getActualHealth());
+		critter = null;
+		// wave 6
+		critter = new BasicCritter(6);
+		assertNotNull(critter);
+		assertEquals(20, critter.getActualHealth());
+		critter = null;
+		// wave 7
+		critter = new BasicCritter(7);
+		assertNotNull(critter);
+		assertEquals(30, critter.getActualHealth());
+		critter = null;
+	}
+
+	/**
+	 * Test case to check whether basic critter speed is correct based on wave
+	 * level
+	 */
+	@Test
+	public void testBasicCritterSpeed() {
+		// wave 1
+		critter = new BasicCritter(1);
+		assertNotNull(critter);
+		assertEquals(2, critter.getSpeed());
+		critter = null;
+		// wave 3
+		critter = new BasicCritter(3);
+		assertNotNull(critter);
+		assertEquals(2, critter.getSpeed());
+		critter = null;
+		// wave 5
+		critter = new BasicCritter(5);
+		assertNotNull(critter);
+		assertEquals(2, critter.getSpeed());
+		critter = null;
+		// wave 6
+		critter = new BasicCritter(6);
+		assertNotNull(critter);
+		assertEquals(3, critter.getSpeed());
+		critter = null;
+		// wave 7
+		critter = new BasicCritter(7);
+		assertNotNull(critter);
+		assertEquals(3, critter.getSpeed());
+		critter = null;
 	}
 
 	/**
