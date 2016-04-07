@@ -92,23 +92,7 @@ public class MiscellaneousHelperTest {
 		assertEquals("hello", miscellaneousHelper.DecodeBase64("aGVsbG8="));
 	}
 
-	/**
-	 * 
-	 * Run Unit Test EncodeBase64 Convert String into base64Encoded String
-	 */
-	@Test
-	public void testEncodeBase64Check() {
-		assertEquals("aGVsbG8=", miscellaneousHelper.EncodeBase64("hello"));
-	}
-
-	/**
-	 * 
-	 * Run Unit Test DecodeBase64 Convert Encoded64 String into normal String
-	 */
-	@Test
-	public void testDecodeBase64Check() {
-		assertEquals("hello", miscellaneousHelper.DecodeBase64("aGVsbG8="));
-	}
+	
 	/**
 	 * Perform post-test clean-up.
 	 * 
