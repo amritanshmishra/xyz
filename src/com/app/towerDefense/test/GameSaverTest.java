@@ -4,11 +4,9 @@ import static org.junit.Assert.*;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import org.junit.*;
 
@@ -19,24 +17,23 @@ import com.app.towerDefense.models.StrongestStrategy;
 import com.app.towerDefense.models.Tower;
 import com.app.towerDefense.models.TowerFactory;
 import com.app.towerDefense.models.WeakestStrategy;
-import com.app.towerDefense.staticContent.ApplicationStatics;
 
+/**
+ * This class test the GameSaver.class
+ * @author usbaitass
+ *
+ */
 public class GameSaverTest {
 
 	FileWriter out;
+	BufferedReader in;
 	String filePath;
 
 	PlayerModel player;
 
-	BufferedReader in;
-
-	/*
-	 * public GameSaver(File new_file) throws IOException { file=new_file;
-	 * filePath = file.getPath(); savePlayerData();
-	 * 
-	 * }
+	/**
+	 * Before each test case new player model object is created
 	 */
-
 	@Before
 	public void Before() {
 		player = new PlayerModel("Ulan", 200, 10, 2);
@@ -44,11 +41,17 @@ public class GameSaverTest {
 		player.buyTower(2);
 	}
 
+	/**
+	 * After each test case the player is deleted
+	 */
 	@After
 	public void After() {
 		player = null;
 	}
 
+	/**
+	 * Test case to verify if the file path is exists
+	 */
 	@Test
 	public void writeFileTest() {
 		filePath = "testfiles/game.tdg";
@@ -56,6 +59,9 @@ public class GameSaverTest {
 		assertNotNull(file.exists());
 	}
 
+	/**
+	 * Test case to check if the data is written correctly and properly
+	 */
 	@Test
 	public void savePlayerDataTest() {
 
