@@ -9,16 +9,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
 import org.apache.log4j.Logger;
-
-import com.app.towerDefense.models.BasicCritter;
 import com.app.towerDefense.models.CritterFactory;
 import com.app.towerDefense.models.CritterType;
 import com.app.towerDefense.models.PlayerModel;
@@ -59,23 +55,18 @@ public class GameInfoPanel extends JPanel implements Observer {
 		// -- setting layout and secondary panels
 		BorderLayout borderLayout = new BorderLayout();
 		this.setLayout(borderLayout);
-
 		JPanel leftInfoPanel = new JPanel();
 		JPanel rightInfoPanel = new JPanel();
 		leftInfoPanel
 				.setPreferredSize(new Dimension(new_width / 3, new_height));
 		rightInfoPanel.setPreferredSize(new Dimension(new_width * 2 / 3,
 				new_height));
-
 		leftInfoPanel.setBackground(new Color(205, 183, 158)); // BROWN
 		rightInfoPanel.setBackground(new Color(205, 183, 158)); // BROWN
-
 		leftInfoPanel.setLayout(new FlowLayout());
-
 		// creating and setting labels and buttons on Game Info Panel
 		JLabel sunButton = new JLabel(new ImageIcon(
 				ApplicationStatics.IMAGE_PATH_MAP_SUN));
-
 		sunCurrencyLabel = new JLabel("Sun "
 				+ ApplicationStatics.PLAYERMODEL.getSunCurrency());
 		sunCurrencyLabel.setFont(new Font("Serif", Font.BOLD, 13));
@@ -95,7 +86,7 @@ public class GameInfoPanel extends JPanel implements Observer {
 				logger.info("Wave is started "+ApplicationStatics.PLAYERMODEL.getGameWave()+".");
 				if (!ApplicationStatics.START_WAVE) {
 					ApplicationStatics.START_WAVE = true;
-					// startWaveButton.setEnabled(false);
+			
 				}
 			}
 		});

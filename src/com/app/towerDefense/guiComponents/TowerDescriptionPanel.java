@@ -37,12 +37,10 @@ import com.app.towerDefense.staticContent.AppilicationEnums.E_LogViewerState;
  * @author usbaitass
  * 
  */
-public class TowerDescriptionPanel extends JPanel implements Observer,
-		ActionListener {
+public class TowerDescriptionPanel extends JPanel implements Observer, ActionListener {
 
 	private static final long serialVersionUID = -2664654291872636064L;
-	public JLabel towerLabelDESCR = new JLabel(new ImageIcon(
-			ApplicationStatics.IMAGE_PATH_MAP_TOWER1));
+	public JLabel towerLabelDESCR = new JLabel(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_TOWER1));
 	private JLabel[] labelStatsTower;
 	private JLabel towerNameLabel;
 	private JButton upgradeTowerButton;
@@ -76,10 +74,8 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 
 		JPanel leftPanel = new JPanel();
 		JPanel rightPanel = new JPanel();
-		leftPanel
-				.setPreferredSize(new Dimension(new_width * 2 / 3, new_height));
-		rightPanel
-				.setPreferredSize(new Dimension(new_width * 1 / 3, new_height));
+		leftPanel.setPreferredSize(new Dimension(new_width * 2 / 3, new_height));
+		rightPanel.setPreferredSize(new Dimension(new_width * 1 / 3, new_height));
 
 		leftPanel.setBackground(new Color(205, 183, 158)); // BROWN
 		rightPanel.setBackground(new Color(205, 183, 158)); // BROWN
@@ -108,8 +104,7 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 			}
 			labelStatsTower[i] = new JLabel(s, SwingConstants.CENTER);
 			labelStatsTower[i].setFont(new Font("Serif", Font.BOLD, 14));
-			labelStatsTower[i].setBorder(BorderFactory
-					.createLineBorder(Color.GRAY));
+			labelStatsTower[i].setBorder(BorderFactory.createLineBorder(Color.GRAY));
 			labelStatsTower[i].setBackground(Color.WHITE);
 			labelStatsTower[i].setOpaque(true);
 			leftPanel.add(labelStatsTower[i]);
@@ -131,13 +126,11 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				if (sellBuyTowerButton.getText() == "BUY"
-						&& ApplicationStatics.CURRENT_SELECTED_TOWER < 4) {
+				if (sellBuyTowerButton.getText() == "BUY" && ApplicationStatics.CURRENT_SELECTED_TOWER < 4) {
 					logger.info("BUY Button Clicked.");
 					int tempTCost = ApplicationStatics.TOWER_MODELS[ApplicationStatics.CURRENT_SELECTED_TOWER]
 							.getTowerCost();
-					int currentBalance = ApplicationStatics.PLAYERMODEL
-							.getSunCurrency();
+					int currentBalance = ApplicationStatics.PLAYERMODEL.getSunCurrency();
 
 					if (currentBalance >= tempTCost) { // -- true if BUY is
 														// success
@@ -146,16 +139,14 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 						if (tempTM != null) {
 
 							JFrame frame = new JFrame();
-							JOptionPane
-									.showMessageDialog(
-											frame,
-											"You have bought a tower.\n Place it ONLY on the YELLOW Part on the map please.");
-							logger.info("You have bought a tower.\n Place it ONLY on the YELLOW Part on the map please.");
+							JOptionPane.showMessageDialog(frame,
+									"You have bought a tower.\n Place it ONLY on the YELLOW Part on the map please.");
+							logger.info(
+									"You have bought a tower.\n Place it ONLY on the YELLOW Part on the map please.");
 						}
 					} else {
 						JFrame frame = new JFrame();
-						JOptionPane.showMessageDialog(frame,
-								"You don't have enough suns for this tower.");
+						JOptionPane.showMessageDialog(frame, "You don't have enough suns for this tower.");
 						logger.info("You don't have enough suns for this tower.");
 					}
 				} else {
@@ -163,28 +154,17 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 					int temp_x = tempTM.getX();
 					int temp_y = tempTM.getY();
 
-					for (int k = 0; k < ApplicationStatics.PLAYERMODEL.towerModelArray
-							.size(); k++) {
-						int x = ApplicationStatics.PLAYERMODEL.towerModelArray
-								.get(k).getX();
-						int y = ApplicationStatics.PLAYERMODEL.towerModelArray
-								.get(k).getY();
+					for (int k = 0; k < ApplicationStatics.PLAYERMODEL.towerModelArray.size(); k++) {
+						int x = ApplicationStatics.PLAYERMODEL.towerModelArray.get(k).getX();
+						int y = ApplicationStatics.PLAYERMODEL.towerModelArray.get(k).getY();
 						if (temp_x == x && temp_y == y) {
 							if (ApplicationStatics.PLAYERMODEL.sellTower(k)) {
-								int w = ApplicationStatics.MAP_BUTTONS[x][y]
-										.getWidth();
-								int h = ApplicationStatics.MAP_BUTTONS[x][y]
-										.getHeight();
+								int w = ApplicationStatics.MAP_BUTTONS[x][y].getWidth();
+								int h = ApplicationStatics.MAP_BUTTONS[x][y].getHeight();
 
 								ApplicationStatics.MAP_BUTTONS[x][y]
-										.setIcon(new ImageIcon(
-												new ImageIcon(
-														ApplicationStatics.IMAGE_PATH_MAP_SCENERY)
-														.getImage()
-														.getScaledInstance(
-																w,
-																h,
-																java.awt.Image.SCALE_SMOOTH)));
+										.setIcon(new ImageIcon(new ImageIcon(ApplicationStatics.IMAGE_PATH_MAP_SCENERY)
+												.getImage().getScaledInstance(w, h, java.awt.Image.SCALE_SMOOTH)));
 								logger.info("tower deleted successfully.");
 
 								ApplicationStatics.SET_TOWER_DESCR_VISIBLE = false;
@@ -198,36 +178,24 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 			}
 
 		});
-		
+
 		logTowerButton = new JButton("Log");
 		logTowerButton.setPreferredSize(new Dimension(70, 20));
 		logTowerButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
+
 				logger.info("Tower log button was clicked.");
-				if(System.getProperty("os.name").contains("Windows"))
-				{
-					new LogViewer(
-							null,
-							ApplicationStatics.TITLE_LOG_VIEWER,
-							ApplicationStatics.CHILD_POPUP_WINDOW_WIDTH,
-							ApplicationStatics.CHILD_POPUP_WINDOW_HEIGHT,
-							ApplicationStatics.LOG_File_PATH, 
-							E_LogViewerState.TowerLog,
-							tempTM);
+				if (System.getProperty("os.name").contains("Windows")) {
+					new LogViewer(null, ApplicationStatics.TITLE_LOG_VIEWER,
+							ApplicationStatics.CHILD_POPUP_WINDOW_WIDTH, ApplicationStatics.CHILD_POPUP_WINDOW_HEIGHT,
+							ApplicationStatics.LOG_File_PATH, E_LogViewerState.TowerLog, tempTM);
+				} else {
+					new LogViewer(null, ApplicationStatics.TITLE_LOG_VIEWER,
+							ApplicationStatics.CHILD_POPUP_WINDOW_WIDTH, ApplicationStatics.CHILD_POPUP_WINDOW_HEIGHT,
+							ApplicationStatics.LOG_File_PATH_iPhone, E_LogViewerState.TowerLog, tempTM);
 				}
-				else
-				{
-					new LogViewer(
-							null,
-							ApplicationStatics.TITLE_LOG_VIEWER,
-							ApplicationStatics.CHILD_POPUP_WINDOW_WIDTH,
-							ApplicationStatics.CHILD_POPUP_WINDOW_HEIGHT,
-							ApplicationStatics.LOG_File_PATH_iPhone, 
-							E_LogViewerState.TowerLog,
-							tempTM);
-				};
+				;
 			}
 		});
 
@@ -243,21 +211,15 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 			public void actionPerformed(ActionEvent e) {
 				logger.info("upgrade button was clicked!");
 
-				// logger.info("button coordinates= "
-				// +towerButtonDESCR.getName());
-
 				int balance = ApplicationStatics.PLAYERMODEL.getSunCurrency();
 
 				if (balance >= tempTM.getTowerUpgradeCost()) {
 					tempTM.upgradeTower();
 					logger.info("Tower is upgraded successfully.");
-					ApplicationStatics.PLAYERMODEL.subSunCurrency(tempTM
-							.getTowerUpgradeCost());
+					ApplicationStatics.PLAYERMODEL.subSunCurrency(tempTM.getTowerUpgradeCost());
 					JFrame frame = new JFrame();
-					JOptionPane.showMessageDialog(
-							frame,
-							"You upgraded the tower successfully -"
-									+ tempTM.getTowerUpgradeCost() + " suns.");
+					JOptionPane.showMessageDialog(frame,
+							"You upgraded the tower successfully -" + tempTM.getTowerUpgradeCost() + " suns.");
 
 				} else {
 					JFrame frame = new JFrame();
@@ -312,7 +274,6 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 		topPanel.add(logTowerButton, BorderLayout.EAST);
 		topPanel.setBackground(new Color(205, 183, 158)); // BROWN
 
-		
 		JPanel commonPanel = new JPanel();
 		commonPanel.setLayout(new BorderLayout());
 		commonPanel.add(topPanel, BorderLayout.NORTH);
@@ -332,45 +293,38 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 	 * selected
 	 * 
 	 * @param new_tower_models
-	 *            tower 
+	 *            tower
 	 */
 	public void updateTowerDscrPanel(Tower new_tower_models) {
 
 		tempTM = new_tower_models;
 
-		labelStatsTower[1].setText(Integer.toString(new_tower_models
-				.getTowerlevel()));
-		labelStatsTower[4].setText(Integer.toString(new_tower_models
-				.getTowerPower()));
-		labelStatsTower[7].setText(Double.toString((double)new_tower_models
-				.getTowerRange()/100));
-		labelStatsTower[10].setText(Integer.toString(new_tower_models
-				.getTowerFireRate()));
+		labelStatsTower[1].setText(Integer.toString(new_tower_models.getTowerlevel()));
+		labelStatsTower[4].setText(Integer.toString(new_tower_models.getTowerPower()));
+		labelStatsTower[7].setText(Double.toString((double) new_tower_models.getTowerRange() / 100));
+		labelStatsTower[10].setText(Integer.toString(new_tower_models.getTowerFireRate()));
 		labelStatsTower[13].setText(new_tower_models.getSpecialEffect());
-		labelStatsTower[16].setText(Integer.toString(new_tower_models
-				.getTowerCost()));
+		labelStatsTower[16].setText(Integer.toString(new_tower_models.getTowerCost()));
 
 		towerNameLabel.setText(new_tower_models.getTowerName());
 		towerLabelDESCR.setIcon(new_tower_models.getTowerImage());
 
-		// currentSelectedTowerName = "tower" + Integer.toString(new_towerID);
 		// -- checks if tower is selected from the shop or the map
 
 		if (ApplicationStatics.SET_TOWER_DESCR_VISIBLE) {
-			labelStatsTower[2].setText(Integer.toString(new_tower_models
-					.getTowerlevel() + new_tower_models.getTowerlevelUpgrade()));
-			labelStatsTower[5].setText(Integer.toString(new_tower_models
-					.getTowerPower() + new_tower_models.getTowerPowerUpgrade()));
-			labelStatsTower[8].setText(Double.toString((double)(new_tower_models
-					.getTowerRange() + new_tower_models.getTowerFireRangeUpgrade())/100));
-			labelStatsTower[11].setText(Integer.toString(new_tower_models
-					.getTowerFireRate() + new_tower_models.getTowerFireRateUpgrade()));
+			labelStatsTower[2].setText(
+					Integer.toString(new_tower_models.getTowerlevel() + new_tower_models.getTowerlevelUpgrade()));
+			labelStatsTower[5].setText(
+					Integer.toString(new_tower_models.getTowerPower() + new_tower_models.getTowerPowerUpgrade()));
+			labelStatsTower[8].setText(Double.toString(
+					(double) (new_tower_models.getTowerRange() + new_tower_models.getTowerFireRangeUpgrade()) / 100));
+			labelStatsTower[11].setText(
+					Integer.toString(new_tower_models.getTowerFireRate() + new_tower_models.getTowerFireRateUpgrade()));
 			labelStatsTower[14].setText(new_tower_models.getSpecialEffect());
-			labelStatsTower[17].setText(Integer.toString((int) (new_tower_models
-					.getTowerUpgradeCost())));
+			labelStatsTower[17].setText(Integer.toString((int) (new_tower_models.getTowerUpgradeCost())));
 			sellBuyTowerButton.setText("SELL");
 			strategyTowerButton.setText(tempTM.getStrategy().getStrategyName());
-		
+
 		} else {
 			labelStatsTower[2].setText("");
 			labelStatsTower[5].setText("");
@@ -379,11 +333,11 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 			labelStatsTower[14].setText("");
 			labelStatsTower[17].setText("");
 			sellBuyTowerButton.setText("BUY");
-		
+
 			upgradeTowerButton.setVisible(false);
 			strategyTowerButton.setVisible(false);
 		}
-		
+
 		labelStatsTower[2].setVisible(ApplicationStatics.SET_TOWER_DESCR_VISIBLE);
 		labelStatsTower[5].setVisible(ApplicationStatics.SET_TOWER_DESCR_VISIBLE);
 		labelStatsTower[8].setVisible(ApplicationStatics.SET_TOWER_DESCR_VISIBLE);
@@ -393,7 +347,6 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 		upgradeTowerButton.setVisible(ApplicationStatics.SET_TOWER_DESCR_VISIBLE);
 		strategyTowerButton.setVisible(ApplicationStatics.SET_TOWER_DESCR_VISIBLE);
 		logTowerButton.setVisible(ApplicationStatics.SET_TOWER_DESCR_VISIBLE);
-	
 
 	}
 
@@ -403,14 +356,13 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 	 */
 	@Override
 	public void update(Observable new_o, Object new_arg) {
-		// TODO Auto-generated method stub
-		// updateTowerDscrPanel(new TowerModel1());
+
 		int a = ApplicationStatics.CURRENT_SELECTED_TOWER;
 
 		if (a < 4) {
 			updateTowerDscrPanel(ApplicationStatics.TOWER_MODELS[a]);
 		} else {
-			// logger.info("inside else of update() TOWER DESCR PANEL");
+
 			updateTowerDscrPanel(tempTM);
 		}
 
@@ -421,7 +373,7 @@ public class TowerDescriptionPanel extends JPanel implements Observer,
 	 */
 	@Override
 	public void actionPerformed(ActionEvent new_e) {
-		// TODO Auto-generated method stub
+		// Not needed
 
 	}
 

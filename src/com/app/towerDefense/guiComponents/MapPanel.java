@@ -92,12 +92,9 @@ public class MapPanel extends JPanel {
 
 					super.paintComponent(new_graphics);
 					if (critter.size() > 0) {
-						// logger.info("count : " +
-						// multipleCriiterCounter);
+
 						for (int i = 0; i < critter.size(); i++) {
 							if (critter.size() > 0 && critter.get(i).calculatePath()) {
-								// logger.info("i : " + i + ", size : " +
-								// critter.size());
 
 								// drawing critters
 								new_graphics.drawImage(critter.get(i).getCritterImage(), critter.get(i).getX(),
@@ -127,7 +124,6 @@ public class MapPanel extends JPanel {
 								}
 
 								if (multipleCriiterCounter < (i + 1) * 15) {
-									// logger.info("Inside Counter");
 									break;
 								}
 							} else {
@@ -136,7 +132,6 @@ public class MapPanel extends JPanel {
 									logger.info("Play smarter, you still have a chance!");
 								} else {
 									ApplicationStatics.GAME_OVER = true;
-									// Game.getInstance().stop();
 									break;
 								}
 								critter.remove(i);
@@ -173,8 +168,8 @@ public class MapPanel extends JPanel {
 							multipleCriiterCounter = 0;
 							ApplicationStatics.PLAYERMODEL.incGameWave();
 							new Map().saveMapLog();
-							logger.info("Next Wave : "+ApplicationStatics.PLAYERMODEL.getGameWave()+" Started.");
-							//GameSaver gameSaver=  new GameSaver();							
+							logger.info("Next Wave : " + ApplicationStatics.PLAYERMODEL.getGameWave() + " Started.");
+
 						}
 					}
 
@@ -182,16 +177,8 @@ public class MapPanel extends JPanel {
 			}
 
 		} catch (IndexOutOfBoundsException e) {
+			e.getMessage();
 		}
-		/*
-		 * catch (IndexOutOfBoundsException e) {
-		 * JOptionPane.showMessageDialog(null, "Wave Completed"); if
-		 * (critter.size() == 0 && !ApplicationStatics.GAME_OVER) {
-		 * 
-		 * ApplicationStatics.START_WAVE = false; isInitialCond = true;
-		 * multipleCriiterCounter = 0; //
-		 * ApplicationStatics.PLAYERMODEL.incGameWave(); } }
-		 */
 
 	}
 
@@ -233,11 +220,9 @@ public class MapPanel extends JPanel {
 			}
 
 			((Graphics2D) graphics).setStroke(new BasicStroke(3));
-			
+
 			graphics.drawLine(new_tx, new_ty, new_cx, new_cy);
-						
-		//	System.out.println("mnmn= "+new_tx+" "+ new_ty+" "+ new_cx+" "+ new_cy);
-			
+
 		}
 	}
 
@@ -268,5 +253,5 @@ public class MapPanel extends JPanel {
 
 		}
 	}
-	
+
 }

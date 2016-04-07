@@ -3,10 +3,8 @@ package com.app.towerDefense.guiComponents;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-
 import com.app.towerDefense.staticContent.ApplicationStatics;
 
 /**
